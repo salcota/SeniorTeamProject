@@ -38,17 +38,18 @@
 <body>
 <div class="container">
 
-            <div id="main" class="card text-center" style="width: 20rem;">
-				<div align = "center">
-				<a href="http://imgur.com/mKvvwpl">
+	<div id="main" class="card text-center" style="width: 20rem;">
+		<div align = "center">
+			<a href="http://imgur.com/mKvvwpl">
                 <img class="circle" alt="Mark Tompong" aria-busy="false"
                      src="http://i.imgur.com/mKvvwpl.png" title="source: imgur.com" /></a>
+		</div>
                 <div class="card-block">
                     <h4 class="card-title">Mark Tompong</h4>
                     <h5>Team 4</h5>
                     <p class="card-text">Senior in Computer Science</p>
-                </div>       
-            </div>
+		</div>       
+	</div>
  </div>
 
 </body>
