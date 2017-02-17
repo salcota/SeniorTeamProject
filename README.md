@@ -11,6 +11,6 @@ Back end Developer: Darel Ogbonna
 Back end Developer: Shane Cota
 Front end Developer: Kevin Chu
 Front end Developer: Mark Tompong
-Homepage Link: http://sfsuse.com/~sp17g04/csc648848sp17g04
+Homepage Link: http://www.sfsuse.com/~sp17g04
 
 Team 4 uses Codeigniter as the website's PHP Framework.
