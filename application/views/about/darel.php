@@ -1,3 +1,7 @@
+<?php
+$this->load->helper('url');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +24,7 @@
       
    <div class="container">
       <center><h1>Darel Ogbonna</h1></center>
-      <center><img src="www.ihsansdomain.com/darel.jpg" alt="a pic at Mission Peak" height="300"/></center>
+      <center><img src="<?php echo base_url() . "public/about/darel/aboutDarel.jpg"?>" alt="a pic at Mission Peak" height="300"/></center>
            <center><p>Darel is a senior at San Francisco State University, completing his bachelor's degree in Computer Science.</p></center>
    </div>
    
