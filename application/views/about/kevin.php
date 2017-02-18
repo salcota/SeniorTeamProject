@@ -1,3 +1,8 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$this->load->helper('url');
+?>
+
 <html>
 <head>
 <title>Kevin Chu</title>
@@ -57,7 +62,7 @@ html, body
 <div id="sideInfo">
 <center>
 <span class="big">Kevin Chu</span><br>
-<img src="https://drive.google.com/uc?export=download&id=0BxDYox_q0zD7OHpoUUNUSUx6VkU"><br><br>
+<img src="<?php echo base_url() . "public/about/kevin/aboutKevin.jpg"?>"><br><br>
 Front-End Developer<br>
 for the SP17G04 Buy/Sell website<br>
 (Website Name pending)

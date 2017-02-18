@@ -56,17 +56,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <h4>Click Below to View Our Individual Pages</h4>
 
                 <ul>
-                    <li><a href="http://www.sfsuse.com/~sp17g04/index.php/ihsan">Ihsan Taha</a></li>
+                    <li><a href="./About/view/ihsan">Ihsan Taha</a></li>
                     <br />
-                    <li><a href="http://www.sfsuse.com/~sp17g04/index.php/prateek">Prateek Gupta</a></li>
+                    <li><a href="./About/view/prateek">Prateek Gupta</a></li>
                     <br />
-                    <li><a href="http://www.sfsuse.com/~sp17g04/index.php/darel">Darel Ogbonna</a></li>
+                    <li><a href="./About/view/darel">Darel Ogbonna</a></li>
                     <br />
-                    <li><a href="http://www.sfsuse.com/~sp17g04/index.php/shane">Shane Cota</a></li>
+                    <li><a href="./About/view/shane">Shane Cota</a></li>
                     <br />
-                    <li><a href="http://www.sfsuse.com/~sp17g04/index.php/kevin">Kevin Chu</a></li>
+                    <li><a href="./About/view/kevin">Kevin Chu</a></li>
                     <br />
-                    <li><a href="http://www.sfsuse.com/~sp17g04/index.php/mark">Mark Tompong</a></li>
+                    <li><a href="./About/view/mark">Mark Tompong</a></li>
                     <br />
                 </ul>
 
