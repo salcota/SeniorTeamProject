@@ -8,7 +8,7 @@ Class CTO: Anthony Souza
 CEO: Ihsan Taha
 CTO: Prateek Gupta
 Back end Developer: Darel Ogbonna
-Back end Developer: SHANE COTA
+Back end Developer: Shane Cota
 Front end Developer: Kevin Chu
 Front end Developer: Mark Tompong
 Homepage Link: http://www.sfsuse.com/~sp17g04
