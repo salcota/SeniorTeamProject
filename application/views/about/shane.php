@@ -10,7 +10,7 @@ $this->load->helper('url');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <meta name="viewpoint" content="width = device-width, initial-scale = 1">
-    <title>About Shane</title>
+    <title>About SHANE</title>
     
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
