@@ -25,7 +25,7 @@ $this->load->helper('url');
       
    <div class="container">
       <center><h1>Shane Cota</h1></center>
-      <center><img src="<?php echo base_url() . ""?>" alt="a pic at Mission Peak" height="300"/></center>
+      <center><img class="spotlight" alt="Image may contain: 1 person, indoor" aria-busy="false" src="https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/15590368_10155476774979057_5985225702468684038_n.jpg?oh=2190452598d45fd86bfd543697207281&amp;oe=5948C81A" height = 200 width = 150/>
            <center><p>Shane is a senior at SFSU, completing his bachelor's degree in Computer Science.</p></center>
    </div>
    
