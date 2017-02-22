@@ -29,7 +29,7 @@ $this->load->helper('url');
            <center><p>Darel is a senior at San Francisco State University, completing his bachelor's degree in Computer Science.</p></center>
    </div>
    
-    <script src="https://ajax.googeapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/bootstrap.min.js"></script>
 </body>
 </html>
