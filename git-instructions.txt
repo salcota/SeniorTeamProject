@@ -23,3 +23,9 @@ Once you are back on track, you can do the following to update your contribution
   git push -u origin <beta>
 
 This file will be updated according to the flow of Team 4's progress
+
+(This part has been added after everything up to line 25)
+After opening your account again, you will already be on beta branch, and you can repeat steps 1 and 3.
+To work on your own branch, type: git checkout -b <your branch name>
+
+This file will be upgraded according to the flow of Team 4's progress
