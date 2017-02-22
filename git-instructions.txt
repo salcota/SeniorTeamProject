@@ -1,0 +1,25 @@
+For a first time contributor or someone with a messy local repository, type the following once:
+
+1-In the directory where public_html resides:
+  git clone https://github.com/ihsan-taha/csc648848sp17g04.git
+
+2-Delete the old (non-empty) public_html directory:
+  rm -rf public_html
+
+3-Rename the new csc648848sp17g04 directory to public_html:
+  mv csc648848sp17g04 public_html
+
+
+Once you are back on track, you can do the following to update your contributions regularly:
+1-Check current status:
+  git status
+
+2-Switch to the beta branch (only CEO or CTO will update beta with master and notify the team beforehand):
+  git checkout beta
+
+3-Modify a file and update to beta:
+  git add <modified filename>
+  git commit -m "description of what you are commiting"
+  git push -u origin <beta>
+
+This file will be updated according to the flow of Team 4's progress
