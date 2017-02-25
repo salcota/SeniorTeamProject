@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		echo "<p style='text-align:center; font-style:italic; margin-bottom:25px'>SFSU Software Engineering Project, Spring 2017.  For Demonstration Only<p>";
+		$this->load->view('sfsu_demo');
 
 		$this->load->view('welcome_message');
 	}
