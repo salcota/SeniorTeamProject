@@ -17,7 +17,7 @@ $this->load->helper('url');
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link fix-align" href="<?php echo base_url() . "Home/view/home_page"?>">Home</a>
+                        <a class="nav-link fix-align" href="<?php echo base_url() . "Home/view/home"?>">Home</a>
                     </li>
                     <li class="nav-item fix-align">
                         <div class="btn-group">
