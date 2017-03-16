@@ -13,6 +13,12 @@ class Home extends CI_Controller {
 		{
 			show_404();
 		}
+		else if ($page == "home")
+		{
+			$this->load->model('Item_Listing');
+			$items['itemList'] = $this->Item_Listing->getAll();
+			$this->load->view('home/home', $items);
+		}
 		else
 		{
 			$this->load->view('home/' . $page);
