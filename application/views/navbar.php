@@ -34,19 +34,19 @@ $this->load->helper('url');
                 </ul>
 
                 <!-- Centered Search Bar -->
-                <form class="form-inline mr-auto fix-align">
+                <form class="form-inline mr-auto fix-align" action="<?php echo base_url() . "Home/view/home"?>" method=GET>
                     <label class="sr-only" for="inlineFormInputGroup">Search</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All</button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item category" href="#">Books&nbsp;</a>
-                                <a class="dropdown-item category" href="#">Electronics&nbsp;</a><a class="dropdown-item category" href="#">Furniture&nbsp;</a>
-                                <a class="dropdown-item category" href="#">Lab Equipment&nbsp;</a>
-                                <a class="dropdown-item category" id="default" href="#">All&nbsp;</a>
+                                <a class="dropdown-item category" href="?cat=1">Books&nbsp;</a>
+                                <a class="dropdown-item category" href="?cat=3">Electronics&nbsp;</a><a class="dropdown-item category" href="?cat=2">Furniture&nbsp;</a>
+                                <a class="dropdown-item category" href="?cat=4">Lab Equipment&nbsp;</a>
+                                <a class="dropdown-item category" id="default" href="?">All&nbsp;</a>
                             </div>
                         </div>
-                        <input type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search ...">
+                        <input type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search ..." name="search">
                         <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </form>

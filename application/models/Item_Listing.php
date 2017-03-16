@@ -34,10 +34,55 @@ class Item_Listing extends CI_Model
 		}
 	}
 	
-	// Retrieves all items from database.
-	public function getAll()
+	/* Retrieves items from database.
+	// Accepts array of data to search.
+	// Not all array elements are mandatory
+	// $array['user'] == username
+	// $array['title']
+	// $array['category']
+	// $array['listingID']
+	*/
+	public function getItems($search = NULL)
 	{
-		// Retrieve all item listings from database.
+		$this->load->model('Reg_User');
+		
+		// Add search criteria
+		if ($search != NULL)
+		{
+			// Get by username
+			if (array_key_exists('user', $search))
+			{
+				try
+				{
+					// Retrieve user_id of that user.
+					$userID = $this->Reg_User->getUser($search['user'])->user_id;
+				} catch (Exception $e)
+				{
+					// User not found. Search for nothing.
+					$userID = -1;
+				}
+				$this->db->where('seller_id', $userID);
+			}
+			
+			// Search by title
+			if (array_key_exists('title', $search))
+				$this->db->like('title', $search['title']);
+			
+			// Search by category
+			try
+			{
+				if (array_key_exists('category', $search))
+					$this->db->where('category_id', $search['category']);
+			} catch (Exception $e)
+			{
+			
+			}
+			
+			// Search by listing id
+			if (array_key_exists('listingID', $search))
+				$this->db->where('listing_id', $search['listingID']);
+		}
+		
 		$times = $this->db->get('item_listing');
 		return $times->result();
 	}

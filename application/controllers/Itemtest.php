@@ -23,24 +23,10 @@ class Itemtest extends CI_Controller {
 		$this->load->model('Reg_User');
 		$this->load->model('Item_Listing');
 		
-		try
-		{
-		$this->Reg_User->addUser("bob", "Bob", "bob", "bob@bob.com", 4);
-		}
-		catch (Exception $e)
-		{
-		
-		}
-		
-		$myName = $this->Reg_User->getUser("bob");
-		echo $myName->username;
-		
-		
-		$this->Item_Listing->addItem('Food', $this->Reg_User->getUser("bob")->user_id, 666, 'Mmmm good', 4);
 		
 		print "Start<br>";
 		
-		$items = $this->Item_Listing->getAll();
+		$items = $this->Item_Listing->getItems(array('title' => "chair"));
 		foreach($items as $value)
 		{
 			print $value->title . "<br>";
