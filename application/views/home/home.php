@@ -36,7 +36,7 @@ $this->load->helper('url');
 		{
 			$img = base64_encode($img);
 			print "
-			<img style=\"padding:5px\" class=\"card-img-top\" src=\"data:image/jpg;base64,$img\" alt=\"Card image cap\">
+			<img style=\"padding:5px; max-height: 400px; max-width: 100%;\" class=\"card-img-top\" src=\"data:image/jpg;base64,$img\" alt=\"Card image cap\">
 			";
 		}
 		print "

@@ -7,7 +7,17 @@ class Home extends CI_Controller {
 		$this->load->view('sfsu_demonstration');
 		$this->load->view('required_meta_tags');
 		$this->load->view('css_styles');
-		$this->load->view('navbar');
+		
+		// Get user's search terms.
+		$navSearch['searchTerms'] = $this->input->get('search');
+		$navSearch['currentCategory'] = $this->input->get('category');
+		
+		// Retrieve all item categories.
+		$this->load->model('Category');
+		$navSearch['categories'] = $this->Category->getCategories();
+		
+		// Pass search terms and category listing to navbar.
+		$this->load->view('navbar', $navSearch);
 
 		if (!file_exists(APPPATH.'views/home/' . $page . '.php'))
 		{
@@ -29,7 +39,7 @@ class Home extends CI_Controller {
 			
 			
 			// Return only matching category
-			$category = $this->input->get('cat');
+			$category = $this->input->get('category');
 			if (strlen($category) > 0)
 				$find['category'] = $category;
 			

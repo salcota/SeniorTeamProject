@@ -34,19 +34,28 @@ $this->load->helper('url');
                 </ul>
 
                 <!-- Centered Search Bar -->
-                <form class="form-inline mr-auto fix-align" action="<?php echo base_url() . "Home/view/home"?>" method=GET>
+                <form class="form-inline mr-auto fix-align" action="<?php echo base_url() . "Home/view/home"?>" id="searchSubmit" method=GET>
                     <label class="sr-only" for="inlineFormInputGroup">Search</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All</button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item category" href="?cat=1">Books&nbsp;</a>
-                                <a class="dropdown-item category" href="?cat=3">Electronics&nbsp;</a><a class="dropdown-item category" href="?cat=2">Furniture&nbsp;</a>
-                                <a class="dropdown-item category" href="?cat=4">Lab Equipment&nbsp;</a>
-                                <a class="dropdown-item category" id="default" href="?">All&nbsp;</a>
-                            </div>
-                        </div>
-                        <input type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search ..." name="search">
+                        <div class="form-group">
+							<select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="categories" name="category" onchange='document.forms["searchSubmit"].submit()'>
+								<option value="">All</option>
+								<?php
+								// Populate category list
+								foreach ($categories as $category)
+								{
+									// If user chose category, mark that option as selected.
+									$selector = "";
+									if ($currentCategory == $category->category_id)
+										$selector = " selected=\"selected\"";
+									
+									// Add category option to list.
+									print "<option value=$category->category_id$selector>$category->category_name</option>\r\n";
+								}
+								?>
+							</select>
+						</div>
+                        <input type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search ..." name="search" value="<?php echo $searchTerms?>">
                         <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </form>
