@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->helper('url');
+
+if (empty($categories))
+	throw new Exception('Navbar needs categories-listing from controller');
 ?>
     <body>
       
