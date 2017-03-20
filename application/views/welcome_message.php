@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <br />Spring 2017
                     <br />Section 1
                     <br />Team 4
-		    <br /><a href="./Home/view/home_page">New Home Page</a>
+		    <br /><a href="./Home/view/home">New Home Page</a>
                 </h4>
                 <hr />
                 <h4>Click Below to View Our Individual Pages</h4>
