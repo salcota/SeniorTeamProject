@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
+
 	public function view($page = "")
 	{
 		$this->load->view('sfsu_demonstration');

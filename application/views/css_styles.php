@@ -29,7 +29,6 @@
             .container {
                 background-color: #EEE;
                 margin-top: 105px;
-                max-width: 768px;
             }
 
             .dropdown-menu {
