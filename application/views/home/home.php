@@ -26,7 +26,7 @@ $this->load->helper('url');
         <?php foreach ($itemList as $item): ?>
             <div class="col-sm-4">
                 <div class="card text-center" style="margin: auto; margin-top: 20px">
-                    <a href=#"><?php echo '<img style="padding:5px" width="100%" height="40%" class="card-img-top" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
+                    <a href=#"><?php echo '<img style="padding:5px; max-width: 100%; max-height: 300px;" class="card-img-top" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
                     <div class="card-block">
                         <h4 class="card-title"><?php echo $item->title; ?></h4>
                         <p class="card-text"><?php echo "$".$item->price; ?></p>

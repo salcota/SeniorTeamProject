@@ -37,7 +37,7 @@ if (empty($categories))
                 </ul>
 
                 <!-- Centered Search Bar -->
-                <form class="form-inline mr-auto fix-align" action="<?php echo base_url() . "Home/view/home"?>" id="searchSubmit" method=GET>
+                <form class="form-inline mr-auto fix-align" action="<?php echo base_url() . "home"?>" id="searchSubmit" method=GET>
                     <label class="sr-only" for="inlineFormInputGroup">Search</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="form-group">
