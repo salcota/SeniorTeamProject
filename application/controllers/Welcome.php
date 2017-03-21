@@ -22,7 +22,6 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('common/sfsu_demo');
 		$this->load->view('common/css_styles');
-		$this->load->view('common/css_styles');
 		$this->load->view('about/about');
 	}
 }
