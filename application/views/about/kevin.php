@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->helper('url');
 ?>
 
 <html>
@@ -8,6 +7,11 @@ $this->load->helper('url');
 <title>Kevin Chu</title>
 
 <style>
+html 
+{
+	margin-top: 85px;
+}
+
 html, body
 {
 	width: 98%;

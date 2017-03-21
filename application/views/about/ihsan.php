@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <style type="text/css">
 
         body {
+	    margin-top: 85px;
             font-family: sans-serif;
         }
 
