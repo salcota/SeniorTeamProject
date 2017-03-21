@@ -14,6 +14,33 @@
                 width:125px;
             }
 
+	    #footer {
+		background-color: #363;
+		height: 75px; 
+		padding: 25 0 25 0;
+		text-align: center;
+	    	width: 100%;
+	    }
+
+	    #footer a {
+		color: #9C9;
+	    }
+
+	    #footer a:hover {
+	        color: #FFF;
+		text-decoration: none;
+	    }
+
+	    #sfsu_demo {
+		font-style:italic;
+		left: 0;
+		position: fixed;
+		text-align:center;
+		top: 0;
+		width: 100%;
+		z-index: 200
+	    }
+
             #topheader {
                 background-color: #FFF;
                 height: 80px;

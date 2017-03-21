@@ -5,9 +5,10 @@ class Home extends CI_Controller {
 
 	public function view($page = "")
 	{
-		$this->load->view('sfsu_demonstration');
-		$this->load->view('required_meta_tags');
-		$this->load->view('css_styles');
+		// Get basic header and styles for all pages.
+		$this->load->view('common/sfsu_demo');
+		$this->load->view('common/required_meta_tags');
+		$this->load->view('common/css_styles');
 		
 		// Get user's search terms.
 		$navSearch['searchTerms'] = $this->input->get('search');
@@ -18,7 +19,7 @@ class Home extends CI_Controller {
 		$navSearch['categories'] = $this->Category->getCategories();
 		
 		// Pass search terms and category listing to navbar.
-		$this->load->view('navbar', $navSearch);
+		$this->load->view('common/navbar', $navSearch);
 
 		if (!file_exists(APPPATH.'views/home/' . $page . '.php'))
 		{
@@ -52,6 +53,8 @@ class Home extends CI_Controller {
 		{
 			$this->load->view('home/' . $page);
 		}
+
+		$this->load->view('common/footerbar');
 	}
 }
 ?>
