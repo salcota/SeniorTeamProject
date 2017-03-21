@@ -20,8 +20,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('sfsu_demo');
-
-		$this->load->view('welcome_message');
+		$this->load->view('common/sfsu_demo');
+		$this->load->view('common/css_styles');
+		$this->load->view('common/css_styles');
+		$this->load->view('about/about');
 	}
 }

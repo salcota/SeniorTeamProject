@@ -61,6 +61,8 @@ html, body
 </style>
 </head>
 <body>
+
+<div id="topheader"></div>
 <div id="main">
 
 <div id="sideInfo">

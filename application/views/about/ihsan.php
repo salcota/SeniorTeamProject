@@ -47,6 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <body>
+    <div id="topheader"></div>
     <div id="container">
         <h2>Ihsan Taha</h2>
         <hr />

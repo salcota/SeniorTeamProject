@@ -22,7 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </style>
 </head>
 <body>
-      
+
+   <div id="topheader"></div>      
    <div class="container">
       <center><h1>Darel Ogbonna</h1></center>
       <center><img src="<?php echo base_url() . "public/about/darel/aboutDarel.jpg"?>" alt="a pic at Mission Peak" height="300"/></center>
