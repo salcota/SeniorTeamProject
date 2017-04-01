@@ -6,6 +6,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container" style="margin-top: -100px; padding:5px; background-color: #EEE">
 
+<p class="bg-success" style="text-align: center">
+
+<?php if($this->session->flashdata('login_success')): ?>
+
+<?php echo $this->session->flashdata('login_success'); ?>
+
+<?php endif; ?>
+
+</p>
+
+<p class="bg-danger" style="text-align: center">
+
+<?php if($this->session->flashdata('login_failed')): ?>
+
+<?php echo $this->session->flashdata('login_failed'); ?>
+
+<?php endif; ?>
+
+</p>
+
+<!--<div class="container" style="margin-top: -150px; padding:5px; background-color: #EEE">-->
+
   <br />
   <p style="text-align: center; font-size:12px">Most Recent Item Listings</p>
 
