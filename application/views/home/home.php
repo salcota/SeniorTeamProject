@@ -2,7 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
+
+
 <?php $this->load->view('common/app_intro'); ?>
+
+
 
 <div class="container" style="margin-top: -100px; padding:5px; background-color: #EEE">
 
@@ -16,6 +20,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </p>
 
+
+
 <p class="bg-danger" style="text-align: center">
 
 <?php if($this->session->flashdata('login_failed')): ?>
@@ -25,6 +31,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php endif; ?>
 
 </p>
+
+
 
 <!--<div class="container" style="margin-top: -150px; padding:5px; background-color: #EEE">-->
 
@@ -56,7 +64,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </div>
 
+
+
   <?php $this->load->view('common/jquery_tether_bootstrap'); ?>
+
+
 
   </body>
 

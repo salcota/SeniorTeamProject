@@ -2,18 +2,26 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
+
+
+// Subtitle Header
 <div class = "row justify-content-center pagetitle">
     <div class="col-sm-12 subtitle" id="subheader">LOGIN</div>
 </div>
 
 <br /><br /><br />
 
+
+<!--Insert values of form input data in $attributes to use elsewhere (double check with Prateek)-->
 <?php $attributes = array('id'=>'login_form', 'class'=>'form_horizontal'); ?>
+
+
 
 <div class="row justify-content-center text-danger">
 <div class="col-sm-5">
 
 	<?php
+		// Load and unload errors if any are present after you insert form iput data such as length requirements which can be found in the Users.php controller (double check online)
 		if($this->session->flashdata('errors')):
 
 		echo $this->session->flashdata('errors');
@@ -23,12 +31,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 </div>
 
+
+
+<!-- Creates the login form with email and password input and a submit button-->
 <?php echo form_open('Users/login', $attributes);?>
 
+
+
+<!-- Email Input -->
 <div class="row justify-content-center">
 <div class="form-group input-group col-sm-5">
 
 <?php
+	// Inserts email icon next to email input
 	echo '<span class="input-group-addon" id="envelope-addon" style="width: 40px"><i class="fa fa-envelope" aria-hidden="true"></i></span>';
 
 	$data = array(
@@ -43,10 +58,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 </div>
 
+
+
+// Password Input
 <div class="row justify-content-center">
 <div class="form-group input-group col-sm-5">
 
 <?php
+	// Inserts lock icon next to the password input
         echo '<span class="input-group-addon" id="lock-addon" style="width: 40px"><i class="fa fa-lock" aria-hidden="true"></i></span>';
 
         $data =array(
@@ -71,6 +90,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <br />
 
+
+
+// Submit Button
 <div class="row justify-content-center" style="margin-top: -20px">
 <div class="form-group col-sm-5 align-self-start">
 	
@@ -91,12 +113,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <br /><br />
 
+
+
 <div class="row justify-content-center">
 	<div class="col-sm-5">
 		<h5>Not a member? Sign up!</h5>
 	</div>
 </div>
 
+
+
+// Signup Button
 <div class="row justify-content-center">
 <div class="col-sm-5">
 <button type="submit" class="btn btn-success" style="width: 100px">Sign Up</button>
