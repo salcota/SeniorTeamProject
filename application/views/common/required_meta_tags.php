@@ -10,9 +10,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<!-- External CSS Stylesheet -->
+	<link rel="stylesheet" href="<?php echo base_url() . "public/css/styles.css"?>">
+
         <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="<?php echo base_url() . "public/tools/bootstrap/css/bootstrap.min.css"?>">
+	<link rel="stylesheet" href="<?php echo base_url() . "public/css/bootstrap.min.css"?>">
     
         <!-- Font-Awesome Glyphicons -->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "public/guis/Font-Awesome/css/font-awesome.min.css"?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "public/css/font-awesome.min.css"?>">
 

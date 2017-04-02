@@ -4,7 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-// Subtitle Header
+<div class="container">
+
+<!-- Subtitle Header -->
 <div class = "row justify-content-center pagetitle">
     <div class="col-sm-12 subtitle" id="subheader">LOGIN</div>
 </div>
@@ -60,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-// Password Input
+<!-- Password Input -->
 <div class="row justify-content-center">
 <div class="form-group input-group col-sm-5">
 
@@ -92,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-// Submit Button
+<!-- Submit Button -->
 <div class="row justify-content-center" style="margin-top: -20px">
 <div class="form-group col-sm-5 align-self-start">
 	
@@ -123,7 +125,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-// Signup Button
+<!-- Signup Button -->
 <div class="row justify-content-center">
 <div class="col-sm-5">
 <button type="submit" class="btn btn-success" style="width: 100px">Sign Up</button>
@@ -131,3 +133,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <br /><br /><br />
+
+</div>
+
+
+
+<?php $this->load->view('common/jquery_tether_bootstrap'); ?>
+
+</body>
+
+</html>

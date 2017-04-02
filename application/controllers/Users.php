@@ -16,7 +16,7 @@ class Users extends CI_Controller
 			);
 
 			$this->session->set_flashdata($data);
-			redirect('home/view/signup');
+			redirect('home/view/login');
 		}
 
 		else

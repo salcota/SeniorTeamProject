@@ -68,7 +68,7 @@ html, body
 <div id="sideInfo">
 <center>
 <span class="big">Kevin Chu</span><br>
-<img src="<?php echo base_url() . "public/about/kevin/aboutKevin.jpg"?>"><br><br>
+<img src="<?php echo base_url() . "public/images/aboutKevin.jpg"?>"><br><br>
 Front-End Developer<br>
 for the SP17G04 Buy/Sell website<br>
 (Website Name pending)
