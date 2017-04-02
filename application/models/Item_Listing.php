@@ -34,6 +34,7 @@ class Item_Listing extends CI_Model
 		}
 	}
 	
+	
 	/* Retrieves items from database.
 		Accepts array of data to search.
 		Not all array elements are mandatory
@@ -63,6 +64,31 @@ class Item_Listing extends CI_Model
 		$results = $this->Item_Listing->getItems();
 	*/
 	public function getItems($search = NULL)
+	{
+		$this->buildQuery($search);
+		$items = $this->db->get('item_listing');
+		return $items->result();
+	}
+	
+	/*
+	Returns the number of items which would be returned for a given query.
+	See getItems() for constructing queries.
+	*/
+	public function countItems($search = NULL)
+	{
+		$this->buildQuery($search);
+		$items = $this->db->count_all_results('item_listing');
+		
+		// Reset the query builder
+		$this->db->reset_query();
+		
+		return $items;
+	}
+	
+	
+	// Private function for building queries.
+	// Does not execute queries.
+	private function buildQuery($search = NULL)
 	{
 		$this->load->model('Reg_User');
 		
@@ -109,9 +135,6 @@ class Item_Listing extends CI_Model
 					$this->db->order_by($search['sort']);
 			}
 		}
-		
-		$times = $this->db->get('item_listing');
-		return $times->result();
 	}
 }
 ?>
