@@ -75,17 +75,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div class="col align-self-center">
 	
-	<?php $prev='Pevious'; $first='1'; $second='2'; $third='3'; $fourth='4'; $fifth='5'; $next='next'; ?>
+	<?php $prev='prev'; $first='1'; $second='2'; $third='3'; $fourth='4'; $fifth='5'; $next='next'; ?>
 	
 	<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   	    <div class="btn-group btn-group-sm" role="group" aria-label="First group">
-    	        <button type="button" class="btn btn-secondary" style="width: 65px"><?php echo $prev ?></button>
+    	        <button type="button" class="btn btn-secondary"><?php echo $prev ?></button>
     		<button type="button" class="btn btn-secondary"><?php echo $first ?></button>
     		<button type="button" class="btn btn-secondary"><?php echo $second?></button>
     		<button type="button" class="btn btn-secondary"><?php echo $third ?></button>
 		<button type="button" class="btn btn-secondary"><?php echo $fourth?></button>
 		<button type="button" class="btn btn-secondary"><?php echo $fifth ?></button>
-		<button type="button" class="btn btn-secondary" style="width: 65px"><?php echo $next ?></button>
+		<button type="button" class="btn btn-secondary"><?php echo $next ?></button>
   	    </div>
 	</div>
 
