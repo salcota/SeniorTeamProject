@@ -35,12 +35,32 @@ class Item_Listing extends CI_Model
 	}
 	
 	/* Retrieves items from database.
-	// Accepts array of data to search.
-	// Not all array elements are mandatory
-	// $array['user'] == username
-	// $array['title']
-	// $array['category']
-	// $array['listingID']
+		Accepts array of data to search.
+		Not all array elements are mandatory
+		$array['user'] == username
+		$array['title']
+		$array['category']
+		$array['listingID']
+		$array['sort'] // Sort results by field name
+			Assign comma-delimited string of FIELDNAME followed by space and either ASC or DESC.
+				ASC = Ascending
+				DESC = Descending
+			Example:
+			$array['sort'] = "title ASC, price DESC";
+		
+		array['maxResults'] // (Integer) Maximum number of results to return. Use this with 'skipResults' to start searching at specific index.
+		array['skipResults'] // (Integer) Skip and ignore the first X number of results.
+		
+		Example:
+		// Find Lamps
+		$lookup = array();
+		$lookup['title'] = "lamp";
+		$lookup['category'] = 1;
+		$lookup['sort'] = "title ASC, price DESC, posted_on DESC";
+		$results = $this->Item_Listing->getItems($lookup);
+		
+		// Find everything
+		$results = $this->Item_Listing->getItems();
 	*/
 	public function getItems($search = NULL)
 	{
@@ -81,6 +101,13 @@ class Item_Listing extends CI_Model
 			// Search by listing id
 			if (array_key_exists('listingID', $search))
 				$this->db->where('listing_id', $search['listingID']);
+			
+			// Sort the results
+			if (array_key_exists('sort', $search))
+			{
+				if (strlen($search['sort']) > 0)
+					$this->db->order_by($search['sort']);
+			}
 		}
 		
 		$times = $this->db->get('item_listing');
