@@ -134,6 +134,21 @@ class Item_Listing extends CI_Model
 				if (strlen($search['sort']) > 0)
 					$this->db->order_by($search['sort']);
 			}
+			
+			// Restrict number of results. Skip results if requested.
+				// If skip parameter given without limit, assign INT MAX as limit.
+				if (array_key_exists('skipResults', $search) && !array_key_exists('maxResults', $search))
+				{
+					$search['maxResults'] = PHP_INT_MAX;
+				}
+				
+				if (array_key_exists('maxResults', $search))
+				{
+					if (!array_key_exists('skipResults', $search))
+						$this->db->limit($search['maxResults']);
+					else
+						$this->db->limit($search['maxResults'], $search['skipResults']);
+				}
 		}
 	}
 }
