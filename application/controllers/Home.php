@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 		
 		// Load Navbar
 			// Get user's search terms.
-			$navSearch['searchTerms'] = $this->input->get('search');
+			$navSearch['searchTerms'] = htmlentities($this->input->get('search'));
 			$navSearch['currentCategory'] = $this->input->get('category');
 			
 			// Retrieve all item categories.
