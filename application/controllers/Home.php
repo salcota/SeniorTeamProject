@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 	// These variables affect how item listings are displayed.
 	const PAGEMAXITEMS = 12; // How many items per page.
-	const PAGEMAXPAGES = 10; // How many total Next/Previous pages to show.
+	const PAGEMAXPAGES = 6; // How many total Next/Previous pages to show.
 
 	public function view($page = "")
 	{
@@ -66,8 +66,8 @@ class Home extends CI_Controller {
 			
 			// Create Previous/Next page buttons
 				// Place page lower bound and upper bound relative to current page.
-				$lowerPage = floor($pageSkip - $this::PAGEMAXPAGES/2);
-				$upperPage = $lowerPage + $this::PAGEMAXPAGES - 1;
+				$lowerPage = $pageSkip - floor($this::PAGEMAXPAGES/2);
+				$upperPage = $pageSkip + ceil($this::PAGEMAXPAGES/2);
 				
 				// If lowest page is out of bounds, shift the page-range upwards.
 				if ($lowerPage < 1)
