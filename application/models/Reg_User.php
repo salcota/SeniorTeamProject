@@ -44,20 +44,15 @@ class Reg_User extends CI_Model
 		// Find user in database
 		if ($name != NULL)
 		{
-			// Ihsan Taha changed the value 'name' to 'sfsu_email'
-			$user = $this->db->get_where('reg_user', array('sfsu_email' => $name));
+			$user = $this->db->get_where('reg_user', array('username' => $name));
 			$result = $user->result();
 			if (count($result) == 1)
 				return $result[0];
 			else
-				// Ihsan Taha commented this exception because of an uncaught exception that occurs
-				//throw new Exception("User does not exist");
-			return false;
+				throw new Exception("User does not exist");
 		}
 		else
-			// Ihsan Taha commented this exception because of an uncaught exception that occurs
-			//throw new Exception('No username given to search');
-			return false;
+			throw new Exception('No username given to search');
 	}
 }
 ?>
