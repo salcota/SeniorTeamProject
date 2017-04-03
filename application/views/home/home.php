@@ -70,22 +70,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="row">
 
     <div class="col align-self-start" style="padding-top: 5px">
-		<?php $numOfItems = 'x'; $totalItems = 'n'; echo "<h6 class='small text-muted'>Showing " . $numOfItems . ' of ' . $totalItems . ' items</h6>' ?>
+		<?php
+			echo "<h6 class='small text-muted'>Showing page " . $currentPage . ' of ' . $maxItems . ' items</h6>'
+		?>
     </div>
 
     <div class="col align-self-center">
 	
-	<?php $prev='prev'; $first='1'; $second='2'; $third='3'; $fourth='4'; $fifth='5'; $next='next'; ?>
-	
 	<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   	    <div class="btn-group btn-group-sm" role="group" aria-label="First group">
-    	        <button type="button" class="btn btn-secondary"><?php echo $prev ?></button>
-    		<button type="button" class="btn btn-secondary"><?php echo $first ?></button>
-    		<button type="button" class="btn btn-secondary"><?php echo $second?></button>
-    		<button type="button" class="btn btn-secondary"><?php echo $third ?></button>
-		<button type="button" class="btn btn-secondary"><?php echo $fourth?></button>
-		<button type="button" class="btn btn-secondary"><?php echo $fifth ?></button>
-		<button type="button" class="btn btn-secondary"><?php echo $next ?></button>
+			<?php
+			// Function for creating GET parameters in link
+			function jumpLink($page, $getData)
+			{
+				$getParam = $getData;
+				
+				// Set the page we want.
+				if (is_numeric($page))
+					$getParam['page'] = $page;
+				
+				return buildLink($getParam);
+			}
+			
+			function buildLink($getData)
+			{
+				$getKeys = array_keys($getData);
+				$url = "";
+				//Concatenate every key in the array
+				foreach($getKeys as $key)
+				{
+					$url = $url . $key . "=" . urlencode($getData[$key]) . "&";
+				}
+				
+				return $url;
+			}
+			
+			if ($lowestPage != $highestPage)
+			{
+				if ($currentPage > $lowestPage)
+					echo '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . (jumpLink($currentPage - 1, $get)) . '">Previous</a></button>';
+				
+				
+				for ($i = $lowestPage; $i <= $highestPage; $i++)
+				{
+					// If this button points to current page, don't make a link. Just make the number bold.
+					if ($i == $currentPage)
+						echo  '<button type="button" class="btn btn-secondary"><b>' . $i . '</b></button>';
+					else // Create a clickable button.
+						echo  '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . jumpLink($i, $get) . '">' . $i . '</a></button>';
+				}
+				
+				if ($currentPage < $highestPage)
+					echo '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . jumpLink($currentPage + 1, $get) . '">Next</a></button>';
+			}
+			?>
   	    </div>
 	</div>
 
