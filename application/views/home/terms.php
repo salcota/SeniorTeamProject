@@ -8,9 +8,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class = "row justify-content-center pagetitle">
                   <div class="col-12 subtitle" id="subheader">Terms & Services</div>
               </div>
-              <br />
+              <br /><br /><br />
               
-              <div class="row">
+              <div class="row-sm-12" style="text-align: justify">
 		
              	<h5>1- Compliance & Liability:</h5>
 		<p>All registered users understand they must comply with the SFSU Congre-Gators Market rules. Any issues raised that conflict with the agreement of our terms will be the sole responsibility of that user, and the company will not be held liable to any damages caused.</p>
@@ -28,10 +28,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</p>
 		
               </div>
-	   </div> 
-             <br />
-              
-              
+
+	      <br />
+
+	   </div>               
 
 	  <?php $this->load->view('common/jquery_tether_bootstrap'); ?>
          

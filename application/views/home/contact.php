@@ -6,33 +6,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="container">
               
               <div class = "row justify-content-center pagetitle">
-                  <div class="col-12 subtitle" id="subheader">CONTACT</div>
+                  <div class="col-sm-12 subtitle" id="subheader">CONTACT</div>
               </div>
               
               
-              <div class="jumbotron">
+		<br />
+
+              <div class="jumbotron" style="background-color:#FFF">
 		<center>
-             	<h1 class="display-3">Have any concerns? Contact Us!</h1>
-		<p class="lead"> Whether it's for technical issues, suggestions, or general feedback, please don't hesitate to reach out to our stuff.</p>
+             	<h1 class="display-4">Have any concerns? Contact Us!</h1>
+
+		<hr class= "my-4">
+
+		<p class="lead"> Whether it's for technical issues, suggestions, or general feedback, please don't hesitate to reach out to our staff.</p>
 		</center>
-		<hr class= "my-2">
               </div>
-              
-             
+                          
               
               <div class="row justify-content-center">
-                  <div class="col-6">
-                      <h5>Phone: (415) - 265 - 3692</h5>
-		      <h5>Email: ihsan@mail.sfsu.edu</h5>
-		      <h5>Location: SFSU Congre-Gators Market, San Francisco, CA</h5>
+                  <div class="col-sm-12">
+                      <h5>Phone:&emsp;&emsp;(415)-265-3692</h5>
+		      <h5>Email:&emsp;&emsp;&nbsp;&nbsp;<span style="color: #369">ihsan@mail.sfsu.edu</span></h5>
+		      <h5>Location:&emsp;SFSU Congre-Gators Market, San Francisco, CA</h5>
                   </div>
+
+
               </div>
               
-             </div>
-              
-             <br />
-              
-          
+	      <br />
+		
+          </div>
 
 	  <?php $this->load->view('common/jquery_tether_bootstrap'); ?>
          
