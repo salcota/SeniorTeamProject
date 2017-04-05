@@ -48,6 +48,18 @@ class Users extends CI_Controller
 			}
 		}
 	}
+
+	public function update_profile(){
+
+	}
+
+	public function buy_request(){
+
+	}
+
+	public function post_itemlisting(){
+
+	}
 }
 
 ?>
