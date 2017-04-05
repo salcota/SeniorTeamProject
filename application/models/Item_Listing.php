@@ -151,5 +151,15 @@ class Item_Listing extends CI_Model
 				}
 		}
 	}
+
+	public function deleteItemListing(){}
+
+	public function updateItemListing(){}
+
+	public function deleteItemPicture(){}
+
+	public function updateItemPicture(){}
+
+	public function updateItemDisplayPicture(){}
 }
 ?>

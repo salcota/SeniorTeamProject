@@ -54,5 +54,9 @@ class Reg_User extends CI_Model
 		else
 			throw new Exception('No username given to search');
 	}
+
+	public function updateUser(){}
+
+	private function updateDisplayPic(){}
 }
 ?>
