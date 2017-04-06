@@ -142,6 +142,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="application/javascript">
     function onSortSelected(value){
         document.forms["searchSubmit"].submit(function(obj){
+            alert(value);
             $(this).append('<input type="hidden" name="sort" value=' + value + '/>'); return true;
         });
     }
