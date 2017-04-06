@@ -30,7 +30,7 @@ if (empty($categories))
                            aria-expanded="false" href="#">Sort&nbsp;By&nbsp;...</a>
                         &nbsp;
                         <div class="dropdown-menu move" aria-labelledby="sortable">
-                            <a class="dropdown-item" href="#" onclick="document.forms["searchSubmit"].submit(function(obj){$(this).append('<input type="hidden" name="sort" value="price" />'); return true;})">Price</a>
+                            <a class="dropdown-item" href="#" onclick="onSortSelected('price')">Price</a>
                             <a class="dropdown-item" href="#">Name</a>
                             <a class="dropdown-item" href="#">Date</a>
                             <a class="dropdown-item" href="#">Seller</a>
