@@ -30,9 +30,8 @@ if (empty($categories))
                         &nbsp;
                         <div class="dropdown-menu move" aria-labelledby="sortable">
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('price');document.forms['searchSubmit'].submit()">Price</a>
-                            <a class="dropdown-item" href="#">Name</a>
-                            <a class="dropdown-item" href="#">Date</a>
-                            <a class="dropdown-item" href="#">Seller</a>
+                            <a class="dropdown-item" href="#" onclick="$('#sort').val('title');document.forms['searchSubmit'].submit()">Name</a>
+                            <a class="dropdown-item" href="#" onclick="$('#sort').val('posted_on');document.forms['searchSubmit'].submit()">Date</a>
                         </div>
                     </div>
                 </li>
