@@ -104,10 +104,14 @@ class Home extends CI_Controller {
 			$items['itemList'] = $this->Item_Listing->getItems($find);
 			$this->load->view('home/home', $items);
 		}
-		else if ($page == "login")
-		{
-			$this->load->view('auth/login');
+		else if ($page == "current_item")
+ 		{
+ 			$this->load->view('home/current_item');
 		}
+                else if ($page == "login")
+                {
+                        $this->load->view('auth/login');
+                }
 		else
 		{
 			$this->load->view('home/' . $page);

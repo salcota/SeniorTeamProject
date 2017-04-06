@@ -4,11 +4,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-<?php $this->load->view('common/app_intro'); ?>
+<div class="container">
 
+<!-- Subtitle Header For Registered Users to moved to its own view soon -->
 
+<?php $username = 'Username'; ?>
 
-<div class="container" style="margin-top: -100px; padding:5px; background-color: #EEE">
+<div class = "row justify-content-between pagetitle">
+<div class="col-sm-6 subtitle" id="subheader">WELCOME, <?php echo $username; ?></div>
+
+    <div class="col-sm-6" style="text-align: right; padding-top: 10px; padding-left: -5px">
+	<a class="reguser-link" href="#">Notifications</a>
+	<a class="reguser-link" href="#">&nbsp;&nbsp;Profile&nbsp;&nbsp</a>
+	<a class="reguser-link" href="#">Listings</a>
+    </div>
+
+</div>
+
 
 <p class="bg-success" style="text-align: center">
 
@@ -52,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<br />
 			<?php echo "$".$item->price; ?>
 			<br />
-		    	<a href=#><?php echo '<img class="card-img-top" style="border: solid 2px #9C9; max-width: 95%; height:150px" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
+		    	<a href=<?php echo base_url() . 'Home/view/current_item' ?>"><?php echo '<img class="card-img-top" style="border: solid 2px #9C9; max-width: 95%; height:150px" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
 			<br />
 			<a href="#" style="text-decoration: none; color: #696">Add to Cart</a>
 			<br />

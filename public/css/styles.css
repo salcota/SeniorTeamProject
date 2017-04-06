@@ -5,7 +5,16 @@
             body {
                 position: relative;
             }
-        
+
+	    table {
+		border: none;
+		width: 300px;
+	    }
+
+	    tr {
+		height: 32px;
+		vertical-align: top;
+	    }        
         
             /* ids */
             #btnGroupDrop1 {
@@ -57,6 +66,28 @@
                 background-color: #EEE;
                 margin-top: 105px;
             }
+
+	    .carousel {
+		background-color: #030;
+		border: solid 2px #9C9;
+		border-radius: 6px;
+		height: 200px;
+		padding: 5 1 5 1;
+	    }
+
+	    .d-block {
+		height:185px !important; 
+		margin: auto !important!;
+	    }
+
+	    .description_box {
+		background-color: #FFF;
+		border: solid 2px #9C9; 
+		border-radius: 6px; 
+		max-height: 500px;
+		padding: 5px;
+		/*overflow: scroll;*/
+	    }
 
             .dropdown-menu {
                 font-size: 12px;
