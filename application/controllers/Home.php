@@ -42,7 +42,13 @@ class Home extends CI_Controller {
 			{
 				$find['title'] = $search;
 			}
-			
+
+			//Sort items by
+			$sort = $this->input->get('sort');
+
+			if(strlen($sort) > 0){
+				$find['sort'] = $sort;
+			}
 			
 			// Return only matching category
 			$category = $this->input->get('category');

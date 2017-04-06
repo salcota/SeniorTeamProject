@@ -131,8 +131,13 @@ class Item_Listing extends CI_Model
 			// Sort the results
 			if (array_key_exists('sort', $search))
 			{
-				if (strlen($search['sort']) > 0)
-					$this->db->order_by($search['sort']);
+			    $orderBy = 'asc';
+				if (strlen($search['sort']) > 0){
+				    if($search['sort'] == 'posted_on'){
+                        $orderBy = 'desc';
+                    }
+                    $this->db->order_by($search['sort'], $orderBy);
+                }
 			}
 			
 			// Restrict number of results. Skip results if requested.
