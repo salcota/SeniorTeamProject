@@ -18,8 +18,7 @@ if (empty($categories))
     <a class="navbar-brand">LOGO</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline mr-auto fix-align" action="<?php echo base_url() . "home" ?>" id="searchSubmit"
-              method=GET>
+
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link fix-align" href="<?php echo base_url() . "Home/view/home" ?>">Home</a>
@@ -30,7 +29,7 @@ if (empty($categories))
                            aria-expanded="false" href="#">Sort&nbsp;By&nbsp;...</a>
                         &nbsp;
                         <div class="dropdown-menu move" aria-labelledby="sortable">
-                            <a class="dropdown-item" href="#" onclick="onSortSelected('price')">Price</a>
+                            <a class="dropdown-item" href="#" onclick="$('#sort').val('price');document.forms['searchSubmit'].submit()">Price</a>
                             <a class="dropdown-item" href="#">Name</a>
                             <a class="dropdown-item" href="#">Date</a>
                             <a class="dropdown-item" href="#">Seller</a>
@@ -40,7 +39,7 @@ if (empty($categories))
             </ul>
 
             <!-- Centered Search Bar -->
-
+        <form class="form-inline mr-auto fix-align" action="<?php echo base_url() . "home" ?>" id="searchSubmit" method=GET>
             <label class="sr-only" for="inlineFormInputGroup">Search</label>
             <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                 <div class="form-group">
@@ -63,6 +62,7 @@ if (empty($categories))
                 </div>
                 <input type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search ..."
                        name="search" value="<?php echo $searchTerms ?>">
+                <input type="hidden" name="sort" id="sort">
                 <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fa fa-search"
                                                                               aria-hidden="true"></i></button>
             </div>
