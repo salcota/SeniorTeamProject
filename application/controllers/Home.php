@@ -45,7 +45,7 @@ class Home extends CI_Controller {
 
 			//Sort items by
 			$sort = $this->input->get('sort');
-			echo($sort);
+
 			if(strlen($sort) > 0){
 				$find['sort'] = $sort;
 			}
