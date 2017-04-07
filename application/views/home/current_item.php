@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class = "container">
 
     <div class="row pagetitle">
-        <div class="col-sm-6 subtitle" id="subheader"><?php echo $title ?></div>
+        <div class="col-sm-6 subtitle" id="subheader"><?php echo $item->title ?></div>
     </div>
 
 
@@ -50,9 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		</ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                      <img class="d-block img-fluid" id="image1" src="data:image/jpg;base64,<?php echo base64_encode($data['item']->dp_thumbnail)?>" alt="First slide">
+                      <img class="d-block img-fluid" id="image1" src="data:image/jpg;base64,<?php echo base64_encode($item->dp_thumbnail)?>" alt="First slide">
                     </div>
-                    <?php foreach ($data['itemPics'] as $item_pic): ?>
+                    <?php foreach ($itemPics as $item_pic): ?>
                         <div class="carousel-item">
                             <img class="d-block img-fluid" id="image2" src="data:image/jpg;base64,<?php echo base64_encode($item_pic->pic)?>" alt="Second slide">
                         </div>
@@ -72,11 +72,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-md-6">
 	    <?php echo
 		"<table>".
-		    "<tr> <th>Name:</th>	<td>"	.$data['item']->title.	"</td> </tr>".
-		    "<tr> <th>Category:</th>	<td>"	.$data['item']->category_name.	"</td> </tr>".
-		    "<tr> <th>Price:</th>	<td> $"	.$data['item']->price.	"</td> </tr>".
-                    "<tr> <th>Date:</th>	<td>"	.$data['item']->posted_on.	"</td> </tr>".
-                    "<tr> <th>Seller:</th>	<td>"	.$data['item']->username.	"</td> </tr>".
+		    "<tr> <th>Name:</th>	<td>"	.$item->title.	"</td> </tr>".
+		    "<tr> <th>Category:</th>	<td>"	.$item->category_name.	"</td> </tr>".
+		    "<tr> <th>Price:</th>	<td> $"	.$item->price.	"</td> </tr>".
+                    "<tr> <th>Date:</th>	<td>"	.$item->posted_on.	"</td> </tr>".
+                    "<tr> <th>Seller:</th>	<td>"	.$item->username.	"</td> </tr>".
 		    "<tr> <td><button class='btn btn-success'>Add to Cart</button></td><td><button class='btn btn-success' style='width:115px' >Buy</button></td> </tr>".
 		"</table>"
 	    ?>
