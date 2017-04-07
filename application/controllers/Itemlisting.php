@@ -5,6 +5,7 @@ class Itemlisting extends CI_Controller{
 
     public function __construct()
     {
+        parent::__construct();
         $this->load->model('Item_Listing');
         $this->load->view('common/sfsu_demo');
         $this->load->view('common/required_meta_tags');
