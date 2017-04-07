@@ -29,9 +29,11 @@ class Itemlisting extends CI_Controller{
     public function get_listing_by_id($listingID = Null){
 
         if($listingID != Null){
+            echo $listingID;
             $search['listingID'] = $listingID;
             $item = $this->Item_Listing->getItems($search);
             $data['item'] = $item;
+            echo $item['title'];
             $item_pics = $this->Item_Listing->getAllItemListingPictures($listingID);
             $data['itemPics'] = $item_pics;
             $this->load->view('home/current_item',$data);
