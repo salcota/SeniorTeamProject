@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "<tr> <th>Name:</th>	<td>" . $item[0]->title . "</td> </tr>" .
                 "<tr> <th>Category:</th>	<td>" . $item[0]->category_name . "</td> </tr>" .
                 "<tr> <th>Price:</th>	<td> $" . $item[0]->price . "</td> </tr>" .
-                "<tr> <th>Date:</th>	<td>" .date_format(date_create($item[0]->posted_on),'Y-m-d') . "</td> </tr>" .
+                "<tr> <th>Date:</th>	<td>" .date_format(date_create($item[0]->posted_on),'d-m-Y') . "</td> </tr>" .
                 "<tr> <th>Seller:</th>	<td>" . $item[0]->username . "</td> </tr>" .
                 "<tr> <td><button class='btn btn-success'>Add to Cart</button></td><td><button class='btn btn-success' style='width:115px' >Buy</button></td> </tr>" .
                 "</table>"
