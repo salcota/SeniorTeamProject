@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class = "container">
 
     <div class="row pagetitle">
-        <div class="col-sm-6 subtitle" id="subheader"><?php echo $item['title']?></div>
+        <div class="col-sm-6 subtitle" id="subheader"><?php echo $item[0]->title?></div>
     </div>
 
 
@@ -50,11 +50,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		</ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                      <img class="d-block img-fluid" id="image1" src="data:image/jpg;base64,<?php echo base64_encode($item['dp_thumbnail'])?>" alt="First slide">
+                      <img class="d-block img-fluid" id="image1" src="data:image/jpg;base64,<?php echo base64_encode($item[0]->dp_thumbnail)?>" alt="First slide">
                     </div>
                     <?php foreach ($itemPics as $item_pic): ?>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid" id="image2" src="data:image/jpg;base64,<?php echo base64_encode($item_pic['pic'])?>" alt="Second slide">
+                            <img class="d-block img-fluid" id="image2" src="data:image/jpg;base64,<?php echo base64_encode($item_pic[0]->pic)?>" alt="Second slide">
                         </div>
                     <?php endforeach;?>
                 </div>
