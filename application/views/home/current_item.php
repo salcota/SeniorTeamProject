@@ -72,11 +72,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-md-6">
 	    <?php echo
 		"<table>".
-		    "<tr> <th>Name:</th>	<td>"	.$item['title'].	"</td> </tr>".
-		    "<tr> <th>Category:</th>	<td>"	.$item['category_name'].	"</td> </tr>".
-		    "<tr> <th>Price:</th>	<td> $"	.$item['price'].	"</td> </tr>".
-                    "<tr> <th>Date:</th>	<td>"	.$item['posted_on'].	"</td> </tr>".
-                    "<tr> <th>Seller:</th>	<td>"	.$item['username'].	"</td> </tr>".
+		    "<tr> <th>Name:</th>	<td>"	.$item[0]->title.	"</td> </tr>".
+		    "<tr> <th>Category:</th>	<td>"	.$item[0]->category_name.	"</td> </tr>".
+		    "<tr> <th>Price:</th>	<td> $"	.$item[0]->price.	"</td> </tr>".
+                    "<tr> <th>Date:</th>	<td>"	.$item[0]->posted_on.	"</td> </tr>".
+                    "<tr> <th>Seller:</th>	<td>"	.$item[0]->username.	"</td> </tr>".
 		    "<tr> <td><button class='btn btn-success'>Add to Cart</button></td><td><button class='btn btn-success' style='width:115px' >Buy</button></td> </tr>".
 		"</table>"
 	    ?>
@@ -94,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-md-10">
 	    <span style="font-weight: bold">Description:</span>
 	    <div class="description_box">
-	    	<?php echo $description?><br /><?php echo $description?>
+	    	<?php echo $item[0]->description ?><br />
 	    </div>
 	</div>
     </div>
