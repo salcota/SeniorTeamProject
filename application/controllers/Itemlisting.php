@@ -33,10 +33,7 @@ class Itemlisting extends CI_Controller{
             $search['listingID'] = $listingID;
             $item = $this->Item_Listing->getItems($search);
             $data['item'] = $item;
-            foreach ($item as $row)
-            {
-                echo $row->title;
-            }
+            print_r($item);
             $item_pics = $this->Item_Listing->getAllItemListingPictures($listingID);
             $data['itemPics'] = $item_pics;
             $this->load->view('home/current_item',$data);
