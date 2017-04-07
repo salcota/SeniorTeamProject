@@ -103,6 +103,10 @@
                 text-align: center;
             }
 
+	    .img-fluid {
+		margin: auto;
+	    }
+
             .move {
                 margin-bottom: -100px;
             }
