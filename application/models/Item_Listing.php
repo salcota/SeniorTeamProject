@@ -67,6 +67,7 @@ class Item_Listing extends CI_Model
 	{
 		$this->buildQuery($search);
 		$items = $this->db->get('item_listing');
+		print_r($items->num_rows());
 		return $items->result();
 	}
 	
@@ -85,7 +86,7 @@ class Item_Listing extends CI_Model
 		return $items;
 	}
 	
-	
+
 	// Private function for building queries.
 	// Does not execute queries.
 	private function buildQuery($search = NULL)
@@ -125,8 +126,14 @@ class Item_Listing extends CI_Model
 			}
 			
 			// Search by listing id
-			if (array_key_exists('listingID', $search))
-				$this->db->where('listing_id', $search['listingID']);
+			if (array_key_exists('listingID', $search)){
+
+			    $this->db->select('usr.username, item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, item_listing.display_pic, cat.category_name');
+			    $this->db->join('reg_user usr', 'usr.user_id = item_listing.seller_id');
+                $this->db->join('item_category cat','cat.category_id = item_listing.category_id');
+			    $this->db->where('item_listing.listing_id', $search['listingID']);
+            }
+
 			
 			// Sort the results
 			if (array_key_exists('sort', $search))
@@ -166,5 +173,15 @@ class Item_Listing extends CI_Model
 	public function updateItemPicture(){}
 
 	public function updateItemDisplayPicture(){}
+
+	public function getAllItemListingPictures($listingID = Null){
+
+	    if($listingID != Null){
+            $this->db->where('listing_id', $listingID);
+            $item_pics = $this->db->get('item_pic');
+            return $item_pics->result();
+        }else{
+	        return null;
+        }
+    }
 }
-?>

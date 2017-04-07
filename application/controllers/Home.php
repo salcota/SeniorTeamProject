@@ -108,10 +108,10 @@ class Home extends CI_Controller {
  		{
  			$this->load->view('home/current_item');
 		}
-                else if ($page == "login")
-                {
-                        $this->load->view('auth/login');
-                }
+		else if ($page == "login")
+		{
+			$this->load->view('auth/login');
+		}
 		else
 		{
 			$this->load->view('home/' . $page);
