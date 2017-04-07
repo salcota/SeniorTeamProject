@@ -17,7 +17,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $description = "An amazing adapter that will juice up your phone battery in no time. It comes with a USB cable to recharge at any computer or device with a USB port, so you can go anywhere with back up power to get those low batteries high once again and energized for your convenience.";
 ?>
 
-
    
 <div class = "container">
 
