@@ -67,7 +67,7 @@ class Item_Listing extends CI_Model
 	{
 		$this->buildQuery($search);
 		$items = $this->db->get('item_listing');
-		echo $items;
+		print_r($items);
 		return $items->result();
 	}
 	
