@@ -17,7 +17,7 @@ class Itemlisting extends CI_Controller{
         $this->load->model('Category');
         $navSearch['categories'] = $this->Category->getCategories();
 
-        $this->load->view('common/navbar');
+        $this->load->view('common/navbar',$navSearch);
     }
 
     public function get_all_listings_of_user(){}
