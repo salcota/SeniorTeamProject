@@ -50,14 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		</ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                      <img class="d-block img-fluid" id="image1" src="<?php echo base_url() . "public/images/aboutDarel.jpg"?>" alt="First slide">
+                      <img class="d-block img-fluid" id="image1" src="data:image/jpg;base64,<?php echo base64_encode($data['item']->dp_thumbnail)?>" alt="First slide">
                     </div>
-                    <div class="carousel-item">
-                        <img class="d-block img-fluid" id="image2" src="<?php echo base_url() . "public/images/aboutKevin.jpg"?>" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block img-fluid" id="image3" src="<?php echo base_url() . $display_picN ?>" alt="Third slide">
-                    </div>
+                    <?php foreach ($data['itemPics'] as $item_pic): ?>
+                        <div class="carousel-item">
+                            <img class="d-block img-fluid" id="image2" src="data:image/jpg;base64,<?php echo base64_encode($item_pic->pic)?>" alt="Second slide">
+                        </div>
+                    <?php endforeach;?>
                 </div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -73,11 +72,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="col-md-6">
 	    <?php echo
 		"<table>".
-		    "<tr> <th>Name:</th>	<td>"	.$title.	"</td> </tr>".
-		    "<tr> <th>Category:</th>	<td>"	.$category_id.	"</td> </tr>".
-		    "<tr> <th>Price:</th>	<td>"	.$price.	"</td> </tr>".
-                    "<tr> <th>Date:</th>	<td>"	.$posted_on.	"</td> </tr>".
-                    "<tr> <th>Seller:</th>	<td>"	.$seller_id.	"</td> </tr>".
+		    "<tr> <th>Name:</th>	<td>"	.$data['item']->title.	"</td> </tr>".
+		    "<tr> <th>Category:</th>	<td>"	.$data['item']->category_name.	"</td> </tr>".
+		    "<tr> <th>Price:</th>	<td> $"	.$data['item']->price.	"</td> </tr>".
+                    "<tr> <th>Date:</th>	<td>"	.$data['item']->posted_on.	"</td> </tr>".
+                    "<tr> <th>Seller:</th>	<td>"	.$data['item']->username.	"</td> </tr>".
 		    "<tr> <td><button class='btn btn-success'>Add to Cart</button></td><td><button class='btn btn-success' style='width:115px' >Buy</button></td> </tr>".
 		"</table>"
 	    ?>
