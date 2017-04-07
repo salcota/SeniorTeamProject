@@ -43,7 +43,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div class="row justify-content-center">
 	<div class="col-sm-4">
-	    <div class="carousel slide" data-ride="carousel">
+	    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		  <ol class="carousel-indicators">
+    		    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        	    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    		    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  		</ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
                       <img class="d-block img-fluid" id="image1" src="<?php echo base_url() . "public/images/aboutDarel.jpg"?>" alt="First slide">
@@ -55,6 +60,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <img class="d-block img-fluid" id="image3" src="<?php echo base_url() . $display_picN ?>" alt="Third slide">
                     </div>
                 </div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    		    <span class="sr-only">Previous</span>
+  		</a>
+  		    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    		    <span class="sr-only">Next</span>
+  		</a>
             </div>
 	</div>
 
