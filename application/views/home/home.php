@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<br />
 			<?php echo "$".$item->price; ?>
 			<br />
-		    	<a href=#><?php echo '<img class="card-img-top" style="border: solid 2px #9C9; max-width: 95%; height:150px" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
+		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top" style="border: solid 2px #9C9; max-width: 95%; height:150px" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
 			<br />
 			<a href="#" style="text-decoration: none; color: #696">Add to Cart</a>
 			<br />

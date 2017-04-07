@@ -52,4 +52,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['home'] = 'home/view/home';
+$route['listing/getitem/(:num)'] = 'itemlisting/get_listing_by_id/$1';
 $route['translate_uri_dashes'] = FALSE;
