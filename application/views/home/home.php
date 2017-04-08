@@ -89,7 +89,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                 
                 <div class="card" style="margin: 10 auto 10 auto">
 		    <p class="small" style="text-align: center">
-			<span style="font-weight: 600; font-size:12pt"><?php echo $item->title; ?></span>
+			<span style="font-weight: 600; font-size:12pt"><?php echo htmlentities($item->title); ?></span>
 			<br />
 			<?php echo "$".$item->price; ?>
 			<br />
