@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                           style='padding-top: 4px'></i></a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link fix-align' href='#'>Sign&nbsp;Up</a>
+                        <a class='nav-link fix-align' href='<?php echo base_url() . 'Home/view/signup ?>'>Sign&nbsp;Up</a>
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link fix-align' href='<?php echo  base_url() . 'Home/view/login' ?>'>Login</a>

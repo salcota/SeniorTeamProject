@@ -27,7 +27,7 @@ class Users extends CI_Controller
 
 			$this->load->model('Reg_User');
 			//$user_id = $this->R_User->login_user($email,$password);	
-			$user_email = $this->Reg_User->getUser($email);
+			$user_email = $this->Reg_User->getUser($email,$password);
 			if($user_email)
 			{
 				$user_data = array(
@@ -39,6 +39,7 @@ class Users extends CI_Controller
 
 				$this->session->set_userdata($user_data);
 				$this->session->set_flashdata('login_success', 'You are now logged in');
+				
 				redirect('home/view/home');
 			}
 			else

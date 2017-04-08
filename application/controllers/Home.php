@@ -27,10 +27,10 @@ class Home extends CI_Controller {
 			// This code determines if the user is registered to load the additional navbar
 			$registered = false;
 
-			if ($registered)
-			{
-			    $this->load->view('reguser/reguser_navbar');
-			}
+			//if ($registered)
+			//{
+			//    $this->load->view('reguser/reguser_navbar');
+			//}
 		
 
 		if ( ((!file_exists(APPPATH.'views/home/' . $page . '.php')) && (!file_exists(APPPATH.'views/auth/' . $page . '.php'))) && (!file_exists(APPPATH.'views/reguser/' . $page . '.php')) )
