@@ -119,7 +119,7 @@ class Home extends CI_Controller {
 		}
 		else if ($page == "login")
 		{
-			$this->load->view('auth/login');
+			$this->load->view('home/login');
 		}
 		else if ($page == "reguser_navbar")
 		{

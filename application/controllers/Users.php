@@ -44,8 +44,8 @@ class Users extends CI_Controller
 			}
 			else
 			{
-				$this->session->set_flashdata('login_failed', 'Sorry, you are not logged in');		
-				redirect('home/view/home');
+				$this->session->set_flashdata('login_failed', 'Sorry, the information you put is unrecognized');		
+				redirect('home/view/login');
 			}
 		}
 	}
