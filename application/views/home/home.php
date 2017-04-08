@@ -46,25 +46,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </p>
 
+    <?php
+	if (!$registered)
+    {
+    	echo '<div class="row-sm-12">
+            <div class="jumbotron" style="text-align: center; background-color: #FFF">
 
-    <div class="row-sm-12">
-        <div class="jumbotron" style="text-align: center; background-color: #FFF">
+                <h1 class="display-4">SFSU Congre-Gators</h1>
 
-            <h1 class="display-4">SFSU Congre-Gators</h1>
+                <hr class="my-4" >
 
-            <hr class="my-4" >
+                <p class="lead">
+Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what its like to need that extra support to make it through college!
+</p>
 
-            <p class="lead">
-            Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what its like to need that extra support to make it through college!
-            </p>
+                <hr class="my-4" >
 
-            <hr class="my-4" >
+                <p>Want to know more? Search our options!</p>
 
-            <p>Want to know more? Search our options!</p>
+            </div>
 
-        </div>
+    </div>';
 
-    </div>
+    }
+    ?>
 
 
 	

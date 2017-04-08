@@ -90,7 +90,7 @@ if (empty($categories))
                         <a class='nav-link fix-align' href='#'>Sign&nbsp;Up</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link fix-align' href='<?php //echo  base_url() . 'Home/view/login' ?>'>Login</a>
+                        <a class='nav-link fix-align' href='//echo  base_url() . 'Home/view/login' ?>'>Login</a>
                     </li>
                 </ul>-->
     </div>
