@@ -4,61 +4,80 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-<div class="container" style="padding:5px; background-color: #EEE">
+<div class="container">
 
 
 
-<p class="bg-success" style="text-align: center">
+    <!--<p class="bg-success" style="text-align: center">-->
 
-<?php if($this->session->flashdata('login_success')): ?>
+        <?php //if($this->session->flashdata('login_success')): ?>
 
-<?php echo $this->session->flashdata('login_success'); ?>
+	<?php  
+	    //echo $this->session->flashdata('login_success');
+	    $username = 'Prateek';
+	    $registered = true;
+        
+	    echo "<div class = 'row justify-content-center pagetitle'>
+                      <div class ='col-sm-6 subtitle' id='subheader'>WELCOME, " . $username . "</div>
+		
+		      <div class = 'col-sm-6' style='text-align: right; padding-top: 10px; padding-left: -5px'>";
+ 
+                           if ($registered)
+                           {
+                               $this->load->view('reguser/reguser_navbar');
+                           }
 
-<?php endif; ?>
+	    echo "</div></div>";
+	?>
 
-</p>
+	<?php //endif; ?>
 
-
-
-<p class="bg-danger" style="text-align: center">
-
-<?php if($this->session->flashdata('login_failed')): ?>
-
-<?php echo $this->session->flashdata('login_failed'); ?>
-
-<?php endif; ?>
-
-</p>
+    </p>
 
 
-<div class="row-sm-12">
-    <div class="jumbotron" style="text-align: center; background-color: #FFF">
 
-        <h1 class="display-4">SFSU Congre-Gators</h1>
+    <p class="bg-danger" style="text-align: center">
 
-        <hr class="my-4" >
+	<?php if($this->session->flashdata('login_failed')): ?>
 
-        <p class="lead">
+	<?php echo $this->session->flashdata('login_failed'); ?>
+
+	<?php endif; ?>
+
+    </p>
+
+
+    <div class="row-sm-12">
+        <div class="jumbotron" style="text-align: center; background-color: #FFF">
+
+            <h1 class="display-4">SFSU Congre-Gators</h1>
+
+            <hr class="my-4" >
+
+            <p class="lead">
             Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what its like to need that extra support to make it through college!
-        </p>
+            </p>
 
-        <hr class="my-4" >
+            <hr class="my-4" >
 
-        <p>Want to know more? Search our options!</p>
+            <p>Want to know more? Search our options!</p>
+
+        </div>
 
     </div>
-</div>
 
 
 	
 <!--<div class="container" style="margin-top: -150px; padding:5px; background-color: #EEE">-->
 
-  <br />
-  <p class="small text-muted" style="text-align: center">Most Recent Item Listings</p>
+    <br />
+
+    <div class="row justify-content-center">
+        <p class="small text-muted" style="text-align: center">Most Recent Item Listings</p>
+    </div>
 
 
-
-  <div class="row">
+    <div class="row">
         <?php foreach ($itemList as $item): ?>
             
 	    <div class="col-sm-3">
@@ -78,24 +97,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
             
 	    </div>
+
         <?php endforeach; ?>
-  </div>
+
+    </div>
 
 
-  <br />
+    <br />
 
-  <div class="row">
+    <div class="row">
 
-    <div class="col align-self-start" style="padding-top: 5px">
+        <div class="col align-self-start" style="padding-top: 5px">
 		<?php
 			echo "<h6 class='small text-muted'>Showing page " . $currentPage . ' of ' . $maxItems . ' items</h6>'
 		?>
-    </div>
+        </div>
 
-    <div class="col align-self-center">
+        <div class="col align-self-center">
 	
-	<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-  	    <div class="btn-group btn-group-sm" role="group" aria-label="First group">
+	    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+  	        <div class="btn-group btn-group-sm" role="group" aria-label="First group">
 			<?php
 			// Function for creating GET parameters in link
 			function jumpLink($page, $getData)
@@ -141,21 +163,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					echo '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . jumpLink($currentPage + 1, $get) . '">Next</a></button>';
 			}
 			?>
-  	    </div>
-	</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col align-self-end"></div>
 
     </div>
 
-   <div class="col align-self-end"></div>
-
-  </div>
-
-  <br />
+    <br />
 
 </div>
 
-  <?php $this->load->view('common/jquery_tether_bootstrap'); ?>
+    <?php $this->load->view('common/jquery_tether_bootstrap'); ?>
 
-  </body>
+</body>
 
 </html>

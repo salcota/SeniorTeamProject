@@ -65,6 +65,7 @@
             .container {
                 background-color: #EEE;
                 margin-top: 105px;
+		padding: 5px;
             }
 
 	    .carousel {
@@ -139,8 +140,17 @@
 
             .pagetitle {
                 background-color: #595;
-                margin-top: 0;
+                margin-top: -5px;
             }
+
+	    .reguser-link {
+		color: #363;
+	    }
+
+	    .reguser-link:hover {
+		color: #FFF;
+		text-decoration: none;
+	    }
 
             .subtitle {
                 color: #040 !important;

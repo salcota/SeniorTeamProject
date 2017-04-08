@@ -6,7 +6,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="container">
               
               <div class = "row justify-content-center pagetitle">
-                  <div class="col-12 subtitle" id="subheader">Terms & Services</div>
+                  <div class="col-6 subtitle" id="subheader">TERMS & SERVICES</div>
+
+		  <div class = "col-sm-6" style="text-align: right; padding-top: 10px; padding-left: -5px">
+
+                      <?php
+                           $registered = true;
+
+                           if ($registered)
+                            {
+                                $this->load->view('reguser/reguser_navbar');
+                            }
+                      ?>
+
+                  </div>
+
               </div>
               <br /><br /><br />
               

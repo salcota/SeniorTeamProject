@@ -68,19 +68,31 @@ if (empty($categories))
         </form>
 
         <!-- Right Side Menu: Cart, Sign Up, and Login -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link fix-align" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"
-                                                          style="padding-top: 4px"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link fix-align" href="#">Sign&nbsp;Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link fix-align" href="<?php echo base_url() . "Home/view/login" ?>">Login</a>
-            </li>
-        </ul>
 
+	<?php
+	    $registered = true;
+	    if ($registered)
+	    {
+		$this->load->view('common/rightnavbar_reglinks');
+	    }
+	    else
+	    {
+	        $this->load->view('common/rightnavbar_links');
+	    }?>
+	    
+	    
+        	<!--<ul class='navbar-nav'>
+            	    <li class='nav-item'>
+                        <a class='nav-link fix-align' href='#'><i class='fa fa-shopping-cart' aria-hidden='true'
+                                                          style='padding-top: 4px'></i></a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link fix-align' href='#'>Sign&nbsp;Up</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link fix-align' href='<?php //echo  base_url() . 'Home/view/login' ?>'>Login</a>
+                    </li>
+                </ul>-->
     </div>
 
 </nav>

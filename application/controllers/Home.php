@@ -25,7 +25,7 @@ class Home extends CI_Controller {
 			$this->load->view('common/navbar', $navSearch);
 
 			// This code determines if the user is registered to load the additional navbar
-			$registered = true;
+			$registered = false;
 
 			if ($registered)
 			{
@@ -124,10 +124,18 @@ class Home extends CI_Controller {
 		else if ($page == "reguser_navbar")
 		{
 			$this->load->view('reguser/reguser_navbar');
+		} 
+		else if ($page == "rightnavbar_links")
+		{
+			$this->load->view('common/rightnavbar_links');
+		}
+		else if ($page == "rightnavbar_reglinks")
+		{
+			$this->load->view('common/rightnavbar_reglinks');
 		}
 		else
 		{
-			$this->load->view('home/' . $page);
+			$this->load->view('home/' . $page, $registered);
 		}
 	
 		$this->load->view('common/footerbar');
