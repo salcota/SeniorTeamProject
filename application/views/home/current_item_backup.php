@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container">
 
     <div class="row pagetitle">
-        <div class="col-sm-10 subtitle" id="subheader"><?php echo $item[0]->title ?></div>
+        <div class="col-sm-6 subtitle" id="subheader"><?php echo $item[0]->title ?></div>
     </div>
 
 
@@ -65,33 +65,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "<tr> <th>Date:</th>	<td>" .date_format(date_create($item[0]->posted_on),'d-m-Y') . "</td> </tr>" .
                 "<tr> <th>Seller:</th>	<td>" . $item[0]->username . "</td> </tr>" .
                 "<tr> <td><button class='btn btn-success'>Add to Cart</button></td>" .
-		"<td><button class='btn btn-success' style='width:115px' data-toggle='modal' data-target='#myModal'>Buy</button></td> </tr>" .
+		"<td><button class='btn btn-success' style='width:115px' >Buy</button></td> </tr>" .
                 "</table>"
             ?>
         </div>
 
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="modal-title" id="exampleModalLabel">Send a notification to <?php echo $item[0]->username?> to buy <?php echo $item[0]->title?> </h6>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
-                <div class="modal-footer">
-		   <h6 style="width: 100%">Date: </h6>
-                   <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                   <button type="button" class="btn  btn-success btn-sm">Save changes</button>
-                </div>
-            </div>
-        </div>
     </div>
 
 
