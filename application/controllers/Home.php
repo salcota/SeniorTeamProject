@@ -23,9 +23,17 @@ class Home extends CI_Controller {
 			
 			// Pass search terms and category listing to navbar.
 			$this->load->view('common/navbar', $navSearch);
+
+			// This code determines if the user is registered to load the additional navbar
+			$registered = true;
+
+			if ($registered)
+			{
+			    $this->load->view('reguser/reguser_navbar');
+			}
 		
 
-		if ( (!file_exists(APPPATH.'views/home/' . $page . '.php')) && (!file_exists(APPPATH.'views/auth/' . $page . '.php')) )
+		if ( ((!file_exists(APPPATH.'views/home/' . $page . '.php')) && (!file_exists(APPPATH.'views/auth/' . $page . '.php'))) && (!file_exists(APPPATH.'views/reguser/' . $page . '.php')) )
 		{
 			show_404();
 		}
@@ -102,6 +110,7 @@ class Home extends CI_Controller {
 				$items['get'] = $this->input->get();
 			
 			$items['itemList'] = $this->Item_Listing->getItems($find);
+
 			$this->load->view('home/home', $items);
 		}
 		else if ($page == "current_item")
@@ -111,6 +120,10 @@ class Home extends CI_Controller {
 		else if ($page == "login")
 		{
 			$this->load->view('auth/login');
+		}
+		else if ($page == "reguser_navbar")
+		{
+			$this->load->view('reguser/reguser_navbar');
 		}
 		else
 		{
