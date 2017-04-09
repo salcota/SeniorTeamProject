@@ -15,10 +15,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php  
 	    //echo $this->session->flashdata('login_success');
 	    $username = 'Prateek';
-	    $registered = true;
+	    $registered = false;
         
-	    echo "<div class = 'row justify-content-center pagetitle'>
-                      <div class ='col-sm-6 subtitle' id='subheader'>WELCOME, " . $username . "</div>
+	    echo "<div class = 'row justify-content-center pagetitle'>" .
+                      "<div class ='col-sm-6 subtitle' id='subheader'>HOME</div>
 		
 		      <div class = 'col-sm-6' style='text-align: right; padding-top: 10px; padding-left: -5px'>";
  
