@@ -70,7 +70,7 @@ if (empty($categories))
         <!-- Right Side Menu: Cart, Sign Up, and Login -->
 
 	<?php
-	    $registered = true;
+	    $registered = false;
 	    if ($registered)
 	    {
 		$this->load->view('common/rightnavbar_reglinks');

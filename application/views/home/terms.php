@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		  <div class = "col-sm-6" style="text-align: right; padding-top: 10px; padding-left: -5px">
 
                       <?php
-                           $registered = true;
+                           $registered = false;
 
                            if ($registered)
                             {
