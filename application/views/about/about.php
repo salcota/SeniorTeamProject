@@ -1,80 +1,46 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>About Team 4</title>
-
-    <style type="text/css">
-
-    body {
-	    margin-top: 85px;
-            font-family: sans-serif;
-    }
-
-    #container {
-        background-color: #DDDDDD;
-        border-radius: 10px;
-        width: 600px;
-        height: 600px;
-        margin: auto;
-        padding: 10px;
-    }
-
-    h2 {
-        text-align: center;
-    }
-
-    a {
-        text-decoration: none;
-        color: #0099CC;
-    }
-
-    a:hover {
-        color: #FFFFFF;
-    }
-
-    li {
-
-    }
-
-    </style>
-
-</head>
-<body>
-	<div id="topheader"></div>
-        <div id="container">
-
-                <h2>Welcome to Team 4</h2>
-                <hr />
-                <h4>
-                    Software Engineering class SFSU
-                    <br />Spring 2017
-                    <br />Section 1
-                    <br />Team 4
-		    <br /><a href="<?php echo base_url() . 'home'?>">Return Home</a>
-                </h4>
-                <hr />
-                <h4>Click Below to View Our Individual Pages</h4>
-
-                <ul>
-                    <li><a href="<?php echo base_url() . 'About/view/ihsan'?>">Ihsan Taha</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/prateek'?>">Prateek Gupta</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/darel'?>">Darel Ogbonna</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/shane'?>">Shane Cota</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/kevin'?>">Kevin Chu</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/mark'?>">Mark Tompong</a></li>
-                    <br />
-                </ul>
-
+<!-- about us main-->
+    <section id="showcase">
+      <div class="container">
+        <h1>About Us...</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula vitae augue ut faucibus. Mauris vulputate dapibus orci sit amet facilisis. Praesent pellentesque vel neque eu tristique. Fusce pulvinar nisi at tellus lobortis venenatis. Suspendisse a ante diam. </p>
+      </div>
+    </section>
+ 
+ <!-- team member bios-->
+    <section id="boxes">
+      <div class="container">
+        <div class="box">
+          <center><img src="<?php echo base_url() . "public/images/images-1.jpeg"?>"</center><br> 
+          <h3>Ihsan</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
         </div>
-</body>
-</html>
+        <div class="box">
+          <center><img src="<?php echo base_url() . "public/images/images-1.jpeg"?>"</center><br>
+          <h3>Prateek</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        </div>
+        <div class="box">
+          <center><img src="<?php echo base_url() . "public/images/images-1.jpeg"?>"</center><br>
+          <h3>Kevin</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        </div>
+        <div class="box">
+          <center><img src="<?php echo base_url() . "public/images/images-1.jpeg"?>"</center><br>
+          <h3>Mark</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        </div>
+        <div class="box">
+          <center><img src="<?php echo base_url() . "public/images/images-1.jpeg"?>"</center><br>
+          <h3>Shane</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        </div>
+        <div class="box">
+          <center><img src="<?php echo base_url() . "public/images/images-1.jpeg"?>"</center><br>
+          <h3>Darel</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        </div>
+      </div>
+    </section>
+ <link rel="stylesheet" href="<?php echo base_url() . "public/css/aboutus.css"?>">
+
+  </body>
