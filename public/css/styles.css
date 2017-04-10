@@ -83,11 +83,17 @@
 		width: 150px;
 	    }
 
-            .container {
-                background-color: #EEE;
-                margin-top: 105px;
-		padding: 5px;
-            }
+	    .card_title {
+		display: block;
+		font-size: 12pt;
+		font-weight: 600;
+		margin: auto;
+		max-width: 90%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		/*"font-weight: 600; font-size:12pt; margin: auto; display: block; max-width: 90%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis"*/
+	    }
 
 	    .carousel {
 		background-color: #030;
@@ -96,6 +102,12 @@
 		height: 200px;
 		padding: 5 1 5 1;
 	    }
+
+            .container {
+                background-color: #EEE;
+                margin-top: 105px;
+                padding: 5px;
+            }
 
 	    .d-block {
 		height:185px !important; 
