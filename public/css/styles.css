@@ -77,6 +77,12 @@
 		width: 150px;
 	    }
 
+	    .about_us p {
+		margin: auto;
+		text-align: left;
+		width: 150px;
+	    }
+
             .container {
                 background-color: #EEE;
                 margin-top: 105px;
