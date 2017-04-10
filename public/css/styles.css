@@ -15,8 +15,9 @@
 		height: 32px;
 		vertical-align: top;
 	    }        
+
         
-            /* ids */
+	    /* Ids */ 
             #btnGroupDrop1 {
                 background-color: #EEE;
                 font-size: 12px;
@@ -62,11 +63,37 @@
 
 
             /* classes */
-            .container {
-                background-color: #EEE;
-                margin-top: 105px;
-		padding: 5px;
-            }
+	    .about_us {
+		height: 295px;
+		font-size: 12px;
+		text-align: center;
+	    }
+
+	    .about_us img {
+		border: solid 2px #363;
+		border-radius: 6px;
+		height: 150px;
+		margin-bottom: 5px;
+		width: 150px;
+	    }
+
+	    .about_us p {
+		margin: auto;
+		text-align: left;
+		width: 150px;
+	    }
+
+	    .card_title {
+		display: block;
+		font-size: 12pt;
+		font-weight: 600;
+		margin: auto;
+		max-width: 90%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		/*"font-weight: 600; font-size:12pt; margin: auto; display: block; max-width: 90%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis"*/
+	    }
 
 	    .carousel {
 		background-color: #030;
@@ -75,6 +102,12 @@
 		height: 200px;
 		padding: 5 1 5 1;
 	    }
+
+            .container {
+                background-color: #EEE;
+                margin-top: 105px;
+                padding: 5px;
+            }
 
 	    .d-block {
 		height:185px !important; 

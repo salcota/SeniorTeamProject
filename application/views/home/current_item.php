@@ -9,16 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 
 
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <br/>
-            <button class="btn btn-success">BACK</button>
-            <br/>
-        </div>
-    </div>
-
-
-    <br/>
+    <br/><br /><br />
 
 
     <div class="row justify-content-center">
@@ -112,5 +103,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 </div>
-
-<?php $this->load->view('common/jquery_tether_bootstrap'); ?>

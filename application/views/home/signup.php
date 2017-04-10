@@ -131,9 +131,6 @@ echo form_open('Signup/login', $attributes);?>
 
 </div>
 </div>
-
-<br /><br />
-
 <!--
 <div class="row justify-content-center">
 	<div class="col-sm-5">
@@ -153,3 +150,5 @@ echo form_open('Signup/login', $attributes);?>
 </div>
 
 <br /><br /><br />
+
+</div>

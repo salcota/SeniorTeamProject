@@ -1,80 +1,112 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
 
-<html lang="en">
+<div class="container">
 
-<head>
-    <meta charset="utf-8">
-    <title>About Team 4</title>
+    <div class = "row justify-content-center pagetitle">
+	<div class ="col-sm-6 subtitle" id="subheader">ABOUT US...</div>
 
-    <style type="text/css">
 
-    body {
-	    margin-top: 85px;
-            font-family: sans-serif;
-    }
+        <div class = "col-sm-6" style="text-align: right; padding-top: 10px; padding-left: -5px">
 
-    #container {
-        background-color: #DDDDDD;
-        border-radius: 10px;
-        width: 600px;
-        height: 600px;
-        margin: auto;
-        padding: 10px;
-    }
+            <?php
+                $registered = false;
 
-    h2 {
-        text-align: center;
-    }
-
-    a {
-        text-decoration: none;
-        color: #0099CC;
-    }
-
-    a:hover {
-        color: #FFFFFF;
-    }
-
-    li {
-
-    }
-
-    </style>
-
-</head>
-<body>
-	<div id="topheader"></div>
-        <div id="container">
-
-                <h2>Welcome to Team 4</h2>
-                <hr />
-                <h4>
-                    Software Engineering class SFSU
-                    <br />Spring 2017
-                    <br />Section 1
-                    <br />Team 4
-		    <br /><a href="<?php echo base_url() . 'home'?>">Return Home</a>
-                </h4>
-                <hr />
-                <h4>Click Below to View Our Individual Pages</h4>
-
-                <ul>
-                    <li><a href="<?php echo base_url() . 'About/view/ihsan'?>">Ihsan Taha</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/prateek'?>">Prateek Gupta</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/darel'?>">Darel Ogbonna</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/shane'?>">Shane Cota</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/kevin'?>">Kevin Chu</a></li>
-                    <br />
-                    <li><a href="<?php echo base_url() . 'About/view/mark'?>">Mark Tompong</a></li>
-                    <br />
-                </ul>
+            	if ($registered)
+                {
+                    $this->load->view('reguser/reguser_navbar');
+                }
+            ?>
 
         </div>
-</body>
-</html>
+
+    </div>
+
+    <br />
+
+    <div class="row justify-content-center">
+
+	
+	<div class="col">
+
+        <div class="jumbotron" style="color: #eee; background-image: url(<?php echo base_url() . 'public/images/san_francisco.png'?>">
+      
+            <h1 class="display-4" style="text-align: center">Welcome to the Staff!</h1>
+
+	    <hr class="my-4" style="background-color: #eee">
+
+	    <h5 style="text-align: center">CSC 648/848 - Software Engineering Class at SFSU</h5>
+
+	    <hr class="my-4" style="background-color: #eee">
+
+	    <p class="lead">
+	        Spring 2017
+		<br />
+		Section 1
+		<br />
+		Team 4
+	    </p>
+  
+       </div>
+       </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-sm-4 about_us">
+	      <img src="http://www.ihsansdomain.com/IhsanTaha_ProfilePic.png" alt="Ihsan Taha"/>
+	      <br />
+              <h5>Ihsan</h5>
+	      <p>CEO of SFSU Congre-Gator's Market, a passionate programmer with a background in UI design, web development, and game development.</p>
+        </div>
+
+        <div class="col-sm-4 about_us">
+              <img src="https://scontent.fsnc1-5.fna.fbcdn.net/v/t31.0-8/15369961_1339774136074974_8835888128227889161_o.jpg?oh=8bc8dd4ff06a96bae490810799859836&amp;oe=59042FB6" alt="Prateek Gupta"/>
+              <br />
+              <h5>Prateek</h5>
+              <p>CTO of SFSU Congre-Gator's Market, Master's Student Computer Science, Andorid Developer, Web App developer, Tech enthusiast</p>
+        </div>
+
+        <div class="col-sm-4 about_us">
+              <img src="<?php echo base_url() . "public/images/aboutDarel.jpg"?>" alt="a pic at Mission Peak"/>
+              <br />
+              <h5>Darel</h5>
+              <p>Darel is a senior at San Francisco State University, completing his bachelor's degree in Computer Science.</p>
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="row justify-content-center">
+
+        <div class="col-sm-4 about_us">
+              <img src="https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/15590368_10155476774979057_5985225702468684038_n.jpg?oh=2190452598d45fd86bfd543697207281&amp;oe=5948C81A" alt="Shane Cota"/>
+	      <br />
+              <h5>Shane</h5>
+              <p>Shane is a senior at San Francisco State University with an interest in network security, completing his bachelor's degree in Computer Science.</p>    
+	</div>
+
+        <div class="col-sm-4 about_us">
+              <img src="<?php echo base_url() . "public/images/aboutKevin.jpg"?>" alt="Kevin Chu"/>	
+	      <br />
+              <h5>Kevin</h5>
+              <p>Kevin is an experienced GitHub user and back-end developer.</p>
+	</div>
+
+        <div class="col-sm-4 about_us">
+              <img src="http://i.imgur.com/mKvvwpl.png" src="Mark Tompong"/>
+              <br />
+              <h5>Mark</h5>
+              <p>Mark is a senior in Computer Science and front-end developer of SFSU Congre-Gator's Market.</p>
+        </div>
+	
+    </div>
+
+    <br /><br /><br />
+
+</div>
+
+
