@@ -15,8 +15,9 @@
 		height: 32px;
 		vertical-align: top;
 	    }        
+
         
-            /* ids */
+	    /* Ids */ 
             #btnGroupDrop1 {
                 background-color: #EEE;
                 font-size: 12px;
@@ -62,6 +63,20 @@
 
 
             /* classes */
+	    .about_us {
+		height: 295px;
+		font-size: 12px;
+		text-align: center;
+	    }
+
+	    .about_us img {
+		border: solid 2px #363;
+		border-radius: 6px;
+		height: 150px;
+		margin-bottom: 5px;
+		width: 150px;
+	    }
+
             .container {
                 background-color: #EEE;
                 margin-top: 105px;
