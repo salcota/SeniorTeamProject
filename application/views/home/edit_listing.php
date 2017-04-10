@@ -4,9 +4,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container">
 
-    <div class="row pagetitle">
-        <div class="col-sm-10 subtitle" id="subheader">EDIT ITEM LISTING</div>
-    </div>
+
+    <div class = "row justify-content-center pagetitle">
+    	<div class ='col-sm-6 subtitle' id='subheader'>EDIT ITEM LISTING</div>
+                
+        <div class = 'col-sm-6' style='text-align: right; padding-top: 10px; padding-left: -5px'>
+
+        <?php
+	    $registered = true;
+ 
+            if ($registered)
+            {
+        	    $this->load->view('reguser/reguser_navbar');
+            }
+        ?>
+
+        </div>
+    </div>    
 
 
     <br/><br /><br />
@@ -112,13 +126,67 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ?>
             </div>
 	    
+	</div>
+    </div>
 
-	    <?php form_close(); ?>
+    <div class="row justify-content-center">
+	<div class="col-sm-10">
+	    <div class="form-group">
+		<?php
+		    echo '<span>Description</span>';
+
+		    $data = array(
+			'class' => 'form-control',
+			'name' => 'description',
+			'type' => 'textarea',
+			'maxlength' => '300',
+			'style' => 'resize: none; height: 100px'
+		    );
+		    
+		    $value = "";
+
+		    echo form_textarea($data, $value);
+		?>
+	    </div>
+	</div>
+    </div>
+
+   <div class="row justify-content-center">
+	<div class="col-sm-10" style="text-align: right">
+	    <?php
+                $data = array(
+                    'style' => 'width: 100px',
+                    'class' => 'btn btn-success',
+                    'name' => 'reset',
+                    'value' => 'Reset',
+		    'style' => 'width: 100px'
+                );
+
+                echo form_reset($data);
+            ?>
+	    
+	    &emsp;
+
+	    <?php
+        	$data = array(
+                    'style' => 'width: 100px',
+                    'class' => 'btn btn-success',
+                    'name' => 'submit',
+                    'value' => 'Save',
+		    'style' => 'width: 100px'
+        	);
+
+            	echo form_submit($data);
+	    ?>
+
+	</div>
+    </div>
+
+    <?php form_close(); ?>
 
 	    
 
-        </div>
-	</div>
+
 
 	<br /><br /><br />
 
