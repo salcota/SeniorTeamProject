@@ -103,5 +103,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 </div>
-
-<?php $this->load->view('common/jquery_tether_bootstrap'); ?>

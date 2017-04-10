@@ -138,6 +138,7 @@ class Home extends CI_Controller {
 			$this->load->view('home/' . $page, $registered);
 		}
 	
+		$this->load->view('common/jquery_tether_bootstrap');
 		$this->load->view('common/footerbar');
 	}
 }

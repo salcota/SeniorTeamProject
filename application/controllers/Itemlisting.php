@@ -37,6 +37,7 @@ class Itemlisting extends CI_Controller{
             $this->load->view('home/current_item',$data);
         }
 
+	$this->load->view('common/jquery_tether_bootstrap');
         $this->load->view('common/footerbar');
     }
 

@@ -181,10 +181,3 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
     <br />
 
 </div>
-
-    <?php $this->load->view('common/jquery_tether_bootstrap'); ?>
-
-</body>
-
-</html>
-
