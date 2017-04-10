@@ -59,11 +59,10 @@ if (empty($categories))
                         ?>
                     </select>
                 </div>
-                <input type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search ..."
+                <input style="height: 40px" type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search ..."
                        name="search" value="<?php echo $searchTerms ?>">
                 <input type="hidden" name="sort" id="sort">
-                <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fa fa-search"
-                                                                              aria-hidden="true"></i></button>
+                <button style="height: 40px" class="btn btn-success" type="submit"><i class="fa fa-search"                                                                              aria-hidden="true"></i></button>
             </div>
         </form>
 
