@@ -29,7 +29,7 @@
 		height: 75px; 
 		padding: 25 0 25 0;
 		text-align: center;
-	    	width: 100%;
+		width: 100%;
 	    }
 
 	    #footer a {
@@ -67,14 +67,23 @@
 		height: 295px;
 		font-size: 12px;
 		text-align: center;
+		width: 150px;
+		margin-bottom: 50px;
 	    }
 
-	    .about_us img {
+	    .about_frame {
+		background-color: #000;
 		border: solid 2px #363;
 		border-radius: 6px;
 		height: 150px;
-		margin-bottom: 5px;
+		margin: auto;
 		width: 150px;
+	    }
+
+	    .about_frame img {
+		border-radius: 5px;
+		max-height: 100%;
+		max-width: 100%;
 	    }
 
 	    .about_us p {

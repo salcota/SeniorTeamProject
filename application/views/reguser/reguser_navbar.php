@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-sm-6" style="text-align: right; padding-top: 10px; padding-left: -5px">-->
             <a class="reguser-link" href="#">Notifications</a>
             <a class="reguser-link" href="#">&nbsp;&nbsp;Profile&nbsp;&nbsp</a>
-            <a class="reguser-link" href="#">Listings</a>
+            <a class="reguser-link" href="<?php echo base_url() . 'Home/view/item_listings'?>">Listings</a>
        <!-- </div>
     </div>
 </div>
