@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="modal-footer">
 		   <h6 style="width: 100%">Date: </h6>
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                   <button type="button" class="btn  btn-success btn-sm">Save changes</button>
+                   <button type="button" class="btn  btn-success btn-sm">Send</button>
                 </div>
             </div>
         </div>
