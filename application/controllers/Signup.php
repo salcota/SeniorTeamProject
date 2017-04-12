@@ -2,7 +2,19 @@
 
 class Signup extends CI_Controller
 {
-	public function login($page = "signup")
+	public function __construct()
+        {
+ 	 parent::__construct();
+ 	 $this->load->model('formupload');
+ 	 $this->load->helper(array('form', 'url'));
+	}
+	 public function index()
+	 {
+ 	 $this->load->view('signup');
+	 }
+
+
+	public function login()
 	{
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
@@ -29,7 +41,7 @@ class Signup extends CI_Controller
 			$this->load->model('Reg_User');
 			$user_email = $this->Reg_User->getUser($email,$password);
 
-			// Compare signup attributes with the attributes stored in the database. Should be unique.	
+			// Compare signup attributes with the attributes stored in the database. Should be unique.
 			if(!$user_email)
 			{
 				$user_data = array(
@@ -40,8 +52,18 @@ class Signup extends CI_Controller
 					'logged_in' => true
 				);
 
+
 				$this->session->set_userdata($user_data);
 				$this->session->set_flashdata('login_success', 'Welcome! You have succesfully signed up!');
+				
+
+				//assigns values to table in reg_user
+				$save = array(
+     				 'sfsu_email'          => $this->input->post('email'),
+     				 'password'          => $this->input->post('password'),
+       				 );
+
+  				 $this->formupload->do_upload($save);
 
 				// This page will change from home to reg_home later
 				redirect('home/view/home');
@@ -53,6 +75,16 @@ class Signup extends CI_Controller
 				redirect('home/view/signup');
 			}
 		}
+
+
+
+
+
+
+
+
+
+
 		// Checks to see if email is an sfsu email. Not currently working.
 		function email_check($str)
 		{
