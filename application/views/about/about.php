@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container">
+<div class="container" style="margin-top: 100px">
 
     <div class="row">	
 	<div class="col">

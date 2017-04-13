@@ -20,8 +20,8 @@ class Home extends CI_Controller {
 		$this->load->model('Category');
 		$navSearch['categories'] = $this->Category->getCategories();
 			
-		// Determines navbar based or registered/nonregistered and if on home/nonhomepage then passes search terms and category listing to navbar.
-		$registered = false;
+		// Determines navbar based on registered/nonregistered and if on home/nonhomepage then passes search terms and category listing to navbar.
+		$registered = true;
 		$onHome = true;
 		if ($registered && $onHome)
 			$this->load->view('common/registered_navbar', $navSearch);

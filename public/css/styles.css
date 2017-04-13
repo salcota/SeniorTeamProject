@@ -26,8 +26,8 @@
 
 	    #footer {
 		background-color: #363;
-		height: 75px; 
-		padding: 25 0 25 0;
+		height: 85px; 
+		padding: 30 0 30 0;
 		text-align: center;
 		width: 100%;
 	    }
@@ -119,8 +119,7 @@
 
             .container {
                 background-color: #EEE;
-                margin-top: 105px;
-                padding: 5px;
+	        padding: 5px;
             }
 
 	    .d-block {

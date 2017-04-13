@@ -9,7 +9,7 @@
 
     <div id='topheader'></div>
 
-    <nav class='navbar navbar-toggleable-lg navbar-light fixed-top navbar'>
+    <nav class='navbar navbar-toggleable-lg navbar-light fixed-top navbar' style="min-height: 85px">
 
         <button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button>
 
@@ -19,12 +19,12 @@
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav mr-auto'>
                 <li class='nav-item active'>
-                    <a class='nav-link fix-align' style='width: 310px' href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
+                    <a class='nav-link fix-align' style='width: 310px; padding-top: 16px' href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
                 </li>
             </ul>
 
             <!-- Centered Category Search & Input Search -->
-            <form class='form-inline mr-auto fix-align' action="<?php echo base_url() . "home" ?>" id="searchSubmit" method=GET>
+            <form class='form-inline mr-auto fix-align' style='padding-top: 4px' action="<?php echo base_url() . "home" ?>" id="searchSubmit" method=GET>
                 <label class='sr-only' for='inlineFormInputGroup'>Search</label>
                     <div class='input-group mb-2 mr-sm-2 mb-sm-0'>
                         <div class='form-group'>
@@ -54,25 +54,25 @@
             <!-- Right Side Menu: Cart, Sell, Sign Up, and Login -->            
 	    <ul class='navbar-nav'>
                 <li class='nav-item'>
-                    <a class='nav-link fix-align' href='#'><i class='fa fa-shopping-cart' aria-hidden='true' style='padding-top: 4px'></i></a>
+                    <a class='nav-link fix-align' style='padding-top: 16px'href='#'><i class='fa fa-shopping-cart' aria-hidden='true' style='padding-top: 4px'></i></a>
                 </li>
                 <li class='nav-item'>
-                    <a class='nav-link fix-align' href='<?php echo  base_url() . 'Home/view/edit_listing' ?>'>Sell</a>
+                    <a class='nav-link fix-align' style='padding-top: 16px'href='<?php echo  base_url() . 'Home/view/edit_listing' ?>'>Sell</a>
                 </li>
 		<li class='nav-item'>
-                    <a class='nav-link fix-align' href='<?php echo  base_url() . 'Home/view/item_listings' ?>'>Listings</a>
+                    <a class='nav-link fix-align' style='padding-top: 16px'href='<?php echo  base_url() . 'Home/view/item_listings' ?>'>Listings</a>
                 </li>
 		<li class='nav-item'>
-                    <a class='nav-link fix-align' href='#'>Notifocations</a>
+                    <a class='nav-link fix-align' style='padding-top: 16px'href='#'>Notifocations</a>
                 </li>
                 <li class='nav-item'>
                     <div class="btn-group">
-                        <a id="logout" class="nav-link fix-align" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                        <div class="dropdown-menu move" aria-labelledby="logout">
-			    <a class="dropdown-item" href='#'>Profile</a>
-                            <a class="dropdown-item" href='#'>Report</a>
-  	                    <a class="dropdown-item" href='<?php echo  base_url() . 'Home/view/home' ?>'>Logout</a>		
+                        <a id='logout' class='nav-link fix-align' data-toggle='dropdown' aria-haspopup='true'
+                                aria-expanded='false' style='padding-top: 16px' href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></a>
+                        <div class='dropdown-menu move' aria-labelledby='logout'>
+			    <a class='dropdown-item' href='#'>Profile</a>
+                            <a class='dropdown-item' href='#'>Report</a>
+  	                    <a class='dropdown-item' href='<?php echo  base_url() . 'Home/view/home' ?>'>Logout</a>		
                         </div>
                     </div>
                 </li>
