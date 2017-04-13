@@ -102,7 +102,7 @@
     <!--Signup Button-->
     <div class="row justify-content-center" style="margin-top: 10px">
 	<div class="col-sm-5">
-	    <button type="submit" class="btn btn-success" style="width: 100px">Sign Up</button>
+	    <a href="<?php echo base_url() . 'Home/view/signup'?>"><button class="btn btn-success" style="width: 100px">Sign Up</button></a>
         </div>
     </div>
 
