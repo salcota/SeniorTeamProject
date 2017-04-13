@@ -70,9 +70,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
                     // 
                     $options = array(
-                        'class' => 'form-control',
-		        'name' => 'category',
-		        'size' => '110',
                         '1' => 'Accounting',
 		        '2' => 'Broadcast & Electronic Arts&nbsp;&nbsp;',
 		        '3' => 'Computer Science',
