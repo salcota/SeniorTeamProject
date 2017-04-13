@@ -16,7 +16,7 @@
 
     <!-- Displays the item in a carousel -->
     <div class="row justify-content-center">
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="margin-bottom: 25px">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

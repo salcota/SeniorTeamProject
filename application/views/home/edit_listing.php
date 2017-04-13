@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="margin-bottom: 25px">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+           </div>
         </div>
 
 	<div class="col-sm-6">
