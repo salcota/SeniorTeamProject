@@ -72,10 +72,8 @@
     </div>
 
     <div class="row justify-content-center" style="margin-top: -10px">
-	<small class="form-text text-muted">Forgot password?</small>
+	<p class="form-text text-muted">Forgot password?</p>
     </div>
-
-    <br />
 
     <!--Submit Button-->
     <div class="row justify-content-center" style="margin-top: -20px">
@@ -93,7 +91,7 @@
 	</div>
     </div>
 
-    <br /><br />
+    <br />
 
     <div class="row justify-content-center">
 	<div class="col-sm-5">
@@ -102,7 +100,7 @@
     </div>
 
     <!--Signup Button-->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin-top: 10px">
 	<div class="col-sm-5">
 	    <button type="submit" class="btn btn-success" style="width: 100px">Sign Up</button>
         </div>

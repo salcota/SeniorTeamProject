@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 			$navSearch['categories'] = $this->Category->getCategories();
 			
 			// Pass search terms and category listing to navbar.
-			$this->load->view('common/navbar', $navSearch);
+			$this->load->view('common/registered_navbar', $navSearch);
 
 			// This code determines if the user is registered to load the additional navbar
 			$registered = false;
