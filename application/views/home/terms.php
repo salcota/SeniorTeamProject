@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col">
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
                 <h1 class="display-4">Terms and Services</h1>
+		<hr class="my-4">
             </div>
         </div>
     </div>

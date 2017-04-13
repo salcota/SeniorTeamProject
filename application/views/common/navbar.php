@@ -5,7 +5,7 @@
         throw new Exception('Navbar needs categories-listing from controller');
 ?>
 
-<body>
+<body>    
 
     <div id='topheader'></div>
 
