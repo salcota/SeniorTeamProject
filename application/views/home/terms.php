@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
  
 <div class="container">
-              
+
+    <!-- subtitle Header -->              
     <div class="row">
         <div class="col">
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
@@ -15,7 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
  
     <br /><br /><br />
-              
+    
+    <!-- Terms & conditions -->          
     <div class="row-sm-12" style="text-align: justify">
     	<h5>1- Compliance & Liability:</h5>
 	<p>All registered users understand they must comply with the SFSU Congre-Gators Market rules. Any issues raised that conflict with the agreement of our terms will be the sole responsibility of that user, and the company will not be held liable to any damages caused.</p>

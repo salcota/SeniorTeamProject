@@ -1,11 +1,32 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <div class="container">
-                  
+
+    <!-- Subtitle Header -->
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+                <h1 class="display-4">Post an Item Listing</h1>
+                <hr class= "my-4">
+                <p class="lead">View your current items posted for sale. You can edit or remove a current listing, or add a new listing.</p>
+            </div>
+        </div>
+    </div>
+
     <br /><br /><br />
-	
-    <div class="row justify-content-center">
-	<div class="col-sm-10">
+
+    <!-- Adds a new item listing -->
+    <div class="row">
+        <div class="col" style="text-align: right">
+            <a class="btn btn-success" href="<?php echo base_url() . 'Home/view/edit_listing'?>" target="blank">ADD ITEM</a>
+    	</div>
+    </div>
+
+    <br />
+
+    <!-- Displays current list of item listings posted for sale -->	
+    <div class="row">
+	<div class="col">
 	    <table class="table table-bordered table-hover table-info table-striped" style="border: solid 2px #ACF; font-size: 10pt">
                 <tr>
 		    <th>#</th>

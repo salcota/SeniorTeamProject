@@ -4,11 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container">
 
-    <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
-                <h1 class="display-4"><?php echo $item[0]->title ?></h1>
+                <h1 class="display-4"><div class="col-sm-10 subtitle" id="subheader"><?php echo $item[0]->title ?></div></h1>
                 <hr class= "my-4">
             </div>
         </div>
@@ -16,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <br/><br /><br />
 
-    <!-- Displays the item in a carousel -->
+
     <div class="row justify-content-center">
         <div class="col-sm-4">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -52,7 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
 
-	<!-- Displays the table containing information on the current item listing -->
         <div class="col-md-6">
             <?php echo
                 "<table>" .
@@ -69,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </div>
 
-    <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
+    <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -91,7 +89,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
+
     <br/>
+
 
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -102,6 +102,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
+
     <br/><br/><br/>
+
 
 </div>

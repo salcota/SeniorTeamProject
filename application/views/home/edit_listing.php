@@ -3,29 +3,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <div class="container">
-
-
-    <div class = "row justify-content-center pagetitle">
-    	<div class ='col-sm-6 subtitle' id='subheader'>EDIT ITEM LISTING</div>
-                
-        <div class = 'col-sm-6' style='text-align: right; padding-top: 10px; padding-left: -5px'>
-
-        <?php
-	    $registered = true;
  
-            if ($registered)
-            {
-        	    $this->load->view('reguser/reguser_navbar');
-            }
-        ?>
-
+    <!-- Subtitle Header -->
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+                <h1 class="display-4">Current Listing</h1>
+                <hr class= "my-4">
+		<p class-"lead">Edit your new listing or update your current one</p>
+            </div>
         </div>
-    </div>    
-
+    </div>
 
     <br/><br /><br />
 
-
+    <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
         <div class="col-sm-4">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -57,75 +49,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
 	<div class="col-sm-6">
-
 	    <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
-
 	    <?php    echo form_open('home/view/itemlistings', $attributes); ?>
- 
 	    <div class="form-group input-group">
-
-	    <?php
-		echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
-            	//
-            	$data = array(
-               	    'class' => 'form-control',
-                    'name' => 'name',
-		    'type' => 'text',
-		    'size' => '100',
-                    'placeholder' => 'Name your item'
-            	);
-            	echo form_input($data);
-            ?>
+	    	<?php
+		    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
+            	    //
+            	    $data = array(
+               	        'class' => 'form-control',
+                        'name' => 'name',
+		        'type' => 'text',
+		        'size' => '100',
+                        'placeholder' => 'Name your item'
+            	    );
+            	    echo form_input($data);
+                ?>
             </div>
 	    <div class="form-group input-group">
-            <?php
-                echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
-                // 
-                $options = array(
-                    'class' => 'form-control',
-		    'name' => 'category',
-		    'size' => '110',
-                    '1' => 'Accounting',
-		    '2' => 'Broadcast & Electronic Arts&nbsp;&nbsp;',
-		    '3' => 'Computer Science',
-		    '4' => 'Electric Engineering',
-		    '5' => 'Math',
-                );
-                echo form_dropdown('name', $options, '1');
-            ?>
+                <?php
+                    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
+                    // 
+                    $options = array(
+                        'class' => 'form-control',
+		        'name' => 'category',
+		        'size' => '110',
+                        '1' => 'Accounting',
+		        '2' => 'Broadcast & Electronic Arts&nbsp;&nbsp;',
+		        '3' => 'Computer Science',
+		        '4' => 'Electric Engineering',
+		        '5' => 'Math',
+                    );
+                    echo form_dropdown('name', $options, '1');
+                ?>
 	    </div>
 	    <div class="form-group input-group">
-	    <?php
-                echo '<span class="input-group-addon" style="width: 100px; text-align: left">Price</span>';
-                // 
-                $data = array(
-                    'class' => 'form-control',
-                    'name' => 'price',
-		    'type' => 'text',
-		    'size' => '100',
-                    'placeholder' => '$00.00'
-                );
-                echo form_input($data);
-            ?>
+	        <?php
+                    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Price</span>';
+                    // 
+                    $data = array(
+                        'class' => 'form-control',
+                        'name' => 'price',
+		        'type' => 'text',
+		        'size' => '100',
+                        'placeholder' => '$00.00'
+                    );
+                    echo form_input($data);
+                ?>
 	    </div>
 
             <div class="form-group input-group">
-            <?php
-                echo '<span class="input-group-addon" style="width: 100px; text-align: left">Photo(s)</span>';
-                // 
-                $data = array(
-                    'class' => 'form-control',
-                    'name' => 'photos',
-                    'type' => 'file',
-                    'size' => '100',
-                );
-
-		$value = "";
-
-                echo form_upload($data, $value);
-            ?>
+                <?php
+                    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Photo(s)</span>';
+                    // 
+                    $data = array(
+                        'class' => 'form-control',
+                        'name' => 'photos',
+                        'type' => 'file',
+                        'size' => '100',
+                    );
+		    $value = "";
+                    echo form_upload($data, $value);
+                ?>
             </div>
-	    
 	</div>
     </div>
 
@@ -134,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <div class="form-group">
 		<?php
 		    echo '<span>Description</span>';
-
+		    //
 		    $data = array(
 			'class' => 'form-control',
 			'name' => 'description',
@@ -142,16 +127,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			'maxlength' => '300',
 			'style' => 'resize: none; height: 100px'
 		    );
-		    
 		    $value = "";
-
 		    echo form_textarea($data, $value);
 		?>
 	    </div>
 	</div>
     </div>
 
-   <div class="row justify-content-center">
+    <div class="row justify-content-center">
 	<div class="col-sm-10" style="text-align: right">
 	    <?php
                 $data = array(
@@ -161,12 +144,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     'value' => 'Reset',
 		    'style' => 'width: 100px'
                 );
-
                 echo form_reset($data);
             ?>
-	    
 	    &emsp;
-
 	    <?php
         	$data = array(
                     'style' => 'width: 100px',
@@ -175,21 +155,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     'value' => 'Save',
 		    'style' => 'width: 100px'
         	);
-
             	echo form_submit($data);
 	    ?>
-
 	</div>
     </div>
 
     <?php form_close(); ?>
 
-	    
-
-
-
-	<br /><br /><br />
-
-    </div>
+    <br /><br /><br />
 
 </div>
