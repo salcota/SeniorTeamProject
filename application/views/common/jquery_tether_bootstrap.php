@@ -4,9 +4,8 @@
 <script src="<?php echo base_url() . '/public/js/bootstrap.min.js'?>">
 
 <script type="text/javascript">
-    // changes the current category in the sort function to the chosen dropdown value
-    $(".category").click(function()
-    {
+
+    $(".category").click(function() {
         if ($(this).attr("id") == "default")
 	{
             $("#btnGroupDrop1").html("All");
