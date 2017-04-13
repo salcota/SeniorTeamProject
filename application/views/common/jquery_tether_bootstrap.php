@@ -4,7 +4,6 @@
 <script src="<?php echo base_url() . '/public/js/bootstrap.min.js'?>">
 
 <script type="text/javascript">
-
     $(".category").click(function() {
         if ($(this).attr("id") == "default")
 	{

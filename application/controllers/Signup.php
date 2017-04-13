@@ -30,18 +30,18 @@ class Signup extends CI_Controller
 			$this->session->set_flashdata($login_attributes);
 			redirect('home/view/signup');
 		}
-		// compares signup form input to database to check if input is unique. Eventually need to do this by setting
+		// Compares signup form input to database to check if input is unique. Eventually need to do this by setting
 		// a rule in form_validation.
 		else
 		{
-			// Transfer signup form input to compare with values in database
+			// Transfers signup form input to compare with values in database.
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 
 			$this->load->model('Reg_User');
 			$user_email = $this->Reg_User->getUser($email,$password);
 
-			// Compare signup attributes with the attributes stored in the database. Should be unique.
+			// Compares signup attributes with the attributes stored in the database. Should be unique.
 			if(!$user_email)
 			{
 				$user_data = array(
@@ -57,7 +57,7 @@ class Signup extends CI_Controller
 				$this->session->set_flashdata('login_success', 'Welcome! You have succesfully signed up!');
 				
 
-				//assigns values to table in reg_user
+				// Assigns values to table in reg_user.
 				$save = array(
      				 'sfsu_email'          => $this->input->post('email'),
      				 'password'          => $this->input->post('password'),
@@ -65,7 +65,7 @@ class Signup extends CI_Controller
 
   				 $this->formupload->do_upload($save);
 
-				// This page will change from home to reg_home later
+				// This page will change from home to reg_home later.
 				redirect('home/view/home');
 			}
 			else

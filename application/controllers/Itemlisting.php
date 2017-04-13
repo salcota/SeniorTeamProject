@@ -5,15 +5,17 @@ class Itemlisting extends CI_Controller{
 
     public function __construct()
     {
+	// Gets item listing,  basic header and styles for all pages.
         parent::__construct();
         $this->load->model('Item_Listing');
         $this->load->view('common/sfsu_demo');
         $this->load->view('common/required_meta_tags');
-        // Get user's search terms.
+ 
+        // Gets user's search terms.
         $navSearch['searchTerms'] = htmlentities($this->input->get('search'));
         $navSearch['currentCategory'] = $this->input->get('category');
 
-        // Retrieve all item categories.
+        // Retrieves all item categories.
         $this->load->model('Category');
         $navSearch['categories'] = $this->Category->getCategories();
 
@@ -37,6 +39,7 @@ class Itemlisting extends CI_Controller{
             $this->load->view('home/current_item',$data);
         }
 
+	// Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
 	$this->load->view('common/jquery_tether_bootstrap');
         $this->load->view('common/footerbar');
     }

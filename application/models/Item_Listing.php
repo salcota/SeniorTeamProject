@@ -6,7 +6,7 @@ class Item_Listing extends CI_Model
 	{
 		$this->load->database();
 		
-		// Load CodeIgniter's table-editor
+		// Loads CodeIgniter's table-editor.
 		$this->load->dbforge();
 	}
 	
@@ -17,10 +17,10 @@ class Item_Listing extends CI_Model
 		$debug = $this->db->db_debug;
 		$this->db->db_debug = false;
 		
-		// Create array with item details.
+		// Creates array with item details.
 		$dbItem = array('category_id' => $category, 'price' => $price, 'seller_id' => $seller, 'title' => $title, 'description' => $description);
 		
-		// Add item to database.
+		// Adds item to database.
 		if ($this->db->insert('item_listing', $dbItem))
 		{
 			$this->db->db_debug = $debug;
@@ -80,7 +80,7 @@ class Item_Listing extends CI_Model
 		$this->buildQuery($search);
 		$items = $this->db->count_all_results('item_listing');
 		
-		// Reset the query builder
+		// Resets the query builder.
 		$this->db->reset_query();
 		
 		return $items;
@@ -93,29 +93,29 @@ class Item_Listing extends CI_Model
 	{
 		$this->load->model('Reg_User');
 		
-		// Add search criteria
+		// Adds search criteria.
 		if ($search != NULL)
 		{
-			// Get by username
+			// Gets by username.
 			if (array_key_exists('user', $search))
 			{
 				try
 				{
-					// Retrieve user_id of that user.
+					// Retrieves user_id of that user.
 					$userID = $this->Reg_User->getUser($search['user'])->user_id;
 				} catch (Exception $e)
 				{
-					// User not found. Search for nothing.
+					// User not found. Searches for nothing.
 					$userID = -1;
 				}
 				$this->db->where('seller_id', $userID);
 			}
 			
-			// Search by title
+			// Searches by title.
 			if (array_key_exists('title', $search))
 				$this->db->like('title', $search['title']);
 			
-			// Search by category
+			// Searches by category.
 			try
 			{
 				if (array_key_exists('category', $search))
@@ -125,7 +125,7 @@ class Item_Listing extends CI_Model
 			
 			}
 			
-			// Search by listing id
+			// Searches by listing id.
 			if (array_key_exists('listingID', $search)){
 
 			    $this->db->select('usr.username, item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, item_listing.display_pic, cat.category_name');
@@ -135,7 +135,7 @@ class Item_Listing extends CI_Model
             }
 
 			
-			// Sort the results
+			// Sorts the results.
 			if (array_key_exists('sort', $search))
 			{
 			    $orderBy = 'asc';
@@ -147,8 +147,8 @@ class Item_Listing extends CI_Model
                 }
 			}
 			
-			// Restrict number of results. Skip results if requested.
-				// If skip parameter given without limit, assign INT MAX as limit.
+			// Restricts number of results. Skip results if requested.
+				// If skip parameter given without limit, assigns INT MAX as limit.
 				if (array_key_exists('skipResults', $search) && !array_key_exists('maxResults', $search))
 				{
 					$search['maxResults'] = PHP_INT_MAX;
