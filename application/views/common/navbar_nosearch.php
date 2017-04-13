@@ -19,7 +19,7 @@
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav mr-auto'>
                 <li class='nav-item active'>
-                    <a class='nav-link fix-align' style='width: 125px' ghref='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
+                    <a class='nav-link fix-align' style='width: 125px' href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
                 </li>
             </ul>
 

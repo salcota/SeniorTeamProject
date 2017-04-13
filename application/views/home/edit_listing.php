@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="col-sm-6">
 	    <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
-	    <?php    echo form_open('home/view/itemlistings', $attributes); ?>
+	    <?php    echo form_open('home/view/item_listings', $attributes); ?>
 	    <div class="form-group input-group">
 	    	<?php
 		    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';

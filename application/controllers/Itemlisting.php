@@ -36,7 +36,7 @@ class Itemlisting extends CI_Controller{
             $data['item'] = $item;
             $item_pics = $this->Item_Listing->getAllItemListingPictures($listingID);
             $data['itemPics'] = $item_pics;
-            $this->load->view('home/current_item',$data);
+            $this->load->view('home/current_listing',$data);
         }
 
 	// Gets basic footer and data that enables javascript, jQuery, and thether for all pages.

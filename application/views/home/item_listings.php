@@ -16,8 +16,8 @@
     <br /><br /><br />
 
     <!-- Adds a new item listing -->
-    <div class="row">
-        <div class="col" style="text-align: right">
+    <div class="row justify-content-center">
+        <div class="col-sm-10" style="text-align: right">
             <a class="btn btn-success" href="<?php echo base_url() . 'Home/view/edit_listing'?>" target="blank">ADD ITEM</a>
     	</div>
     </div>
@@ -25,8 +25,8 @@
     <br />
 
     <!-- Displays current list of item listings posted for sale -->	
-    <div class="row">
-	<div class="col">
+    <div class="row justify-content-center">
+	<div class="col-sm-10">
 	    <table class="table table-bordered table-hover table-info table-striped" style="border: solid 2px #ACF; font-size: 10pt">
                 <tr>
 		    <th>#</th>

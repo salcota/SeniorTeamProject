@@ -56,14 +56,13 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                 <div class="card" style="margin: 10 auto 10 auto">
 		    <p class="small" style="text-align: center">
 			<span class="card_title"><?php echo htmlentities($item->title); ?></span>
-			<br />
 			<?php echo "$".$item->price; ?>
 			<br />
 		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top" style="border: solid 2px #9C9; max-width: 95%; height:150px" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
 			<br />
 			<a href="#" style="text-decoration: none; color: #696">Add to Cart</a>
 			<br />
-    			<a href="#" style="text-decoration: none; color: #696">Buy</a>
+    			<a href="#" style="text-decoration: none; color: #696" data-toggle='modal' data-target='#myModal'>Buy</a>
 		    </p>
 		</div>
 	    </div>
@@ -127,9 +126,31 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
         </div>
 
         <div class="col align-self-end"></div>
-
     </div>
 
-    <br />
+    <br/>
+
+    <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">Send a notification to buy this item</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                   <h6 style="width: 100%">Date: </h6>
+                   <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                   <button type="button" class="btn  btn-success btn-sm">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
