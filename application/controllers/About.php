@@ -17,7 +17,7 @@ class About extends CI_Controller {
                 $navSearch['categories'] = $this->Category->getCategories();
 
 		// Determines navbar based on registered/nonregistered status.
-               $registered = false;
+               $registered = true;
                 if ($registered)
                         $this->load->view('common/registered_navbar_nosearch', $navSearch);
                 else
