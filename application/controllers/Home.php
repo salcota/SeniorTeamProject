@@ -19,17 +19,8 @@ class Home extends CI_Controller {
 		
 		
 			
-		// Determines navbar based on registered/nonregistered and if on home/nonhomepage then passes search terms and category listing to navbar.
-		$onHome = false;
-		if (strlen($page) == 0 || strtolower($page) == "home")
-			$onHome = true;
-		else
-			$onHome = false;
-		
-		if ($onHome)
-			$this->navbars->load();
-		else
-			$this->navbars->loadNoSearch();
+		// Load Navbar
+		$this->navbars->load();
 
 		// Loads page based on page value and includes search data if it's the home page.
 		if (!file_exists(APPPATH.'views/home/' . $page . '.php')) 

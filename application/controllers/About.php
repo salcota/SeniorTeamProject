@@ -5,13 +5,13 @@ class About extends CI_Controller {
 	public function view($member = "")
 	{
 		// Gets basic header and styles for all pages.
-                $this->load->view('common/sfsu_demo');
-                $this->load->view('common/required_meta_tags');
+		$this->load->view('common/sfsu_demo');
+		$this->load->view('common/required_meta_tags');
 
-                // Load No-Search navbar
-				$this->navbars->loadNoSearch();
+		// Load No-Search navbar
+		$this->navbars->load();
 
-                // Loads page based on page value and includes search data if it's the home page. 
+		// Loads page based on page value and includes search data if it's the home page. 
 		if (!file_exists(APPPATH.'views/about/' . $member . '.php'))
 		{
 			show_404();
