@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 	// These variables affect how item listings are displayed.
-	const PAGEMAXITEMS = 12; // How many items per page.
-	const PAGEMAXPAGES = 6; // How many total Next/Previous pages to show.
+	const PAGEMAXITEMS = 8; // How many items per page.
+	const PAGEMAXPAGES = 4; // How many total Next/Previous pages to show.
 	
 	public function index()
 	{
