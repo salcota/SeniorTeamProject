@@ -12,25 +12,19 @@ class Home extends CI_Controller {
 		$this->load->view('common/sfsu_demo');
 		$this->load->view('common/required_meta_tags');
 		
-		// Gets user's search terms.
-		$navSearch['searchTerms'] = htmlentities($this->input->get('search'));
-		$navSearch['currentCategory'] = $this->input->get('category');
-			
-		// Retrieves all item categories.
-		$this->load->model('Category');
-		$navSearch['categories'] = $this->Category->getCategories();
+		
 			
 		// Determines navbar based on registered/nonregistered and if on home/nonhomepage then passes search terms and category listing to navbar.
-		$registered = true;
-		$onHome = true;
-		if ($registered && $onHome)
-			$this->load->view('common/registered_navbar', $navSearch);
-		else if($registered && !$onHome)
-			$this->load->view('common/registered_navbar_nosearch', $navSearch);
-		else if(!$registered && $onHome)
-			$this->load->view('common/navbar', $navSearch);
+		$onHome = false;
+		if (strlen($page) == 0 || strtolower($page) == "home")
+			$onHome = true;
 		else
-			$this->load->view('common/navbar_nosearch', $navSearch);
+			$onHome = false;
+		
+		if ($onHome)
+			$this->navbars->load();
+		else
+			$this->navbars->loadNoSearch();
 
 		// Loads page based on page value and includes search data if it's the home page.
 		if (!file_exists(APPPATH.'views/home/' . $page . '.php')) 

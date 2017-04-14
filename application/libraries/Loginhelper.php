@@ -18,13 +18,6 @@ class loginhelper {
 			"userID" => NULL);
 		
 		$this->loadSession();
-		
-		if ($this->isRegistered())
-		{
-			echo "Logged in";
-			$this->logout();
-			exit;
-		}
 	}
 
 	// Loads User info from session variable to local variable.
@@ -48,6 +41,22 @@ class loginhelper {
 	public function isRegistered()
 	{
 		return $this->CI->session->has_userdata('loginhelper');
+	}
+	
+	/*
+	Returns array with data of current user login.
+	Array keys: username, email, userID
+	
+	Example:
+	$user = $this->loginhelper->getLoginData();
+	echo $user['username'];
+	echo $user['email'];
+	echo $user['userID'];
+	
+	*/
+	public function getLoginData()
+	{
+		return $this->loginInfo;
 	}
 	
 	

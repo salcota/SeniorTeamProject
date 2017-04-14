@@ -40,6 +40,8 @@ class Users extends CI_Controller
 				$this->session->set_userdata($user_data);
 				$this->session->set_flashdata('login_success', 'You are now logged in');
 				
+				$this->loginhelper->login(NULL, $email, NULL);
+				
 				redirect('home/view/home');
 			}
 			else
