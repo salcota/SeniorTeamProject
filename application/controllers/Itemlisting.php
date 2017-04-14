@@ -25,7 +25,7 @@ class Itemlisting extends CI_Controller{
         //if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
             $search['user'] = 'pgupta2';//$userinfo['username'];
             $items = $this->Item_Listing->getItems($search);
-            print_r($items);
+            //print_r($items);
             $data['items'] = $items;
         //}
         //print_r("Username = ".$userinfo['username']);
