@@ -27,6 +27,7 @@ class Itemlisting extends CI_Controller{
             $items = $this->Item_Listing->getItems($search);
             $data['items'] = $items;
         }
+        print_r($data);
         $this->load->view('home/item_listings',$data);
 
         // Gets basic footer and data that enables javascript, jQuery, and tether for all pages.
