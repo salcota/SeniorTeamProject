@@ -52,6 +52,10 @@ class Users extends CI_Controller
 			}
 			else
 			{
+				// Retain referrer for the next attempt.
+				if ($this->session->flashdata('previousPage') != NULL)
+					$this->session->keep_flashdata('previousPage');
+				
 				$this->session->set_flashdata('login_failed', 'Sorry, the information you put is unrecognized');		
 				redirect('home/view/login');
 			}
