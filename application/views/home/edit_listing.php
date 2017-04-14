@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
         <div class="col">
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
-                <h1 class="display-4">Current Listing</h1>
+                <h1 class="display-4">Edit Listing</h1>
                 <hr class= "my-4">
 		<p class-"lead">Edit your new listing or update your current one</p>
             </div>
@@ -70,11 +70,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
                     // 
                     $options = array(
-                        '1' => 'Accounting',
-		        '2' => 'Broadcast & Electronic Arts&nbsp;&nbsp;',
-		        '3' => 'Computer Science',
-		        '4' => 'Electric Engineering',
-		        '5' => 'Math',
+                        '1' => 'Books',
+		        '2' => 'Furniture',
+		        '3' => 'Electronics',
+		        '4' => 'Lab Equipment',
+		        '5' => 'Clothing',
+			'6' => 'Sports',
+			'7' => 'Bathroom',
+			'8' => 'Miscellaneous'
                     );
                     echo form_dropdown('name', $options, '1');
                 ?>
