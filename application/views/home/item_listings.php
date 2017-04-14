@@ -39,9 +39,9 @@
                 <?php $cnt = 0; foreach ($items as $item): ?>
                 <tr>
 	            <td><?php ++$cnt?></td>
-                    <td><?php $item->title?></td>
-                    <td><?php $item->category_name?></td>
-                    <td><?php $item->price?></td>
+                    <td><?php $item->title ?></td>
+                    <td><?php $item->category_name ?></td>
+                    <td><?php $item->price ?></td>
                     <td><?php date_format(date_create($item->posted_on),'d-m-Y')?></td>
                     <td>
 		        <a class="btn btn-secondary btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'Home/view/edit_listing'?>" target="blank">Edit</a>
