@@ -32,7 +32,7 @@
                     <a class='nav-link fix-align' href='<?php echo  base_url() . 'Home/view/edit_listing' ?>'>Sell</a>
                 </li>
 		<li class='nav-item'>
-                    <a class='nav-link fix-align' href='<?php echo  base_url() . 'Home/view/item_listings' ?>'>Listings</a>
+                    <a class='nav-link fix-align' href='<?php echo  base_url() . 'user_listings' ?>'>Listings</a>
                 </li>
 		<li class='nav-item'>
                     <a class='nav-link fix-align' href='<?php echo  base_url() . 'Home/view/notifications' ?>'>Notifications</a>
