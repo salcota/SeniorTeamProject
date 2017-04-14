@@ -71,7 +71,7 @@
                                 aria-expanded='false' style='padding-top: 16px' href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></a>
                         <div class='dropdown-menu move' aria-labelledby='logout'>
 			    <a class='dropdown-item' href='#'>Profile</a>
-                            <a class='dropdown-item' href="#" style="text-decoration: none" data-toggle='modal' data-target='#myModal'>Report</a>
+                            <a class='dropdown-item' href="#" style="text-decoration: none" data-toggle='modal' data-target='#reportModal'>Report</a>
   	                    <a class='dropdown-item' href='<?php echo  base_url() . 'Home/view/home' ?>'>Logout</a>		
                         </div>
                     </div>
@@ -83,7 +83,7 @@
     </nav>
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
