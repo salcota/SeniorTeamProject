@@ -34,6 +34,9 @@ class loginhelper {
 				if (array_key_exists($key, $loginData))
 					$this->loginInfo[$key] = $loginData[$key];
 			}
+			
+			// Temporary.
+			$this->findUser($this->CI->session->loginhelper['sfsu_email']);
 		}
 	}
 	
@@ -49,9 +52,16 @@ class loginhelper {
 	
 	Example:
 	$user = $this->loginhelper->getLoginData();
+	echo $user['user_id'];
 	echo $user['username'];
-	echo $user['email'];
-	echo $user['userID'];
+	echo $user['name'];
+	echo $user['sfsu_email'];
+	echo $user['mobile'];
+	echo $user['biography'];
+	echo $user['password']; // Hashed
+	echo $user['major_id'];
+	echo $user['registration_date'];
+	echo $user['status'];
 	
 	*/
 	public function getLoginData()
@@ -70,8 +80,8 @@ class loginhelper {
 	public function login($username = NULL, $email = NULL, $userID = NULL)
 	{
 		$loginData = array("username" => $username,
-			"email" => $email,
-			"userID" => $userID);
+			"sfsu_email" => $email,
+			"user_id" => $userID);
 		
 		$this->CI->session->loginhelper = $loginData;
 		
@@ -88,6 +98,18 @@ class loginhelper {
 		foreach ($keys as $key)
 		{
 			$this->loginInfo[$key] = NULL;
+		}
+	}
+	
+	// Temp function. To be replaced with Reg_User
+	private function findUser($email)
+	{
+		$this->CI->db->where('sfsu_email', $email);
+		$result = $this->CI->db->get('reg_user')->result();
+		
+		if (count($result) == 1)
+		{
+			$this->loginInfo = $result[0];
 		}
 	}
 }
