@@ -11,15 +11,8 @@ class Itemlisting extends CI_Controller{
         $this->load->view('common/sfsu_demo');
         $this->load->view('common/required_meta_tags');
  
-        // Gets user's search terms.
-        $navSearch['searchTerms'] = htmlentities($this->input->get('search'));
-        $navSearch['currentCategory'] = $this->input->get('category');
-
-        // Retrieves all item categories.
-        $this->load->model('Category');
-        $navSearch['categories'] = $this->Category->getCategories();
-
-        $this->load->view('common/navbar',$navSearch);
+        // Load navbar
+		$this->navbars->load();
     }
 
     public function get_all_listings_of_user(){}
