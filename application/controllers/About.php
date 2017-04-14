@@ -8,20 +8,8 @@ class About extends CI_Controller {
                 $this->load->view('common/sfsu_demo');
                 $this->load->view('common/required_meta_tags');
 
-                // Gets user's search terms.
-                $navSearch['searchTerms'] = htmlentities($this->input->get('search'));
-                $navSearch['currentCategory'] = $this->input->get('category');
-
-                // Retrieves all item categories.
-                $this->load->model('Category');
-                $navSearch['categories'] = $this->Category->getCategories();
-
-		// Determines navbar based on registered/nonregistered status.
-               $registered = true;
-                if ($registered)
-                        $this->load->view('common/registered_navbar_nosearch', $navSearch);
-                else
-                        $this->load->view('common/navbar_nosearch', $navSearch);
+                // Load No-Search navbar
+				$this->navbars->loadNoSearch();
 
                 // Loads page based on page value and includes search data if it's the home page. 
 		if (!file_exists(APPPATH.'views/about/' . $member . '.php'))
