@@ -43,7 +43,7 @@
                                 aria-expanded="false" href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <div class="dropdown-menu move" aria-labelledby="logout">
 			    <a class="dropdown-item" href='#'>Profile</a>
-                            <a class='idropdown-item' href="#" style="text-decoration: none" data-toggle='modal' data-target='#reportModal'>Report</a>
+                            <a class="dropdown-item" href="#" style="text-decoration: none" data-toggle='modal' data-target='#reportModal'>Report</a>
   	                    <a class="dropdown-item" href='<?php echo  base_url() . 'Home/view/home' ?>'>Logout</a>		
                         </div>
                     </div>
