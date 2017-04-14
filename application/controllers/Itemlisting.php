@@ -15,7 +15,24 @@ class Itemlisting extends CI_Controller{
 		$this->navbars->load();
     }
 
-    public function get_all_listings_of_user(){}
+    /**
+     * Returns all available listings of the user by accessing details from session
+     */
+    public function get_all_listings_of_user(){
+
+        $userinfo = $this->loginhelper->getLoginInfo();
+        $data = array();
+        if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
+            $search['user'] = $userinfo['username'];
+            $items = $this->Item_Listing->getItems($search);
+            $data['items'] = $items;
+        }
+        $this->load->view('home/item_listings',$data);
+
+        // Gets basic footer and data that enables javascript, jQuery, and tether for all pages.
+        $this->load->view('common/jquery_tether_bootstrap');
+        $this->load->view('common/footerbar');
+    }
 
     /**
      * Returns an item listing
@@ -32,8 +49,8 @@ class Itemlisting extends CI_Controller{
             $this->load->view('home/current_listing',$data);
         }
 
-	// Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
-	$this->load->view('common/jquery_tether_bootstrap');
+	    // Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
+	    $this->load->view('common/jquery_tether_bootstrap');
         $this->load->view('common/footerbar');
     }
 
