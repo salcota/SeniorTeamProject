@@ -20,7 +20,7 @@ class Itemlisting extends CI_Controller{
      */
     public function get_all_listings_of_user(){
 
-        $userinfo = $this->loginhelper->getLoginInfo();
+        $userinfo = $this->loginhelper->getLoginData();
         $data = array();
         if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
             $search['user'] = $userinfo['username'];
