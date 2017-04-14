@@ -112,6 +112,24 @@ class Home extends CI_Controller {
 
 			$this->load->view('home/home', $items);
 		}
+		elseif (strtolower($page) == "login")
+		{
+			$this->load->library('user_agent');
+			
+			// Remember which page we came from before logging in.
+			// If previous page is already recorded, re-apply
+			$previousPage = $this->session->flashdata('previousPage');
+			if ($previousPage != NULL)
+			{
+				$this->session->keep_flashdata('previousPage');
+			}
+			elseif (!($this->agent->is_referral()))
+			{
+				$previousPage = $this->agent->referrer();
+				$this->session->set_flashdata('previousPage', $previousPage);
+			}
+			$this->load->view('home/login');
+		}
 		else
 		{
 			$this->load->view('home/' . $page);

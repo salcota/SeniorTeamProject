@@ -5,7 +5,6 @@ class Users extends CI_Controller
 
 	public function login()
 	{
-
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[8]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
 		
@@ -40,9 +39,16 @@ class Users extends CI_Controller
 				$this->session->set_userdata($user_data);
 				$this->session->set_flashdata('login_success', 'You are now logged in');
 				
+				// Set user as logged in.
 				$this->loginhelper->login(NULL, $email, NULL);
 				
-				redirect('home/view/home');
+				// Redirect to previous page
+				$previousPage = $this->session->flashdata('previousPage');
+				// Does previous page exist?
+				if ($previousPage != NULL)
+					redirect($previousPage);
+				else
+					redirect('home/view/home');
 			}
 			else
 			{
