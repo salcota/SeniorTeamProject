@@ -102,7 +102,8 @@ class Item_Listing extends CI_Model
 				try
 				{
 					// Retrieves user_id of that user.
-					$userID = $this->Reg_User->getUser($search['user'])->user_id;
+                    $user = $this->Reg_User->getUserIdByUsername($search['user']);
+					$userID = $user[0]->user_id;
 				} catch (Exception $e)
 				{
 					// User not found. Searches for nothing.

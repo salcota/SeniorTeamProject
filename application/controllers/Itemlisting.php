@@ -21,14 +21,14 @@ class Itemlisting extends CI_Controller{
     public function get_all_listings_of_user(){
 
         $userinfo = $this->loginhelper->getLoginData();
-        $data = array('items' => Null);
+        //$data = array('items' => Null);
         //if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
             $search['user'] = 'pgupta2';//$userinfo['username'];
             $items = $this->Item_Listing->getItems($search);
             print_r($items);
             $data['items'] = $items;
         //}
-        print_r("Username = ".$userinfo['username']);
+        //print_r("Username = ".$userinfo['username']);
         $this->load->view('home/item_listings',$data);
 
         // Gets basic footer and data that enables javascript, jQuery, and tether for all pages.

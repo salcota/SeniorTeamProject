@@ -19,5 +19,13 @@ class Reg_User extends CI_Model
 			return false;
 		}
 	}
+
+	public function getUserIdByUsername($username){
+
+		$this->db->select('user_id');
+        $this->db->where('username', $username);
+        $result = $this->db->get('reg_user');
+		return $result->result();
+	}
 }
 ?>
