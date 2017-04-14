@@ -63,7 +63,7 @@
 		    <div class="col-sm-8" style="background-color: #FFF; border: solid 2px #363; border-radius: 6px; min-height: 100px">
 			<form>
 		            <div class="form-group">
-				<button class="btn btn-secondary btn-sm" style="float: right; margin: 10 0 10 0; width: 75px">Profile</button>
+				<a class="btn btn-secondary btn-sm" style="float: right; margin: 10 0 10 0; width: 75px" href="<?php echo base_url() . 'Home/view/users_profile'?>">Profile</a>
     			        <label for="messageThread" style="color: #39C; margin-top: 10px; padding-top: 10px">Kunal</label>
     			        <textarea class="form-control" id="messageThread" rows="3" style="resize: none; height: 100px"></textarea>
   			    </div>
