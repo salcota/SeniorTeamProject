@@ -22,12 +22,12 @@ class Itemlisting extends CI_Controller{
 
         $userinfo = $this->loginhelper->getLoginData();
         $data = array('items' => Null);
-        if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
-            $search['user'] = $userinfo['username'];
+        //if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
+            $search['user'] = 'pgupta2';//$userinfo['username'];
             $items = $this->Item_Listing->getItems($search);
             print_r($items);
             $data['items'] = $items;
-        }
+        //}
         print_r("Username = ".$userinfo['username']);
         $this->load->view('home/item_listings',$data);
 
