@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<?php echo form_open_multipart('uploadprofile/save');?>
 <div class="container" style="margin-top: 100px">
 
     <!-- Subtitle Header -->
@@ -27,6 +28,41 @@
  
         <div class="col-sm-6"> 
 
+
+	    <!--  Username -->
+            <div class="form-group input-group">
+                <?php
+                    echo '<span class="input-group-addon" style="width: 135px; text-align: left">Username</span>';
+                    // 
+                    $data = array(
+                        'class' => 'form-control',
+                        'name' => 'photo',
+                        'type' => 'file',
+                        'size' => '100',
+                    );
+                   
+                    echo form_input$data);
+                ?>
+            </div>
+
+
+	    <!--  Email -->
+            <div class="form-group input-group">
+                <?php
+                    echo '<span class="input-group-addon" style="width: 135px; text-align: left">Email</span>';
+                    // 
+                    $data = array(
+                        'class' => 'form-control',
+                        'name' => 'photo',
+                        'type' => 'file',
+                        'size' => '100',
+                    );
+                   
+                    echo form_input$data);
+                ?>
+            </div>
+
+
 	    <!-- Profile Picture -->
             <div class="form-group input-group">
                 <?php
@@ -38,7 +74,7 @@
                         'type' => 'file',
                         'size' => '100',
                     );
-                    $value = "";
+            	    value ="";
                     echo form_upload($data, $value);
                 ?>
             </div>
