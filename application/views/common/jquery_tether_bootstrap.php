@@ -24,13 +24,27 @@
             alert($("#image" + i).attr("src"));
         }
     });
+
 function readImageFile(input, id){
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $(id).attr('src', e.target.result);
+
+        if(input.files[0].size >= 1024*1024*5){
+            alert("Cannot upload images with size > 5MB");
+        }else{
+            var image = new Image();
+            image.onload = function(){
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(id).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+            image.onerror = function(){
+                alert("Must be an image");
+            }
         }
-        reader.readAsDataURL(input.files[0]);
+    }else{
+        console.log("Invalid input");
     }
 }
 </script>

@@ -168,13 +168,49 @@ class Item_Listing extends CI_Model
 		}
 	}
 
+	public function addItemListing($listing, $imgdata){
+
+	    $debug = $this->db->db_debug;
+        $this->db->db_debug = false;
+
+        $listing['display_pic'] = file_get_contents($imgdata['full_path']);
+
+        $listing['dp_thumbnail'] = file_get_contents($imgdata['file_path'].$imgdata['raw_name'].'_thumb'.$imgdata['file_ext']);
+
+	    if($this->db->insert('item_listing',$listing)){
+
+            $this->db->db_debug = $debug;
+            return $this->db->insert_id();
+
+	    }else{
+
+            $this->db->db_debug = $debug;
+            throw new Exception("Failed to insert item in the db");
+
+	    }
+    }
+
 	public function deleteItemListing(){}
 
 	public function updateItemListing(){}
 
 	public function deleteItemPicture(){}
 
-	public function updateItemPicture(){}
+	public function addItemPicture($listingId, $picData){
+        $debug = $this->db->db_debug;
+        $this->db->db_debug = false;
+        $values['listing_id'] = $listingId;
+        $values['pic'] = file_get_contents($picData['full_path']);
+        $values['thumbnail'] = file_get_contents($picData['file_path'].$picData['raw_name'].'_thumb'.$picData['file_ext']);
+
+        if($this->db->insert('item_pic',$values)){
+            $this->db->db_debug = $debug;
+            return $this->db->insert_id();
+        }else{
+            $this->db->db_debug = $debug;
+            throw new Exception("Failed to insert picture in the db");
+        }
+    }
 
 	public function updateItemDisplayPicture(){}
 

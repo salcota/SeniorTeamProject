@@ -55,4 +55,5 @@ $route['404_override'] = '';
 $route['listing/getitem/(:num)'] = 'itemlisting/get_listing_by_id/$1';
 $route['user_listings'] = 'itemlisting/get_all_listings_of_user';
 $route['add_item'] = 'users/sell_item';
+$route['post_itemlisting'] = 'itemlisting/post_listing';
 $route['translate_uri_dashes'] = FALSE;

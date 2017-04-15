@@ -56,14 +56,127 @@ class Itemlisting extends CI_Controller{
         $this->load->view('common/footerbar');
     }
 
+    /**
+     * Saves an itemlisting with images
+     */
     public function post_listing(){
-        $this->load->model('Category');
-        $data['categories'] = $this->Category->getCategories();
+        $path = realpath(APPPATH . 'public/images/pgupta2');
+        try{
+            if(!file_exists($path)){
+                mkdir($path);
+            }
+            if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
 
+                $config['upload_path']          = $path;
+                $config['allowed_types']        = 'gif|jpg|png|jpeg';
+                $config['max_size']             = 2048;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
 
-        $this->load->view('reguser/add_itemlisting.php',$data);
-        $this->load->view('common/jquery_tether_bootstrap');
-        $this->load->view('common/footerbar');
+                $this->load->library('upload',$config);
+
+                if ( !$this->upload->do_upload('dp'))
+                {
+                    $error = array('error' => $this->upload->display_errors());
+                    print_r($error);
+                    return;
+                    //$this->load->view('upload_form', $error);
+                }
+                else
+                {
+                    $imgdata = $this->upload->data();
+                    $this->genthumbnail($imgdata['full_path']);
+
+                    $listing = $this->genListingDetails();
+
+                    $listing_id = $this->Item_Listing->addItemListing($listing, $imgdata);
+
+                    if($listing_id == Null){
+                        redirect('add_item');
+                    }else{
+                        if(!empty($_FILES['pic']['name'])){
+                            $files = $this->diverse_array($_FILES['pic']);
+                            foreach ($files as $pic){
+                                if($this->upload->do_upload($pic)){
+                                    $picdata = $this->upload->data();
+                                    $this->genthumbnail($picdata['full_path']);
+                                    $this->Item_Listing->addItemPicture($listing_id, $picdata);
+                                }
+                            }// end of for each
+                        }//end of if
+                        redirect('add_item');
+                    }
+                    //$this->load->view('upload_success', $data);
+                }
+
+            }else{
+                //Todo
+            }
+
+        }catch(Exception $e){
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }finally{
+            if(file_exists($path)){
+                delete_files($path);
+                rmdir($path);
+            }
+        }
+    }
+
+    private function genListingDetails(){
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('name', 'Item Name', 'trim|required|min_length[3]|max_length[30]');
+        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[3]',
+            array('required' => 'You must provide a %s.')
+        );
+        $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[200]');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            return Null;
+        }
+        else
+        {
+            $this->load->model('Reg_User');
+            //todo remove hard coded value
+            $userid = $this->Reg_User->getUserIdByUsername('pgupta2');
+            $listing = array(
+                'seller_id' => $userid,
+                'category_id' => $this->input->post('category'),
+                'title' => $this->input->post('name'),
+                'price' => $this->input->post('price'),
+                'description' => $this->input->post('description')
+            );
+
+            return $listing;
+        }
+    }
+
+    /**
+     * Copied from commnet section of php.net $_FILE manual
+     * @param $vector
+     * @return array
+     */
+    function diverse_array($vector) {
+        $result = array();
+        foreach($vector as $key1 => $value1)
+            foreach($value1 as $key2 => $value2)
+                $result[$key2][$key1] = $value2;
+        return $result;
+    }
+
+    private function genthumbnail($imgpath){
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = $imgpath;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['width']   = 75*3;
+        $config['height']  = 50*2;
+
+        $this->load->library('image_lib', $config);
+
+        return $this->image_lib->resize();
     }
 
     public function update_listing($listingID = NULL){

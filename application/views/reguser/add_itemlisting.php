@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <br/>
 
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
-    <?php    echo form_open('home/view/item_listings', $attributes); ?>
+    <?php    echo form_open_multipart('post_itemlisting', $attributes); ?>
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
         <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="dp_item">
                 <div class="card-block">
                     <h4 class="card-title">Display picture of Item</h4>
-                    <input type='file' id="dp" onchange="readImageFile(this,'#dp_item')"/>
+                    <input type='file' name='dp' id="dp" onchange="readImageFile(this,'#dp_item')"/>
 <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic2">
                 <div class="card-block">
                     <h4 class="card-title">Pic 2</h4>
-                    <input type='file' name="pic2" id="pic2" onchange="readImageFile(this,'#pic2')"/>
+                    <input type='file' name="pic[]" id="pic2" onchange="readImageFile(this,'#pic2')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic3">
                 <div class="card-block">
                     <h4 class="card-title">Pic 3</h4>
-                    <input type='file' name="pic3" id="pic3" onchange="readImageFile(this,'#pic3')"/>
+                    <input type='file' name="pic[]" id="pic3" onchange="readImageFile(this,'#pic3')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic4">
                 <div class="card-block">
                     <h4 class="card-title">Pic 4</h4>
-                    <input type='file' name="pic4" id="pic4" onchange="readImageFile(this,'#pic4')"/>
+                    <input type='file' name="pic[]" id="pic4" onchange="readImageFile(this,'#pic4')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic5">
                 <div class="card-block">
                     <h4 class="card-title">Pic 5</h4>
-                    <input type='file' name="pic5" id="pic5" onchange="readImageFile(this,'#pic5')"/>
+                    <input type='file' name="pic[]" id="pic5" onchange="readImageFile(this,'#pic5')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic6">
                 <div class="card-block">
                     <h4 class="card-title">Pic 6</h4>
-                    <input type='file' name="pic6" id="pic6" onchange="readImageFile(this,'#pic6')"/>
+                    <input type='file' name="pic[]" id="pic6" onchange="readImageFile(this,'#pic6')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
@@ -115,7 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     '4' => 'Electric Engineering',
                     '5' => 'Math',
                 );*/
-                echo form_dropdown('name', $options, '1');
+                echo form_dropdown('category', $options, '1');
                 ?>
             </div>
             <div class="form-group input-group">
