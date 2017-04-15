@@ -65,7 +65,7 @@ class Itemlisting extends CI_Controller{
         try{
             if(!file_exists($path)){
                 print_r($path);
-                mkdir($path);
+                mkdir($path,0777,true);
             }
             if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
 
