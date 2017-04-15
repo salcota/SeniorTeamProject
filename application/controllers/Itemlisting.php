@@ -61,9 +61,10 @@ class Itemlisting extends CI_Controller{
      */
     public function post_listing(){
         $path = realpath(APPPATH . 'public/images/pgupta2/');
-        print_r($path);
+
         try{
             if(!file_exists($path)){
+                print_r($path);
                 mkdir($path);
             }
             if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
