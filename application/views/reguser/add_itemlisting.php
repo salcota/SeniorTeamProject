@@ -17,11 +17,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <br/>
 
+    <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
+    <?php    echo form_open('home/view/item_listings', $attributes); ?>
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
         <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
             <div class="card">
-                <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="dp_item">
+                <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="dp_item">
                 <div class="card-block">
                     <h4 class="card-title">Display picture of Item</h4>
                     <input type='file' id="dp" onchange="readImageFile(this,'#dp_item')"/>
@@ -84,8 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <br/>
 
         <div class="col-sm-10">
-            <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
-            <?php    echo form_open('home/view/item_listings', $attributes); ?>
+
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
@@ -126,21 +127,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     'placeholder' => '$00.00'
                 );
                 echo form_input($data);
-                ?>
-            </div>
-
-            <div class="form-group input-group">
-                <?php
-                echo '<span class="input-group-addon" style="width: 100px; text-align: left">Photo(s)</span>';
-                //
-                $data = array(
-                    'class' => 'form-control',
-                    'name' => 'photos',
-                    'type' => 'file',
-                    'size' => '100',
-                );
-                $value = "";
-                echo form_upload($data, $value);
                 ?>
             </div>
         </div>
