@@ -56,7 +56,12 @@ class Itemlisting extends CI_Controller{
         $this->load->view('common/footerbar');
     }
 
-    public function post_listing(){}
+    public function post_listing(){
+        $this->load->view('reguser/add_itemlisting.php');
+        $this->load->view('common/addItem.js');
+        $this->load->view('common/jquery_tether_bootstrap');
+        $this->load->view('common/footerbar');
+    }
 
     public function update_listing($listingID = NULL){
 

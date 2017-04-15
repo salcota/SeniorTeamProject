@@ -29,7 +29,7 @@
                     <a class='nav-link fix-align' href='#'><i class='fa fa-shopping-cart' aria-hidden='true' style='padding-top: 4px'></i></a>
                 </li>
                 <li class='nav-item'>
-                    <a class='nav-link fix-align' href='<?php echo  base_url() . 'Home/view/add_item' ?>'>Sell</a>
+                    <a class='nav-link fix-align' href='<?php echo  base_url() . 'add_item' ?>'>Sell</a>
                 </li>
 		<li class='nav-item'>
                     <a class='nav-link fix-align' href='<?php echo  base_url() . 'user_listings' ?>'>Listings</a>
