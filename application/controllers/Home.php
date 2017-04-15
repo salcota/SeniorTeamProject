@@ -112,6 +112,10 @@ class Home extends CI_Controller {
 
 			$this->load->view('home/home', $items);
 		}
+		else if( $page == "add_item"){
+            $this->load->view('reguser/add_itemlisting.php');
+            $this->load->view('common/addItem.js');
+		}
 		else
 		{
 			$this->load->view('home/' . $page);

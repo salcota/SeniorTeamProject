@@ -58,5 +58,7 @@ class Itemlisting extends CI_Controller{
 
     public function post_listing(){}
 
-    public function update_listing(){}
+    public function update_listing($listingID = NULL){
+
+    }
 }
