@@ -20,56 +20,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
         <div class="col-sm-4">
-            <div class="card" style="width: 100%">
-                <img class="card-img-top" src="#" alt="Card image cap" id="dp_item">
+            <div class="card">
+                <img class="card-img-top" src="<?php base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="dp_item">
                 <div class="card-block">
                     <h4 class="card-title">Display picture of Item</h4>
                     <input type='file' id="dp" class="btn btn-primary" onchange="readImageFile(this,'#dp_item')"/>
 <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
-            <div class="card" style="width: 100%">
-                <img class="card-img-top" src="#" alt="Card image cap" id="pic2">
+            <div class="card" >
+                <img class="card-img-top" src="<?php base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic2">
                 <div class="card-block">
                     <h4 class="card-title">Pic 2</h4>
                     <input type='file' name="pic2" id="pic2" class="btn btn-primary" onchange="readImageFile(this,'#pic2')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
-            <div class="card" style="width: 100%">
-                <img class="card-img-top" src="#" alt="Card image cap" id="pic3">
+            <div class="card" >
+                <img class="card-img-top" src="<?php base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic3">
                 <div class="card-block">
                     <h4 class="card-title">Pic 3</h4>
                     <input type='file' name="pic3" id="pic3" class="btn btn-primary" onchange="readImageFile(this,'#pic3')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
-            <div class="card" style="width: 100%">
-                <img class="card-img-top" src="#" alt="Card image cap" id="pic4">
+            <div class="card" >
+                <img class="card-img-top" src="<?php base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic4">
                 <div class="card-block">
                     <h4 class="card-title">Pic 4</h4>
                     <input type='file' name="pic4" id="pic4" class="btn btn-primary" onchange="readImageFile(this,'#pic4')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
-            <div class="card" style="width: 100%">
-                <img class="card-img-top" src="#" alt="Card image cap" id="pic5">
+            <div class="card" >
+                <img class="card-img-top" src="<?php base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic5">
                 <div class="card-block">
                     <h4 class="card-title">Pic 5</h4>
                     <input type='file' name="pic5" id="pic5" class="btn btn-primary" onchange="readImageFile(this,'#pic5')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
-            <div class="card" style="width: 100%">
-                <img class="card-img-top" src="#" alt="Card image cap" id="pic6">
+            <div class="card" >
+                <img class="card-img-top" src="<?php base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic6">
                 <div class="card-block">
                     <h4 class="card-title">Pic 6</h4>
-                    <input type='file' name="pic6" id="pic6" class="btn btn-primary" onchange="readImageFile(this,'#pic6')"/>
+                    <input type='file' name="pic6" id="pic6" onchange="readImageFile(this,'#pic6')"/>
                     <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
                 </div>
             </div>
         </div>
-    </div>
+
         <div class="col-sm-10">
             <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
             <?php    echo form_open('home/view/item_listings', $attributes); ?>
@@ -132,7 +132,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
 
-
+    </div>
     <div class="row justify-content-center">
         <div class="col-sm-10">
             <div class="form-group">
