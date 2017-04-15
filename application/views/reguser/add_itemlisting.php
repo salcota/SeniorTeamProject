@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-
+    </div>
         <div class="col-sm-10">
             <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
             <?php    echo form_open('home/view/item_listings', $attributes); ?>
@@ -131,7 +131,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ?>
             </div>
         </div>
-    </div>
+
 
     <div class="row justify-content-center">
         <div class="col-sm-10">
