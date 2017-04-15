@@ -19,21 +19,21 @@
 
     <div class="row justify-content-center text-danger">
         <div class="col-sm-5">
-
 	    <?php
-		// Load and unload errors if any are present after you insert form iput data such as length requirements which can be found in the Users.php controller (double check online)
+		// Loads and unload errors if any are present after you insert form iput data such as length requirements which can be found in the Users.php controller
 		if($this->session->flashdata('errors')):
-		echo $this->session->flashdata('errors');
+		echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('errors') . "</strong></div>";
 		endif;
+	    ?>
+
+            <?php
+		// Loads login failure data of input is not recognized
+		if($this->session->flashdata('login_failed')):
+            	echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('login_failed') . "</strong></div>";
+            	endif;
 	    ?>
         </div>
     </div>
-
-    <p class="bg-danger" style="text-align: center">
-    	<?php if($this->session->flashdata('login_failed')): ?>
-    	<?php echo $this->session->flashdata('login_failed'); ?>
-    	<?php endif; ?>
-    </p>
 
     <!-- Creates the login form with email and password input and a submit button-->
     <?php echo form_open('Users/login', $attributes);?>

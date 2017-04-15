@@ -4,6 +4,12 @@
 
 <div class="container" style="margin-top: 77px">
 
+    <p style="text-align: center">
+        <?php if($this->session->flashdata('login_success')): ?>
+        <?php echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; ?>
+        <?php endif; ?>
+    </p>
+
     <!-- Description of Page -->
     <div class="row-sm-12">
         <div class="jumbotron" style="background-color: #FFF; margin-top: 25px; text-align: center">

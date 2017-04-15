@@ -37,7 +37,7 @@ class Users extends CI_Controller
 				);
 
 				$this->session->set_userdata($user_data);
-				$this->session->set_flashdata('login_success', 'You are now logged in');
+				$this->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in.');
 				
 				// Set user as logged in.
 				$this->loginhelper->login(NULL, $email, NULL);
@@ -48,6 +48,7 @@ class Users extends CI_Controller
 				if ($previousPage != NULL)
 					redirect($previousPage);
 				else
+					
 					redirect('home/view/home');
 			}
 			else
@@ -56,7 +57,7 @@ class Users extends CI_Controller
 				if ($this->session->flashdata('previousPage') != NULL)
 					$this->session->keep_flashdata('previousPage');
 				
-				$this->session->set_flashdata('login_failed', 'Sorry, the information you put is unrecognized');		
+				$this->session->set_flashdata('login_failed', 'The information you provided is unrecognized.');		
 				redirect('home/view/login');
 			}
 		}
