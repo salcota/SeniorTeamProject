@@ -33,11 +33,13 @@ function readImageFile(input, id){
         }else{
             var image = new Image();
             image.onload = function(){
-                var reader = new FileReader();
-                reader.onload = function (e) {
+                var url = window.URL || window.webkitURL;
+                $(id).attr('src', url.createObjectURL(input.files[0]));
+                //var reader = new FileReader();
+                /*reader.onload = function (e) {
                     $(id).attr('src', e.target.result);
                 }
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(input.files[0]);*/
             }
             image.onerror = function(){
                 alert("Must be an image");
