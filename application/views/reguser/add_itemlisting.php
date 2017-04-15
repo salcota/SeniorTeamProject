@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-    <br/><br /><br />
+    <br/>
 
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4 col-lg-3" style="margin: auto">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: auto">
             <div class="card" >
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic4">
                 <div class="card-block">
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4 col-lg-3" style="margin: auto">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: auto">
             <div class="card" >
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic5">
                 <div class="card-block">
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4 col-lg-3" style="margin: auto">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: auto">
             <div class="card" >
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic6">
                 <div class="card-block">
@@ -79,6 +79,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
+
+        <br/>
+        <br/>
 
         <div class="col-sm-10">
             <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
