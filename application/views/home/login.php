@@ -32,6 +32,13 @@
             	echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('login_failed') . "</strong></div>";
             	endif;
 	    ?>
+
+	    <?php
+		// Does not get called
+		if($this->session->flashdata('login_success')):
+		echo "<script>alert('You have successfully logged in');</script>";
+		endif;
+	    ?>
         </div>
     </div>
 

@@ -6,6 +6,7 @@
 
     <p style="text-align: center">
         <?php if($this->session->flashdata('login_success')): ?>
+	<?php //echo "<script>alert('You have successfully logged in');</script>";?>
         <?php echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; ?>
         <?php endif; ?>
     </p>

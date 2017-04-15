@@ -37,8 +37,10 @@ class Users extends CI_Controller
 				);
 
 				$this->session->set_userdata($user_data);
+
 				$this->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in.');
-				
+				//'<script>alert("You have successfully logged in");</script>Welcome Gator, you are now logged in.');
+
 				// Set user as logged in.
 				$this->loginhelper->login(NULL, $email, NULL);
 				
@@ -47,8 +49,7 @@ class Users extends CI_Controller
 				// Does previous page exist?
 				if ($previousPage != NULL)
 					redirect($previousPage);
-				else
-					
+				else					
 					redirect('home/view/home');
 			}
 			else
