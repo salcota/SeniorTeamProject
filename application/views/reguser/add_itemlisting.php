@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 5px">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
             <div class="card">
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="dp_item">
                 <div class="card-block">
@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 5px">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
             <div class="card" >
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic2">
                 <div class="card-block">
@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="5px auto 5px">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="5px auto 10px">
             <div class="card" >
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic3">
                 <div class="card-block">
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 5px">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
             <div class="card" >
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic4">
                 <div class="card-block">
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 5px">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
             <div class="card" >
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic5">
                 <div class="card-block">
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 5px">
+        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
             <div class="card" >
                 <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic6">
                 <div class="card-block">
