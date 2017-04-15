@@ -71,11 +71,11 @@ class Itemlisting extends CI_Controller{
 
                 $config['upload_path']          = $path;
                 $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                $config['max_size']             = 2048;
+                $config['max_size']             = 5120;
                 $config['max_width']            = 1024;
                 $config['max_height']           = 768;
 
-                $this->load->library('upload',$config);
+                $this->upload->initialize($config);
 
                 if ( !$this->upload->do_upload('dp'))
                 {
@@ -139,7 +139,8 @@ class Itemlisting extends CI_Controller{
 
         if ($this->form_validation->run() == FALSE)
         {
-            return Null;
+            print_r( validation_errors());
+            return;
         }
         else
         {
