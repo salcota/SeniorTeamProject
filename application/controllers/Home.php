@@ -3,141 +3,130 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 	// These variables affect how item listings are displayed.
-	const PAGEMAXITEMS = 12; // How many items per page.
-	const PAGEMAXPAGES = 6; // How many total Next/Previous pages to show.
+	const PAGEMAXITEMS = 8; // How many items per page.
+	const PAGEMAXPAGES = 4; // How many total Next/Previous pages to show.
+	
+	public function index()
+	{
+		$this->view("home");
+	}
 
 	public function view($page = "")
 	{
-		// Get basic header and styles for all pages.
+		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
 		$this->load->view('common/required_meta_tags');
 		
-		// Load Navbar
-			// Get user's search terms.
-			$navSearch['searchTerms'] = htmlentities($this->input->get('search'));
-			$navSearch['currentCategory'] = $this->input->get('category');
-			
-			// Retrieve all item categories.
-			$this->load->model('Category');
-			$navSearch['categories'] = $this->Category->getCategories();
-			
-			// Pass search terms and category listing to navbar.
-			$this->load->view('common/navbar', $navSearch);
-
-			// This code determines if the user is registered to load the additional navbar
-			$registered = false;
-
-			//if ($registered)
-			//{
-			//    $this->load->view('reguser/reguser_navbar');
-			//}
 		
+			
+		// Load Navbar
+		$this->navbars->load();
 
-		if ( ((!file_exists(APPPATH.'views/home/' . $page . '.php')) && (!file_exists(APPPATH.'views/auth/' . $page . '.php'))) && (!file_exists(APPPATH.'views/reguser/' . $page . '.php')) )
+		// Loads page based on page value and includes search data if it's the home page.
+		if (!file_exists(APPPATH.'views/home/' . $page . '.php')) 
 		{
 			show_404();
 		}
 		else if ($page == "home")
 		{
-			// Load itemlisting models to fetch data.
+			// Loads itemlisting models to fetch data.
 			$this->load->model('Item_Listing');
 			
-			// Retrieve search terms.
+			// Retrieves search terms.
 			$search = $this->input->get('search');
-			// Search for matching items.
+			// Searches for matching items.
 			$find = array();
 			if (strlen($search) > 0)
 			{
 				$find['title'] = $search;
 			}
 
-			//Sort items by
+			//Sortx items based on option value.
 			$sort = $this->input->get('sort');
 
 			if(strlen($sort) > 0){
 				$find['sort'] = $sort;
 			}
 			
-			// Return only matching category
+			// Returns only matching category.
 			$category = $this->input->get('category');
 			if (strlen($category) > 0)
 				$find['category'] = $category;
 			
-			// Count number of matching items in the entire database.
+			// Counts number of matching items in the entire database.
 			$maxItems = $this->Item_Listing->countItems($find);
-			// Calculte maximum number of possible pages.
+			// Calculates maximum number of possible pages.
 			$maxPages = ceil($maxItems/$this::PAGEMAXITEMS);
 			
-			// Restrict number of shown results.
+			// Restricts number of shown results.
 			$find['maxResults'] = $this::PAGEMAXITEMS;
 			
-			// Skip first N results
+			// Skips first N results
 			$pageSkip = $this->input->get('page');
 			if (is_numeric($pageSkip) && $pageSkip >= 1)
 				$find['skipResults'] = ($pageSkip - 1)*$this::PAGEMAXITEMS;
 			else
 				$pageSkip = 1;
 			
-			// Create Previous/Next page buttons
-				// Place page lower bound and upper bound relative to current page.
-				$lowerPage = $pageSkip - floor($this::PAGEMAXPAGES/2);
-				$upperPage = $pageSkip + ceil($this::PAGEMAXPAGES/2);
+			// Creates Previous/Next page buttons.
+			// Places page lower bound and upper bound relative to current page.
+			$lowerPage = $pageSkip - floor($this::PAGEMAXPAGES/2);
+			$upperPage = $pageSkip + ceil($this::PAGEMAXPAGES/2);
 				
-				// If lowest page is out of bounds, shift the page-range upwards.
-				if ($lowerPage < 1)
-				{
-					$offset = 1 - $lowerPage;
-					$lowerPage += $offset;
-					$upperPage += $offset;
-				}
-				// If highest page is out of bounds, shift the page-range downwards and trim lower bound if it goes below 1.
-				if ($upperPage > $maxPages)
-				{
-					$offset = $upperPage - $maxPages;
-					$upperPage -= $offset;
-					$lowerPage -= $offset;
-				}
-				if ($lowerPage < 1)
-					$lowerPage = 1;
+			// If lowest page is out of bounds, shift the page-range upwards.
+			if ($lowerPage < 1)
+			{
+				$offset = 1 - $lowerPage;
+				$lowerPage += $offset;
+				$upperPage += $offset;
+			}
+			// If highest page is out of bounds, shift the page-range downwards and trim lower bound if it goes below 1.
+			if ($upperPage > $maxPages)
+			{
+				$offset = $upperPage - $maxPages;
+				$upperPage -= $offset;
+				$lowerPage -= $offset;
+			}
+			if ($lowerPage < 1)
+				$lowerPage = 1;
 				
-				// Send current page and previous/next page bounds to home view.
-				$items['currentPage'] = $pageSkip;
-				$items['lowestPage'] = $lowerPage;
-				$items['highestPage'] = $upperPage;
-				$items['maxItems'] = $maxItems;
+			// Sends current page and previous/next page bounds to home view.
+			$items['currentPage'] = $pageSkip;
+			$items['lowestPage'] = $lowerPage;
+			$items['highestPage'] = $upperPage;
+			$items['maxItems'] = $maxItems;
 				
-				// Send all GET data
-				$items['get'] = $this->input->get();
+			// Sends all GET data.
+			$items['get'] = $this->input->get();
 			
 			$items['itemList'] = $this->Item_Listing->getItems($find);
 
 			$this->load->view('home/home', $items);
 		}
-		else if ($page == "current_item")
- 		{
- 			$this->load->view('home/current_item');
-		}
-		else if ($page == "login")
+		elseif (strtolower($page) == "login")
 		{
+			$this->load->library('user_agent');
+			
+			// Remember which page we came from before logging in.
+			// If previous page is already recorded, re-apply
+			$previousPage = $this->session->flashdata('previousPage');
+			if ($previousPage != NULL)
+			{
+				$this->session->keep_flashdata('previousPage');
+			}
+			elseif (!($this->agent->is_referral()))
+			{
+				$previousPage = $this->agent->referrer();
+				$this->session->set_flashdata('previousPage', $previousPage);
+			}
 			$this->load->view('home/login');
-		}
-		else if ($page == "reguser_navbar")
-		{
-			$this->load->view('reguser/reguser_navbar');
-		} 
-		else if ($page == "rightnavbar_links")
-		{
-			$this->load->view('common/rightnavbar_links');
-		}
-		else if ($page == "rightnavbar_reglinks")
-		{
-			$this->load->view('common/rightnavbar_reglinks');
 		}
 		else
 		{
-			$this->load->view('home/' . $page, $registered);
+			$this->load->view('home/' . $page);
 		}
-	
+
+                // Gets basic footer and data that enables javascript, jQuery, and thether for all pages.	
 		$this->load->view('common/jquery_tether_bootstrap');
 		$this->load->view('common/footerbar');
 	}

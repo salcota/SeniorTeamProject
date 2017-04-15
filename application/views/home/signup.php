@@ -45,9 +45,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php //changed to 'Signup/login' from 'Users/login'
 echo form_open('Signup/login', $attributes);?>
 
+<!-- username input -->
+<div class="row justify-content-center">
+<div class="form-group input-group col-sm-5">
 
+<?php
 
+	// Inserts email icon next to email input
+	echo '<span class="input-group-addon" id="envelope-addon" style="width: 40px"><i class="fa fa-envelope" aria-hidden="true"></i></span>';
+	$data = array(
+		'class' => 'form-control',
+		'name' => 'username',
+		'placeholder' => 'Enter your username'
+	);
+	echo form_input($data);
+?>
 
+</div>
+</div>
+
+<!-- sfsu_email input -->
 <div class="row justify-content-center">
 <div class="form-group input-group col-sm-5">
 
@@ -56,7 +73,7 @@ echo form_open('Signup/login', $attributes);?>
 	echo '<span class="input-group-addon" id="envelope-addon" style="width: 40px"><i class="fa fa-envelope" aria-hidden="true"></i></span>';
 	$data = array(
 		'class' => 'form-control',
-		'name' => 'email',
+		'name' => 'sfsu_email',
 		'placeholder' => 'Enter your  email'
 	);
 	echo form_input($data);

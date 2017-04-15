@@ -26,8 +26,8 @@
 
 	    #footer {
 		background-color: #363;
-		height: 75px; 
-		padding: 25 0 25 0;
+		height: 85px; 
+		padding: 30 0 30 0;
 		text-align: center;
 		width: 100%;
 	    }
@@ -92,6 +92,11 @@
 		width: 150px;
 	    }
 
+	    .btn-select {
+		background-color: #333 !important;
+		padding: 5px;
+	    }
+
 	    .card_title {
 		display: block;
 		font-size: 12pt;
@@ -114,8 +119,7 @@
 
             .container {
                 background-color: #EEE;
-                margin-top: 105px;
-                padding: 5px;
+	        padding: 5px;
             }
 
 	    .d-block {
@@ -162,14 +166,6 @@
                 background-color: #363;
                 color: #FFF;
                 margin-top: 25px;
-            }
-
-            .navbar-brand {
-                background-color: #030;
-                border-radius: 10px;
-                height: 40px;
-                text-align: center;
-                width: 75px;
             }
 
             .nav-link {

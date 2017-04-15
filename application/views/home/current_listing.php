@@ -1,19 +1,22 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container">
+<div class="container" style="margin-top: 100px">
 
-    <div class="row pagetitle">
-        <div class="col-sm-10 subtitle" id="subheader"><?php echo $item[0]->title ?></div>
+    <!-- Subtitle Header -->
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+                <h1 class="display-4"><?php echo $item[0]->title ?></h1>
+                <hr class= "my-4">
+            </div>
+        </div>
     </div>
-
 
     <br/><br /><br />
 
-
+    <!-- Displays the item in a carousel -->
     <div class="row justify-content-center">
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="margin-bottom: 25px">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -47,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
 
+	<!-- Displays the table containing information on the current item listing -->
         <div class="col-md-6">
             <?php echo
                 "<table>" .
@@ -56,15 +60,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 "<tr> <th>Date:</th>	<td>" .date_format(date_create($item[0]->posted_on),'d-m-Y') . "</td> </tr>" .
                 "<tr> <th>Seller:</th>	<td>" . $item[0]->username . "</td> </tr>" .
                 "<tr> <td><button class='btn btn-success'>Add to Cart</button></td>" .
-		"<td><button class='btn btn-success' style='width:115px' data-toggle='modal' data-target='#myModal'>Buy</button></td> </tr>" .
+		"<td><button class='btn btn-success' style='width:115px' data-toggle='modal' data-target='#buyModal'>Buy</button></td> </tr>" .
                 "</table>"
             ?>
         </div>
 
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
+    <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
+    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,9 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-
     <br/>
-
 
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -98,8 +100,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
-
     <br/><br/><br/>
-
 
 </div>

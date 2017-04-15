@@ -4,7 +4,10 @@ class Signup extends CI_Controller
 {
 	public function login($page = "signup")
 	{
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		// minimum viable form validations
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[reg_user.username]|min_length[3]|max_length[15]|alpha_numeric');
+		$this->form_validation->set_rules('sfsu_email', 'Email', 'trim|required|valid_email|callback_email_check');
+		// min_length for password should be changed to 8 before product launch
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 
@@ -17,52 +20,27 @@ class Signup extends CI_Controller
 
 			$this->session->set_flashdata($login_attributes);
 			redirect('home/view/signup');
-		}
-		// compares signup form input to database to check if input is unique. Eventually need to do this by setting
-		// a rule in form_validation.
-		else
-		{
-			// Transfer signup form input to compare with values in database
-			$email = $this->input->post('email');
-			$password = $this->input->post('password');
+		} else {
 
 			$this->load->model('Reg_User');
-			$user_email = $this->Reg_User->getUser($email,$password);
-
-			// Compare signup attributes with the attributes stored in the database. Should be unique.	
-			if(!$user_email)
+			if($this->Reg_User->create_user())
 			{
-				$user_data = array(
-					//'user_id' => $user_id,
-					'email' => $user_email,
-					// need to add password
-					'password' => $password,
-					'logged_in' => true
-				);
-
-				$this->session->set_userdata($user_data);
-				$this->session->set_flashdata('login_success', 'Welcome! You have succesfully signed up!');
-
-				// This page will change from home to reg_home later
 				redirect('home/view/home');
 			}
-			else
-			{
-				$this->session->set_flashdata('login_failed', 'Signup failed, please provide a different email or password');
-				// Needs to redirect to /signup but message won't display! Why?
-				redirect('home/view/signup');
-			}
 		}
-		// Checks to see if email is an sfsu email. Not currently working.
-		function email_check($str)
-		{
-			if (stristr($str, '@mail.sfsu.edu') !== false) return true;
+	}
+	
+	// Custom function uses native php stristr to search for @mail.sfsu.edu within string sfsu_email
+	public function email_check($str)
+	{
+		if (stristr($str, '@mail.sfsu.edu') !== false) return true;
 
-			$this->form_validation->set_message('email', 'give acceptalbe email.');
-			return FALSE;
-		}
+		$this->form_validation->set_message('email_check', 'Must give a valid SFSU email.');
+		return FALSE;
 	}
 }
 
 ?>
+
+
 
