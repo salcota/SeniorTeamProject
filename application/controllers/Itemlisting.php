@@ -60,13 +60,13 @@ class Itemlisting extends CI_Controller{
      * Saves an itemlisting with images
      */
     public function post_listing(){
-        $path = APPPATH . 'public/images/pgupta2';
+        $path = APPPATH . 'public/images/';
 
         try{
-            if(!file_exists($path)){
+           /* if(!file_exists($path)){
                 print_r($path);
                 mkdir($path,0777,true);
-            }
+            }*/
             if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
 
                 $config['upload_path']          = $path;
@@ -113,6 +113,9 @@ class Itemlisting extends CI_Controller{
 
             }else{
                 //Todo
+                $error = array('error' => "No image was provided");
+                print_r($error);
+                return;
             }
 
         }catch(Exception $e){
