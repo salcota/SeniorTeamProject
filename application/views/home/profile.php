@@ -37,11 +37,12 @@
                     $data = array(
                         'class' => 'form-control',
                         'name' => 'photo',
-                        'type' => 'file',
+                        'type' => 'text',
                         'size' => '100',
+			'readonly' => 'true',
                     );
                    
-                    echo form_input$data);
+                    echo form_input($data);
                 ?>
             </div>
 
@@ -54,11 +55,12 @@
                     $data = array(
                         'class' => 'form-control',
                         'name' => 'photo',
-                        'type' => 'file',
+                        'type' => 'text',
                         'size' => '100',
+			'readonly'=>'true',
                     );
                    
-                    echo form_input$data);
+                    echo form_input($data);
                 ?>
             </div>
 
@@ -74,7 +76,7 @@
                         'type' => 'file',
                         'size' => '100',
                     );
-            	    value ="";
+            	    $value ="";
                     echo form_upload($data, $value);
                 ?>
             </div>
