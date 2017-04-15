@@ -31,12 +31,24 @@ class Reg_User extends CI_Model
 
 		if(password_verify($password, $db_password))
 		{
-			return true;
-			//$result->row(1)->username;
+			//return true;
+			return $result->row(1)->user_id;
 		}
 		else
 		{
 			return false;
+		}
+	}
+	// Needs third function that gives user_id and returns all info about user...
+
+	public function findUser($user_id)
+	{
+		$this->db->where('user_id', $user_id);
+		$result = $this->db->get('reg_user')->result();
+		
+		if (count($result) == 1)
+		{
+			$this->loginInfo = $result[0];
 		}
 	}
 }

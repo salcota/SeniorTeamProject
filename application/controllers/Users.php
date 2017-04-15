@@ -1,4 +1,4 @@
-<?php
+<?php //came with branch Signup_db, didn't work with my form validations
 
 class Users extends CI_Controller
 {
