@@ -57,7 +57,11 @@ class Itemlisting extends CI_Controller{
     }
 
     public function post_listing(){
-        $this->load->view('reguser/add_itemlisting.php');
+        $this->load->model('Category');
+        $data['categories'] = $this->Category->getCategories();
+
+
+        $this->load->view('reguser/add_itemlisting.php',$data);
         $this->load->view('common/jquery_tether_bootstrap');
         $this->load->view('common/footerbar');
     }

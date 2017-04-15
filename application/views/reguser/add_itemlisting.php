@@ -105,13 +105,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
                 //
-                $options = array(
+                foreach ($categories as $category) {
+                    $options[$category->category_id] = $category->category_name;
+                }
+                /*$options = array(
                     '1' => 'Accounting',
                     '2' => 'Broadcast & Electronic Arts&nbsp;&nbsp;',
                     '3' => 'Computer Science',
                     '4' => 'Electric Engineering',
                     '5' => 'Math',
-                );
+                );*/
                 echo form_dropdown('name', $options, '1');
                 ?>
             </div>
