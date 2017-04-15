@@ -57,7 +57,7 @@
                     <a class='nav-link fix-align' style='padding-top: 16px'href='#'><i class='fa fa-shopping-cart' aria-hidden='true' style='padding-top: 4px'></i></a>
                 </li>
                 <li class='nav-item'>
-                    <a class='nav-link fix-align' style='padding-top: 16px'href='<?php echo  base_url() . 'Home/view/edit_listing' ?>'>Sell</a>
+                    <a class='nav-link fix-align' style='padding-top: 16px'href='<?php echo  base_url() . 'Home/view/add_item' ?>'>Sell</a>
                 </li>
 		<li class='nav-item'>
                     <a class='nav-link fix-align' style='padding-top: 16px'href='<?php echo  base_url() . 'user_listings' ?>'>Listings</a>
