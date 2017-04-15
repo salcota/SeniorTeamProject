@@ -60,8 +60,16 @@ class Users extends CI_Controller
 
 	}
 
-	public function post_itemlisting(){
+    /**
+     * This function returns the add_item page to the user so that User can add new item listing to the portfolio.
+     */
+	public function sell_item(){
+        $this->load->model('Category');
+        $data['categories'] = $this->Category->getCategories();
 
+        $this->load->view('reguser/add_itemlisting.php',$data);
+        $this->load->view('common/jquery_tether_bootstrap');
+        $this->load->view('common/footerbar');
 	}
 }
 
