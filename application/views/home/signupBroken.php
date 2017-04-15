@@ -66,8 +66,8 @@
 
 <?php
 
-	// Inserts email icon next to email input
-	echo '<span class="input-group-addon" id="envelope-addon" style="width: 40px"><i class="fa fa-envelope" aria-hidden="true"></i></span>';
+	// Inserts user icon next to user input
+	echo '<span class="input-group-addon" id="user-addon" style="width: 40px"><i class="fa fa-user" aria-hidden="true"></i></span>';
 	$data = array(
 		'class' => 'form-control',
 		'name' => 'username',
