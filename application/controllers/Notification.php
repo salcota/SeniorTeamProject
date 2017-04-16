@@ -14,3 +14,4 @@ class Notification extends CI_Controller
     public function get_notification_by_buyerid(){}
 
 }
+?>

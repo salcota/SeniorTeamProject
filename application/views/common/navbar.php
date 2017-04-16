@@ -51,12 +51,9 @@
                 </div>
             </form>
 
-            <!-- Right Side Menu: Cart, Sell, Sign Up, and Login -->
+            <!-- Right Side Menu: Sell, Sign Up, and Login -->
             <ul class='navbar-nav'>
                 <li class='nav-item'>
-                    <a class='nav-link fix-align' style='padding-top: 16px' href='#'><i class='fa fa-shopping-cart' aria-hidden='true' style='padding-top: 4px'></i></a>
-                </li>
-		<li class='nav-item'>
                     <a class='nav-link fix-align' style='padding-top: 16px' href='<?php echo base_url() . 'Home/view/item_listings'?>'>Sell</a>
                 </li>
                 <li class='nav-item'>

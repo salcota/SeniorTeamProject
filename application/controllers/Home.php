@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends CI_Controller
+{
+
 	// These variables affect how item listings are displayed.
 	const PAGEMAXITEMS = 8; // How many items per page.
 	const PAGEMAXPAGES = 4; // How many total Next/Previous pages to show.
@@ -16,10 +18,8 @@ class Home extends CI_Controller {
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
 		$this->load->view('common/required_meta_tags');
-		
-		
-			
-		// Load Navbar
+					
+		// Loads Navbar.
 		$this->navbars->load();
 
 		// Loads page based on page value and includes search data if it's the home page.
@@ -55,6 +55,7 @@ class Home extends CI_Controller {
 			
 			// Counts number of matching items in the entire database.
 			$maxItems = $this->Item_Listing->countItems($find);
+
 			// Calculates maximum number of possible pages.
 			$maxPages = ceil($maxItems/$this::PAGEMAXITEMS);
 			
@@ -80,6 +81,7 @@ class Home extends CI_Controller {
 				$lowerPage += $offset;
 				$upperPage += $offset;
 			}
+
 			// If highest page is out of bounds, shift the page-range downwards and trim lower bound if it goes below 1.
 			if ($upperPage > $maxPages)
 			{
@@ -97,18 +99,16 @@ class Home extends CI_Controller {
 			$items['maxItems'] = $maxItems;
 				
 			// Sends all GET data.
-			$items['get'] = $this->input->get();
-			
+			$items['get'] = $this->input->get();			
 			$items['itemList'] = $this->Item_Listing->getItems($find);
-
 			$this->load->view('home/home', $items);
 		}
 		elseif (strtolower($page) == "login")
 		{
 			$this->load->library('user_agent');
 			
-			// Remember which page we came from before logging in.
-			// If previous page is already recorded, re-apply
+			// Remembers which page we came from before logging in.
+			// If previous page is already recorded, re-apply.
 			$previousPage = $this->session->flashdata('previousPage');
 			if ($previousPage != NULL)
 			{

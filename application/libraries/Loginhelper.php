@@ -13,40 +13,46 @@ class loginhelper {
 		
 		$this->CI->load->library('session');
 		
-		$this->loginInfo = array("username" => NULL,
-			"email" => NULL,
-			"userID" => NULL);
+		$this->loginInfo = NULL;
 		
 		$this->loadSession();
 	}
 
-	// Loads User info from session variable to local variable.
+	// Loads User info from database via lookup by userID.
 	private function loadSession()
 	{
 		if ($this->CI->session->has_userdata('loginhelper'))
 		{
 			$loginData = $this->CI->session->loginhelper;
 			
-			// Replicate array values from session data to local variable.
-			$keys = array_keys($this->loginInfo);
-			foreach ($keys as $key)
+			// Retrieve user info from database
+			$this->CI->load->model('Reg_User');
+			try
 			{
-				if (array_key_exists($key, $loginData))
-					$this->loginInfo[$key] = $loginData[$key];
+				$info = $this->CI->Reg_User->findUser($loginData);
+				if (isset($info))
+					$this->loginInfo = $info;
 			}
+			catch (Exception $e)
+			{
 			
-			// Temporary.
-			$this->findUser($this->CI->session->loginhelper['sfsu_email']);
+			}
 		}
 	}
 	
 	// Checks whether user is logged in.
 	public function isRegistered()
 	{
-		return $this->CI->session->has_userdata('loginhelper');
+		if($this->loginInfo != NULL)
+			return true;
+		return false;
 	}
 	
+	
+	
 	/*
+	getLoginData()
+	
 	Returns array with data of current user login.
 	Array keys: username, email, userID
 	
@@ -62,7 +68,6 @@ class loginhelper {
 	echo $user['major_id'];
 	echo $user['registration_date'];
 	echo $user['status'];
-	
 	*/
 	public function getLoginData()
 	{
@@ -77,11 +82,13 @@ class loginhelper {
 	Example:
 	$this->loginhelper->login("prateek", "pgupta2@mail.sfsu.edu", 1);
 	*/
-	public function login($username = NULL, $email = NULL, $userID = NULL)
+	public function login($userID = NULL)
 	{
-		$loginData = array("username" => $username,
-			"sfsu_email" => $email,
-			"user_id" => $userID);
+		$loginData = $userID;
+		
+		// Check if userID is numerical
+		if (!is_numeric($loginData))
+			return;
 		
 		$this->CI->session->loginhelper = $loginData;
 		
@@ -94,23 +101,7 @@ class loginhelper {
 		// Destroy session data
 		$this->CI->session->unset_userdata('loginhelper');
 		
-		$keys = array_keys($this->loginInfo);
-		foreach ($keys as $key)
-		{
-			$this->loginInfo[$key] = NULL;
-		}
-	}
-	
-	// Temp function. To be replaced with Reg_User
-	private function findUser($email)
-	{
-		$this->CI->db->where('sfsu_email', $email);
-		$result = $this->CI->db->get('reg_user')->result();
-		
-		if (count($result) == 1)
-		{
-			$this->loginInfo = $result[0];
-		}
+		$this->loginInfo = NULL;
 	}
 }
 

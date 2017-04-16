@@ -1,17 +1,17 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-
-
 <div class="container" style="margin-top: 77px">
 
+    <!-- Notifies user that he or she is logged in if condition is true -->
     <p style="text-align: center">
-        <?php if($this->session->flashdata('login_success')): ?>
-	<?php //echo "<script>alert('You have successfully logged in');</script>";?>
-        <?php echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; ?>
-        <?php endif; ?>
+        <?php
+            if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
+            endif;
+        ?>
     </p>
 
-    <!-- Description of Page -->
+    <!-- Subtitle Header -->
     <div class="row-sm-12">
         <div class="jumbotron" style="background-color: #FFF; margin-top: 25px; text-align: center">
             <h1 class="display-4">SFSU Congre-Gators</h1>
@@ -66,10 +66,8 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			<?php echo "$".$item->price; ?>
 			<br />
 		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top" style="border: solid 2px #9C9; max-width: 95%; height:150px" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
-			<br />
-			<a href="#" style="text-decoration: none; color: #696">Add to Cart</a>
-			<br />
-    			<a href="#" style="text-decoration: none; color: #696" data-toggle='modal' data-target='#buyModal'>Buy</a>
+			<br /><br />
+    			<a class="btn btn-success btn-sm" href="#" data-toggle='modal' data-target='#buyModal'>Buy</a>
 		    </p>
 		</div>
 	    </div>
