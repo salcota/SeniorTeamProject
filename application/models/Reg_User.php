@@ -48,7 +48,7 @@ class Reg_User extends CI_Model
 		
 		if (count($result) == 1)
 		{
-			$this->loginInfo = $result[0];
+			return $result[0];
 		}
 	}
 }
