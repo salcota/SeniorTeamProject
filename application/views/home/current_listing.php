@@ -55,7 +55,7 @@
                 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
-                </a>
+tyle="background-color:#FFF; margin-top: 25px; text-align: center"               </a>
             </div>
         </div>
 
