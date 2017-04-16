@@ -4,14 +4,16 @@
 
 <div class="container" style="margin-top: 77px">
 
+    <!-- Notifies user that he or she is logged in if condition is true -->
     <p style="text-align: center">
-        <?php if($this->session->flashdata('login_success')): ?>
-	<?php //echo "<script>alert('You have successfully logged in');</script>";?>
-        <?php echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; ?>
-        <?php endif; ?>
+        <?php
+            if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
+            endif;
+        ?>
     </p>
 
-    <!-- Description of Page -->
+    <!-- Subtitle Header -->
     <div class="row-sm-12">
         <div class="jumbotron" style="background-color: #FFF; margin-top: 25px; text-align: center">
             <h1 class="display-4">SFSU Congre-Gators</h1>

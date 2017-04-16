@@ -2,6 +2,15 @@
 
 <div class="container" style="margin-top: 100px">
 
+    <!-- Notifies user that he or she is logged in if condition is true -->
+    <p style="text-align: center">
+        <?php
+            if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
+            endif;
+        ?>
+    </p>
+
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
