@@ -8,9 +8,9 @@
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px">
                 <h1 class="display-4" style="text-align: center">Notifications</h1>
                 <hr class= "my-4">
-                <p class="lead">Communicate with sellers and buyers you've developed a connection with here. Whether you've initiated contact to purchase a product, or you've received a notification to make a sale, all messaging is done here. For clarity, <span style="color: #C93; font-weight: bold">buyers</span> are color-coded in gold and <span style="color: #39C; font-weight: bold">sellers</span> are in the blue.
+                <p class="lead">Communicate with sellers and buyers you've developed a connection with. Whether you've initiated contact to purchase a product, or you've received a notification to make a sale, all messaging is done here. For clarity, <span style="color: #C93; font-weight: bold">buyers</span> are color-coded in gold and <span style="color: #39C; font-weight: bold">sellers</span> are in the blue.
 		<br /><br />
-		Once you make an agreement, choose a time and location with the meetup button and proceed with the transaction when both parties confirm.</p>
+		Once you make an agreement, choose a meetup location and proceed with the transaction when both parties confirm.</p>
 	    </div>
         </div>
     </div>

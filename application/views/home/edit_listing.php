@@ -17,7 +17,7 @@
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
                 <h1 class="display-4">Edit Listing</h1>
                 <hr class= "my-4">
-		<p class-"lead">Edit your new listing or update your current one</p>
+		<p class="lead">Edit your new listing or update your current one.</p>
             </div>
         </div>
     </div>
@@ -59,10 +59,11 @@
 	<div class="col-sm-6">
 	    <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
 	    <?php    echo form_open('home/view/item_listings', $attributes); ?>
+
+	    <!-- Item Name -->
 	    <div class="form-group input-group">
 	    	<?php
 		    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
-            	    //
             	    $data = array(
                	        'class' => 'form-control',
                         'name' => 'name',
@@ -73,10 +74,11 @@
             	    echo form_input($data);
                 ?>
             </div>
+
+	    <!-- Catagory type -->
 	    <div class="form-group input-group">
                 <?php
-                    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
-                    // 
+                    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>'; 
                     $options = array(
                         '1' => 'Books',
 		        '2' => 'Furniture',
@@ -90,10 +92,11 @@
                     echo form_dropdown('name', $options, '1');
                 ?>
 	    </div>
+
+	    <!-- Price -->
 	    <div class="form-group input-group">
 	        <?php
                     echo '<span class="input-group-addon" style="width: 100px; text-align: left">Price</span>';
-                    // 
                     $data = array(
                         'class' => 'form-control',
                         'name' => 'price',
@@ -105,10 +108,10 @@
                 ?>
 	    </div>
 
+	    <!-- Photo(s) -->
             <div class="form-group input-group">
                 <?php
                     echo '<span class="input-group-addon" style="width: 100px; text-align: left">Photo(s)</span>';
-                    // 
                     $data = array(
                         'class' => 'form-control',
                         'name' => 'photos',
@@ -122,12 +125,12 @@
 	</div>
     </div>
 
+    <!-- Description -->
     <div class="row justify-content-center">
 	<div class="col-sm-10">
 	    <div class="form-group">
 		<?php
 		    echo '<span>Description</span>';
-		    //
 		    $data = array(
 			'class' => 'form-control',
 			'name' => 'description',
@@ -142,6 +145,7 @@
 	</div>
     </div>
 
+    <!-- Submit -->
     <div class="row justify-content-center">
 	<div class="col-sm-10" style="text-align: right">
 	    <?php
