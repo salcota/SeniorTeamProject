@@ -14,7 +14,7 @@
         <button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button>
 
 	<!-- Left Side Menu: Logo & Home-->
-	<a href='<?php echo base_url() . 'Home/view/home' ?>'><img style="background-color: #FFF; border-radius: 6px; height: 70px; width: 70px"" src='<?php echo base_url() . 'public/images/logo.png'?>'></a>
+	<a href='<?php echo base_url() . 'Home/view/home' ?>'><img style="background-color: #FFF; border-radius: 6px; height: 70px; width: 70px" src='<?php echo base_url() . 'public/images/logo.png'?>'></a>
 
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav mr-auto'>
@@ -80,7 +80,7 @@
     </nav>
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
-    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 6px; postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
@@ -90,19 +90,41 @@
                     </button>
                 </div>
                 <div class="modal-body">
-		    <p>Lorem Ipsum has been bluffing one time too many on proceeding with transcations we agree upon days before the meet up day.</p>
-		    <hr />          
-		    <div class="form-check">
-  			<label class="form-check-label">
-    			    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"> I agree that the information reported is true
-			</label>
-		    </div>
+		    <?php
+			//echo form_open('Controller/function', $attributes);
+		        $data = array(
+                    	    'class' 	    => 'form-control',
+                    	    'name' 	    => 'reportText',
+                    	    'placeholder'   => 'Report misconduct here',
+			    'style'	    => 'height: 100px; resize: none'
+                	);
+                	echo form_textarea($data);
+               	    ?>        
+		    <?php
+			$data = array(
+        		    'name' 	    => 'newsletter',
+        		    'id'            => 'newsletter',
+        		    'value'         => 'accept',
+        		    'checked'       => TRUE,
+        		    'style'         => 'margin:10px'
+		    	);
+			echo form_checkbox($data, 'value');
+			echo 'I agree the following claim is true';
+		    ?>		    
 		</div>
 
 		<div class="modal-footer">
                    <h6 style="width: 100%">Date: </h6>
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                   <button type="button" class="btn  btn-danger btn-sm">Send</button>
+		   <?php
+			$data = array(
+			    'class'	    => 'btn btn-danger btn-sm',
+			    'name'	    => 'submit',
+			    'value'	    => 'Send'
+			);
+			echo form_submit($data);
+			echo form_close();
+		    ?>
                 </div>
 
             </div>

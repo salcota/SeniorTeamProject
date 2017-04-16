@@ -7,7 +7,7 @@
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
                 <h1 class="display-4">Meet Up!</h1>
                 <hr class= "my-4">
-                <p class-"lead">Use the predefined markers to choose a location to meet up. For directions, click on the name near the marker such as Quad or Bee Garden to open Google Maps. </p>
+                <p class="lead">Use the predefined markers to choose a location to meet up. For directions, click on the name near the marker such as Quad or Bee Garden to open Google Maps. </p>
             </div>
         </div>
     </div>

@@ -146,13 +146,30 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                     </button>
                 </div>
                 <div class="modal-body">
-
-                </div>
+                    <?php
+                        //echo form_open('Controller/function', $attributes);
+                        $data = array(
+                            'class'         => 'form-control',
+                            'name'          => 'reportText',
+                            'style'         => 'height: 100px; resize: none'
+                        );
+                        echo form_textarea($data);
+                    ?>
+		</div>
                 <div class="modal-footer">
                    <h6 style="width: 100%">Date: </h6>
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                   <button type="button" class="btn  btn-success btn-sm">Send</button>
+                   <?php
+                        $data = array(
+                            'class'         => 'btn btn-success btn-sm',
+                            'name'          => 'submit',
+                            'value'         => 'Send'
+                        );
+                        echo form_submit($data);
+                        echo form_close();
+                    ?>
                 </div>
+
             </div>
         </div>
     </div>
