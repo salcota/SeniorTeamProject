@@ -11,7 +11,7 @@
 
     <nav class='navbar navbar-toggleable-lg navbar-light fixed-top navbar' style="min-height: 85px">
 
-        <button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button>
+        <button style="border: solid 1px #696; border-radius: 6px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i style="color: #EEE; font-size: 50px; height: 60px; padding-top: 5px; width: 60px" class="fa fa-bars" aria-hidden="true"></i></button>
 
 	<!-- Left Side Menu: Logo & Home-->
 	<a href='<?php echo base_url() . 'Home/view/home' ?>'><img style="background-color: #FFF; border-radius: 6px; height: 70px; width: 70px" src='<?php echo base_url() . 'public/images/logo.png'?>'></a>
