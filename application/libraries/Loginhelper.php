@@ -4,7 +4,11 @@ class loginhelper {
 
 	protected $CI;
 	
+	// Stores copy of user db object
 	private $loginInfo;
+	
+	// True only if user just finished logging in.
+	private $freshLogin;
 
 	public function __construct()
 	{
@@ -14,11 +18,13 @@ class loginhelper {
 		$this->CI->load->library('session');
 		
 		$this->loginInfo = NULL;
+		$this->freshLogin = false;
 		
 		$this->loadSession();
+		$this->notFresh();
 	}
 
-	// Loads User info from database via lookup by userID.
+	// Builds User Info via Session Variables.
 	private function loadSession()
 	{
 		if ($this->CI->session->has_userdata('loginhelper'))
@@ -29,14 +35,17 @@ class loginhelper {
 			$this->CI->load->model('Reg_User');
 			try
 			{
-				$info = $this->CI->Reg_User->findUser($loginData);
+				$info = $this->CI->Reg_User->findUser($loginData['userID']);
 				if (isset($info))
 					$this->loginInfo = $info;
 			}
 			catch (Exception $e)
 			{
-			
+				return;
 			}
+			
+			// Remember if this is a fresh login.
+			$this->freshLogin = $loginData['freshLogin'];
 		}
 	}
 	
@@ -74,21 +83,28 @@ class loginhelper {
 		return $this->loginInfo;
 	}
 	
+	// Returns true if user just logged in.
+	public function isNewLogin()
+	{
+		return $this->freshLogin;
+	}
+	
 	
 	/*
 	Sets this user as logged in.
 	Future implementation will only require userID.
 	
 	Example:
-	$this->loginhelper->login("prateek", "pgupta2@mail.sfsu.edu", 1);
+	$this->loginhelper->login($userID);
 	*/
 	public function login($userID = NULL)
 	{
-		$loginData = $userID;
-		
 		// Check if userID is numerical
-		if (!is_numeric($loginData))
+		if (!is_numeric($userID))
 			return;
+		
+		$loginData['userID'] = $userID;
+		$loginData['freshLogin'] = true;
 		
 		$this->CI->session->loginhelper = $loginData;
 		
@@ -102,6 +118,22 @@ class loginhelper {
 		$this->CI->session->unset_userdata('loginhelper');
 		
 		$this->loginInfo = NULL;
+		$this->freshLogin = false;
+	}
+	
+	// Marks a login as no longer fresh
+	private function notFresh()
+	{
+		$loginData = $this->CI->session->loginhelper;
+		
+		if ($this->freshLogin)
+		{
+			// Next access is not a fresh login.
+			$loginData['freshLogin'] = false;
+		}
+		
+		// Set changed session data
+		$this->CI->session->loginhelper = $loginData;
 	}
 }
 
