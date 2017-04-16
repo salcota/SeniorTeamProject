@@ -65,11 +65,11 @@
 	    	<?php
 		    echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
             	    $data = array(
-               	        'class' => 'form-control',
-                        'name' => 'name',
-		        'type' => 'text',
-		        'size' => '100',
-                        'placeholder' => 'Name your item'
+               	        'class' 	=> 'form-control',
+                        'name'	 	=> 'name',
+		        'type' 		=> 'text',
+		        'size' 		=> '100',
+                        'placeholder' 	=> 'Name your item'
             	    );
             	    echo form_input($data);
                 ?>
@@ -98,11 +98,11 @@
 	        <?php
                     echo '<span class="input-group-addon" style="width: 100px; text-align: left">Price</span>';
                     $data = array(
-                        'class' => 'form-control',
-                        'name' => 'price',
-		        'type' => 'text',
-		        'size' => '100',
-                        'placeholder' => '$00.00'
+                        'class' 	=> 'form-control',
+                        'name' 		=> 'price',
+		        'type' 		=> 'text',
+		        'size' 		=> '100',
+                        'placeholder' 	=> '$00.00'
                     );
                     echo form_input($data);
                 ?>
@@ -113,10 +113,10 @@
                 <?php
                     echo '<span class="input-group-addon" style="width: 100px; text-align: left">Photo(s)</span>';
                     $data = array(
-                        'class' => 'form-control',
-                        'name' => 'photos',
-                        'type' => 'file',
-                        'size' => '100',
+                        'class' 	=> 'form-control',
+                        'name' 		=> 'photos',
+                        'type' 		=> 'file',
+                        'size' 		=> '100',
                     );
 		    $value = "";
                     echo form_upload($data, $value);
@@ -132,11 +132,11 @@
 		<?php
 		    echo '<span>Description</span>';
 		    $data = array(
-			'class' => 'form-control',
-			'name' => 'description',
-			'type' => 'textarea',
-			'maxlength' => '300',
-			'style' => 'resize: none; height: 100px'
+			'class' 	=> 'form-control',
+			'name' 		=> 'description',
+			'type' 		=> 'textarea',
+			'maxlength' 	=> '300',
+			'style' 	=> 'resize: none; height: 100px'
 		    );
 		    $value = "";
 		    echo form_textarea($data, $value);
@@ -152,7 +152,7 @@
                 $data = array(
                     'style' => 'width: 100px',
                     'class' => 'btn btn-success',
-                    'name' => 'reset',
+                    'name'  => 'reset',
                     'value' => 'Reset',
 		    'style' => 'width: 100px'
                 );
@@ -163,7 +163,7 @@
         	$data = array(
                     'style' => 'width: 100px',
                     'class' => 'btn btn-success',
-                    'name' => 'submit',
+                    'name'  => 'submit',
                     'value' => 'Save',
 		    'style' => 'width: 100px'
         	);
