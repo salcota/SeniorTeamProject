@@ -28,7 +28,10 @@ class Signup extends CI_Controller
 			if($this->Reg_User->create_user())
 			{
 				// Log the user in
-				// To be implemented
+				$email = $this->input->post('sfsu_email');
+				$pass = $this->input->post('password');
+				$userID = $this->Reg_User->getUser($email, $pass);
+				$this->loginhelper->login($userID);
 				
 				// Redirect to home page
 				redirect('home/view/home');
