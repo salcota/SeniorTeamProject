@@ -70,7 +70,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			<span class="card_title"><?php echo htmlentities($item->title); ?></span>
 			<?php echo "$".$item->price; ?>
 			<br />
-		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top card-style" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
+		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top card-style" src="' . (base_url() . 'Images/listingThumb/' . $item->listing_id) . '" alt="Card image cap">' ?></a>
 			<br /><br />
     			<a class="btn btn-success btn-sm" href="#" data-toggle='modal' data-target='#buyModal'>Buy</a>
 		    </p>
