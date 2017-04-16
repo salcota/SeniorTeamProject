@@ -25,7 +25,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
         </div>
     </div>
 
-    <br />
+    <br /><br />
 
     <hr />
     
