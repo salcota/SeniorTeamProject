@@ -68,7 +68,7 @@
                 "<tr> <th>Price:</th>	<td> $" . $item[0]->price . "</td> </tr>" .
                 "<tr> <th>Date:</th>	<td>" .date_format(date_create($item[0]->posted_on),'d-m-Y') . "</td> </tr>" .
                 "<tr> <th>Seller:</th>	<td>" . $item[0]->username . "</td> </tr>" .
-		"<td><button class='btn btn-success' style='width:115px' data-toggle='modal' data-target='#buyModal'>Buy</button></td> </tr>" .
+		"<tr><td><button class='btn btn-success' style='width: 100%'  data-toggle='modal' data-target='#buyModal'>Buy</button></td> </tr>" .
                 "</table>"
             ?>
         </div>

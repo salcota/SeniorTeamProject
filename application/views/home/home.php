@@ -59,7 +59,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
     <!-- Displays item listings based on number of successful search results -->
     <div class="row">
         <?php foreach ($itemList as $item): ?>            
-	    <div class="col-sm-3">
+	    <div class="col-lg-3">
                 <div class="card" style="margin: 10 auto 10 auto">
 		    <p class="small" style="text-align: center">
 			<span class="card_title"><?php echo htmlentities($item->title); ?></span>
