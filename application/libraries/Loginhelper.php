@@ -30,7 +30,7 @@ class loginhelper {
 			try
 			{
 				$info = $this->CI->Reg_User->findUser($loginData);
-				//if (isset($info))
+				if (isset($info))
 					$this->loginInfo = $info;
 			}
 			catch (Exception $e)
