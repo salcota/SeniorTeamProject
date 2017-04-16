@@ -14,12 +14,12 @@
     <!-- Subtitle Header -->
     <div class="row">	
 	<div class="col">
-            <div class="jumbotron" style="color: #eee; margin-top: 25px; background: url(<?php echo base_url() . 'public/images/san_francisco.png'?>)">
-                <h1 class="display-4" style="text-align: center">Welcome to the Staff!</h1>
-	    	<hr class="my-4" style="background-color: #eee">
-	    	<h5 style="text-align: center">CSC 648/848 - Software Engineering Class at SFSU</h5>
-	    	<hr class="my-4" style="background-color: #eee">
-	    	<p class="lead">
+            <div class="jumbotron" style="color: #EEE; background: url(<?php echo base_url() . 'public/images/san_francisco.png'?>)">
+                <h1 class="display-4">Welcome to the Staff!</h1>
+	    	<hr class="my-4 hr-for-jumbotron">
+	    	<h5>CSC 648/848 - Software Engineering Class at SFSU</h5>
+	    	<hr class="my-4 hr-for-jumbotron">
+	    	<p class="lead" style="text-align: left">
 	            Spring 2017
 		    <br />
 		    Section 1

@@ -14,7 +14,7 @@
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
-            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+            <div class="jumbotron">
             	<h1 class="display-4">Have any concerns? Contact Us!</h1>
 	    	<hr class= "my-4">
 	    	<p class="lead"> Whether it's for technical issues, suggestions, or general feedback, please don't hesitate to reach out to our staff.</p>

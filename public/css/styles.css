@@ -109,6 +109,12 @@
 		/*"font-weight: 600; font-size:12pt; margin: auto; display: block; max-width: 90%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis"*/
 	    }
 
+	    .card-style {
+		border: solid 2px #9C9;
+		height:150px;
+	    	max-width: 95%; 
+	    }
+
 	    .carousel {
 		background-color: #030;
 		border: solid 2px #9C9;
@@ -151,12 +157,16 @@
                 text-align: center;
             }
 
+            .hr-for-jumbotron {
+		background-color: #EEE;
+	    }
+
 	    .img-fluid {
 		margin: auto;
 	    }
 
 	    .jumbotron {
-		background-color: #FFF;
+		background-color: #FFF !important;
 		margin-top: 25px;
 		text-align: center;
 	    }

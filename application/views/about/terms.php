@@ -15,7 +15,7 @@
     <!-- subtitle Header -->              
     <div class="row">
         <div class="col">
-            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+            <div class="jumbotron">
                 <h1 class="display-4">Terms and Services</h1>
 		<hr class="my-4">
             </div>

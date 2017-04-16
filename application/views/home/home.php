@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container" style="margin-top: 77px">
+<div class="container" style="margin-top: 92px">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
     <p style="text-align: center">
@@ -13,20 +13,25 @@
 
     <!-- Subtitle Header -->
     <div class="row-sm-12">
-        <div class="jumbotron" style="background-color: #FFF; margin-top: 25px; text-align: center">
+        <div class="jumbotron">
             <h1 class="display-4">SFSU Congre-Gators</h1>
             <hr class="my-4" >
             <p class="lead">
 Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what it's like to need that extra support to make it through college!
 </p>
-            <hr class="my-4" >
+	    <hr /class="my-4">
+
             <p class="lead">Want to know more? Search our options!</p>
         </div>
     </div>
 
     <br />
 
+    <hr />
+    
     <div class="row justify-content-center">
+
+	<hr />
 
 	<!-- Shows current number of item listings from total number of avilable item listings"-->
 	<div class="col" style="padding-top: 20px">
@@ -65,7 +70,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			<span class="card_title"><?php echo htmlentities($item->title); ?></span>
 			<?php echo "$".$item->price; ?>
 			<br />
-		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top" style="border: solid 2px #9C9; max-width: 95%; height:150px" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
+		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top card-style" src="data:image/jpg;base64,' . base64_encode($item->dp_thumbnail) . '" alt="Card image cap">' ?></a>
 			<br /><br />
     			<a class="btn btn-success btn-sm" href="#" data-toggle='modal' data-target='#buyModal'>Buy</a>
 		    </p>
@@ -131,7 +136,10 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
         </div>
 
         <div class="col align-self-end"></div>
+
     </div>
+    <br />
+    <hr />
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
     <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
