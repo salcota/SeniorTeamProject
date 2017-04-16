@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <style type="text/css">
 
         body {
+	    margin-top: 85px;
             font-family: sans-serif;
         }
 
@@ -16,7 +17,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             background-color: #EEEEEE;
             border-radius: 10px;
             width: 400px;
-            height: 600px;
             margin: auto;
             padding: 10px;
         }
@@ -46,6 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <body>
+    <div id="topheader"></div>
     <div id="container">
         <h2>Ihsan Taha</h2>
         <hr />
@@ -66,8 +67,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </li>
         <br />
         <li>
-            <a href = "https://docs.google.com/presentation/d/1tAy28UxUFeIzAJsdT2RcWA33Ai8UoVCZ_nJ3KnJs6bw/edit?usp=sharing">SFSU Database Group Project</a>
+            <a href = "https://docs.google.com/presentation/d/1tAy28UxUFeIzAJsdT2RcWA33Ai8UoVCZ_nJ3KnJs6bw/edit?usp=sharing">SQL - SFSU Database Group Project</a>
         </li>
+        <br />
+        <li>
+           <a href="http://www.ihsansdomain.com/web_projects/javascript_project.html">JavaScript - Reaction Tester</a>
+        </li>
+        <br />
+        <li>
+           <a href="http://www.ihsansdomain.com/web_projects/jquery_project.html">JQuery -  Code Player</a> </li>
         <br />
         <li>
             <a href = "http://www.ihsansdomain.com/IhsanTaha_Resume_SoftwareEngineer.pdf"> Resume</a>
