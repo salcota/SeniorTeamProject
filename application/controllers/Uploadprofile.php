@@ -32,7 +32,7 @@ class Uploadprofile extends CI_Controller
 	{
 		$type = explode('.', $_FILES["photo"]["name"]);
 		$type = $type[count($type)-1];
-		$url = "./uploads/".uniqid(rand()).'.'.$type;
+		$url = "./public/temp/uploads/".uniqid(rand()).'.'.$type;
 		if(in_array($type, array("jpg", "jpeg", "gif", "png")))
 			if(is_uploaded_file($_FILES["photo"]["tmp_name"]))
 				if(move_uploaded_file($_FILES["photo"]["tmp_name"],$url))
