@@ -26,12 +26,12 @@ class Users extends CI_Controller
 
 			$this->load->model('Reg_User');
 			//$user_id = $this->R_User->login_user($email,$password);	
-			$user_email = $this->Reg_User->getUser($email,$password);
-			if($user_email)
+			$userID = $this->Reg_User->getUser($email,$password);
+			if(is_numeric($userID) && $userID >= 0)
 			{
 				$user_data = array(
 					//'user_id' => $user_id,
-					'email' => $user_email,
+					'email' => $userID,
 					// need to add password
 					'logged_in' => true
 				);
@@ -42,7 +42,7 @@ class Users extends CI_Controller
 				//'<script>alert("You have successfully logged in");</script>Welcome Gator, you are now logged in.');
 
 				// Set user as logged in.
-				$this->loginhelper->login(NULL, $email, NULL);
+				$this->loginhelper->login($userID);
 				
 				// Redirect to previous page
 				$previousPage = $this->session->flashdata('previousPage');
