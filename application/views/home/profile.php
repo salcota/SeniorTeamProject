@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <?php echo form_open_multipart('uploadprofile/save');?>
+
 <div class="container" style="margin-top: 100px">
 
     <!-- Subtitle Header -->
@@ -28,7 +29,6 @@
  
         <div class="col-sm-6"> 
 
-
 	    <!--  Username -->
             <div class="form-group input-group">
                 <?php
@@ -46,7 +46,6 @@
                 ?>
             </div>
 
-
 	    <!--  Email -->
             <div class="form-group input-group">
                 <?php
@@ -63,7 +62,6 @@
                     echo form_input($data);
                 ?>
             </div>
-
 
 	    <!-- Profile Picture -->
             <div class="form-group input-group">
@@ -130,6 +128,7 @@
         </div>
     </div>
 
+    <!-- Biography -->
     <div class="row justify-content-center">
         <div class="col-sm-10">
             <div class="form-group">
@@ -150,6 +149,7 @@
         </div>
     </div>
 
+    <!-- Reset - Submit -->
     <div class="row justify-content-center">
         <div class="col-sm-10" style="text-align: right">
             <?php

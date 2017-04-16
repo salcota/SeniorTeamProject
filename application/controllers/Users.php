@@ -1,4 +1,5 @@
-<?php //came with branch Signup_db, didn't work with my form validations
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller
 {
@@ -19,7 +20,6 @@ class Users extends CI_Controller
 		}
 
 		else
-
 		{
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
@@ -64,17 +64,19 @@ class Users extends CI_Controller
 		}
 	}
 
-	public function update_profile(){
+	public function update_profile()
+	{
 
 	}
 
-	public function buy_request(){
+	public function buy_request()
+	{
 
 	}
 
-	public function post_itemlisting(){
+	public function post_itemlisting()
+	{
 
 	}
 }
-
 ?>

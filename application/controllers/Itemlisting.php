@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Itemlisting extends CI_Controller{
+class Itemlisting extends CI_Controller
+{
 
     public function __construct()
     {
@@ -41,3 +42,4 @@ class Itemlisting extends CI_Controller{
 
     public function update_listing(){}
 }
+?>

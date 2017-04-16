@@ -24,7 +24,7 @@
 
     <br />
 
-    <!-- Displays current list of item listings posted for sale -->	
+    <!-- Displays current list of item listings posted for sale (Hard Coded for now) -->	
     <div class="row justify-content-center">
 	<div class="col-sm-10">
 	    <table class="table table-bordered table-hover table-info table-striped" style="border: solid 2px #ACF; font-size: 10pt">
