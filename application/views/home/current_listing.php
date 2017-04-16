@@ -68,7 +68,6 @@
                 "<tr> <th>Price:</th>	<td> $" . $item[0]->price . "</td> </tr>" .
                 "<tr> <th>Date:</th>	<td>" .date_format(date_create($item[0]->posted_on),'d-m-Y') . "</td> </tr>" .
                 "<tr> <th>Seller:</th>	<td>" . $item[0]->username . "</td> </tr>" .
-                "<tr> <td><button class='btn btn-success'>Add to Cart</button></td>" .
 		"<td><button class='btn btn-success' style='width:115px' data-toggle='modal' data-target='#buyModal'>Buy</button></td> </tr>" .
                 "</table>"
             ?>
@@ -87,14 +86,30 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
+                    <?php
+                        //echo form_open('Controller/function', $attributes);
+                        $data = array(
+                            'class'         => 'form-control',
+                            'name'          => 'reportText',
+                            'style'         => 'height: 100px; resize: none'
+                        );
+                        echo form_textarea($data);
+                    ?>
                 </div>
                 <div class="modal-footer">
-		   <h6 style="width: 100%">Date: </h6>
+                   <h6 style="width: 100%">Date: </h6>
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                   <button type="button" class="btn  btn-success btn-sm">Send</button>
+                   <?php
+                        $data = array(
+                            'class'         => 'btn btn-success btn-sm',
+                            'name'          => 'submit',
+                            'value'         => 'Send'
+                        );
+                        echo form_submit($data);
+                        echo form_close();
+                    ?>
                 </div>
-            </div>
+           </div>
         </div>
     </div>
 
