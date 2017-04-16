@@ -1,9 +1,16 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
  
 <div class="container" style="margin-top: 100px">
+
+    <!-- Notifies user that he or she is logged in if condition is true -->
+    <p style="text-align: center">
+        <?php
+            if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
+            endif;
+        ?>
+    </p>
 
     <!-- subtitle Header -->              
     <div class="row">

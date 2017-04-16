@@ -2,6 +2,15 @@
 
 <div class="container" style="margin-top: 100px">
 
+    <!-- Notifies user that he or she is logged in if condition is true -->
+    <p style="text-align: center">
+        <?php
+            if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
+            endif;
+        ?>
+    </p>
+
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
@@ -59,15 +68,14 @@
                 "<tr> <th>Price:</th>	<td> $" . $item[0]->price . "</td> </tr>" .
                 "<tr> <th>Date:</th>	<td>" .date_format(date_create($item[0]->posted_on),'d-m-Y') . "</td> </tr>" .
                 "<tr> <th>Seller:</th>	<td>" . $item[0]->username . "</td> </tr>" .
-                "<tr> <td><button class='btn btn-success'>Add to Cart</button></td>" .
-		"<td><button class='btn btn-success' style='width:115px' data-toggle='modal' data-target='#buyModal'>Buy</button></td> </tr>" .
+		"<tr><td><button class='btn btn-success' style='width: 100%'  data-toggle='modal' data-target='#buyModal'>Buy</button></td> </tr>" .
                 "</table>"
             ?>
         </div>
 
     </div>
 
-    <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
+    <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
     <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -78,14 +86,30 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
+                    <?php
+                        //echo form_open('Controller/function', $attributes);
+                        $data = array(
+                            'class'         => 'form-control',
+                            'name'          => 'reportText',
+                            'style'         => 'height: 100px; resize: none'
+                        );
+                        echo form_textarea($data);
+                    ?>
                 </div>
                 <div class="modal-footer">
-		   <h6 style="width: 100%">Date: </h6>
+                   <h6 style="width: 100%">Date: </h6>
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                   <button type="button" class="btn  btn-success btn-sm">Send</button>
+                   <?php
+                        $data = array(
+                            'class'         => 'btn btn-success btn-sm',
+                            'name'          => 'submit',
+                            'value'         => 'Send'
+                        );
+                        echo form_submit($data);
+                        echo form_close();
+                    ?>
                 </div>
-            </div>
+           </div>
         </div>
     </div>
 

@@ -11,7 +11,7 @@
 
     <nav class='navbar navbar-toggleable-sm navbar-light fixed-top navbar' style="min-height: 82px">
 
-        <button class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button>
+        <button style="border: solid 1px #696; border-radius: 6px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i style="color: #EEE; font-size: 50px; height: 60px; padding-top: 5px; width: 60px" class="fa fa-bars" aria-hidden="true"></i></button>
 
 	<!-- Left Side Menu: Logo & Home-->
         <a href='<?php echo base_url() . 'Home/view/home' ?>'><img style="background-color: #FFF; border-radius: 6px; height: 70px; width: 70px" src='<?php echo base_url() . 'public/images/logo.png'?>'></a>
@@ -51,12 +51,9 @@
                 </div>
             </form>
 
-            <!-- Right Side Menu: Cart, Sell, Sign Up, and Login -->
+            <!-- Right Side Menu: Sell, Sign Up, and Login -->
             <ul class='navbar-nav'>
                 <li class='nav-item'>
-                    <a class='nav-link fix-align' style='padding-top: 16px' href='#'><i class='fa fa-shopping-cart' aria-hidden='true' style='padding-top: 4px'></i></a>
-                </li>
-		<li class='nav-item'>
                     <a class='nav-link fix-align' style='padding-top: 16px' href='<?php echo base_url() . 'Home/view/item_listings'?>'>Sell</a>
                 </li>
                 <li class='nav-item'>

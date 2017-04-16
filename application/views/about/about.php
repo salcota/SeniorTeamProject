@@ -2,6 +2,16 @@
 
 <div class="container" style="margin-top: 100px">
 
+    <!-- Notifies user that he or she is logged in if condition is true --> 
+    <p style="text-align: center">
+        <?php
+	    if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
+            endif;
+	?>
+    </p>
+
+    <!-- Subtitle Header -->
     <div class="row">	
 	<div class="col">
             <div class="jumbotron" style="color: #eee; margin-top: 25px; background: url(<?php echo base_url() . 'public/images/san_francisco.png'?>)">
@@ -22,6 +32,7 @@
 
     <br /><br /><br />
 
+    <!-- Members' pictures and mini biography -->
     <div>
 	<div class="row justify-content-center">
             <div class="col-sm-4 about_us">
@@ -55,7 +66,6 @@
     <br />
 
     <div class="row justify-content-center">
-
         <div class="col-sm-4 about_us">
             <div class="about_frame">
                 <img src="https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/15590368_10155476774979057_5985225702468684038_n.jpg?oh=2190452598d45fd86bfd543697207281&amp;oe=5948C81A" alt="Shane Cota"/>
@@ -78,14 +88,13 @@
             <div class="about_frame">
                 <img src="http://i.imgur.com/mKvvwpl.png" src="Mark Tompong"/>
 	    </div>
-                <br />
-                <h5>Mark</h5>
-                <p>Mark is a senior in Computer Science and front-end developer of SFSU Congre-Gator's Market.</p>
+            <br />
+            <h5>Mark</h5>
+            <p>Mark is a senior in Computer Science and front-end developer of SFSU Congre-Gator's Market.</p>
             </div>
-	
         </div>
 
-        <br /><br />
+        <br /><br /><br />
 
     </div>
 

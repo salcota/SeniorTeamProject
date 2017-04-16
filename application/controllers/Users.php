@@ -1,4 +1,5 @@
-<?php //came with branch Signup_db, didn't work with my form validations
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller
 {
@@ -19,30 +20,26 @@ class Users extends CI_Controller
 		}
 
 		else
-
 		{
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 
 			$this->load->model('Reg_User');
 			//$user_id = $this->R_User->login_user($email,$password);	
-			$user_email = $this->Reg_User->getUser($email,$password);
-			if($user_email)
+			$userID = $this->Reg_User->getUser($email,$password);
+			if(is_numeric($userID) && $userID >= 0)
 			{
 				$user_data = array(
 					//'user_id' => $user_id,
-					'email' => $user_email,
+					'email' => $userID,
 					// need to add password
 					'logged_in' => true
 				);
 
 				$this->session->set_userdata($user_data);
 
-				$this->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in.');
-				//'<script>alert("You have successfully logged in");</script>Welcome Gator, you are now logged in.');
-
 				// Set user as logged in.
-				$this->loginhelper->login(NULL, $email, NULL);
+				$this->loginhelper->login($userID);
 				
 				// Redirect to previous page
 				$previousPage = $this->session->flashdata('previousPage');
@@ -64,17 +61,19 @@ class Users extends CI_Controller
 		}
 	}
 
-	public function update_profile(){
+	public function update_profile()
+	{
 
 	}
 
-	public function buy_request(){
+	public function buy_request()
+	{
 
 	}
 
-	public function post_itemlisting(){
+	public function post_itemlisting()
+	{
 
 	}
 }
-
 ?>
