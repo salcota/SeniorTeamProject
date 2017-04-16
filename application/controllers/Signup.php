@@ -27,6 +27,12 @@ Signup extends CI_Controller
 			$this->load->model('Reg_User');
 			if($this->Reg_User->create_user())
 			{
+				// Log the user in
+				$username = $this->input->post('username');
+				$email = $this->input->post('email');
+				$this->loginhelper->login($username, $email, NULL);
+				
+				// Redirect to home page
 				redirect('home/view/home');
 			}
 		}
