@@ -14,41 +14,34 @@
 
     <br /><br /><br />
 
-    <!--Insert values of form input data in $attributes to use elsewhere (double check with Prateek)-->
+    <!-- Inserts values of form input data in $attributes to use elsewhere -->
     <?php $attributes = array('id'=>'login_form', 'class'=>'form_horizontal'); ?>
 
     <div class="row justify-content-center text-danger">
         <div class="col-sm-5">
 	    <?php
-		// Loads and unload errors if any are present after you insert form iput data such as length requirements which can be found in the Users.php controller
+		// Loads and unload errors if any are present after you insert form iput data such as length requirements which can be found in the Users.php controller.
 		if($this->session->flashdata('errors')):
 		echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('errors') . "</strong></div>";
 		endif;
 	    ?>
 
             <?php
-		// Loads login failure data of input is not recognized
+		// Loads login failure data of input is not recognized.
 		if($this->session->flashdata('login_failed')):
             	echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('login_failed') . "</strong></div>";
             	endif;
 	    ?>
-
-	    <?php
-		// Does not get called
-		if($this->session->flashdata('login_success')):
-		echo "<script>alert('You have successfully logged in');</script>";
-		endif;
-	    ?>
-        </div>
+       </div>
     </div>
 
-    <!-- Creates the login form with email and password input and a submit button-->
+    <!-- Creates the login form with email and password input and a submit button -->
     <?php echo form_open('Users/login', $attributes);?>
 
     <div class="row justify-content-center">
     	<div class="form-group input-group col-sm-5">
 	    <?php
-	    	// Inserts email icon next to email input
+	    	// Inserts email icon next to email input.
 		echo '<span class="input-group-addon" id="envelope-addon" style="width: 40px"><i class="fa fa-envelope" aria-hidden="true"></i></span>';
 		$data = array(
 		    'class' => 'form-control',
@@ -60,11 +53,11 @@
         </div>
     </div>
 
-    <!--Password Input-->
+    <!-- Password Input -->
     <div class="row justify-content-center">
 	<div class="form-group input-group col-sm-5">
 	    <?php
-		// Inserts lock icon next to the password input
+		// Inserts lock icon next to the password input.
         	echo '<span class="input-group-addon" id="lock-addon" style="width: 40px"><i class="fa fa-lock" aria-hidden="true"></i></span>';
         	$data =array(
                     'class' => 'form-control',
@@ -74,7 +67,6 @@
         	);
         	echo form_password($data);
 	    ?>
-
 	</div>
     </div>
 
@@ -82,12 +74,12 @@
 	<p class="form-text text-muted">Forgot password?</p>
     </div>
 
-    <!--Submit Button-->
+    <!-- Submit Button -->
     <div class="row justify-content-center" style="margin-top: -20px">
 	<div class="form-group col-sm-5 align-self-start">
 	    <?php
 	  	$data = array(
-		    'style' => 'width: 100px',
+		    'style' => 'margin-top: 10px; width: 100px',
 		    'class' => 'btn btn-success',
 		    'name' => 'submit',
 		    'value' => 'Login'
@@ -106,7 +98,7 @@
 	</div>
     </div>
 
-    <!--Signup Button-->
+    <!-- Signup Button -->
     <div class="row justify-content-center" style="margin-top: 10px">
 	<div class="col-sm-5">
 	    <a href="<?php echo base_url() . 'Home/view/signup'?>"><button class="btn btn-success" style="width: 100px">Sign Up</button></a>
