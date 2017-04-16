@@ -60,7 +60,7 @@
 	    <div class="container" style="background-color: #222">
 
 		<div class="row justify-content-center">
-		    <div class="col-sm-8" style="background-color: #FFF; border: solid 2px #363; border-radius: 6px">
+		    <div class="col" style="background-color: #FFF; border: solid 2px #363; border-radius: 6px">
 			<form>
 		            <div class="form-group">
 				<a class="btn btn-secondary btn-sm" style="float: right; margin: 10 0 10 0; width: 75px" href="<?php echo base_url() . 'Home/view/users_profile'?>">Profile</a>
@@ -69,7 +69,24 @@
   			    </div>
 			    <h6 class="small" style="padding-top: 10px">Date:</h6>
 			    <hr />
-			    <button type="submit" class="btn btn-danger btn-sm" style="float: left; margin-bottom: 10px; width: 75px">Decline</button>
+
+			<?php $attributes = array('id' => 'meetup_form', 'class' => 'form_horizontal'); ?>
+	                <?php    echo form_open('home/view/notifications', $attributes); ?>
+
+                        <div class="form-group input-group" style="float: left">
+                            <?php
+                                echo '<span class="input-group-addon">Meet Up</span>';
+                                    // 
+                                    $options = array(
+                                    '1' => 'Quad',
+                                    '2' => 'Bee Garden',
+                                );
+                                echo form_dropdown('name', $options, '1');
+                            ?>
+                        </div>
+
+                            <button type="submit" class="btn btn-danger btn-sm" style="float: left; margin-bottom: 10px; width: 75px">Decline</button>
+
 			    <button type="submit" class="btn btn-success btn-sm" style="float: right; margin-bottom: 10px; width: 75px">Send</button>
 			    <br />
 			</form>
@@ -79,16 +96,28 @@
 		<br />  
 
 		<div class="row justify-content-center">
-		    <div class="col-sm-8">  
-		    	<button class="btn btn-success btn-sm" style="float: left; margin-left: -15px; width: 150px" href="#">Meet Up</button>
-		    	<button type="submit" class="btn btn-success btn-sm" style="float: right; margin-right: -15px; width: 150px" href="#">Confirm Transaction</button>
-		    </div>
-		</div>
+		    <div class="col-sm-12">
+		    	<a class="btn btn-success btn-sm" style="float: left; margin-left: -15px; width: 150px" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>	
+		        <!--<button type="submit" class="btn btn-success btn-sm" style="float: right; margin-right: -15px; width: 150px"  href="#">Confirm Transaction</button>-->
 
-		<br />
+		        <?php
+                            $data = array(
+                            	'class' => 'btn btn-success btn-sm',
+                            	'name' => 'submit',
+                       	    	'value' => 'Confirm Transaction',
+                    	    	'style' => 'float: right; margin-right: -15px; width: 150px'
+                	);
+                	    echo form_submit($data);
+            		?>
+			<?php echo form_close(); ?>
+		    </div>
+	        </div>
 
 	    </div>
-	</div>
+
+	    <br />
+
+        </div>
     </div>
 
     <br /><br /><br />
