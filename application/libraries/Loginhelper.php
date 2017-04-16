@@ -108,6 +108,9 @@ class loginhelper {
 		
 		$this->CI->session->loginhelper = $loginData;
 		
+		// Show welcome messages
+		$this->CI->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in.');
+		
 		$this->loadSession();
 	}
 	
