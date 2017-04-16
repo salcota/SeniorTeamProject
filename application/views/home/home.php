@@ -118,7 +118,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 				// If this button points to current page, don't make a link. Just make the number bold.
 				if ($i == $currentPage)
 			            echo  '<button type="button" class="btn btn-secondary"><b>' . $i . '</b></button>';
-				else // Create a clickable button.
+				else // Creates a clickable button.
 				    echo  '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . jumpLink($i, $get) . '">' . $i . '</a></button>';
 			    }
 				
@@ -133,9 +133,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
         <div class="col align-self-end"></div>
     </div>
 
-    <br/>
-
-    <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
+    <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
     <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -174,5 +172,6 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
         </div>
     </div>
 
+    <br /><br /><br />
 
 </div>

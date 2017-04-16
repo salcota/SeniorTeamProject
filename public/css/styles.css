@@ -119,6 +119,7 @@
 
             .container {
                 background-color: #EEE;
+		margin-top: 100px;
 	        padding: 5px;
             }
 
@@ -152,6 +153,12 @@
 
 	    .img-fluid {
 		margin: auto;
+	    }
+
+	    .jumbotron {
+		background-color: #FFF;
+		margin-top: 25px;
+		text-align: center;
 	    }
 
             .move {
