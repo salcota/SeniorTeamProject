@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Reg_User extends CI_Model
 {
-	// testing this for adding users as per Udemy.com tutorials
 	public function create_user()
 	{
 		$options = ['cost'=> 12];
@@ -20,6 +20,7 @@ class Reg_User extends CI_Model
 		return $insert_data;
 			
 	}
+
 	public function getUser($email, $password)
 	{
 		$this->db->where('sfsu_email', $email);
@@ -39,8 +40,8 @@ class Reg_User extends CI_Model
 			return false;
 		}
 	}
-	// Needs third function that gives user_id and returns all info about user...
 
+	// Needs third function that gives user_id and returns all info about user...
 	public function findUser($user_id)
 	{
 		$this->db->where('user_id', $user_id);
