@@ -4,8 +4,9 @@ class loginhelper {
 
 	protected $CI;
 	
-	// Stores copy of user db object
-	private $loginInfo;
+	// Copy of session variable
+	private $loginData;
+	
 	
 	// True only if user just finished logging in.
 	private $freshLogin;
@@ -21,42 +22,45 @@ class loginhelper {
 		$this->CI->load->library('session');
 		$this->CI->load->helper('url');
 		
-		$this->loginInfo = NULL;
 		$this->freshLogin = false;
+		
+		$this->init();
 		
 		$this->loadSession();
 		$this->notFresh();
 	}
 
-	// Builds User Info via Session Variables.
+	// Copies Session Variables.
 	private function loadSession()
 	{
 		if ($this->CI->session->has_userdata('loginhelper'))
 		{
-			$loginData = $this->CI->session->loginhelper;
-			
-			// Retrieve user info from database
-			$this->CI->load->model('Reg_User');
-			try
-			{
-				$info = $this->CI->Reg_User->findUser($loginData['userID']);
-				if (isset($info))
-					$this->loginInfo = $info;
-			}
-			catch (Exception $e)
-			{
-				return;
-			}
+			$this->loginData = $this->CI->session->loginhelper;
 			
 			// Remember if this is a fresh login.
-			$this->freshLogin = $loginData['freshLogin'];
+			$this->freshLogin = $this->loginData['freshLogin'];
 		}
 	}
+	
+	private function saveSession()
+	{
+		$this->CI->session->loginhelper = $this->loginData;
+	}
+	
+	private function init()
+	{
+		// Create dummy array. Needed in case function calls saveSession() without filling all values.
+		$this->loginData['userID'] = NULL;
+		$this->loginData['freshLogin'] = false;
+		$this->loginData['urlBeforeLogin'] = NULL;
+		$this->loginData['loginPages'] = array();
+	}
+	
 	
 	// Checks true if user is logged in.
 	public function isRegistered()
 	{
-		if($this->loginInfo != NULL)
+		if($this->loginData['userID'] != NULL)
 			return true;
 		return false;
 	}
@@ -83,12 +87,18 @@ class loginhelper {
 	*/
 	public function getLoginData()
 	{
-		$return = $this->loginInfo;
-		
-		if ($return != NULL)
-			return $return;
-		else
-			throw new Exception('<br>$this->loginhelper->getLoginData(): Failed to get login data.<br>Please check that you are logged in before calling this function. <br>$this->loginhelper->isRegistered == true');
+		// Retrieve user info from database
+		$this->CI->load->model('Reg_User');
+		try
+		{
+			$info = $this->CI->Reg_User->findUser($this->loginData['userID']);
+			if (isset($info))
+				return $info;
+		}
+		catch (Exception $e)
+		{
+			return;
+		}
 	}
 	
 	// Returns true if user just logged in.
@@ -111,15 +121,13 @@ class loginhelper {
 		if (!is_numeric($userID))
 			return;
 		
-		$loginData['userID'] = $userID;
-		$loginData['freshLogin'] = true;
+		$this->loginData['userID'] = $userID;
+		$this->loginData['freshLogin'] = true;
 		
-		$this->CI->session->loginhelper = $loginData;
+		$this->saveSession();
 		
 		// Show welcome messages
 		$this->CI->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in.');
-		
-		$this->loadSession();
 	}
 	
 	// Sets user as logged out.
@@ -128,8 +136,7 @@ class loginhelper {
 		// Destroy session data
 		$this->CI->session->unset_userdata('loginhelper');
 		
-		$this->loginInfo = NULL;
-		$this->freshLogin = false;
+		$this->init();
 	}
 	
 	/*
@@ -158,19 +165,71 @@ class loginhelper {
 		}
 	}
 	
+	/*
+	Returns the URL the user was at before logging in.
+	Requires implementation of rememberBeforeLogin()
+	
+	Example:
+	$url = $this->loginhelper->beforeLogin();
+	*/
+	public function beforeLogin()
+	{
+		return $this->loginData['urlBeforeLogin'];
+	}
+	
+	/*
+	Records what page the user was looking at before logging in.
+	Call this function on every login page.
+	*/
+	public function rememberBeforeLogin()
+	{
+		$this->CI->load->library('user_agent');
+		
+		// Only record if the page belongs to our website.
+		if (!$this->CI->agent->is_referral())
+			return;
+		
+		$url = $this->agent->referrer();
+		
+		$isLogin = false;
+		$logins = $this->loginData['loginPages'];
+		// Loop through login pages. If url matches a login page, don't record it.
+		for ($i = 0; $i <= count($logins); $i++)
+		{
+			// This page is not recorded in list of login pages. Add it.
+			if ($i == count($logins))
+			{
+				array_push($logins, $strtolower('/' . uri_string()));
+				$this->loginData['loginPages'] = $logins;
+			}
+			
+			if (strtolower(parse_url($url)) == $logins[$i])
+			{
+				$isLogin = true;
+				break;
+			}
+		}
+		
+		// If the url is not a login page, record it.
+		if (!isLogin)
+			$this->loginData['urlBeforeLogin'] = $url;
+		
+		// Save session data
+		saveSession();
+	}
+	
+	
 	// Marks a login as no longer fresh
 	private function notFresh()
 	{
-		$loginData = $this->CI->session->loginhelper;
-		
 		if ($this->freshLogin)
 		{
 			// Next access is not a fresh login.
-			$loginData['freshLogin'] = false;
+			$this->loginData['freshLogin'] = false;
 		}
 		
 		// Set changed session data
-		$this->CI->session->loginhelper = $loginData;
+		$this->saveSession();
 	}
 }
 
