@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container" style="margin-top: 100px">
+<div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
     <p style="text-align: center">
@@ -54,8 +54,7 @@
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-tyle="background-color:#FFF; margin-top: 25px; text-align: center"               </a>
+                    <span class="sr-only">Next</span></a>
             </div>
         </div>
 
