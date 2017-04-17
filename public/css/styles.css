@@ -93,7 +93,7 @@
 	    }
 
 	    .align-pt-16 {
-		padding-top: 16px;
+		padding-top: 16px !important;
 	    }
 
 	    .btn-select {
@@ -165,29 +165,10 @@
 		background-color: #EEE;
 	    }
 
-	    .img-fluid {
-		margin: auto;
-	    }
-
 	    .jumbotron {
 		background-color: #FFF !important;
 		margin-top: 25px;
 		text-align: center;
-	    }
-
-	    .logo-img {
-		color: #EEE;
-		font-size: 50px;
-		height: 60px;
-		padding-top: 5px;
-		width: 60px;
-	    }
-
-	    .menu-icon {
-		background-color: #FFF;
-		border-radius: 6px;
-		height: 70px;
-	    	width: 70px;
 	    }
 
             .move {
@@ -205,8 +186,8 @@
             }
 
 	    .navbar-menu-icon {
-		border: solid 1px #696;
-		border-radius: 6px;
+		border: solid 1px #696 !important;
+		border-radius: 6px !important;
 	    }
 
             .nav-link {
