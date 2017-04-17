@@ -43,6 +43,7 @@
                         'type' => 'text',
                         'size' => '100',
 			'readonly' => 'true',
+			'placeholder' => $username
                     );
                    
                     echo form_input($data);
@@ -60,6 +61,7 @@
                         'type' => 'text',
                         'size' => '100',
 			'readonly'=>'true',
+			'placeholder' => $email
                     );
                    
                     echo form_input($data);
@@ -143,7 +145,8 @@
                         'name' => 'description',
                         'type' => 'textarea',
                         'maxlength' => '300',
-                        'style' => 'resize: none; height: 100px'
+                        'style' => 'resize: none; height: 100px',
+			'placeholder' => $biography
                     );
                     $value = "";
                     echo form_textarea($data, $value);
