@@ -6,7 +6,7 @@ class Users extends CI_Controller
     {
         // Gets item listing,  basic header and styles for all pages.
         parent::__construct();
-        //$this->load->model('Item_Listing');
+        $this->load->model('Item_Listing');
         $this->load->view('common/sfsu_demo');
         $this->load->view('common/required_meta_tags');
 
