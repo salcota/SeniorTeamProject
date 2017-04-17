@@ -11,15 +11,15 @@
 
     <nav class='navbar navbar-toggleable-lg navbar-light fixed-top navbar' style="min-height: 85px">
 
-        <button style="border: solid 1px #696; border-radius: 6px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i style="color: #EEE; font-size: 50px; height: 60px; padding-top: 5px; width: 60px" class="fa fa-bars" aria-hidden="true"></i></button>
+        <button class='navbar-toggler navbar-toggler-right navbar-menu-icon' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i class="fa fa-bars menu-icon" aria-hidden="true"></i></button>
 
 	<!-- Left Side Menu: Logo & Home-->
-	<a href='<?php echo base_url() . 'Home/view/home' ?>'><img style="background-color: #FFF; border-radius: 6px; height: 70px; width: 70px" src='<?php echo base_url() . 'public/images/logo.png'?>'></a>
+	<a href='<?php echo base_url() . 'Home/view/home' ?>'><img class='logo-img' src='<?php echo base_url() . 'public/images/logo.png'?>'></a>
 
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav mr-auto'>
                 <li class='nav-item active'>
-                    <a class='nav-link fix-align' style='width: 310px; padding-top: 16px' href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
+                    <a class='nav-link fix-align align-pt-16' style='width: 310px' href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
                 </li>
             </ul>
 
@@ -54,18 +54,18 @@
             <!-- Right Side Menu: Cart, Sell, Sign Up, and Login -->            
 	    <ul class='navbar-nav'>
                 <li class='nav-item'>
-                    <a class='nav-link fix-align' style='padding-top: 16px'href='<?php echo  base_url() . 'Home/view/edit_listing' ?>'>Sell</a>
+                    <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Home/view/edit_listing' ?>'>Sell</a>
                 </li>
 		<li class='nav-item'>
-                    <a class='nav-link fix-align' style='padding-top: 16px'href='<?php echo  base_url() . 'Home/view/item_listings' ?>'>Listings</a>
+                    <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Home/view/item_listings' ?>'>Listings</a>
                 </li>
 		<li class='nav-item'>
-                   <a class='nav-link fix-align' style='padding-top: 16px'href='<?php echo  base_url() . 'Home/view/notifications' ?>'>Notifications</a>
+                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Home/view/notifications' ?>'>Notifications</a>
                 </li>
                 <li class='nav-item'>
                     <div class="btn-group">
                         <a id='logout' class='nav-link fix-align' data-toggle='dropdown' aria-haspopup='true'
-                                aria-expanded='false' style='padding-top: 16px' href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></a>
+                                aria-expanded='false align-pt-16' href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></a>
                         <div class='dropdown-menu move' aria-labelledby='logout'>
 			    <a class='dropdown-item' href='<?php echo  base_url() . 'Home/view/profile' ?>'>Profile</a>
                             <a class='dropdown-item' href="#" style="text-decoration: none" data-toggle='modal' data-target='#reportModal'>Report</a>

@@ -1,11 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container" style="margin-top: 100px">
+<div class="container">
+
+    <!-- For UI consistency wehere a p tag exists to greet user if logged in -->
+    <p></p>
 
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
-            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+            <div class="jumbotron">
                 <h1 class="display-4">Login</h1>
 		<hr class="my-4">
             </div>

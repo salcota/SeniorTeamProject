@@ -2,12 +2,15 @@
 
 <?php echo form_open_multipart('uploadprofile/save');?>
 
-<div class="container" style="margin-top: 100px">
+<div class="container">
+
+    <!-- For UI consistency wehere a p tag exists to greet user if logged in -->
+    <p></p>
 
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
-            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+            <div class="jumbotron">
                 <h1 class="display-4">Your Profile</h1>
                 <hr class= "my-4">
 		<p class="lead">Update your profile with a picture, new major,  and description of your self,  or change your password frequently for better security.</p>
@@ -32,7 +35,7 @@
 	    <!--  Username -->
             <div class="form-group input-group">
                 <?php
-                    echo '<span class="input-group-addon" style="width: 135px; text-align: left">Username</span>';
+                    echo '<span class="input-group-addon span-for-profile">Username</span>';
                     // 
                     $data = array(
                         'class' => 'form-control',
@@ -49,7 +52,7 @@
 	    <!--  Email -->
             <div class="form-group input-group">
                 <?php
-                    echo '<span class="input-group-addon" style="width: 135px; text-align: left">Email</span>';
+                    echo '<span class="input-group-addon span-for-profile">Email</span>';
                     // 
                     $data = array(
                         'class' => 'form-control',
@@ -66,7 +69,7 @@
 	    <!-- Profile Picture -->
             <div class="form-group input-group">
                 <?php
-                    echo '<span class="input-group-addon" style="width: 135px; text-align: left">Profile Picture</span>';
+                    echo '<span class="input-group-addon span-for-profile">Profile Picture</span>';
                     // 
                     $data = array(
                         'class' => 'form-control',
@@ -82,7 +85,7 @@
 	    <!-- Major -->
             <div class="form-group input-group">
                 <?php
-                    echo '<span class="input-group-addon" style="width: 135px; text-align: left">Major</span>';
+                    echo '<span class="input-group-addon span-for-profile">Major</span>';
                     //  
                     $options = array(
                         '1' => 'Accounting',
@@ -99,7 +102,7 @@
             <div class="form-group input-group">
                 <?php
                     // Inserts lock icon next to the password input
-                    echo '<span class="input-group-addon" style="width: 135px; text-align: left">New Password</span>';
+                    echo '<span class="input-group-addon span-for-profile">New Password</span>';
                     $data =array(
 	                'class' => 'form-control',
 	                'name' => 'password',
@@ -114,7 +117,7 @@
 	    <div class="form-group input-group">
 	        <?php
 	            // Inserts lock icon next to the password input
-	            echo '<span class="input-group-addon" style="width: 135px; text-align: left">Confirm</span>';
+	            echo '<span class="input-group-addon span-for-profile">Confirm</span>';
 	            $data =array(
 	                'class' => 'form-control',
 	                'name' => 'passconf',

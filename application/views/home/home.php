@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container" style="margin-top: 92px">
+<div class="container" style="margin-top: 76px">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
-    <p style="text-align: center">
+    <p>
         <?php
             if($this->session->flashdata('login_success')):
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
@@ -12,17 +12,18 @@
     </p>
 
     <!-- Subtitle Header -->
-    <div class="row-sm-12">
-        <div class="jumbotron">
-            <h1 class="display-4">SFSU Congre-Gators</h1>
-            <hr class="my-4" >
-            <p class="lead">
+    <div class="row">
+	<div class="col">
+            <div class="jumbotron">
+                <h1 class="display-4">SFSU Congre-Gators</h1>
+                <hr class="my-4" >
+                <p class="lead">
 Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what it's like to need that extra support to make it through college!
 </p>
-	    <hr /class="my-4">
-
-            <p class="lead">Want to know more? Search our options!</p>
-        </div>
+	        <hr /class="my-4">
+                <p class="lead">Want to know more? Search our options!</p>
+	    </div>
+	</div>
     </div>
 
     <br /><br />

@@ -92,6 +92,10 @@
 		width: 150px;
 	    }
 
+	    .align-pt-16 {
+		padding-top: 16px;
+	    }
+
 	    .btn-select {
 		background-color: #333 !important;
 		padding: 5px;
@@ -171,6 +175,21 @@
 		text-align: center;
 	    }
 
+	    .logo-img {
+		color: #EEE;
+		font-size: 50px;
+		height: 60px;
+		padding-top: 5px;
+		width: 60px;
+	    }
+
+	    .menu-icon {
+		background-color: #FFF;
+		border-radius: 6px;
+		height: 70px;
+	    	width: 70px;
+	    }
+
             .move {
                 margin-bottom: -100px;
             }
@@ -184,6 +203,11 @@
                 color: #FFF;
                 margin-top: 25px;
             }
+
+	    .navbar-menu-icon {
+		border: solid 1px #696;
+		border-radius: 6px;
+	    }
 
             .nav-link {
                 color: #9C9 !important;
@@ -205,6 +229,11 @@
 	    .reguser-link:hover {
 		color: #FFF;
 		text-decoration: none;
+	    }
+
+	    .span-for-profile {
+		text-align: left;
+		width: 135px;
 	    }
 
             .subtitle {

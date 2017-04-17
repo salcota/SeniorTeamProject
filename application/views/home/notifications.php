@@ -1,12 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container" style="margin-top: 100px">
+<div class="container">
+
+    <!-- For UI consistency wehere a p tag exists to greet user if logged in -->
+    <p></p>
 
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
-            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px">
-                <h1 class="display-4" style="text-align: center">Notifications</h1>
+            <div class="jumbotron">
+                <h1 class="display-4">Notifications</h1>
                 <hr class= "my-4">
                 <p class="lead">Communicate with sellers and buyers you've developed a connection with. Whether you've initiated contact to purchase a product, or you've received a notification to make a sale, all messaging is done here. For clarity, <span style="color: #C93; font-weight: bold">buyers</span> are color-coded in gold and <span style="color: #39C; font-weight: bold">sellers</span> are in the blue.
 		<br /><br />

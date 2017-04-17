@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	
-<div class = "container" style="margin-top: 100px">
+<div class = "container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
-    <p style="text-align: center">
+    <p>
         <?php
             if($this->session->flashdata('login_success')):
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
@@ -14,7 +14,7 @@
     <!-- Subtitle Header -->
     <div class="row justify-content-center">
         <div class="col">
-            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+            <div class="jumbotron">
                 <h1 class="display-4">Sign Up!</h1>
                 <hr class="my-4">
 		<p class="lead">You must be a student of San Francisco State University and use an SFSU email to register.</p>

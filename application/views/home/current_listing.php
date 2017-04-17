@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container">
+<div class="container" style="margin-top: 77px">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
     <p style="text-align: center">
@@ -14,7 +14,7 @@
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
-            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
+            <div class="jumbotron">
                 <h1 class="display-4"><?php echo $item[0]->title ?></h1>
                 <hr class= "my-4">
             </div>
