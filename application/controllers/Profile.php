@@ -16,7 +16,7 @@ class Profile extends CI_Controller
 		// NEED TO IMPLEMENT USER DATA
 		$data = NULL;
 		
-		$this->load->view('profile/profile', $data);
+		$this->load->view('profile/your_profile', $data);
 
 		// Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
 		$this->load->view('common/jquery_tether_bootstrap');
