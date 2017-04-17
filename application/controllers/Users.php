@@ -38,10 +38,10 @@ class Users extends CI_Controller
 
 				$this->session->set_userdata($user_data);
 
-				// Set user as logged in.
+				// Sets user as logged in.
 				$this->loginhelper->login($userID);
 				
-				// Redirect to previous page
+				// Redirects to previous page.
 				$previousPage = $this->session->flashdata('previousPage');
 				// Does previous page exist?
 				if ($previousPage != NULL)
@@ -51,7 +51,7 @@ class Users extends CI_Controller
 			}
 			else
 			{
-				// Retain referrer for the next attempt.
+				// Retains referrer for the next attempt.
 				if ($this->session->flashdata('previousPage') != NULL)
 					$this->session->keep_flashdata('previousPage');
 				

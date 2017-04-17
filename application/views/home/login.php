@@ -2,10 +2,19 @@
 
 <div class="container">
 
-    <!-- For UI consistency wehere a p tag exists to greet user if logged in -->
-    <p></p>
+    <!-- Notifies user that he or she is logged in if condition is true -->
+    <p>
+        <?php
+            if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
 
-    <!-- Subtitle Header -->
+	    // If login success and previous page is login (which happens during an invalid form submission), redirects user to home page after two seconds
+	    echo "<script>setTimeout(function() {returnToHome();}, 2000); function returnToHome() {window.location.href = ('"?> <?php echo base_url() . "Home/view/home');}</script>";
+           endif;
+        ?>
+    </p>
+
+   <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
             <div class="jumbotron">
