@@ -1,6 +1,4 @@
-        <!-- CSS Styles icluding Additions to Bootstrap CSS-->
-        <style type="text/css">
-        
+
             /* HTML */
             body {
                 position: relative;
@@ -124,7 +122,7 @@
 		border: solid 2px #9C9;
 		border-radius: 6px;
 		height: 200px;
-		padding: 5 1 5 1;
+		padding: 5px 1px 5px 1px;
 	    }
 
             .container {
@@ -135,7 +133,7 @@
 
 	    .d-block {
 		height:185px !important; 
-		margin: auto !important!;
+		margin: auto !important;
 	    }
 
 	    .description_box {
@@ -225,7 +223,3 @@
                 color: #040 !important;
                 font-size: 24px;
             }
-
-        </style>
-        
-    </head>

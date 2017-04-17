@@ -41,16 +41,26 @@ class Reg_User extends CI_Model
 		}
 	}
 
+
 	// Needs third function that gives user_id and returns all info about user...
 	public function findUser($user_id)
-	{
-		$this->db->where('user_id', $user_id);
-		$result = $this->db->get('reg_user')->result();
-		
-		if (count($result) == 1)
-		{
-			return $result[0];
-		}
+    {
+        $this->db->where('user_id', $user_id);
+        $result = $this->db->get('reg_user')->result();
+
+        if (count($result) == 1) {
+            return $result[0];
+        }
+
+    }
+
+    public function getUserIdByUsername($username){
+
+		$this->db->select('user_id');
+        $this->db->where('username', $username);
+        $result = $this->db->get('reg_user');
+		return $result->result();
+
 	}
 }
 ?>
