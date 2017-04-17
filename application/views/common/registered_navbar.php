@@ -67,7 +67,7 @@
                         <a id='logout' class='nav-link fix-align align-pt-16' data-toggle='dropdown' aria-haspopup='true'
                                 aria-expanded='false' href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></a>
                         <div class='dropdown-menu move' aria-labelledby='logout'>
-			    <a class='dropdown-item' href='<?php echo  base_url() . 'Home/view/profile' ?>'>Profile</a>
+			    <a class='dropdown-item' href='<?php echo  base_url() . 'Profile/me' ?>'>Profile</a>
                             <a class='dropdown-item' href="#" style="text-decoration: none" data-toggle='modal' data-target='#reportModal'>Report</a>
   	                    <a class='dropdown-item' href='<?php echo  base_url() . 'Logout' ?>'>Logout</a>		
                         </div>
