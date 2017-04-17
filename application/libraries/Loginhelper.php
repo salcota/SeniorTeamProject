@@ -9,6 +9,9 @@ class loginhelper {
 	
 	// True only if user just finished logging in.
 	private $freshLogin;
+	
+	// Constants
+	const LoginURL = "Home/view/login";
 
 	public function __construct()
 	{
@@ -16,6 +19,7 @@ class loginhelper {
 		$this->CI =& get_instance();
 		
 		$this->CI->load->library('session');
+		$this->CI->load->helper('url');
 		
 		$this->loginInfo = NULL;
 		$this->freshLogin = false;
@@ -49,7 +53,7 @@ class loginhelper {
 		}
 	}
 	
-	// Checks whether user is logged in.
+	// Checks true if user is logged in.
 	public function isRegistered()
 	{
 		if($this->loginInfo != NULL)
@@ -126,6 +130,32 @@ class loginhelper {
 		
 		$this->loginInfo = NULL;
 		$this->freshLogin = false;
+	}
+	
+	/*
+	Redirects the user to the login page or a specified destination if the current user is not logged in.
+	
+	Example:
+	$this->loginhelper->forceLogin(); // Redirects to login page.
+	
+	$this->loginhelper->forceLogin('Home'); // Redirects to home page.
+	*/
+	public function forceLogin($destination = NULL)
+	{
+		if ($this->isRegistered())
+			return;
+		
+		if ($destination == NULL)
+			$destination = self::LoginURL;
+		
+		try
+		{
+			redirect($destination);
+		}
+		catch (Exception $e)
+		{
+			throw new Exception('$this->loginhelper->forceLogin('. $destination . ') failed.');
+		}
 	}
 	
 	// Marks a login as no longer fresh
