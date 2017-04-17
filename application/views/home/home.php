@@ -112,7 +112,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 				
 			    return $url;
 			}
-			
+			/*
 			if ($lowestPage != $highestPage)
 			{
 			    if ($currentPage > $lowestPage)
@@ -125,13 +125,17 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 				if ($i == $currentPage)
 			            echo  '<button type="button" class="btn btn-secondary"><b>' . $i . '</b></button>';
 				else // Creates a clickable button.
-				    echo  '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . jumpLink($i, $get) . '">' . $i . '</a></button>';
+				    echo  '<a href="' . base_url() . 'home?' . jumpLink($i, $get) . '"><button type="button" class="btn btn-secondary">' . $i . '</button></a>';
 			    }
 				
 			    if ($currentPage < $highestPage)
 				echo '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . jumpLink($currentPage + 1, $get) . '">Next</a></button>';
-			}
+			}*/
 		    ?>
+			<button type="button" class="btn btn-secondary"><b>1</b></button>
+			<a href="http://sfsuse.com/~kglchu/home?page=2&"><button type="button" class="btn btn-secondary">2</button></a>
+			<button type="button" class="btn btn-secondary">
+<a href="http://sfsuse.com/~kglchu/home?page=2&">Next</a></button>
                 </div>
             </div>
         </div>
