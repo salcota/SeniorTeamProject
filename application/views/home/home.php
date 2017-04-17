@@ -112,30 +112,26 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 				
 			    return $url;
 			}
-			/*
+			
 			if ($lowestPage != $highestPage)
 			{
 			    if ($currentPage > $lowestPage)
-				echo '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . (jumpLink($currentPage - 1, $get)) . '">Previous</a></button>';
+				echo '<a class="btn btn-secondary" href="' . base_url() . 'home?' . (jumpLink($currentPage - 1, $get)) . '">Previous</a>';
 				
 				
 			    for ($i = $lowestPage; $i <= $highestPage; $i++)
 			    {
 				// If this button points to current page, don't make a link. Just make the number bold.
 				if ($i == $currentPage)
-			            echo  '<button type="button" class="btn btn-secondary"><b>' . $i . '</b></button>';
+			            echo  '<a class="btn btn-secondary"><b>' . $i . '</b></a>';
 				else // Creates a clickable button.
-				    echo  '<a href="' . base_url() . 'home?' . jumpLink($i, $get) . '"><button type="button" class="btn btn-secondary">' . $i . '</button></a>';
+				    echo  '<a class="btn btn-secondary" href="' . base_url() . 'home?' . jumpLink($i, $get) . '">' . $i . '</a>';
 			    }
 				
 			    if ($currentPage < $highestPage)
-				echo '<button type="button" class="btn btn-secondary"><a href="' . base_url() . 'home?' . jumpLink($currentPage + 1, $get) . '">Next</a></button>';
-			}*/
+				echo '<a class="btn btn-secondary" href="' . base_url() . 'home?' . jumpLink($currentPage + 1, $get) . '">Next</a>';
+			}
 		    ?>
-			<button type="button" class="btn btn-secondary"><b>1</b></button>
-			<a href="http://sfsuse.com/~kglchu/home?page=2&"><button type="button" class="btn btn-secondary">2</button></a>
-			<button type="button" class="btn btn-secondary">
-<a href="http://sfsuse.com/~kglchu/home?page=2&">Next</a></button>
                 </div>
             </div>
         </div>
