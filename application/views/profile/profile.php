@@ -26,7 +26,7 @@
 	<!-- Image Holder of Profile Picture -->
         <div class="col-sm-4" style="margin-bottom: 25px"> 
             <div class="card" style="height: 205px">
-  		<img class="card-img-top" src="..." alt="Profile Picture">
+  		<img class="card-img-top" src="" alt="Profile Picture">
 	    </div>
         </div>  
  
@@ -43,8 +43,9 @@
                         'type' => 'text',
                         'size' => '100',
 			'readonly' => 'true',
+			'placeholder' => $username
                     );
-                   
+
                     echo form_input($data);
                 ?>
             </div>
@@ -60,6 +61,7 @@
                         'type' => 'text',
                         'size' => '100',
 			'readonly'=>'true',
+			'placeholder' => $email
                     );
                    
                     echo form_input($data);
@@ -143,7 +145,8 @@
                         'name' => 'description',
                         'type' => 'textarea',
                         'maxlength' => '300',
-                        'style' => 'resize: none; height: 100px'
+                        'style' => 'resize: none; height: 100px',
+			'placeholder' => $biography
                     );
                     $value = "";
                     echo form_textarea($data, $value);

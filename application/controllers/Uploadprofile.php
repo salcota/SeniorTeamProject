@@ -7,6 +7,7 @@ class Uploadprofile extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('updateprofile');
+		$this->load->library('loginhelper');
 	}
 
 
@@ -21,15 +22,26 @@ class Uploadprofile extends CI_Controller
 	{
 
 		$url =$this->do_upload();
-		//$password = $_POST["password"];
-		//$biography = $_POST["description"];
-		$this->updateprofile->update($url);
+
+		$data = array(
+		'biography' => $_POST["description"]
+		// more will be added when I can update the other forms
+		);
+
+		$user = $this->loginhelper->getLoginData();
+		$id = $user->user_id;
+
+		$this->updateprofile->update($url,$id,$data);
+
+
 	}
 
 
 
 	public function do_upload()
 	{
+		// I would explain what this does but the tutorial was in another language
+		// returns the uploaded photo as stores in it .public/temp/uploads and returns it as $url
 		$type = explode('.', $_FILES["photo"]["name"]);
 		$type = $type[count($type)-1];
 		$url = "./public/temp/uploads/".uniqid(rand()).'.'.$type;
@@ -38,6 +50,7 @@ class Uploadprofile extends CI_Controller
 				if(move_uploaded_file($_FILES["photo"]["tmp_name"],$url))
 					return $url;
 		return "";
+
 	}
 }
 ?>
