@@ -38,25 +38,6 @@ class Itemlisting extends CI_Controller
         $this->load->view('common/footerbar');
     }
 
-    // form validations for edit item via Itemlisting page, not working yet
-    /**
-    public function edit($page = "edit_listing")
-    {
-	$this->form_validation->set_rules('name', 'Item_Name', 'trim|required|alpha_numeric');
-	
-	if($this->form_validation->run() == FALSE)
-	{
-		$edit_atrributes = array(
-			'errors' => validation_errors()
-		);
-
-		$this->session->set_flashdata($edit_attributes);
-		//redirect('home/view/home');
-	} else {
-	
-	}		
-    }
-    */
     public function post_listing(){}
 
     public function update_listing(){}
