@@ -9,6 +9,9 @@ class loginhelper {
 	
 	// True only if user just finished logging in.
 	private $freshLogin;
+	
+	// Constants
+	const LoginURL = "Home/view/login";
 
 	public function __construct()
 	{
@@ -16,6 +19,7 @@ class loginhelper {
 		$this->CI =& get_instance();
 		
 		$this->CI->load->library('session');
+		$this->CI->load->helper('url');
 		
 		$this->loginInfo = NULL;
 		$this->freshLogin = false;
@@ -49,7 +53,7 @@ class loginhelper {
 		}
 	}
 	
-	// Checks whether user is logged in.
+	// Checks true if user is logged in.
 	public function isRegistered()
 	{
 		if($this->loginInfo != NULL)
@@ -62,25 +66,29 @@ class loginhelper {
 	/*
 	getLoginData()
 	
-	Returns array with data of current user login.
-	Array keys: username, email, userID
+	Returns db-object with data of current user login.
 	
 	Example:
 	$user = $this->loginhelper->getLoginData();
-	echo $user['user_id'];
-	echo $user['username'];
-	echo $user['name'];
-	echo $user['sfsu_email'];
-	echo $user['mobile'];
-	echo $user['biography'];
-	echo $user['password']; // Hashed
-	echo $user['major_id'];
-	echo $user['registration_date'];
-	echo $user['status'];
+	echo $user->user_id;
+	echo $user->username;
+	echo $user->name;
+	echo $user->sfsu_email;
+	echo $user->mobile;
+	echo $user->biography;
+	echo $user->password; // Hashed
+	echo $user->major_id;
+	echo $user->registration_date;
+	echo $user->status;
 	*/
 	public function getLoginData()
 	{
-		return $this->loginInfo;
+		$return = $this->loginInfo;
+		
+		if ($return != NULL)
+			return $return;
+		else
+			throw new Exception('<br>$this->loginhelper->getLoginData(): Failed to get login data.<br>Please check that you are logged in before calling this function. <br>$this->loginhelper->isRegistered == true');
 	}
 	
 	// Returns true if user just logged in.
@@ -122,6 +130,32 @@ class loginhelper {
 		
 		$this->loginInfo = NULL;
 		$this->freshLogin = false;
+	}
+	
+	/*
+	Redirects the user to the login page or a specified destination if the current user is not logged in.
+	
+	Example:
+	$this->loginhelper->forceLogin(); // Redirects to login page.
+	
+	$this->loginhelper->forceLogin('Home'); // Redirects to home page.
+	*/
+	public function forceLogin($destination = NULL)
+	{
+		if ($this->isRegistered())
+			return;
+		
+		if ($destination == NULL)
+			$destination = self::LoginURL;
+		
+		try
+		{
+			redirect($destination);
+		}
+		catch (Exception $e)
+		{
+			throw new Exception('$this->loginhelper->forceLogin('. $destination . ') failed.');
+		}
 	}
 	
 	// Marks a login as no longer fresh
