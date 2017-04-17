@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<?php $logged = $this->loginhelper->isRegistered(); ?>
+
 <div class="container" style="margin-top: 76px">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
@@ -73,7 +75,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			<br />
 		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top card-style" src="' . (base_url() . 'Images/listingThumb/' . $item->listing_id) . '" alt="Card image cap">' ?></a>
 			<br /><br />
-    			<a class="btn btn-success btn-sm" href="#" data-toggle='modal' data-target='#buyModal'>Buy</a>
+			<a class="btn btn-success btn-sm" href="#" data-toggle='modal' data-target='#buyModal'>Buy</a>
 		    </p>
 		</div>
 	    </div>
@@ -147,7 +149,13 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="exampleModalLabel">Send a notification to buy this item</h6>
+
+		<!-- NOTE: CHECKING FOR LOGGED IN WILL BE CODED TO ONLY SHOW THE WARNING MESSAGE IF USER NOT LOGGED IN AFTER MILESTONE3 PRESENTATION FOR TIME RELATED ISSUES -->
+		<?php if ($logged)
+                          echo '<h6 class="modal-title" id="exampleModalLabel">Send a notification to buy this item</h6>';
+		      else
+			  echo '<h6>YOU MUST BE LOGGED IN TO CONTACT SELLER</h6>';
+		?>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -160,11 +168,14 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                             'name'          => 'reportText',
                             'style'         => 'height: 100px; resize: none'
                         );
-                        echo form_textarea($data);
+			if ($logged)
+                            echo form_textarea($data);	
                     ?>
 		</div>
                 <div class="modal-footer">
-                   <h6 style="width: 100%">Date: </h6>
+		   <?php if ($logged)
+		             echo '<h6 style="width: 100%">Date: </h6>';
+		    ?>
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
                    <?php
                         $data = array(
@@ -172,7 +183,8 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                             'name'          => 'submit',
                             'value'         => 'Send'
                         );
-                        echo form_submit($data);
+			if ($logged)
+                            echo form_submit($data);
                         echo form_close();
                     ?>
                 </div>
