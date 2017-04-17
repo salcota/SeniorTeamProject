@@ -226,6 +226,16 @@
                 font-size: 24px;
             }
 
+	    .terms-link a {
+		color: #696;
+		font-weight: bold;
+	    }
+
+	    .terms-link a:hover {
+		color: #ADA !important;
+		text-decoration: none !important;
+	    }
+
         </style>
         
     </head>

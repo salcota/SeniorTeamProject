@@ -13,6 +13,8 @@ class Signup extends CI_Controller
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 
+		$this->form_validation->set_rules('terms_agreement', 'Terms & Agreement check', 'required');
+
 		// Uses codeigniter session library to inform the user of errors stored in $login_attributes.
 		if($this->form_validation->run() == FALSE)
 		{

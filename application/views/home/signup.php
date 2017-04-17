@@ -128,9 +128,8 @@
 
     <!--Terms Agreement & Submit Button-->
     <div class="row justify-content-center" style="margin-top: -20px">
-        <div class="col-sm-5 form-group">
+        <div class="col-sm-5 form-group terms-link">
 	    <?php
-		//echo form_label('<span class="small text-muted">I read and agree with the terms and services</span>', 'terms_agreement');
 		$data = array(
 	           'name'     	=> 'terms_agreement',
         	   'id'       	=> 'terms_agreement',
@@ -138,20 +137,21 @@
         	   'checked' 	=>  FALSE
 		);
 		echo form_checkbox($data);
-		echo " I read and agree to the <a href='"?><?php echo base_url() . "About/view/terms'>terms and services</a>";
+		echo " I have read and agree to the <a href='"?><?php echo base_url() . "About/view/terms'>Terms & Services</a>";
 	    ?>
 	</div>
     </div>
 
     <div class="row justify-content-center">
-	<div class="col-sm-5">
+	<div class="col-sm-5" style="text-align: center">
 	    <?php
 		$data = array(
-		    'style' 	=> 'width: 100px',
+		    'style' 	=> 'width: 150px',
 		    'class' 	=> 'btn btn-success',
 		    'name' 	=> 'submit',
 		    'value' 	=> 'Submit',
 	        );
+		echo "<br />";
 		echo form_submit($data);
 	    	echo form_close();	
 	    ?>
