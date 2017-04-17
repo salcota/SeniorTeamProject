@@ -62,25 +62,29 @@ class loginhelper {
 	/*
 	getLoginData()
 	
-	Returns array with data of current user login.
-	Array keys: username, email, userID
+	Returns db-object with data of current user login.
 	
 	Example:
 	$user = $this->loginhelper->getLoginData();
-	echo $user['user_id'];
-	echo $user['username'];
-	echo $user['name'];
-	echo $user['sfsu_email'];
-	echo $user['mobile'];
-	echo $user['biography'];
-	echo $user['password']; // Hashed
-	echo $user['major_id'];
-	echo $user['registration_date'];
-	echo $user['status'];
+	echo $user->user_id;
+	echo $user->username;
+	echo $user->name;
+	echo $user->sfsu_email;
+	echo $user->mobile;
+	echo $user->biography;
+	echo $user->password; // Hashed
+	echo $user->major_id;
+	echo $user->registration_date;
+	echo $user->status;
 	*/
 	public function getLoginData()
 	{
-		return $this->loginInfo;
+		$return = $this->loginInfo;
+		
+		if ($return != NULL)
+			return $return;
+		else
+			throw new Exception('<br>$this->loginhelper->getLoginData(): Failed to get login data.<br>Please check that you are logged in before calling this function. <br>$this->loginhelper->isRegistered == true');
 	}
 	
 	// Returns true if user just logged in.
