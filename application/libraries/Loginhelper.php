@@ -54,7 +54,6 @@ class loginhelper {
 		$this->loginData['userID'] = NULL;
 		$this->loginData['freshLogin'] = false;
 		$this->loginData['urlBeforeLogin'] = NULL;
-		$this->loginData['loginPages'] = array();
 	}
 	
 	
@@ -133,6 +132,9 @@ class loginhelper {
 		$this->loginData['freshLogin'] = true;
 		$this->loginData['urlBeforePage'] = NULL;
 		
+		// Mark loggedIn session variable used by views.
+		$this->CI->session->loggedIn = true;
+		
 		$this->saveSession();
 		
 		// Show welcome messages
@@ -142,6 +144,9 @@ class loginhelper {
 	// Sets user as logged out.
 	public function logout()
 	{
+		// Remove loggedIn session variable used by views
+		$this->CI->session->unset_userdata('loggedIn');
+		
 		// Destroy session data
 		$this->CI->session->unset_userdata('loginhelper');
 		
