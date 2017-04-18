@@ -24,8 +24,8 @@ class Itemlisting extends CI_Controller
         if($this->loginhelper->isRegistered()){
             $userinfo = $this->loginhelper->getLoginData();
 
-            if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
-                $search['user'] = $userinfo['username'];
+            if ( array_key_exists('username', $userinfo[0]) and $userinfo[0]['username'] != NUll){
+                $search['user'] = $userinfo[0]['username'];
                 $items = $this->Item_Listing->getItems($search);
                 //print_r($items);
                 $data['items'] = $items;
