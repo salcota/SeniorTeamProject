@@ -21,20 +21,26 @@ class Itemlisting extends CI_Controller
      */
     public function get_all_listings_of_user(){
 
-        $userinfo = $this->loginhelper->getLoginData();
-        //$data = array('items' => Null);
-        //if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
-            $search['user'] = 'pgupta2';//$userinfo['username'];
-            $items = $this->Item_Listing->getItems($search);
-            //print_r($items);
-            $data['items'] = $items;
-        //}
-        //print_r("Username = ".$userinfo['username']);
-        $this->load->view('home/item_listings',$data);
+        if($this->loginhelper->isRegistered()){
+            $userinfo = $this->loginhelper->getLoginData();
 
-        // Gets basic footer and data that enables javascript, jQuery, and tether for all pages.
-        $this->load->view('common/jquery_tether_bootstrap');
-        $this->load->view('common/footerbar');
+            if ( array_key_exists('username', $userinfo) and $userinfo['username'] != NUll){
+                $search['user'] = $userinfo['username'];
+                $items = $this->Item_Listing->getItems($search);
+                //print_r($items);
+                $data['items'] = $items;
+            }
+                //print_r("Username = ".$userinfo['username']);
+            $this->load->view('home/item_listings',$data);
+
+            // Gets basic footer and data that enables javascript, jQuery, and tether for all pages.
+            $this->load->view('common/jquery_tether_bootstrap');
+            $this->load->view('common/footerbar');
+        }else{
+            $this->loginhelper->forceLogin();
+        }
+
+        //$data = array('items' => Null);
     }
 
     /**
