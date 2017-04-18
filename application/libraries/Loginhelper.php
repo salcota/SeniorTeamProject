@@ -13,7 +13,7 @@ class loginhelper {
 	
 	// Constants
 	const LoginURL = "Home/view/login";
-	const ignoreHist = array("home/view/login", "home/view/signup");
+	const ignoreHist = array("home/view/login", "home/view/signup", "users/login", "signup/login");
 
 	public function __construct()
 	{
