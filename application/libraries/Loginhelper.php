@@ -93,12 +93,19 @@ class loginhelper {
 		try
 		{
 			$info = $this->CI->Reg_User->findUser($this->loginData['userID']);
+			if ($info == NULL)
+				throw new Exception();
 			if (isset($info))
 				return $info;
 		}
 		catch (Exception $e)
 		{
-			return;
+			$id = $this->loginData['userID'];
+			if (!is_numeric($id))
+				$id = "";
+			throw new Exception('<br>$this->loginhelper->getLoginData() failed.<br>' . "
+			UserID: $id<br>
+			Did you check whether we are logged in?");
 		}
 	}
 	
