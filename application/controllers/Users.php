@@ -53,7 +53,7 @@ class Users extends CI_Controller
 				$this->loginhelper->login($userID);
 				
 				// Redirects to previous page.
-				$previousPage = $this->session->flashdata('previousPage');
+				$previousPage = $this->loginhelper->beforeLogin();
 				// Does previous page exist?
 				if ($previousPage != NULL)
 					redirect($previousPage);
@@ -62,10 +62,6 @@ class Users extends CI_Controller
 			}
 			else
 			{
-				// Retains referrer for the next attempt.
-				if ($this->session->flashdata('previousPage') != NULL)
-					$this->session->keep_flashdata('previousPage');
-				
 				$this->session->set_flashdata('login_failed', 'The information you provided is unrecognized.');		
 				redirect('home/view/login');
 			}
