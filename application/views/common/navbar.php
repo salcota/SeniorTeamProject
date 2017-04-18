@@ -54,7 +54,7 @@
             <!-- Right Side Menu: Sell, Sign Up, and Login -->
             <ul class='navbar-nav'>
                 <li class='nav-item'>
-                    <a class='nav-link fix-align align-pt-16' href='<?php echo base_url() . 'Home/view/edit_listing'?>'>Sell</a>
+                    <a class='nav-link fix-align align-pt-16' href='<?php echo base_url() . 'add_item'?>'>Sell</a>
                 </li>
                 <li class='nav-item'>
                     <a class='nav-link fix-align align-pt-16' href='<?php echo base_url() . 'Home/view/signup'?>'>Sign&nbsp;Up</a>
