@@ -5,7 +5,7 @@ class loginhelper {
 	protected $CI;
 	
 	// Copy of session variable
-	public $loginData;
+	private $loginData;
 	
 	
 	// True only if user just finished logging in.
