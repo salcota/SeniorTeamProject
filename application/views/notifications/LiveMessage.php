@@ -1,13 +1,4 @@
 <script>
-function getUsers(callBack)
-{
-	var userList = $.post("<?php echo base_url() . "Message/getUsers"?>", {});
-	userList.done(function (data) {
-		var users = data.split("\r\n");
-		callBack(users);
-	});
-}
-
 function sendMessage(sendName, recvName, msgData, callBack)
 {
 	var req = $.post("<?php echo base_url() . "Message/send";?>", {sender: sendName, receiver: recvName, msgs: msgData});
