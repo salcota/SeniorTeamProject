@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<?php $logged = $this->loginhelper->isRegistered(); ?>
+<?php $logged = $this->session->loggedIn; ?>
 
 <div class="container" style="margin-top: 76px">
 
