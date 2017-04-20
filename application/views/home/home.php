@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<?php $logged = $this->session->loggedIn; ?>
+<?php $logged = $this->loginhelper->isRegistered(); ?>
 
 <div class="container" style="margin-top: 76px">
 
@@ -23,7 +23,7 @@
 Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what it's like to need that extra support to make it through college!
 </p>
 	        <hr /class="my-4">
-                <p class="lead">Want to know more? Search our options!</p>
+                <p class="lead">Want to know more? Use our search and/or category filter to view our options!</p>
 	    </div>
 	</div>
     </div>
@@ -31,7 +31,6 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
     <br /><br />
 
     <hr />
-    
     <div class="row justify-content-center">
 
 	<hr />
@@ -52,7 +51,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                 <li class="nav-item">
                     <div class="btn-group">
                         <a id="sortable" class="nav-link" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false" href="#"><button class="btn btn-success">Sort</button></a>
+                           aria-expanded="false" href="#"><button class="btn btn-success">Sort&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></button></a>
                         <div class="dropdown-menu move" aria-labelledby="sortable">
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('price');document.forms['searchSubmit'].submit()">Price</a>
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('title');document.forms['searchSubmit'].submit()">Name</a>
@@ -86,7 +85,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
     <!-- Displays pagination buttons to navigate through all item listings -->
     <div class="row justify-content-center">
-        <div class="col" style="text-align: center">
+        <div class="d-flex align-self-center" style="text-align: center">
 	    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   	        <div class="btn-group btn-group-sm" role="group" aria-label="First group">
 		    <?php
@@ -137,11 +136,10 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                 </div>
             </div>
         </div>
-
-        <div class="col align-self-end"></div>
-
     </div>
+
     <br />
+
     <hr />
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
