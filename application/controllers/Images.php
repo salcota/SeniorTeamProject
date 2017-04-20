@@ -38,5 +38,19 @@ class Images extends CI_Controller
 		
 		echo $this->Imageloader->showPicThumb($id);
 	}
+	
+	public function userThumb($picId)
+	{
+		header("Content-Type: image/jpeg");
+		
+		echo $this->Imageloader->showUserThumb($picId);
+	}
+	
+	public function userPic($picId)
+	{
+		header("Content-Type: image/jpeg");
+		
+		echo $this->Imageloader->showUserPic($picId);
+	}
 }
 ?>
