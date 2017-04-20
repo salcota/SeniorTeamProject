@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col">
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
-                <h1 class="display-4">Edit Listing</h1>
+                <h1 class="display-4">Post a Listing or Edit Your Current One</h1>
                 <hr class= "my-4">
 		<p class="lead">Edit your new listing or update your current one.</p>
             </div>
