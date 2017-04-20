@@ -13,7 +13,7 @@ class loginhelper {
 	
 	// Constants
 	const LoginURL = "Home/view/login";
-	const ignoreHist = array("home/view/login", "home/view/signup", "users/login", "signup/login");
+	const ignoreHist = array("", "home/view/login", "home/view/signup", "users/login", "signup/login");
 
 	public function __construct()
 	{
@@ -130,7 +130,6 @@ class loginhelper {
 		
 		$this->loginData['userID'] = $userID;
 		$this->loginData['freshLogin'] = true;
-		$this->loginData['urlBeforePage'] = NULL;
 		
 		// Mark loggedIn session variable used by views.
 		$this->CI->session->loggedIn = true;
