@@ -13,7 +13,8 @@ class loginhelper {
 	
 	// Constants
 	const LoginURL = "Home/view/login";
-	const ignoreHist = array("home/view/login", "home/view/signup", "users/login", "signup/login");
+
+	const ignoreHist = array("", "home/view/login", "home/view/signup", "users/login", "signup/login");
 
 	public function __construct()
 	{
@@ -54,7 +55,6 @@ class loginhelper {
 		$this->loginData['userID'] = NULL;
 		$this->loginData['freshLogin'] = false;
 		$this->loginData['urlBeforeLogin'] = NULL;
-		$this->loginData['loginPages'] = array();
 	}
 	
 	
@@ -133,15 +133,21 @@ class loginhelper {
 		$this->loginData['freshLogin'] = true;
 		$this->loginData['urlBeforePage'] = NULL;
 		
+		// Mark loggedIn session variable used by views.
+		$this->CI->session->loggedIn = true;
+		
 		$this->saveSession();
 		
 		// Show welcome messages
-		$this->CI->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in.');
+		$this->CI->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in. <strong>View your menu options to the upper right</strong>.');
 	}
 	
 	// Sets user as logged out.
 	public function logout()
 	{
+		// Remove loggedIn session variable used by views
+		$this->CI->session->unset_userdata('loggedIn');
+		
 		// Destroy session data
 		$this->CI->session->unset_userdata('loginhelper');
 		

@@ -3,7 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Notification extends CI_Controller
 {
-    public function __construct() {}
+	public function __construct()
+	{
+		parent::__construct();
+		
+		// Verify the user is logged in.
+		if (!$this->loginhelper->isRegistered())
+			show_404();
+		
+		$this->load->model("Notification_Model");
+	}
 
     public function get_all_notifications(){}
 

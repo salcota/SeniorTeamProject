@@ -1,5 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<?php $logged = $this->view->session->loggedIn; ?>
+
+<?php 
+	echo "<script>setTimeout(function() {editListingWarning();}, 2000); function editListingWarning() {alert('You must be logged in to save your new listing!')}</script>";
+           endif;
+?>
+
 <div class="container" style="margin-top: 100px">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
@@ -15,7 +22,7 @@
     <div class="row">
         <div class="col">
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
-                <h1 class="display-4">Edit Listing</h1>
+                <h1 class="display-4">Post a Listing or Edit Your Current One</h1>
                 <hr class= "my-4">
 		<p class="lead">Edit your new listing or update your current one.</p>
             </div>

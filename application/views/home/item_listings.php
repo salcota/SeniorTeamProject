@@ -27,7 +27,7 @@
     <!-- Adds a new item listing -->
     <div class="row justify-content-center">
         <div class="col-sm-10" style="text-align: right">
-            <a class="btn btn-success" href="<?php echo base_url() . 'Home/view/edit_listing'?>" target="blank">ADD ITEM</a>
+            <a class="btn btn-success" href="<?php echo base_url() . 'Itemlisting/view/add_itemlisting'?>" target="blank">ADD ITEM</a>
     	</div>
     </div>
 
@@ -53,7 +53,7 @@
                     <td><?php echo "$".$item->price ?></td>
                     <td><?php echo date_format(date_create($item->posted_on),'d-m-Y')?></td>
                     <td>
-		        <a class="btn btn-secondary btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'Home/view/edit_listing'?>" target="blank">Edit</a>
+		        <a class="btn btn-secondary btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'Itemlisting/view/add_itemlisting'?>" target="blank">Edit</a>
                         &emsp;
 		        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'Home/view/edit_listing'?>" target="blank">Remove</a>
                     </td>

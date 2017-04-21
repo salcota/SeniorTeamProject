@@ -1,14 +1,23 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container" style="margin-top: 100px">
+<?php $logged = $this->session->loggedIn; ?>
+
+<div class="container">
+
+    <!-- Notifies user that he or she is logged in if condition is true -->
+    <p>
+        <?php
+            if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
+            endif;
+        ?>
+    </p>
 
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
-            <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
-                <h1 class="display-4">Current Listing</h1>
+            <div class="jumbotron">
+                <h1 class="display-4">Post a New Listing</h1>
                 <hr class= "my-4">
                 <p class-"lead">Edit your new listing or update your current one</p>
             </div>
@@ -19,74 +28,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
     <?php    echo form_open_multipart('post_itemlisting', $attributes); ?>
-    <!-- Displays the listing in a carousel -->
+
     <div class="row justify-content-center">
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
-            <div class="card">
-                <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="dp_item">
-                <div class="card-block">
-                    <h4 class="card-title">Display picture of Item</h4>
-                    <input type='file' name='dp' id="dp" onchange="readImageFile(this,'#dp_item')"/>
-<!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
-            <div class="card" >
-                <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic2">
-                <div class="card-block">
-                    <h4 class="card-title">Pic 2</h4>
-                    <input type='file' name="pic[]" id="pic2" onchange="readImageFile(this,'#pic2')"/>
-                    <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="5px auto 10px">
-            <div class="card" >
-                <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic3">
-                <div class="card-block">
-                    <h4 class="card-title">Pic 3</h4>
-                    <input type='file' name="pic[]" id="pic3" onchange="readImageFile(this,'#pic3')"/>
-                    <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
-            <div class="card" >
-                <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic4">
-                <div class="card-block">
-                    <h4 class="card-title">Pic 4</h4>
-                    <input type='file' name="pic[]" id="pic4" onchange="readImageFile(this,'#pic4')"/>
-                    <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
-            <div class="card" >
-                <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic5">
-                <div class="card-block">
-                    <h4 class="card-title">Pic 5</h4>
-                    <input type='file' name="pic[]" id="pic5" onchange="readImageFile(this,'#pic5')"/>
-                    <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-lg-4" style="margin: 5px auto 10px">
-            <div class="card" >
-                <img class="card-img-top img-responsive" style="max-height: 100%; max-width: 100%" src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" id="pic6">
-                <div class="card-block">
-                    <h4 class="card-title">Pic 6</h4>
-                    <input type='file' name="pic[]" id="pic6" onchange="readImageFile(this,'#pic6')"/>
-                    <!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-                </div>
-            </div>
-        </div>
-
-        <br/>
-        <br/>
-
         <div class="col-sm-10">
-
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
@@ -104,24 +48,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
-                //
+                
                 foreach ($categories as $category) {
                     $options[$category->category_id] = $category->category_name;
                 }
-                /*$options = array(
-                    '1' => 'Accounting',
-                    '2' => 'Broadcast & Electronic Arts&nbsp;&nbsp;',
-                    '3' => 'Computer Science',
-                    '4' => 'Electric Engineering',
-                    '5' => 'Math',
-                );*/
                 echo form_dropdown('category', $options, '1');
                 ?>
             </div>
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Price</span>';
-                //
+                
                 $data = array(
                     'class' => 'form-control',
                     'name' => 'price',
@@ -133,14 +70,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ?>
             </div>
         </div>
-
     </div>
+
     <div class="row justify-content-center">
         <div class="col-sm-10">
             <div class="form-group">
                 <?php
                 echo '<span>Description</span>';
-                //
+                
                 $data = array(
                     'class' => 'form-control',
                     'name' => 'description',
@@ -155,6 +92,82 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 
+    <!-- Displays the listing in a carousel -->
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
+		<p class="small" style="padding-left: 10px; text-align: center">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="dp_item">
+		    <br /><br />
+                    <span class="card-title">Display picture of Item</span>
+		</p>
+		<br />
+                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#dp_item')"/>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
+                <p class="small" style="padding-left: 10px; text-align: center">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic2">
+		    <br /><br />
+                    <span class="card-title">Pic 2</span>
+		</p>
+                <br />
+                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic2')"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
+                <p class="small" style="padding-left: 10px; text-align: center">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic3">
+		    <br /><br />
+                    <span class="card-title">Pic 3</span>
+		</p>
+                <br />
+                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic3')"/>
+            </div>
+        </div>    
+        <div class="col-lg-5">
+            <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
+                <p class="small" style="text-align: center">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic4">
+		    <br /><br />
+                    <span class="card-title">Pic 4</span>
+  	        </p>
+                <br />
+                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic4')"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
+                <p class="small" style="text-align: center">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic5">
+		    <br /><br />
+                    <span class="card-title">Pic 5</span>
+    		</p>
+                <br />
+                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic5')"/>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
+                <p class="small" style="text-align: center">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic6">
+		    <br /><br />
+                    <span class="card-title">Pic 6</span>
+		</p>
+                <br />
+                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic6')"/>
+            </div>
+        </div>
+    </div>
+
     <div class="row justify-content-center">
         <div class="col-sm-10" style="text-align: right">
             <?php
@@ -163,23 +176,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'class' => 'btn btn-success',
                 'name' => 'reset',
                 'value' => 'Reset',
-                'style' => 'width: 100px'
+                'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
             );
             echo form_reset($data);
             ?>
             &emsp;
             <?php
-            $data = array(
-                'style' => 'width: 100px',
-                'class' => 'btn btn-success',
-                'name' => 'submit',
-                'value' => 'Save',
-                'style' => 'width: 100px'
-            );
-            echo form_submit($data);
+		if (!$logged)
+		{
+                    echo "<a class='btn btn-success' data-toggle='popover' data-placement='left' style='color: #fff; cursor: pointer; margin-top: 10px; width: 100px' title='Warning' data-content='You must be logged in to save a new or edited listing.'>Submit</a>"; 
+		}
+		else
+		{
+            	    $data = array(
+                        'style' => 'width: 100px',
+                    	'class' => 'btn btn-success',
+                    	'name' => 'submit',
+                    	'value' => 'Save',
+                    	'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
+                    	);
+                    echo form_submit($data);
+		}
             ?>
         </div>
     </div>
+
 
     <?php form_close(); ?>
 

@@ -9,22 +9,22 @@
 
     <div id='topheader'></div>
 
-    <nav class='navbar navbar-toggleable-sm navbar-light fixed-top navbar' style="min-height: 65px">
+    <nav class='navbar navbar-toggleable-sm navbar-light fixed-top navbar' style="min-height: 82px">
 
-        <button style="border-style: none; cursor: pointer; margin-right: -10px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i class="fa fa-bars" style="color: #EEE; font-size: 35px; padding-top: 7px; padding-right: -8px" aria-hidden="true"></i></button>
+        <button style="border: solid 1px #696; border-radius: 6px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i class="fa fa-bars" style="color: #EEE; font-size: 50px; height: 60px; padding-top: 5px; width: 60px" aria-hidden="true"></i></button>
 
 	<!-- Left Side Menu: Logo & Home-->
-        <a href='<?php echo base_url() . 'Home/view/home' ?>'><img style= "background-color: #FFF; border-radius: 6px; height: 55px; width: 55px"  src='<?php echo base_url() . 'public/images/logo.png'?>'></a>
+        <a href='<?php echo base_url() . 'Home/view/home' ?>'><img style= "background-color: #FFF; border-radius: 6px; height: 70px; width: 70px"  src='<?php echo base_url() . 'public/images/logo.png'?>'></a>
 
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav mr-auto'>
                 <li class='nav-item active'>
-                    <a class="nav-link fix-align align-pt-16" style="width: 125px" href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
+                    <a class="nav-link fix-align align-pt-16" style='width: 125px' href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
                 </li>
             </ul>
 
             <!-- Centered Category Search & Input Search -->
-            <form class='form-inline fix-align mr-auto' style='padding-top: 4px' action="<?php echo base_url() . "home" ?>" id="searchSubmit" method=GET>
+            <form class='form-inline mr-auto fix-align' style='padding-top: 4px' action="<?php echo base_url() . "home" ?>" id="searchSubmit" method=GET>
                 <label class='sr-only' for='inlineFormInputGroup'>Search</label>
                     <div class='input-group mb-2 mr-sm-2 mb-sm-0'>
                         <div class='form-group'>
