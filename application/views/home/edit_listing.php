@@ -1,5 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<?php $logged = $this->view->session->loggedIn; ?>
+
+<?php 
+	echo "<script>setTimeout(function() {editListingWarning();}, 2000); function editListingWarning() {alert('You must be logged in to save your new listing!')}</script>";
+           endif;
+?>
+
 <div class="container" style="margin-top: 100px">
 
     <!-- Notifies user that he or she is logged in if condition is true -->

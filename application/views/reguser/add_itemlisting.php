@@ -1,8 +1,17 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+<?php $logged = $this->session->loggedIn; ?>
 
 <div class="container">
+
+    <!-- Notifies user that he or she is logged in if condition is true -->
+    <p>
+        <?php
+            if($this->session->flashdata('login_success')):
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
+            endif;
+        ?>
+    </p>
 
     <!-- Subtitle Header -->
     <div class="row">
@@ -167,23 +176,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 'class' => 'btn btn-success',
                 'name' => 'reset',
                 'value' => 'Reset',
-                'style' => 'width: 100px'
+                'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
             );
             echo form_reset($data);
             ?>
             &emsp;
             <?php
-            $data = array(
-                'style' => 'width: 100px',
-                'class' => 'btn btn-success',
-                'name' => 'submit',
-                'value' => 'Save',
-                'style' => 'width: 100px'
-            );
-            echo form_submit($data);
+		if (!$logged)
+		{
+                    echo "<a class='btn btn-success' data-toggle='popover' data-placement='top' style='color: #FFF; cursor: pointer; margin-top: 10px; width: 100px' title='Warning' data-content='You must be logged in to save a new or edited listing.'>Submit</a>"; 
+		}
+		else
+		{
+            	    $data = array(
+                        'style' => 'width: 100px',
+                    	'class' => 'btn btn-success',
+                    	'name' => 'submit',
+                    	'value' => 'Save',
+                    	'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
+                    	);
+                    echo form_submit($data);
+		}
             ?>
         </div>
     </div>
+
 
     <?php form_close(); ?>
 
