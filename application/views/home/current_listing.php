@@ -73,7 +73,7 @@
                 if($logged)
 	            echo "<tr><td><a class='btn btn-success' href='#' data-toggle='modal' data-target='#buyModal' style='cursor: pointer; width: 100%'>Buy</a></td></tr>";
 		else
-		    echo "<tr><td><a class='btn btn-success' data-toggle='popover' data-placement='top' data-content='You must be logged in to contact seller.' style='color: #fff; cursor: pointer; width: 100%'>Buy</a></td></tr>";
+		    echo "<tr><td><a class='btn btn-success' data-toggle='popover' data-placement='right' data-content='You must be logged in to contact seller.' style='color: #fff; cursor: pointer; width: 100%'>Buy</a></td></tr>";
 
                 echo "</table>";
             ?>
@@ -103,9 +103,11 @@
                     ?>
                 </div>
                 <div class="modal-footer">
-                   <h6 style="width: 100%">Date: </h6>
-                   <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                   <?php
+                    <span style="width: 100%">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "March 10, 2017"; ?>
+                    <br /><?php $location = 'Quad'; echo 'Meetup: ' . $location; ?></span>
+                    <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
+                    <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
+                    <?php
                         $data = array(
                             'class'         => 'btn btn-success btn-sm',
                             'name'          => 'submit',

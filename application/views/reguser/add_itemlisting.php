@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col">
             <div class="jumbotron">
-                <h1 class="display-4">Post or Edit a Listing</h1>
+                <h1 class="display-4">Post a New Listing</h1>
                 <hr class= "my-4">
                 <p class-"lead">Edit your new listing or update your current one</p>
             </div>
@@ -184,7 +184,7 @@
             <?php
 		if (!$logged)
 		{
-                    echo "<a class='btn btn-success' data-toggle='popover' data-placement='top' style='color: #FFF; cursor: pointer; margin-top: 10px; width: 100px' title='Warning' data-content='You must be logged in to save a new or edited listing.'>Submit</a>"; 
+                    echo "<a class='btn btn-success' data-toggle='popover' data-placement='left' style='color: #fff; cursor: pointer; margin-top: 10px; width: 100px' title='Warning' data-content='You must be logged in to save a new or edited listing.'>Submit</a>"; 
 		}
 		else
 		{
