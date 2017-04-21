@@ -56,6 +56,23 @@ class Notification_Model extends CI_Model
 			$debug = $this->db->db_debug;
 			$this->db->db_debug = false;
 			
+			// Verify the sender or receiver is the listing owner.
+			$owner['listingID'] = $listing;
+			$owner = $this->Item_Listing->getItems($owner);
+			
+			if (count($owner) < 1)
+			{
+				$this->db->db_debug = $debug;
+				return false;
+			}
+			
+			$owner = $owner[0]->user_id;
+			if ($owner != $sender && $owner != $recv)
+			{
+				$this->db->db_debug = $debug;
+				return false;
+			}
+			
 			// Create array with item details.
 			$dbItem = array('sender_id' => $sender, 'receiver_id' => $recv, 'listing_id' => $listing, 'message' => $msg);
 			
@@ -70,24 +87,6 @@ class Notification_Model extends CI_Model
 				$this->db->db_debug = $debug;
 				throw new Exception("Cannot add message");
 			}
-		}
-		
-		private function list2user($listing)
-		{
-			if (!is_numeric($listing))
-				throw new Exception("Listing ID is not numerical.");
-				
-			// Retrieve the listing
-			$search['listingID'] = $listing;
-			$data = $this->Item_Listing->getItems($search);
-			
-			// Check if the listing exists
-			if (count($data) < 1)
-				throw new Exception("Item Listing does not exist.");
-			else
-				$data = $data[0];
-			
-			return $data->username;
 		}
 }
 ?>
