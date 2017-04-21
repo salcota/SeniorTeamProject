@@ -137,7 +137,7 @@ class loginhelper {
 		$this->saveSession();
 		
 		// Show welcome messages
-		$this->CI->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in. View your menu options to the right of the search bar.');
+		$this->CI->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in. <strong>View your menu options to the upper right</strong>.');
 	}
 	
 	// Sets user as logged out.

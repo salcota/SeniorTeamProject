@@ -148,7 +148,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
     <hr />
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
-    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
+    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
@@ -173,7 +173,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
                 <div class="modal-footer">
 		   <span style="width: 100%">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "March 10, 2017"; ?>
-		   <br /><?php $location = 'Quad'; echo 'Meetup: ' . $location; ?></span>
+		   <br /><?php $location = 'Spot 1 - Quad'; echo 'Meetup: ' . $location; ?></span>
 		   <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
                    <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
                    <?php
