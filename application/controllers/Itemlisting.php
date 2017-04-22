@@ -105,6 +105,12 @@ class Itemlisting extends CI_Controller
 
                 $this->upload->initialize($config);
 
+                if ( ! is_really_writable($config['upload_path']))
+                {
+                    $this->set_error('upload_not_writable');
+                    return FALSE;
+                }
+
                 if ( !$this->upload->do_upload('dp'))
                 {
                     $error = array('error' => $this->upload->display_errors());
