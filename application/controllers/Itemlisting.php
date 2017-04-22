@@ -5,6 +5,7 @@ class Itemlisting extends CI_Controller
 {
 
     private $userinfo;
+    private $uploadpath;
 
     public function __construct()
     {
@@ -18,6 +19,7 @@ class Itemlisting extends CI_Controller
 		$this->navbars->load();
 
         $this->userinfo = $this->loginhelper->getLoginData();
+        $this->uploadpath = './public/temp/';
     }
 
     /**
@@ -92,7 +94,7 @@ class Itemlisting extends CI_Controller
      * Saves an itemlisting with images
      */
     public function post_listing(){
-        $path = './public/temp/';
+
         $this->load->model('Category');
         $data['categories'] = $this->Category->getCategories();
 
@@ -100,7 +102,7 @@ class Itemlisting extends CI_Controller
 
             if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
 
-                $config['upload_path']          = $path;
+                $config['upload_path']          = $this->uploadpath;
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 5120;
                 $config['max_width']            = 1024;
@@ -112,7 +114,7 @@ class Itemlisting extends CI_Controller
                 {
                     $error = array('error' => $this->upload->display_errors());
                     print_r("Failed to upload DP ".$error);
-                    http_redirect('add_item',$error);
+                    redirect('add_item',$error);
                 }
                 else
                 {
@@ -135,7 +137,7 @@ class Itemlisting extends CI_Controller
                                     $picdata = $this->upload->data();
                                     $this->genthumbnail($picdata['full_path']);
                                     $this->Item_Listing->addItemPicture($listing_id, $picdata);
-                                    unlink($path.$pic['name']);
+                                    unlink($this->uploadpath.$pic['name']);
                                 }
                             }// end of for each
                         }//end of if
@@ -148,18 +150,22 @@ class Itemlisting extends CI_Controller
                 //Todo
                 $error = array('error' => "No DP was provided");
                 print_r($error);
-                http_redirect('add_item',$error);
+                redirect('add_item',$error);
             }
 
         }catch(Exception $e){
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }finally{
-            if(file_exists($path)){
+            if(file_exists($this->uploadpath)){
                 $filename = $_FILES['dp']['name'];
-                str_replace(" ","_",$filename);
-                unlink($path.$filename);
+                $this->deleteTempFiles($this->uploadpath.$filename);
             }
         }
+    }
+
+    private function deleteTempFiles($filename){
+        str_replace(" ","_",$filename);
+        unlink($filename);
     }
 
     private function genListingDetails(){
