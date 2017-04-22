@@ -170,7 +170,7 @@ class Item_Listing extends CI_Model
 	public function addItemListing($listing, $imgdata){
 
 	    $debug = $this->db->db_debug;
-        $this->db->db_debug = false;
+        //$this->db->db_debug = false;
         print_r($imgdata['full_path']);
         $find = array(" ", ".");
         $dp_path = str_replace(" ", "_", $imgdata['full_path']);
@@ -186,7 +186,7 @@ class Item_Listing extends CI_Model
 	    }else{
 
             $this->db->db_debug = $debug;
-            throw new Exception("Failed to insert item in the db");
+            throw new Exception($this->db->error_message());
 
 	    }
     }
