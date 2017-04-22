@@ -192,6 +192,8 @@ class Itemlisting extends CI_Controller
                 'item_form_errors' => validation_errors()
             );
             $this->session->set_flashdata($data);
+            print_r(($this->session->flashdata('item_form_errors')));
+            exit;
             redirect('add_item');
         }
         else
