@@ -171,7 +171,8 @@ class Item_Listing extends CI_Model
 
 	    $debug = $this->db->db_debug;
         $this->db->db_debug = false;
-
+        print_r($imgdata['full_path']);
+        $find = array(" ", ".");
         $dp_path = str_replace(" ", "_", $imgdata['full_path']);
         $listing['display_pic'] = file_get_contents($dp_path);
 
