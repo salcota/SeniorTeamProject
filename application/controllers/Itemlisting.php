@@ -143,6 +143,7 @@ class Itemlisting extends CI_Controller
                                 }
                             }// end of for each
                         }//end of if
+                        echo "No item pics found";
                         redirect('add_item');
                     }
                     //$this->load->view('upload_success', $data);
