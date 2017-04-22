@@ -27,10 +27,15 @@
 
 
 	<div class="col-sm-5" style="margin-bottom: 10px">
-            <div class="card" style="margin: 0 auto 10 auto; padding: 5px">
+            <div class="card" style="margin: 0 auto 10 auto; padding: 5 5 0 5">
 		<p class="small" style="padding-left: 10px; text-align: center">
-                    <img class="card-img-top card-style" src="<?php echo $pic;?>" alt="Profile Picture"/>
-	    </div>
+                    <img class="card-img-top card-style"  src="<?php echo $pic ?>" alt="Card image cap" accept="image/*" id="dp_item">
+		    <br /><br />
+                    <span class="card-title">Edit your profile picture</span>
+		</p>
+
+                <input class="form-control" style = "margin-bottom: 5px" type='file' name='dp' id="dp" onchange="readImageFile(this,'#dp_item')"/>
+            </div>
         </div> 
 	
 	    <!--  Username -->
@@ -70,22 +75,8 @@
                 ?>
             </div>
 
-	    <!-- Profile Picture -->
-            <div class="form-group input-group">
-                <?php
-                    echo '<span class="input-group-addon span-for-profile">Profile Picture</span>';
-                    // 
-                    $data = array(
-                        'class' => 'form-control',
-                        'name' => 'userfile',
-                        'type' => 'file',
-                        'size' => '100',
-                    );
-            	    $value ="";
-                    echo form_upload($data, $value);
-                ?>
-            </div>
-
+	    
+	
 	    <!-- Major -->
             <div class="form-group input-group">
                 <?php

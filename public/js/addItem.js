@@ -3,21 +3,21 @@ function readImageFile(input, id){
 
             if(input.files[0].size >= 1024*1024*5){
                 alert("Cannot upload images with size > 5MB");
-            }else{
-                // var image = new Image();
-                // image.onload = function(){
-                //alert('image loaded');
-                //var url = window.URL || window.webkitURL;
-                // $(id).attr('src', url.createObjectURL(input.files[0]));
+             }else if(input.files[0].type.match('image')){
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $(id).attr('src', e.target.result);
+                    var image = new Image();
+                    image.addEventListener("load",function(){
+                        $(id).attr('src', e.target.result);
+                    });
+                    image.addEventListener("error",function(){
+                        alert("Please upload image with .png|.jpg|.jpeg extension");
+                    });
+                    image.src = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
-                //}
-                //image.onerror = function(){
-                //alert("Must be an image");
-                //}
+            }else{
+                alert("Please upload image with .png|.jpg|.jpeg extension");
             }
         }else{
             console.log("Invalid input");
