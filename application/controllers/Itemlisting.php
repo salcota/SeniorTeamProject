@@ -109,6 +109,7 @@ class Itemlisting extends CI_Controller
                 {
                     $error = array('error' => $this->upload->display_errors());
                     print_r($error);
+                    print_r($config);
                     return;
                     //$this->load->view('upload_form', $error);
                 }
