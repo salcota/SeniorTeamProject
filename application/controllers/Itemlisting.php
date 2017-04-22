@@ -98,7 +98,7 @@ class Itemlisting extends CI_Controller
             if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
                 print_r($path);
                 $config['upload_path']          = $path;
-                $config['allowed_types']        = 'gif|jpg|png|jpeg';
+                $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 5120;
                 $config['max_width']            = 1024;
                 $config['max_height']           = 768;

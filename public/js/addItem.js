@@ -8,7 +8,6 @@ function readImageFile(input, id){
                 reader.onload = function (e) {
                     var image = new Image();
                     image.addEventListener("load",function(){
-                        alert(e.target.result);
                         $(id).attr('src', e.target.result);
                     });
                     image.addEventListener("error",function(){

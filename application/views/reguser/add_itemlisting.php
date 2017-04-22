@@ -27,7 +27,7 @@
     <br/>
 
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
-    <?php    echo form_open_multipart('post_itemlisting', $attributes); ?>
+    <?php echo form_open_multipart('post_itemlisting', $attributes); ?>
 
     <div class="row justify-content-center">
         <div class="col-sm-10">
@@ -113,7 +113,7 @@
                     <span class="card-title">Pic 2</span>
 		</p>
                 <br />
-                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic2')"/>
+                <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic2')"/>
             </div>
         </div>
     </div>
@@ -127,7 +127,7 @@
                     <span class="card-title">Pic 3</span>
 		</p>
                 <br />
-                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic3')"/>
+                <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic3')"/>
             </div>
         </div>    
         <div class="col-lg-5">
@@ -138,7 +138,7 @@
                     <span class="card-title">Pic 4</span>
   	        </p>
                 <br />
-                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic4')"/>
+                <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic4')"/>
             </div>
         </div>
     </div>
@@ -152,7 +152,7 @@
                     <span class="card-title">Pic 5</span>
     		</p>
                 <br />
-                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic5')"/>
+                <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic5')"/>
             </div>
         </div>
         <div class="col-lg-5">
@@ -163,7 +163,7 @@
                     <span class="card-title">Pic 6</span>
 		</p>
                 <br />
-                <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#pic6')"/>
+                <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic6')"/>
             </div>
         </div>
     </div>
