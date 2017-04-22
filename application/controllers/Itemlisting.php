@@ -180,7 +180,7 @@ class Itemlisting extends CI_Controller
             array('required' => 'You must provide a %s.')
         );
         $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[200]');
-        exit;
+
         if ($this->form_validation->run() == FALSE)
         {
             if(file_exists($this->uploadpath)){
