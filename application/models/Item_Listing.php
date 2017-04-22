@@ -170,13 +170,11 @@ class Item_Listing extends CI_Model
 	public function addItemListing($listing, $imgdata){
 
 	    $debug = $this->db->db_debug;
-        //$this->db->db_debug = false;
-        print_r($imgdata['full_path']);
-        $find = array(" ", ".");
-        $dp_path = str_replace(" ", "_", $imgdata['full_path']);
-        $listing['display_pic'] = file_get_contents($dp_path);
+        $this->db->db_debug = false;
 
-        $listing['dp_thumbnail'] = file_get_contents($imgdata['file_path'].str_replace(" ", "_", $imgdata['raw_name']).'_thumb'.$imgdata['file_ext']);
+        $listing['display_pic'] = file_get_contents($imgdata['full_path']);
+
+        $listing['dp_thumbnail'] = file_get_contents($imgdata['file_path'].$imgdata['raw_name'].'_thumb'.$imgdata['file_ext']);
 
 	    if($this->db->insert('item_listing',$listing)){
 

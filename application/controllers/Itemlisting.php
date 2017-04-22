@@ -6,6 +6,7 @@ class Itemlisting extends CI_Controller
 
     private $userinfo;
     private $uploadpath;
+    private $fileToDelete;
 
     public function __construct()
     {
@@ -119,7 +120,7 @@ class Itemlisting extends CI_Controller
                 else
                 {
                     $imgdata = $this->upload->data();
-
+                    $this->fileToDelete = $imgdata['full_path'];
                     $this->genthumbnail($imgdata['full_path']);
 
                     $listing = $this->genListingDetails();
@@ -132,8 +133,9 @@ class Itemlisting extends CI_Controller
                     }else{
                         if(!empty($_FILES['pic']['name'])){
                             $files = $this->diverse_array($_FILES['pic']);
+                            print_r($files);
                             foreach ($files as $pic){
-                                if($this->upload->do_upload($pic)){
+                                if($this->upload->do_upload($pic['name'])){
                                     $picdata = $this->upload->data();
                                     $this->genthumbnail($picdata['full_path']);
                                     $this->Item_Listing->addItemPicture($listing_id, $picdata);
@@ -157,15 +159,12 @@ class Itemlisting extends CI_Controller
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }finally{
             if(file_exists($this->uploadpath)){
-                $filename = $_FILES['dp']['name'];
-                $this->deleteTempFiles($this->uploadpath.$filename);
+                $filename = $this->fileToDelete;
+                unlink($filename);
+                $filename = str_replace(".", "_thumb.", $filename);
+                unlink($filename);
             }
         }
-    }
-
-    private function deleteTempFiles($filename){
-        $filename = str_replace(" ", "_", $filename);
-        unlink($filename);
     }
 
     private function genListingDetails(){
