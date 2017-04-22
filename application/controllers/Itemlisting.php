@@ -192,7 +192,7 @@ class Itemlisting extends CI_Controller
             $this->load->model('Reg_User');
             $userid = $this->Reg_User->getUserIdByUsername($this->userinfo->username);
             $listing = array(
-                'seller_id' => $userid,
+                'seller_id' => $userid[0]->user_id,
                 'category_id' => $this->input->post('category'),
                 'title' => $this->input->post('name'),
                 'price' => $this->input->post('price'),
