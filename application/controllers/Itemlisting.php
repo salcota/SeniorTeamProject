@@ -155,7 +155,9 @@ class Itemlisting extends CI_Controller
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }finally{
             if(file_exists($path)){
-                unlink($path.$_FILES['dp']['name']);
+                $filename = $_FILES['dp']['name'];
+                str_replace(" ","_",$filename);
+                unlink($path.$filename);
             }
         }
     }
@@ -172,7 +174,7 @@ class Itemlisting extends CI_Controller
         if ($this->form_validation->run() == FALSE)
         {
             print_r(validation_errors());
-            $this->session->flash_data('item_form_errors', validation_errors());
+            $this->session->set_flashdata('item_form_errors', validation_errors());
             redirect('add_item');
         }
         else
