@@ -9,11 +9,17 @@ class Notification extends CI_Controller
 		
 		// Verify the user is logged in.
 		if (!$this->loginhelper->isRegistered())
-			show_404();
+			//show_404();
 		
 		$this->load->model("Notification_Model");
 	}
 
+	public function index()
+	{
+		$data = $this->Notification_Model->getBuyers(1);
+		print_r ($data);
+	}
+	
     public function get_all_notifications(){}
 
     public function delete(){}

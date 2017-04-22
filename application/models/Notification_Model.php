@@ -11,7 +11,7 @@ class Notification_Model extends CI_Model
 			$this->load->model('Item_Listing');
     	}
 
-    	public function getAllNotifications($buyer, $seller)
+    	public function getNotifications($buyer, $seller)
 		{
 			// Turn off debugging
 			$debug = $this->db->db_debug;
@@ -87,6 +87,23 @@ class Notification_Model extends CI_Model
 				$this->db->db_debug = $debug;
 				throw new Exception("Cannot add message");
 			}
+		}
+		
+		public function getBuyers($sellerID)
+		{
+			if (!is_Numeric($sellerID))
+				return;
+			
+			$this->db->select('from.user_id, from.username');
+			$this->db->from('reg_user_notification seller');
+			$this->db->join('item_listing', 'seller.listing_id = item_listing.listing_id');
+			$this->db->join('reg_user sell', 'item_listing.seller_id = sell.user_id');
+			$this->db->join('reg_user from', 'from.user_id = seller.sender_id');
+			$this->db->distinct();
+			$this->db->where("seller.receiver_id", $sellerID);
+			
+			$result = $this->db->get()->result();
+			return $result;
 		}
 }
 ?>
