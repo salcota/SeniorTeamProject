@@ -10,6 +10,9 @@
             if($this->session->flashdata('login_success')):
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
             endif;
+            if($this->session->flashdata('item_form_errors')):
+                echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('item_form_errors') . "</div>";
+            endif;
         ?>
     </p>
 
@@ -26,6 +29,7 @@
 
     <br/>
 
+<?php if($error) echo "<div class='alert alert-success' role='alert'>" . $error . "</div>";?>
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
     <?php echo form_open_multipart('post_itemlisting', $attributes); ?>
 

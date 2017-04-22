@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Itemlisting extends CI_Controller
 {
 
+    private $userinfo;
+
     public function __construct()
     {
 	// Gets item listing,  basic header and styles for all pages.
@@ -14,6 +16,8 @@ class Itemlisting extends CI_Controller
  
         // Load navbar
 		$this->navbars->load();
+
+        $this->userinfo = $this->loginhelper->getLoginData();
     }
 
     /**
@@ -22,10 +26,10 @@ class Itemlisting extends CI_Controller
     public function get_all_listings_of_user(){
 
         if($this->loginhelper->isRegistered()){
-            $userinfo = $this->loginhelper->getLoginData();
+
             //print_r($userinfo);
-            if ( $userinfo->username != NUll){
-                $search['user'] = $userinfo->username;
+            if ( $this->userinfo->username != NUll){
+                $search['user'] = $this->userinfo->username;
                 $items = $this->Item_Listing->getItems($search);
                 //print_r($items);
                 $data['items'] = $items;
@@ -95,7 +99,7 @@ class Itemlisting extends CI_Controller
         try{
 
             if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
-                //$_FILES['dp']['name'] = uniqid(rand());
+
                 $config['upload_path']          = $path;
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 5120;
@@ -107,23 +111,21 @@ class Itemlisting extends CI_Controller
                 if ( !$this->upload->do_upload('dp'))
                 {
                     $error = array('error' => $this->upload->display_errors());
-                    return;
-                    //$this->load->view('upload_form', $error);
+                    print_r("Failed to upload DP ".$error);
+                    http_redirect('add_item',$error);
                 }
                 else
                 {
                     $imgdata = $this->upload->data();
+
                     $this->genthumbnail($imgdata['full_path']);
 
                     $listing = $this->genListingDetails();
 
-                    if($listing == Null){
-
-                    }
-
                     $listing_id = $this->Item_Listing->addItemListing($listing, $imgdata);
 
                     if($listing_id == Null){
+                        print_r("Listing id = null");
                         redirect('add_item');
                     }else{
                         if(!empty($_FILES['pic']['name'])){
@@ -133,6 +135,7 @@ class Itemlisting extends CI_Controller
                                     $picdata = $this->upload->data();
                                     $this->genthumbnail($picdata['full_path']);
                                     $this->Item_Listing->addItemPicture($listing_id, $picdata);
+                                    unlink($path.$pic['name']);
                                 }
                             }// end of for each
                         }//end of if
@@ -143,17 +146,16 @@ class Itemlisting extends CI_Controller
 
             }else{
                 //Todo
-                $error = array('error' => "No image was provided");
+                $error = array('error' => "No DP was provided");
                 print_r($error);
-                return;
+                http_redirect('add_item',$error);
             }
 
         }catch(Exception $e){
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }finally{
             if(file_exists($path)){
-                delete_files($path);
-                rmdir($path);
+                unlink($path.$_FILES['dp']['name']);
             }
         }
     }
@@ -169,14 +171,14 @@ class Itemlisting extends CI_Controller
 
         if ($this->form_validation->run() == FALSE)
         {
-            print_r( validation_errors());
-            return;
+            print_r(validation_errors());
+            $this->session->flash_data('item_form_errors', validation_errors());
+            redirect('add_item');
         }
         else
         {
             $this->load->model('Reg_User');
-            //todo remove hard coded value
-            $userid = $this->Reg_User->getUserIdByUsername('pgupta2');
+            $userid = $this->Reg_User->getUserIdByUsername($this->userinfo->username);
             $listing = array(
                 'seller_id' => $userid,
                 'category_id' => $this->input->post('category'),
