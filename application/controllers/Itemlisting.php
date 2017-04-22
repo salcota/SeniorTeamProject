@@ -164,7 +164,7 @@ class Itemlisting extends CI_Controller
     }
 
     private function deleteTempFiles($filename){
-        str_replace(" ","_",$filename);
+        $filename = str_replace(" ", "_", $filename);
         unlink($filename);
     }
 
@@ -179,6 +179,10 @@ class Itemlisting extends CI_Controller
 
         if ($this->form_validation->run() == FALSE)
         {
+            if(file_exists($this->uploadpath)){
+                $filename = $_FILES['dp']['name'];
+                $this->deleteTempFiles($this->uploadpath.$filename);
+            }
             print_r(validation_errors());
             $this->session->set_flashdata('item_form_errors', validation_errors());
             redirect('add_item');
