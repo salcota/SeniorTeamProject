@@ -88,7 +88,7 @@ class Itemlisting extends CI_Controller
      * Saves an itemlisting with images
      */
     public function post_listing(){
-        $path = APPPATH . 'public/images/';
+        $path = APPPATH . 'public/temp/';
 
         try{
            /* if(!file_exists($path)){
@@ -105,10 +105,11 @@ class Itemlisting extends CI_Controller
 
                 $this->upload->initialize($config);
 
-                if ( ! is_really_writable($config['upload_path']))
+                if ( !is_really_writable($config['upload_path']))
                 {
-                    $this->set_error('upload_not_writable');
-                    return FALSE;
+                    $error = array('error' => "un-writable directory");
+                    print_r($error);
+                    return;
                 }
 
                 if ( !$this->upload->do_upload('dp'))
