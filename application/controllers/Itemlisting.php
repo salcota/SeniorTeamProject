@@ -88,7 +88,7 @@ class Itemlisting extends CI_Controller
      * Saves an itemlisting with images
      */
     public function post_listing(){
-        $path = APPPATH . 'public/temp/';
+        $path = BASEPATH . 'public/temp/';
 
         try{
            /* if(!file_exists($path)){
