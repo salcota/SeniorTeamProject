@@ -187,8 +187,11 @@ class Itemlisting extends CI_Controller
                 unlink($this->fileToDelete);
                 unlink(str_replace(".","_thumb.", $this->fileToDelete));
             }
-            print_r(validation_errors());
-            $this->session->set_flashdata('item_form_errors', validation_errors());
+            //print_r(validation_errors());
+            $data = array(
+                'item_form_errors' => validation_errors()
+            );
+            $this->session->set_flashdata($data);
             redirect('add_item');
         }
         else
