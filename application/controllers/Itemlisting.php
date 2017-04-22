@@ -127,13 +127,17 @@ class Itemlisting extends CI_Controller
 
                     $listing_id = $this->Item_Listing->addItemListing($listing, $imgdata);
 
+                    unlink($this->fileToDelete);
+                    unlink(str_replace(".","_thumb.", $this->fileToDelete));
+
                     if($listing_id == Null){
                         print_r("Listing id = null");
                         redirect('add_item');
                     }else{
+
                         if(!empty($_FILES['pic']['name'])){
                             $files = $this->diverse_array($_FILES['pic']);
-                            print_r($files);
+                        //    print_r($files);
                             foreach ($files as $pic){
                                 if($this->upload->do_upload($pic['name'])){
                                     $picdata = $this->upload->data();
@@ -180,8 +184,8 @@ class Itemlisting extends CI_Controller
         if ($this->form_validation->run() == FALSE)
         {
             if(file_exists($this->uploadpath)){
-                $filename = $_FILES['dp']['name'];
-                $this->deleteTempFiles($this->uploadpath.$filename);
+                unlink($this->fileToDelete);
+                unlink(str_replace(".","_thumb.", $this->fileToDelete));
             }
             print_r(validation_errors());
             $this->session->set_flashdata('item_form_errors', validation_errors());
