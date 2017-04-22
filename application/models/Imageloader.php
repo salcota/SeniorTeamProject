@@ -37,7 +37,7 @@ class Imageloader extends CI_Model
 	
 	public function showUserThumb($id)
 	{
-		$this->db->where('pic_id', $id);
+		$this->db->where('user_id', $id);
 		$img = $this->db->get('reg_user_pic');
 		$img = $img->result()[0]->thumbnail;
 		return $img;
@@ -45,7 +45,7 @@ class Imageloader extends CI_Model
 	
 	public function showUserPic($id)
 	{
-		$this->db->where('pic_id', $id);
+		$this->db->where('user_id', $id);
 		$img = $this->db->get('reg_user_pic');
 		$img = $img->result()[0]->pic;
 		return $img;
