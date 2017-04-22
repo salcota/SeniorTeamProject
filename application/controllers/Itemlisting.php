@@ -89,14 +89,13 @@ class Itemlisting extends CI_Controller
      */
     public function post_listing(){
         $path = './public/temp/';
+        $this->load->model('Category');
+        $data['categories'] = $this->Category->getCategories();
 
         try{
-           /* if(!file_exists($path)){
-                print_r($path);
-                mkdir($path,0777,true);
-            }*/
+
             if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
-                print_r($path);
+                $_FILES['dp']['name'] = uniqid(rand());
                 $config['upload_path']          = $path;
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 5120;
@@ -105,18 +104,9 @@ class Itemlisting extends CI_Controller
 
                 $this->upload->initialize($config);
 
-                if ( !is_really_writable($config['upload_path']))
-                {
-                    $error = array('error' => "un-writable directory");
-                    print_r($error);
-                    return;
-                }
-
                 if ( !$this->upload->do_upload('dp'))
                 {
                     $error = array('error' => $this->upload->display_errors());
-                    print_r($error);
-                    print_r($config);
                     return;
                     //$this->load->view('upload_form', $error);
                 }
@@ -126,6 +116,10 @@ class Itemlisting extends CI_Controller
                     $this->genthumbnail($imgdata['full_path']);
 
                     $listing = $this->genListingDetails();
+
+                    if($listing == Null){
+
+                    }
 
                     $listing_id = $this->Item_Listing->addItemListing($listing, $imgdata);
 
