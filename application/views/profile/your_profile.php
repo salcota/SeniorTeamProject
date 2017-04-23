@@ -24,16 +24,21 @@
     <div class="row justify-content-center"> 
 
 	<!-- Image Holder of Profile Picture -->
-        <div class="col-sm-4" style="margin-bottom: 25px"> 
-            <div class="card" style="height: 205px">
-  		<img class="card-img-top" src="" alt="Profile Picture">
-	    </div>
-        </div>  
- 
-        <div class="col-sm-6"> 
+	<div class="col-sm-5" style="margin-bottom: 10px">
+            <div class="card" style="margin: 0 auto 10 auto; padding: 5 5 0 5">
+		<p class="small" style="padding-left: 10px; text-align: center">
+                    <img class="card-img-top card-style"  src="<?php echo $pic ?>" alt="Card image cap" accept="image/*" id="dp_item">
+		    <br /><br />
+                    <span class="card-title">Edit your profile picture</span>
+		</p>
 
+                <input class="form-control" style = "margin-bottom: 5px" type='file' name='dp' id="dp" onchange="readImageFile(this,'#dp_item')"/>
+            </div>
+        </div> 
+	
 	    <!--  Username -->
-            <div class="form-group input-group">
+	<div class ="col-sm-5">
+           <div class="form-group input-group">
                 <?php
                     echo '<span class="input-group-addon span-for-profile">Username</span>';
                     // 
@@ -65,22 +70,6 @@
                     );
                    
                     echo form_input($data);
-                ?>
-            </div>
-
-	    <!-- Profile Picture -->
-            <div class="form-group input-group">
-                <?php
-                    echo '<span class="input-group-addon span-for-profile">Profile Picture</span>';
-                    // 
-                    $data = array(
-                        'class' => 'form-control',
-                        'name' => 'photo',
-                        'type' => 'file',
-                        'size' => '100',
-                    );
-            	    $value ="";
-                    echo form_upload($data, $value);
                 ?>
             </div>
 

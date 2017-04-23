@@ -5,7 +5,7 @@ class loginhelper {
 	protected $CI;
 	
 	// Copy of session variable
-	private $loginData;
+	public $loginData;
 	
 	
 	// True only if user just finished logging in.
@@ -13,6 +13,8 @@ class loginhelper {
 	
 	// Constants
 	const LoginURL = "Home/view/login";
+
+	const ignoreHist = array("", "home/view/login", "home/view/signup", "users/login", "signup/login");
 
 	public function __construct()
 	{
@@ -53,7 +55,6 @@ class loginhelper {
 		$this->loginData['userID'] = NULL;
 		$this->loginData['freshLogin'] = false;
 		$this->loginData['urlBeforeLogin'] = NULL;
-		$this->loginData['loginPages'] = array();
 	}
 	
 	
@@ -92,12 +93,19 @@ class loginhelper {
 		try
 		{
 			$info = $this->CI->Reg_User->findUser($this->loginData['userID']);
+			if ($info == NULL)
+				throw new Exception();
 			if (isset($info))
 				return $info;
 		}
 		catch (Exception $e)
 		{
-			return;
+			$id = $this->loginData['userID'];
+			if (!is_numeric($id))
+				$id = "";
+			throw new Exception('<br>$this->loginhelper->getLoginData() failed.<br>' . "
+			UserID: $id<br>
+			Did you check whether we are logged in?");
 		}
 	}
 	
@@ -123,16 +131,23 @@ class loginhelper {
 		
 		$this->loginData['userID'] = $userID;
 		$this->loginData['freshLogin'] = true;
+		$this->loginData['urlBeforePage'] = NULL;
+		
+		// Mark loggedIn session variable used by views.
+		$this->CI->session->loggedIn = true;
 		
 		$this->saveSession();
 		
 		// Show welcome messages
-		$this->CI->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in.');
+		$this->CI->session->set_flashdata('login_success', 'Welcome Gator, you are now logged in. <strong>View your menu options to the upper right</strong>.');
 	}
 	
 	// Sets user as logged out.
 	public function logout()
 	{
+		// Remove loggedIn session variable used by views
+		$this->CI->session->unset_userdata('loggedIn');
+		
 		// Destroy session data
 		$this->CI->session->unset_userdata('loginhelper');
 		
@@ -183,39 +198,44 @@ class loginhelper {
 	*/
 	public function rememberBeforeLogin()
 	{
+		// We do not need to remember page history if we are already logged in.
+		if ($this->isRegistered())
+			return;
+			
 		$this->CI->load->library('user_agent');
 		
-		// Only record if the page belongs to our website.
-		if (!$this->CI->agent->is_referral())
+		// If foreign website, exit.
+		if ($this->CI->agent->is_referral())
 			return;
 		
-		$url = $this->agent->referrer();
+		// Get URI of referrer URL
+		$url = $this->CI->agent->referrer();
+		$parse = strtolower(parse_url($url)['path']);
+		$parse = explode('/', $parse);
+		$parse = array_splice($parse, 2);
+		$parse = implode('/', $parse);
+		
 		
 		$isLogin = false;
-		$logins = $this->loginData['loginPages'];
+		$logins = self::ignoreHist;
+		$max = count($logins);
+		$recorded = false;
 		// Loop through login pages. If url matches a login page, don't record it.
-		for ($i = 0; $i <= count($logins); $i++)
+		for ($i = 0; $i < $max; $i++)
 		{
-			// This page is not recorded in list of login pages. Add it.
-			if ($i == count($logins))
-			{
-				array_push($logins, $strtolower('/' . uri_string()));
-				$this->loginData['loginPages'] = $logins;
-			}
-			
-			if (strtolower(parse_url($url)) == $logins[$i])
-			{
+			// If the referrer is a login page, we won't record it.
+			if ($parse == $logins[$i])
 				$isLogin = true;
-				break;
-			}
 		}
 		
 		// If the url is not a login page, record it.
-		if (!isLogin)
+		if (!$isLogin)
+		{
 			$this->loginData['urlBeforeLogin'] = $url;
+			$this->saveSession();
+		}
 		
-		// Save session data
-		saveSession();
+		
 	}
 	
 	

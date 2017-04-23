@@ -67,7 +67,6 @@ class Item_Listing extends CI_Model
 	{
 		$this->buildQuery($search);
 		$items = $this->db->get('item_listing');
-		print_r($items->num_rows());
 		return $items->result();
 	}
 	
@@ -102,13 +101,17 @@ class Item_Listing extends CI_Model
 				try
 				{
 					// Retrieves user_id of that user.
-					$userID = $this->Reg_User->getUser($search['user'])->user_id;
+                    $user = $this->Reg_User->getUserIdByUsername($search['user']);
+					$userID = $user[0]->user_id;
 				} catch (Exception $e)
 				{
 					// User not found. Searches for nothing.
 					$userID = -1;
 				}
-				$this->db->where('seller_id', $userID);
+                $this->db->select('item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, cat.category_name');
+                $this->db->join('reg_user usr', 'usr.user_id = item_listing.seller_id');
+                $this->db->join('item_category cat','cat.category_id = item_listing.category_id');
+				$this->db->where('item_listing.seller_id', $userID);
 			}
 			
 			// Searches by title.
@@ -128,7 +131,7 @@ class Item_Listing extends CI_Model
 			// Searches by listing id.
 			if (array_key_exists('listingID', $search)){
 
-			    $this->db->select('usr.username, item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, item_listing.display_pic, cat.category_name');
+			    $this->db->select('usr.username, usr.user_id, item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, item_listing.display_pic, cat.category_name');
 			    $this->db->join('reg_user usr', 'usr.user_id = item_listing.seller_id');
                 $this->db->join('item_category cat','cat.category_id = item_listing.category_id');
 			    $this->db->where('item_listing.listing_id', $search['listingID']);
@@ -164,13 +167,49 @@ class Item_Listing extends CI_Model
 		}
 	}
 
+	public function addItemListing($listing, $imgdata){
+
+	    $debug = $this->db->db_debug;
+        $this->db->db_debug = false;
+
+        $listing['display_pic'] = file_get_contents($imgdata['full_path']);
+
+        $listing['dp_thumbnail'] = file_get_contents($imgdata['file_path'].$imgdata['raw_name'].'_thumb'.$imgdata['file_ext']);
+
+	    if($this->db->insert('item_listing',$listing)){
+
+            $this->db->db_debug = $debug;
+            return $this->db->insert_id();
+
+	    }else{
+
+            $this->db->db_debug = $debug;
+            throw new Exception("Failed to insert item in the db");
+
+	    }
+    }
+
 	public function deleteItemListing(){}
 
 	public function updateItemListing(){}
 
 	public function deleteItemPicture(){}
 
-	public function updateItemPicture(){}
+	public function addItemPicture($listingId, $picData){
+        $debug = $this->db->db_debug;
+        $this->db->db_debug = false;
+        $values['listing_id'] = $listingId;
+        $values['pic'] = file_get_contents($picData['full_path']);
+        $values['thumbnail'] = file_get_contents($picData['file_path'].$picData['raw_name'].'_thumb'.$picData['file_ext']);
+
+        if($this->db->insert('item_pic',$values)){
+            $this->db->db_debug = $debug;
+            return $this->db->insert_id();
+        }else{
+            $this->db->db_debug = $debug;
+            throw new Exception("Failed to insert picture in the db");
+        }
+    }
 
 	public function updateItemDisplayPicture(){}
 

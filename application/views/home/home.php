@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<?php $logged = $this->loginhelper->isRegistered(); ?>
+<?php $logged = $this->session->loggedIn; ?>
 
-<div class="container" style="margin-top: 76px">
+<div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
     <p>
@@ -23,7 +23,7 @@
 Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what it's like to need that extra support to make it through college!
 </p>
 	        <hr /class="my-4">
-                <p class="lead">Want to know more? Search our options!</p>
+                <p class="lead">Want to know more? Use our search and/or category filter to view our options!</p>
 	    </div>
 	</div>
     </div>
@@ -31,7 +31,6 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
     <br /><br />
 
     <hr />
-    
     <div class="row justify-content-center">
 
 	<hr />
@@ -52,7 +51,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                 <li class="nav-item">
                     <div class="btn-group">
                         <a id="sortable" class="nav-link" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false" href="#"><button class="btn btn-success">Sort</button></a>
+                           aria-expanded="false" href="#"><button class="btn btn-success" style="cursor: pointer">Sort&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></button></a>
                         <div class="dropdown-menu move" aria-labelledby="sortable">
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('price');document.forms['searchSubmit'].submit()">Price</a>
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('title');document.forms['searchSubmit'].submit()">Name</a>
@@ -75,7 +74,12 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			<br />
 		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top card-style" src="' . (base_url() . 'Images/listingThumb/' . $item->listing_id) . '" alt="Card image cap">' ?></a>
 			<br /><br />
-			<a class="btn btn-success btn-sm" href="#" data-toggle='modal' data-target='#buyModal'>Buy</a>
+			<?php 
+			    if($logged)
+			        echo "<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal'>Buy</a>";
+			    else
+				echo "<a class='btn btn-success btn-sm' data-toggle='popover' data-placement='top' data-content='You must be logged in to contact seller.' style='color: #fff; cursor: pointer'>Buy</a>";
+			?>
 		    </p>
 		</div>
 	    </div>
@@ -86,7 +90,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
     <!-- Displays pagination buttons to navigate through all item listings -->
     <div class="row justify-content-center">
-        <div class="col" style="text-align: center">
+        <div class="d-flex align-self-center" style="text-align: center">
 	    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   	        <div class="btn-group btn-group-sm" role="group" aria-label="First group">
 		    <?php
@@ -137,29 +141,24 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                 </div>
             </div>
         </div>
-
-        <div class="col align-self-end"></div>
-
     </div>
+
     <br />
+
     <hr />
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
-    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
+    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
 
-		<!-- NOTE: CHECKING FOR LOGGED IN WILL BE CODED TO ONLY SHOW THE WARNING MESSAGE IF USER NOT LOGGED IN AFTER MILESTONE3 PRESENTATION FOR TIME RELATED ISSUES -->
-		<?php if ($logged)
-                          echo '<h6 class="modal-title" id="exampleModalLabel">Send a notification to buy this item</h6>';
-		      else
-			  echo '<h6>YOU MUST BE LOGGED IN TO CONTACT SELLER</h6>';
-		?>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header">
+		 <h6 class="modal-title" id="exampleModalLabel">Send a notification to buy this item</h6>
+		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <?php
                         //echo form_open('Controller/function', $attributes);
@@ -168,25 +167,25 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                             'name'          => 'reportText',
                             'style'         => 'height: 100px; resize: none'
                         );
-			if ($logged)
-                            echo form_textarea($data);	
+                        echo form_textarea($data);	
                     ?>
 		</div>
+
                 <div class="modal-footer">
-		   <?php if ($logged)
-		             echo '<h6 style="width: 100%">Date: </h6>';
-		    ?>
-                   <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
+		   <span style="width: 55%">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "March 10, 2017"; ?>
+		   <br /><?php $location = 'Spot 1 - Quad'; echo 'Meetup: ' . $location; ?></span>
+		   <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
+                   <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
                    <?php
                         $data = array(
                             'class'         => 'btn btn-success btn-sm',
                             'name'          => 'submit',
+			    'style'	    => 'cursor: pointer',
                             'value'         => 'Send'
-                        );
-			if ($logged)
-                            echo form_submit($data);
+                        );	
+                        echo form_submit($data);
                         echo form_close();
-                    ?>
+                   ?>
                 </div>
 
             </div>

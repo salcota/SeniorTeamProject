@@ -21,6 +21,9 @@ class Uploadprofile extends CI_Controller
 	public function save()
 	{
 
+		$user = $this->loginhelper->getLoginData();
+		$id = $user->user_id;
+
 		$url =$this->do_upload();
 
 		$data = array(
@@ -28,10 +31,8 @@ class Uploadprofile extends CI_Controller
 		// more will be added when I can update the other forms
 		);
 
-		$user = $this->loginhelper->getLoginData();
-		$id = $user->user_id;
 
-		$this->updateprofile->update($url,$id,$data);
+		$this->updateprofile->update($url,$id, $data);
 
 
 	}
@@ -40,17 +41,22 @@ class Uploadprofile extends CI_Controller
 
 	public function do_upload()
 	{
-		// I would explain what this does but the tutorial was in another language
-		// returns the uploaded photo as stores in it .public/temp/uploads and returns it as $url
-		$type = explode('.', $_FILES["photo"]["name"]);
+
+
+		// returns the uploaded photo & stores it in public/temp/uploads and returns the photo path
+		$type = explode('.', $_FILES["userfile"]["name"]);
 		$type = $type[count($type)-1];
-		$url = "./public/temp/uploads/".uniqid(rand()).'.'.$type;
+		$url = "public/temp/uploads/".uniqid(rand()).'.'.$type;
 		if(in_array($type, array("jpg", "jpeg", "gif", "png")))
-			if(is_uploaded_file($_FILES["photo"]["tmp_name"]))
-				if(move_uploaded_file($_FILES["photo"]["tmp_name"],$url))
+			if(is_uploaded_file($_FILES["userfile"]["tmp_name"]))
+				if(move_uploaded_file($_FILES["userfile"]["tmp_name"],$url))
 					return $url;
 		return "";
 
 	}
+
+
+
+
 }
 ?>

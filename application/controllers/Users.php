@@ -3,6 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller
 {
+    public function __construct()
+    {
+        // Gets item listing,  basic header and styles for all pages.
+        parent::__construct();
+        $this->load->model('Item_Listing');
+        $this->load->view('common/sfsu_demo');
+        $this->load->view('common/required_meta_tags');
+
+        // Load navbar
+        $this->navbars->load();
+    }
 
 	public function login()
 	{
@@ -42,7 +53,7 @@ class Users extends CI_Controller
 				$this->loginhelper->login($userID);
 				
 				// Redirects to previous page.
-				$previousPage = $this->session->flashdata('previousPage');
+				$previousPage = $this->loginhelper->beforeLogin();
 				// Does previous page exist?
 				if ($previousPage != NULL)
 					redirect($previousPage);
@@ -51,10 +62,6 @@ class Users extends CI_Controller
 			}
 			else
 			{
-				// Retains referrer for the next attempt.
-				if ($this->session->flashdata('previousPage') != NULL)
-					$this->session->keep_flashdata('previousPage');
-				
 				$this->session->set_flashdata('login_failed', 'The information you provided is unrecognized.');		
 				redirect('home/view/login');
 			}
@@ -71,9 +78,15 @@ class Users extends CI_Controller
 
 	}
 
-	public function post_itemlisting()
-	{
+     /* This function returns the add_item page to the user so that User can add new item listing to the portfolio.
+     */
+	public function sell_item(){
+        $this->load->model('Category');
+        $data['categories'] = $this->Category->getCategories();
 
+        $this->load->view('reguser/add_itemlisting.php',$data);
+        $this->load->view('common/jquery_tether_bootstrap');
+        $this->load->view('common/footerbar');
 	}
 }
 ?>

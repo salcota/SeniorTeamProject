@@ -103,28 +103,13 @@ class Home extends CI_Controller
 			$items['itemList'] = $this->Item_Listing->getItems($find);
 			$this->load->view('home/home', $items);
 		}
-		elseif (strtolower($page) == "login")
-		{
-			$this->load->library('user_agent');
-			
-			// Remembers which page we came from before logging in.
-			// If previous page is already recorded, re-apply.
-			$previousPage = $this->session->flashdata('previousPage');
-			if ($previousPage != NULL)
-			{
-				$this->session->keep_flashdata('previousPage');
-			}
-			elseif (!($this->agent->is_referral()))
-			{
-				$previousPage = $this->agent->referrer();
-				$this->session->set_flashdata('previousPage', $previousPage);
-			}
-			$this->load->view('home/login');
-		}
 		else
 		{
 			$this->load->view('home/' . $page);
 		}
+		
+		if (strtolower($page) == "login" || strtolower($page) == "signup")
+			$this->loginhelper->rememberBeforeLogin(); // Keep track of what the user was looking at before.
 
                 // Gets basic footer and data that enables javascript, jQuery, and thether for all pages.	
 		$this->load->view('common/jquery_tether_bootstrap');

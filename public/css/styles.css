@@ -1,7 +1,6 @@
-        <!-- CSS Styles icluding Additions to Bootstrap CSS-->
-        <style type="text/css">
-        
-            /* HTML */
+<!-- CSS Styles icluding Additions to Bootstrap CSS-->
+/* HTML */
+	 <style type="text/css">
             body {
                 position: relative;
             }
@@ -26,7 +25,7 @@
 
 	    #footer {
 		background-color: #363;
-		height: 85px; 
+		height: 65px; 
 		padding: 30 0 30 0;
 		text-align: center;
 		width: 100%;
@@ -124,18 +123,18 @@
 		border: solid 2px #9C9;
 		border-radius: 6px;
 		height: 200px;
-		padding: 5 1 5 1;
+		padding: 5px 1px 5px 1px;
 	    }
 
             .container {
                 background-color: #EEE;
-		margin-top: 100px;
+		margin-top: 95px;
 	        padding: 5px;
             }
 
 	    .d-block {
 		height:185px !important; 
-		margin: auto !important!;
+		margin: auto !important;
 	    }
 
 	    .description_box {
@@ -226,6 +225,7 @@
                 font-size: 24px;
             }
 
+
 	    .terms-link a {
 		color: #696;
 		font-weight: bold;
@@ -235,7 +235,6 @@
 		color: #ADA !important;
 		text-decoration: none !important;
 	    }
+</style>
 
-        </style>
-        
-    </head>
+  </head>

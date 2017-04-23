@@ -33,10 +33,16 @@ class Signup extends CI_Controller
 				$email = $this->input->post('sfsu_email');
 				$pass = $this->input->post('password');
 				$userID = $this->Reg_User->getUser($email, $pass);
+				
 				$this->loginhelper->login($userID);
 				
+				// Get whatever page user was looking at before.
+				$previous = $this->loginhelper->BeforeLogin();
+				if ($previous != NULL)
+					redirect($previous);
+				else
 				// Redirect to home page
-				redirect('home/view/home');
+					redirect('home/view/home');
 			}
 		}
 	}
