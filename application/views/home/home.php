@@ -172,7 +172,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 		</div>
 
                 <div class="modal-footer">
-		   <span style="width: 100%">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "March 10, 2017"; ?>
+		   <span style="width: 55%">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "March 10, 2017"; ?>
 		   <br /><?php $location = 'Spot 1 - Quad'; echo 'Meetup: ' . $location; ?></span>
 		   <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
                    <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
