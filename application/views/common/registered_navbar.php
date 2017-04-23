@@ -107,8 +107,8 @@
         		    'id'            => 'newsletter',
         		    'value'         => 'accept',
         		    'checked'       => TRUE,
-        		    'style'         => 'margin:10px'
-		    	);
+        		    'style'         => 'margin-top: 10px'		    	
+			);
 			echo form_checkbox($data, 'value');
 			echo 'I agree the following claim is true';
 		    ?>		    
