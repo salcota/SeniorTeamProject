@@ -28,20 +28,33 @@
 
        	    <hr />
 
-	    <div class="small" id="buyers" style="color: #C93">
+	    <div class="small" id="buyers" style="color: #C93; height: 40%; overflow-y: auto">
 	        <ul style="list-style-type: none">
+
 	    	    <li>JackTheWrapper</li>
 	    	    <li>Kevin</li>
 	    	    <li>Moonshine</li>
 	    	    <li>Petkovic</li>
 	    	    <li>pGupta2</li>
 		    <li>theDemoCrate</li>
+                    <li>JackTheWrapper</li>
+                    <li>Kevin</li>
+                    <li>Moonshine</li>
+                    <li>Petkovic</li>
+                    <li>pGupta2</li>
+                    <li>theDemoCrate</li>
+                    <li>JackTheWrapper</li>
+                    <li>Kevin</li>
+                    <li>Moonshine</li>
+                    <li>Petkovic</li>
+                    <li>pGupta2</li>
+                    <li>theDemoCrate</li>
 	        </ul>
 	    </div>
 
 	    <hr />
 	    
-            <div class="small" id="sellers" style="color: #39C">
+            <div class="small" id="sellers" style="color: #39C; height: 40%; overflow-y: auto">
                 <ul style="list-style-type: none">
                     <li>Darel_OG</li>
                     <li>Kunal</li>
