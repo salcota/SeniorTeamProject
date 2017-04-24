@@ -15,7 +15,6 @@ class Updateprofile extends CI_Model {
 		// Uploads photo to reg_user_pic table
 		$userpic = array(
 			'pic' => $url,
-			//'thumbnail' => $thumbnail
 		);
 		$this->db->where('user_id', $id);
      		$this->db->update('reg_user_pic', $userpic);
@@ -24,17 +23,6 @@ class Updateprofile extends CI_Model {
 		$this->db->where('user_id', $id);
 		$this->db->update('reg_user', $data);
 	}
-
-
-	/* Under Construction
-
-
-	public function getphoto($id) {
-
-
-	}
-	*/
-
 
 }
 
