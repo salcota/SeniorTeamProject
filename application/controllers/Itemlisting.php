@@ -135,7 +135,7 @@ class Itemlisting extends CI_Controller
                         redirect('add_item');
                     }else{
                         print_r($_FILES);
-                        if(!empty($_FILES['pic']['name'][0])){
+                        //if(!empty($_FILES['pic']['name'][0])){
                             $files = $this->diverse_array($_FILES['pic']);
                         //    print_r($files);
                             foreach ($files as $pic){
@@ -143,10 +143,10 @@ class Itemlisting extends CI_Controller
                                     $picdata = $this->upload->data();
                                     $this->genthumbnail($picdata['full_path']);
                                     $this->Item_Listing->addItemPicture($listing_id, $picdata);
-                                    unlink($this->uploadpath.$pic['name']);
+                                    unlink($picdata['full_path']);
                                 }
                             }// end of for each
-                        }//end of if
+                        //}//end of if
                         echo "No item pics found";
                         exit;
                     }
