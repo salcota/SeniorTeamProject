@@ -15,12 +15,11 @@ class Itemlisting extends CI_Controller
         $this->load->model('Item_Listing');
         $this->load->view('common/sfsu_demo');
         $this->load->view('common/required_meta_tags');
- 
+
         // Load navbar
 		$this->navbars->load();
 
-        $this->userinfo = $this->loginhelper->getLoginData();
-        $this->uploadpath = './public/temp/';
+
     }
 
     /**
@@ -95,7 +94,8 @@ class Itemlisting extends CI_Controller
      * Saves an itemlisting with images
      */
     public function post_listing(){
-
+        $this->userinfo = $this->loginhelper->getLoginData();
+        $this->uploadpath = './public/temp/';
         $this->load->model('Category');
         $data['categories'] = $this->Category->getCategories();
 
@@ -113,9 +113,9 @@ class Itemlisting extends CI_Controller
 
                 if ( !$this->upload->do_upload('dp'))
                 {
-                    $error = array('error' => $this->upload->display_errors());
-                    print_r("Failed to upload DP ".$error);
-                    redirect('add_item',$error);
+                    $data = array('item_form_errors' => $this->upload->display_errors());
+                    $this->session->set_flashdata($data);
+                    redirect('add_item',$data);
                 }
                 else
                 {
@@ -148,7 +148,7 @@ class Itemlisting extends CI_Controller
                             }// end of for each
                         }//end of if
                         echo "No item pics found";
-                        redirect('add_item');
+                        exit;
                     }
                     //$this->load->view('upload_success', $data);
                 }
@@ -192,7 +192,6 @@ class Itemlisting extends CI_Controller
                 'item_form_errors' => validation_errors()
             );
             $this->session->set_flashdata($data);
-            print_r(($this->session->flashdata('item_form_errors')));
 
             redirect('add_item');
         }
