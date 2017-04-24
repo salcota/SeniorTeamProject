@@ -136,9 +136,9 @@ class Itemlisting extends CI_Controller
                     }else{
                         print_r($_FILES);
                         //if(!empty($_FILES['pic']['name'][0])){
-                            /$files = $this->diverse_array($_FILES['pic']);
+                            $files = $this->diverse_array($_FILES['pic']);
                            // print_r($files);
-                        //    print_r($files);
+                           print_r($files);
                             foreach ($files as $pic){
                                 echo "pic";
                                 if($this->upload->do_upload($pic['name'])){
