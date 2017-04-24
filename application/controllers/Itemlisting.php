@@ -149,11 +149,12 @@ class Itemlisting extends CI_Controller
                                $this->genthumbnail($picdata['full_path']);
                                $this->Item_Listing->addItemPicture($listing_id, $picdata);
                                unlink($picdata['full_path']);
+                               unlink(str_replace(".","_thumb.", $picdata['full_path']));
                            }else{
-                               echo $this->upload->display_errors();
+
                            }
                        }
-                       exit;
+                       redirect('user_listings');
                     }
                     //$this->load->view('upload_success', $data);
                 }
