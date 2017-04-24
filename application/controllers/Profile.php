@@ -9,6 +9,7 @@ class Profile extends CI_Controller
 	$this->load->database();
 	$this->load->library('loginhelper');
 	$this->load->model('Updateprofile');
+	$this->load->model('imageloader');
 	}
 
 
@@ -25,10 +26,14 @@ class Profile extends CI_Controller
 		// Returns necessary data for the view file (profile.php) to use
 		$user = $this->loginhelper->getLoginData();
 		$id = $user->user_id;
+		$profilePic = $this->imageloader->showUserPic($id);
+		$pic = base_url().$profilePic;
 		$data = array(
 			'username' =>$user->username,
 			'email' => $user->sfsu_email,
-			'biography'=> $user->biography
+			'biography'=> $user->biography,
+			'id' => $user->user_id,
+			'pic' => $pic,
 		);
 
 

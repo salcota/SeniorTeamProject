@@ -24,13 +24,15 @@
     <div class="row justify-content-center"> 
 
 	<!-- Image Holder of Profile Picture -->
-        <div class="col-sm-4" style="margin-bottom: 25px"> 
-            <div class="card" style="height: 205px">
-  		<img class="card-img-top" src="..." alt="Profile Picture">
+         <div class="col-sm-5" style="margin-bottom: 10px">
+            <div class="card" style="margin: 0 auto 10 auto; padding: 5 5 0 5">
+		<p class="small" style="padding-left: 10px; text-align: center">
+                    <img class="card-img-top card-style"  src="<?php echo $pic ?>" alt="Card image cap">
+		    <br /><br />
+                    <span class="card-title">Edit your profile picture</span>
+		</p?
 	    </div>
-        </div>  
- 
-        <div class="col-sm-6"> 
+         </div> 
 
 	    <!--  Username -->
             <div class="form-group input-group">
@@ -75,7 +77,7 @@
                     // 
                     $data = array(
                         'class' => 'form-control',
-                        'name' => 'photo',
+                        'name' => 'userfile',
                         'type' => 'file',
                         'size' => '100',
                     );

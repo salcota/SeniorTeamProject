@@ -10,9 +10,11 @@ class Updateprofile extends CI_Model {
 
 	public function update($url, $id, $data) {
 		// Uploads photo to reg_uer_pic table
-		$this->db->set('user_id',$id);
-		$this->db->set('pic',$url);
-     		$this->db->insert('reg_user_pic');
+                $userpic = array(
+			'pic' => $url,
+		);
+		$this->db->where('user_id', $id);
+     		$this->db->update('reg_user_pic', $userpic);
 		// Updates new reg_user data
 		$this->db->where('user_id', $id);
 		$this->db->update('reg_user', $data);
