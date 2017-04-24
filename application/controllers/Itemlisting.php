@@ -26,7 +26,7 @@ class Itemlisting extends CI_Controller
      * Returns all available listings of the user by accessing details from session
      */
     public function get_all_listings_of_user(){
-
+        $this->userinfo = $this->loginhelper->getLoginData();
         if($this->loginhelper->isRegistered()){
 
             //print_r($userinfo);
@@ -134,7 +134,7 @@ class Itemlisting extends CI_Controller
                         print_r("Listing id = null");
                         redirect('add_item');
                     }else{
-
+                        print_r($_FILES);
                         if(!empty($_FILES['pic']['name'])){
                             $files = $this->diverse_array($_FILES['pic']);
                         //    print_r($files);
@@ -155,7 +155,7 @@ class Itemlisting extends CI_Controller
 
             }else{
                 //Todo
-                $data = array('item_form_errors' => "Please fill the details of the items");
+                $data = array('item_form_errors' => "Please fill the details of this Item Listing");
                 $this->session->set_flashdata($data);
                 redirect('add_item',$data);
             }
