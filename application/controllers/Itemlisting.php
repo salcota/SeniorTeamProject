@@ -136,8 +136,8 @@ class Itemlisting extends CI_Controller
                     }else{
                         print_r($_FILES);
                         //if(!empty($_FILES['pic']['name'][0])){
-                            $files = $this->diverse_array($_FILES['pic']);
-                            print_r($files);
+                            /$files = $this->diverse_array($_FILES['pic']);
+                           // print_r($files);
                         //    print_r($files);
                             foreach ($files as $pic){
                                 echo "pic";
@@ -151,7 +151,7 @@ class Itemlisting extends CI_Controller
                                     echo "pic4";
                                     unlink($picdata['full_path']);
                                 }else{
-                                    echo "Failed to upload pic";
+                                    echo $this->upload->display_errors();
                                     //exit;
                                 }
                             }// end of for each
