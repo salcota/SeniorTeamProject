@@ -134,31 +134,26 @@ class Itemlisting extends CI_Controller
                         print_r("Listing id = null");
                         redirect('add_item');
                     }else{
-                        print_r($_FILES);
-                        //if(!empty($_FILES['pic']['name'][0])){
-                            $files = $this->diverse_array($_FILES['pic']);
-                           // print_r($files);
-                           print_r($files);
-                            foreach ($files as $pic){
-                                echo "pic";
-                                $this->upload->initialize($config);
-                                if($this->upload->do_upload($pic['name'])){
-                                    echo "pic1";
-                                    $picdata = $this->upload->data();
-                                    echo "pic2";
-                                    $this->genthumbnail($picdata['full_path']);
-                                    echo "pic3";
-                                    $this->Item_Listing->addItemPicture($listing_id, $picdata);
-                                    echo "pic4";
-                                    unlink($picdata['full_path']);
-                                }else{
-                                    echo $this->upload->display_errors();
-                                    //exit;
-                                }
-                            }// end of for each
-                        //}//end of if
-                        echo "No item pics found";
-                        exit;
+                       $filecount = count($_FILES['pic']['name']);
+                       for($i=0 ; $i < $filecount; $i++){
+                           $_FILES['userFile']['name'] = $_FILES['pic']['name'][$i];
+                           $_FILES['userFile']['type'] = $_FILES['pic']['type'][$i];
+                           $_FILES['userFile']['tmp_name'] = $_FILES['pic']['tmp_name'][$i];
+                           $_FILES['userFile']['error'] = $_FILES['pic']['error'][$i];
+                           $_FILES['userFile']['size'] = $_FILES['pic']['size'][$i];
+
+                           $this->load->library('upload', $config);
+                           $this->upload->initialize($config);
+                           if($this->upload->do_upload('userFile')){
+                               $picdata = $this->upload->data();
+                               $this->genthumbnail($picdata['full_path']);
+                               $this->Item_Listing->addItemPicture($listing_id, $picdata);
+                               unlink($picdata['full_path']);
+                           }else{
+                               echo $this->upload->display_errors();
+                           }
+                       }
+                       exit;
                     }
                     //$this->load->view('upload_success', $data);
                 }
@@ -181,7 +176,34 @@ class Itemlisting extends CI_Controller
             }
         }
     }
-
+/*
+ *  print_r($_FILES);
+                        //if(!empty($_FILES['pic']['name'][0])){
+                        $files = $this->diverse_array($_FILES['pic']);
+                           // print_r($files);
+                           print_r($files);
+                            foreach ($files as $pic){
+                                echo "pic";
+                                $this->load->library('upload',$config);
+                                $this->upload->initialize($config);
+                                echo $pic['name'];
+                                if($this->upload->do_upload($pic['name'])){
+                                    echo "pic1";
+                                    $picdata = $this->upload->data();
+                                    echo "pic2";
+                                    $this->genthumbnail($picdata['full_path']);
+                                    echo "pic3";
+                                    $this->Item_Listing->addItemPicture($listing_id, $picdata);
+                                    echo "pic4";
+                                    unlink($picdata['full_path']);
+                                }else{
+                                    echo $this->upload->display_errors();
+                                    //exit;
+                                }
+                            }// end of for each
+                        //}//end of if
+                        echo "No item pics found";
+                        exit;*/
     private function genListingDetails(){
         $this->load->library('form_validation');
 
