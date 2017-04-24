@@ -155,9 +155,9 @@ class Itemlisting extends CI_Controller
 
             }else{
                 //Todo
-                $error = array('error' => "No DP was provided");
-                print_r($error);
-                redirect('add_item',$error);
+                $data = array('item_form_errors' => "Please fill the details of the items");
+                $this->session->set_flashdata($data);
+                redirect('add_item',$data);
             }
 
         }catch(Exception $e){
