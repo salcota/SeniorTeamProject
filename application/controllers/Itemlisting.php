@@ -141,6 +141,7 @@ class Itemlisting extends CI_Controller
                            print_r($files);
                             foreach ($files as $pic){
                                 echo "pic";
+                                $this->upload->initialize($config);
                                 if($this->upload->do_upload($pic['name'])){
                                     echo "pic1";
                                     $picdata = $this->upload->data();
