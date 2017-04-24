@@ -135,7 +135,7 @@ class Itemlisting extends CI_Controller
                         redirect('add_item');
                     }else{
                         print_r($_FILES);
-                        if(!empty($_FILES['pic']['name'])){
+                        if(!empty($_FILES['pic']['name'][0])){
                             $files = $this->diverse_array($_FILES['pic']);
                         //    print_r($files);
                             foreach ($files as $pic){
