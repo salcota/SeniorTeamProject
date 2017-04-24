@@ -137,13 +137,22 @@ class Itemlisting extends CI_Controller
                         print_r($_FILES);
                         //if(!empty($_FILES['pic']['name'][0])){
                             $files = $this->diverse_array($_FILES['pic']);
+                            print_r($files);
                         //    print_r($files);
                             foreach ($files as $pic){
+                                echo "pic";
                                 if($this->upload->do_upload($pic['name'])){
+                                    echo "pic1";
                                     $picdata = $this->upload->data();
+                                    echo "pic2";
                                     $this->genthumbnail($picdata['full_path']);
+                                    echo "pic3";
                                     $this->Item_Listing->addItemPicture($listing_id, $picdata);
+                                    echo "pic4";
                                     unlink($picdata['full_path']);
+                                }else{
+                                    echo "Failed to upload pic";
+                                    //exit;
                                 }
                             }// end of for each
                         //}//end of if
