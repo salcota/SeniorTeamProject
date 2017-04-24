@@ -38,15 +38,19 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
+			<!-- <a class="img-fluid" href="data:image/jpg;base64,<?php //echo base64_encode($item_pic->pic) ?>" rel="lightbox" title="Image">-->
                         <img class="d-block img-fluid" id="image1"
                              src="data:image/jpg;base64,<?php echo base64_encode($item[0]->display_pic) ?>"
                              alt="First slide">
-                    </div>
+			<!--</a>-->
+		    </div>
                     <?php foreach ($itemPics as $item_pic): ?>
                         <div class="carousel-item">
+			    <!--<a class="img-fluid" href="data:image/jpg;base64,<?php //echo base64_encode($item_pic->pic) ?>" rel="lightbox" title="Image">-->
                             <img class="d-block img-fluid" id="image2"
                                  src="data:image/jpg;base64,<?php echo base64_encode($item_pic->pic) ?>"
                                  alt="Second slide">
+			    <!--</a>-->
                         </div>
                     <?php endforeach; ?>
                 </div>

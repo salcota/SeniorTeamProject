@@ -18,3 +18,12 @@
         <!-- Font-Awesome Glyphicons -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "public/css/font-awesome.min.css"?>">
 
+
+
+	<!-- Light Box -->
+
+	<script type="text/javascript" src="<?php echo base_url() . 'public/lightbox2/src/js/lightbox.js'?>"></script>
+
+
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url() . 'public/lightbox2/src/css/lightbox.css'?>">
+
