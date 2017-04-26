@@ -14,4 +14,33 @@ function getMessages(sendName, recvName, callBack)
 		callBack(messages);
 	});
 }
+
+function getBuyers(callBack)
+{
+	var req = $.post("<?php echo base_url() . "Notification/getBuyers"?>");
+	req.done(function(data)
+	{
+		var messages = data.split("\r\n\r\n");
+		for (var i = 0; i < messages.length; i++)
+		{
+			messages[i] = messages[i].split("\r\n");
+		}
+		callBack(messages);
+	});
+}
+
+function getSellers(callBack)
+{
+	var req = $.post("<?php echo base_url() . "Notification/getSellers"?>");
+	req.done(function(data)
+	{
+		var messages = data.split("\r\n\r\n");
+		for (var i = 0; i < messages.length; i++)
+		{
+			messages[i] = messages[i].split("\r\n");
+		}
+		callBack(messages);
+	});
+}
+
 </script>
