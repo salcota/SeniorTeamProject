@@ -62,7 +62,7 @@
                     <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'user_listings' ?>'>Listings</a>
                 </li>
 		        <li class='nav-item'>
-                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Home/view/notifications' ?>'>Notifications</a>
+                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Notification' ?>'>Notifications</a>
                 </li>
                 <li class='nav-item'>
                     <div class="btn-group">

@@ -16,8 +16,17 @@ class Notification extends CI_Controller
 
 	public function index()
 	{
-		$data = $this->Notification_Model->getBuyers(1);
-		print_r ($data);
+		// Gets basic header and styles for all pages.
+		$this->load->view('common/sfsu_demo');
+		$this->load->view('common/required_meta_tags');
+					
+		// Loads Navbar.
+		$this->navbars->load();
+		
+		$this->load->view('notifications/notifications');
+		
+		$this->load->view('common/jquery_tether_bootstrap');
+		$this->load->view('common/footerbar');
 	}
 	
     public function get_all_notifications(){}
