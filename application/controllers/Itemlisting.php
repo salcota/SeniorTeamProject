@@ -4,6 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Itemlisting extends CI_Controller
 {
 
+    private $userinfo;
+    private $uploadpath;
+    private $fileToDelete;
+
     public function __construct()
     {
 	// Gets item listing,  basic header and styles for all pages.
@@ -11,21 +15,23 @@ class Itemlisting extends CI_Controller
         $this->load->model('Item_Listing');
         $this->load->view('common/sfsu_demo');
         $this->load->view('common/required_meta_tags');
- 
+
         // Load navbar
 		$this->navbars->load();
+
+
     }
 
     /**
      * Returns all available listings of the user by accessing details from session
      */
     public function get_all_listings_of_user(){
-
+        $this->userinfo = $this->loginhelper->getLoginData();
         if($this->loginhelper->isRegistered()){
-            $userinfo = $this->loginhelper->getLoginData();
+
             //print_r($userinfo);
-            if ( $userinfo->username != NUll){
-                $search['user'] = $userinfo->username;
+            if ( $this->userinfo->username != NUll){
+                $search['user'] = $this->userinfo->username;
                 $items = $this->Item_Listing->getItems($search);
                 //print_r($items);
                 $data['items'] = $items;
@@ -88,17 +94,17 @@ class Itemlisting extends CI_Controller
      * Saves an itemlisting with images
      */
     public function post_listing(){
-        $path = APPPATH . 'public/images/';
+        $this->userinfo = $this->loginhelper->getLoginData();
+        $this->uploadpath = './public/temp/';
+        $this->load->model('Category');
+        $data['categories'] = $this->Category->getCategories();
 
         try{
-           /* if(!file_exists($path)){
-                print_r($path);
-                mkdir($path,0777,true);
-            }*/
+
             if($this->input->post('submit') && !empty($_FILES['dp']['name'])){
-                print_r($path);
-                $config['upload_path']          = $path;
-                $config['allowed_types']        = 'gif|jpg|png|jpeg';
+
+                $config['upload_path']          = $this->uploadpath;
+                $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 5120;
                 $config['max_width']            = 1024;
                 $config['max_height']           = 768;
@@ -107,76 +113,127 @@ class Itemlisting extends CI_Controller
 
                 if ( !$this->upload->do_upload('dp'))
                 {
-                    $error = array('error' => $this->upload->display_errors());
-                    print_r($error);
-                    return;
-                    //$this->load->view('upload_form', $error);
+                    $data = array('item_form_errors' => $this->upload->display_errors());
+                    $this->session->set_flashdata($data);
+                    redirect('add_item',$data);
                 }
                 else
                 {
                     $imgdata = $this->upload->data();
+                    $this->fileToDelete = $imgdata['full_path'];
                     $this->genthumbnail($imgdata['full_path']);
 
                     $listing = $this->genListingDetails();
 
                     $listing_id = $this->Item_Listing->addItemListing($listing, $imgdata);
 
+                    unlink($this->fileToDelete);
+                    unlink(str_replace(".","_thumb.", $this->fileToDelete));
+
                     if($listing_id == Null){
                         redirect('add_item');
                     }else{
-                        if(!empty($_FILES['pic']['name'])){
-                            $files = $this->diverse_array($_FILES['pic']);
-                            foreach ($files as $pic){
-                                if($this->upload->do_upload($pic)){
-                                    $picdata = $this->upload->data();
-                                    $this->genthumbnail($picdata['full_path']);
-                                    $this->Item_Listing->addItemPicture($listing_id, $picdata);
-                                }
-                            }// end of for each
-                        }//end of if
-                        redirect('add_item');
+                       $filecount = count($_FILES['pic']['name']);
+                       for($i=0 ; $i < $filecount; $i++){
+                           $_FILES['userFile']['name'] = $_FILES['pic']['name'][$i];
+                           $_FILES['userFile']['type'] = $_FILES['pic']['type'][$i];
+                           $_FILES['userFile']['tmp_name'] = $_FILES['pic']['tmp_name'][$i];
+                           $_FILES['userFile']['error'] = $_FILES['pic']['error'][$i];
+                           $_FILES['userFile']['size'] = $_FILES['pic']['size'][$i];
+
+                           $this->load->library('upload', $config);
+                           $this->upload->initialize($config);
+                           if($this->upload->do_upload('userFile')){
+                               $picdata = $this->upload->data();
+                               $this->genthumbnail($picdata['full_path']);
+                               $this->Item_Listing->addItemPicture($listing_id, $picdata);
+                               unlink($picdata['full_path']);
+                               unlink(str_replace(".","_thumb.", $picdata['full_path']));
+                           }else{
+
+                           }
+                       }
+                       redirect('user_listings');
                     }
                     //$this->load->view('upload_success', $data);
                 }
 
             }else{
-                //Todo
-                $error = array('error' => "No image was provided");
-                print_r($error);
-                return;
+                $data = array('item_form_errors' => "Please fill the details of this Item Listing");
+                $this->session->set_flashdata($data);
+                redirect('add_item',$data);
             }
 
         }catch(Exception $e){
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
+            $data = array('item_form_errors' => "Please fill the details of this Item Listing");
+            $this->session->set_flashdata($data);
+            redirect('add_item',$data);
         }finally{
-            if(file_exists($path)){
-                delete_files($path);
-                rmdir($path);
+            if(file_exists($this->uploadpath)){
+                $filename = $this->fileToDelete;
+                unlink($filename);
+                $filename = str_replace(".", "_thumb.", $filename);
+                unlink($filename);
             }
         }
     }
-
+/*
+ *  print_r($_FILES);
+                        //if(!empty($_FILES['pic']['name'][0])){
+                        $files = $this->diverse_array($_FILES['pic']);
+                           // print_r($files);
+                           print_r($files);
+                            foreach ($files as $pic){
+                                echo "pic";
+                                $this->load->library('upload',$config);
+                                $this->upload->initialize($config);
+                                echo $pic['name'];
+                                if($this->upload->do_upload($pic['name'])){
+                                    echo "pic1";
+                                    $picdata = $this->upload->data();
+                                    echo "pic2";
+                                    $this->genthumbnail($picdata['full_path']);
+                                    echo "pic3";
+                                    $this->Item_Listing->addItemPicture($listing_id, $picdata);
+                                    echo "pic4";
+                                    unlink($picdata['full_path']);
+                                }else{
+                                    echo $this->upload->display_errors();
+                                    //exit;
+                                }
+                            }// end of for each
+                        //}//end of if
+                        echo "No item pics found";
+                        exit;*/
     private function genListingDetails(){
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('name', 'Item Name', 'trim|required|min_length[3]|max_length[30]');
-        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[3]',
+        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[5]',
             array('required' => 'You must provide a %s.')
         );
         $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[200]');
 
         if ($this->form_validation->run() == FALSE)
         {
-            print_r( validation_errors());
-            return;
+            if(file_exists($this->uploadpath)){
+                unlink($this->fileToDelete);
+                unlink(str_replace(".","_thumb.", $this->fileToDelete));
+            }
+            //print_r(validation_errors());
+            $data = array(
+                'item_form_errors' => validation_errors()
+            );
+            $this->session->set_flashdata($data);
+
+            redirect('add_item');
         }
         else
         {
             $this->load->model('Reg_User');
-            //todo remove hard coded value
-            $userid = $this->Reg_User->getUserIdByUsername('pgupta2');
+            $userid = $this->Reg_User->getUserIdByUsername($this->userinfo->username);
             $listing = array(
-                'seller_id' => $userid,
+                'seller_id' => $userid[0]->user_id,
                 'category_id' => $this->input->post('category'),
                 'title' => $this->input->post('name'),
                 'price' => $this->input->post('price'),
