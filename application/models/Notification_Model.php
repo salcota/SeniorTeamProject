@@ -11,31 +11,23 @@ class Notification_Model extends CI_Model
 			$this->load->model('Item_Listing');
     	}
 
-    	public function getNotifications($buyer, $seller)
+    	public function getNotifications($buyer, $seller, $start, $count = NULL)
 		{
+			if (!is_numeric($start))
+				return;
+			
 			// Turn off debugging
 			$debug = $this->db->db_debug;
 			$this->db->db_debug = false;
 			
+			if (is_numeric($count))
+				$this->db->limit($count, $start);
+			else
+				$this->db->limit(PHP_INT_MAX, $start);
+			
 			try
 			{
-				$this->db->join("item_listing", "item_listing.listing_id = reg_user_notification.listing_id");
-				$this->db->join("reg_user", "reg_user.user_id = item_listing.seller_id");
-				$data = $this->db->select("reg_user_notification.notification_id, reg_user_notification.sender_id, reg_user_notification.receiver_id, reg_user_notification.listing_id, reg_user_notification.message, reg_user_notification.status, reg_user.user_id, reg_user.username")->
-					group_start()->
-						group_start()->
-							where("sender_id", $buyer)->
-							where("receiver_id", $seller)->
-						group_end()->
-						or_group_start()->
-							where("sender_id", $seller)->
-							where("receiver_id", $buyer)->
-						group_end()->
-					group_end()->
-					group_start()->
-						where("reg_user.user_id", $seller)->
-					group_end()->
-				get("reg_user_notification")->result();
+				$data = $this->sqlNotification($buyer, $seller);
 			}
 			catch (Exception $e)
 			{
@@ -47,7 +39,50 @@ class Notification_Model extends CI_Model
 			// Restore debug defaults
 			$this->db->db_debug = $debug;
 			
-			return $data;
+			return $data->get("reg_user_notification")->result();
+		}
+		
+		public function countNotifications($buyer, $seller)
+		{
+			// Turn off debugging
+			$debug = $this->db->db_debug;
+			$this->db->db_debug = false;
+			
+			try
+			{
+				$data = $this->sqlNotification($buyer, $seller);
+			}
+			catch (Exception $e)
+			{
+				// Restore debug defaults
+				$this->db->db_debug = $debug;
+				throw new Exception("Error fetching Notifications");
+			}
+			
+			// Restore debug defaults
+			$this->db->db_debug = $debug;
+			
+			return $data->count_all_results("reg_user_notification");
+		}
+		
+		private function sqlNotification($buyer, $seller)
+		{
+			$this->db->join("item_listing", "item_listing.listing_id = reg_user_notification.listing_id");
+			$this->db->join("reg_user", "reg_user.user_id = item_listing.seller_id");
+			return $this->db->select("reg_user_notification.notification_id, reg_user_notification.sender_id, reg_user_notification.receiver_id, reg_user_notification.listing_id, reg_user_notification.message, reg_user_notification.status, reg_user.user_id, reg_user.username")->
+				group_start()->
+					group_start()->
+						where("sender_id", $buyer)->
+						where("receiver_id", $seller)->
+					group_end()->
+					or_group_start()->
+						where("sender_id", $seller)->
+						where("receiver_id", $buyer)->
+					group_end()->
+				group_end()->
+				group_start()->
+					where("reg_user.user_id", $seller)->
+				group_end();
 		}
 
     	public function storeNotification($sender, $recv, $listing, $msg)
