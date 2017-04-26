@@ -11,7 +11,7 @@
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
             endif;
             if($this->session->flashdata('item_form_errors')):
-                echo "<div class='alert alert-error' role='alert'>" . $this->session->flashdata('item_form_errors') . "</div>";
+                echo "<div class='alert alert-danger' role='alert'>" . $this->session->flashdata('item_form_errors') . "</div>";
             endif;
         ?>
     </p>
