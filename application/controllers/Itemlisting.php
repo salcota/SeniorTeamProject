@@ -131,7 +131,6 @@ class Itemlisting extends CI_Controller
                     unlink(str_replace(".","_thumb.", $this->fileToDelete));
 
                     if($listing_id == Null){
-                        print_r("Listing id = null");
                         redirect('add_item');
                     }else{
                        $filecount = count($_FILES['pic']['name']);
@@ -160,14 +159,15 @@ class Itemlisting extends CI_Controller
                 }
 
             }else{
-                //Todo
                 $data = array('item_form_errors' => "Please fill the details of this Item Listing");
                 $this->session->set_flashdata($data);
                 redirect('add_item',$data);
             }
 
         }catch(Exception $e){
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
+            $data = array('item_form_errors' => "Please fill the details of this Item Listing");
+            $this->session->set_flashdata($data);
+            redirect('add_item',$data);
         }finally{
             if(file_exists($this->uploadpath)){
                 $filename = $this->fileToDelete;
@@ -209,7 +209,7 @@ class Itemlisting extends CI_Controller
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('name', 'Item Name', 'trim|required|min_length[3]|max_length[30]');
-        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[3]',
+        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[5]',
             array('required' => 'You must provide a %s.')
         );
         $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[200]');
