@@ -105,5 +105,22 @@ class Notification_Model extends CI_Model
 			$result = $this->db->get()->result();
 			return $result;
 		}
+		
+		public function getSellers($buyerID)
+		{
+			if (!is_Numeric($buyerID))
+				return;
+			
+			$this->db->select('sell.user_id, sell.username');
+			$this->db->from('reg_user_notification seller');
+			$this->db->join('item_listing', 'seller.listing_id = item_listing.listing_id');
+			$this->db->join('reg_user sell', 'item_listing.seller_id = sell.user_id');
+			$this->db->join('reg_user from', 'from.user_id = seller.receiver_id');
+			$this->db->distinct();
+			$this->db->where("seller.sender_id", $buyerID);
+			
+			$result = $this->db->get()->result();
+			return $result;
+		}
 }
 ?>
