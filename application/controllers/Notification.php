@@ -9,9 +9,6 @@ class Notification extends CI_Controller
 	{
 		parent::__construct();
 		
-		// Verify the user is logged in.
-		$this->loginhelper->forceLogin();
-		
 		$this->load->model("Notification_Model");
 		
 		$this->myInfo = $this->loginhelper->getLoginData();
@@ -19,6 +16,9 @@ class Notification extends CI_Controller
 
 	public function index()
 	{
+		// Verify the user is logged in.
+		$this->loginhelper->forceLogin();
+		
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
 		$this->load->view('common/required_meta_tags');
@@ -69,7 +69,29 @@ class Notification extends CI_Controller
 		}
 	}
 	
-    public function get_all_notifications(){}
+    public function get_all_notifications($partnerID, $partnerIsSeller)
+	{
+		// Determine who is buyer/seller
+		$buyer = $partnerID;
+		$seller = $partnerID;
+		if ($partnerIsSeller)
+			$buyer = $this->myInfo->user_id;
+		else
+			$seller = $this->myInfo->user_id;
+		
+		// Retrieve messages
+		$data = $this->Notification_Model->getNotifications($buyer, $seller, 0);
+		
+		// Print all messages.
+		// This will be changed later to print specific messages.
+		for($i = 0; $i < count($data); $i++)
+		{
+			echo $data[$i]->sender_id . "\r\n" . $data[$i]->message;
+			
+			if ($i < count($data) - 1)
+				echo "\r\n\r\n";
+		}
+	}
 
     public function delete(){}
 
