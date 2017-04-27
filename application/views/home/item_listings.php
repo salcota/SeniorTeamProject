@@ -58,7 +58,7 @@
                     <td>
 		        <a class="btn btn-secondary btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'Itemlisting/view/add_itemlisting'?>" target="blank">Edit</a>
                         &emsp;
-		        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'remove_listing/'.$item->listing_id?>" >Remove</a>
+		        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="<?php echo base_url() . 'remove_listing/'.$item->listing_id?>" >Remove</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
