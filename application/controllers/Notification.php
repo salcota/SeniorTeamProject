@@ -44,7 +44,7 @@ class Notification extends CI_Controller
 		for ($i = 0; $i < count($buyers); $i++)
 		{
 			// Print relevant buyer info.
-			echo $buyers[$i]->username . "\r\n" . $buyers[$i]->user_id;
+			echo htmlentities($buyers[$i]->username) . "\r\n" . $buyers[$i]->user_id;
 			
 			// Separate buyer usernames by double-newline.
 			if ($i < count($buyers) - 1)
@@ -61,7 +61,7 @@ class Notification extends CI_Controller
 		for ($i = 0; $i < count($sellers); $i++)
 		{
 			// Print relevant seller info.
-			echo $sellers[$i]->username . "\r\n" . $sellers[$i]->user_id;
+			echo htmlentities($sellers[$i]->username) . "\r\n" . $sellers[$i]->user_id;
 			
 			// Separate buyer usernames by double-newline.
 			if ($i < count($sellers) - 1)
@@ -86,7 +86,7 @@ class Notification extends CI_Controller
 		// This will be changed later to print specific messages.
 		for($i = 0; $i < count($data); $i++)
 		{
-			echo $data[$i]->sender_id . "\r\n" . $data[$i]->message;
+			echo $data[$i]->sender_id . "\r\n" . htmlentities($data[$i]->message);
 			
 			if ($i < count($data) - 1)
 				echo "\r\n\r\n";
