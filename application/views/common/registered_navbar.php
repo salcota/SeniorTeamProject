@@ -79,7 +79,18 @@
         </div>
 
     </nav>
-
+    <!-- TRYING TO DISPLAY ERROR MESSAGE WHEN USER PUTS IN BAD INPUT, scota-->
+    <div class="row justify-content-center text-danger">
+	<div class="col-sm-5">
+            <?php
+		// Loads login failure data of input is not recognized.
+		if($this->session->flashdata('bad_report')):
+            	echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_report') . "</strong></div>";
+            	endif;
+	    ?>
+	</div>
+    </div>
+  
     <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
     <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 6px; postion: relative; top: 25%">
         <div class="modal-dialog" role="document">

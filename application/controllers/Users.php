@@ -14,6 +14,22 @@ class Users extends CI_Controller
         // Load navbar
         $this->navbars->load();
     }
+   
+    // Attempting form validations for report misconduct, scota
+    public function report()
+    {
+	$this->form_validation->set_rules('reportText', 'Report misconduct', 'trim|required|alpha_numeric');
+
+	if($this->form_validation->run() == FALSE)
+	{
+		$data = array(
+			'bad_report' => validation_errors()
+		); 
+		$this->session->set_flashdata($data);
+	}
+
+
+    }
 
 	public function login()
 	{
