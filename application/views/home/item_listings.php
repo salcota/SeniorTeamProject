@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col">
             <div class="jumbotron" style="background-color:#FFF; margin-top: 25px; text-align: center">
-                <h1 class="display-4">Post an Item Listing</h1>
+                <h1 class="display-4">Your Current Listings for Sale</h1>
                 <hr class= "my-4">
                 <p class="lead">View your current items posted for sale. You can edit or remove a current listing, or add a new listing.</p>
             </div>
