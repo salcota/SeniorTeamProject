@@ -102,9 +102,10 @@
                         echo form_textarea($data);
                     ?>
                 </div>
+
                 <div class="modal-footer">
-                    <span style="width: 100%">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "March 10, 2017"; ?>
-                    <br /><?php $location = 'Spot 1 - Quad'; echo 'Meetup: ' . $location; ?></span>
+                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp; <?php echo "March 10, 2017"; ?>
+                    <br /><?php $location = 'Spot 1 - Quad'; echo 'Meet-up:<span>&emsp;</span>' . $location; ?></span>
                     <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
                     <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
                     <?php
@@ -117,6 +118,11 @@
                         echo form_close();
                     ?>
                 </div>
+
+                <div class="modal-footer" style="color: #AAA; text-align: justify">
+                    Note: You may change the meet-up location, but you must both agree on another location from the provided selection.
+                </div>
+
            </div>
         </div>
     </div>
