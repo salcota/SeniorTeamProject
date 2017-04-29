@@ -6,7 +6,7 @@
     <p style="text-align: center">
         <?php
             if($this->session->flashdata('login_success')):
-            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
+            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
             endif;
         ?>
     </p>
@@ -33,12 +33,12 @@
 
     <br />
 
-    <!-- Displays current list of item listings posted for sale (Hard Coded for now) -->	
+    <!-- Displays current list of item listings posted for sale (Hard Coded for now) -->
     <div class="row justify-content-center">
 	<div class="col-sm-10">
 	    <table class="table table-bordered table-hover table-info table-striped" style="border: solid 2px #ACF; font-size: 10pt">
                 <tr>
-		        <th>#</th>
+		    <th>#</th>
                     <th>Item Name</th>
                     <th>Category</th>
                     <th>Price</th>

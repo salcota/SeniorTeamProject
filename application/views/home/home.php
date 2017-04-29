@@ -188,6 +188,10 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                    ?>
                 </div>
 
+                <div class="modal-footer" style="color: #AAA; text-align: justify">
+                    Note: You may change the meet-up location, but you must both agree on another location from the provided selection.
+                </div>
+
             </div>
         </div>
     </div>
