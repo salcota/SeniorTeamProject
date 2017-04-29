@@ -10,7 +10,13 @@
             if($this->session->flashdata('login_success')):
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
             endif;
-        ?>
+       
+	    // Loads invalid search failure
+	    if($this->session->flashdata('bad_search')):
+            echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_search') . "</strong></div>";
+            endif;
+	?>
+
     </p>
 
     <!-- Subtitle Header -->

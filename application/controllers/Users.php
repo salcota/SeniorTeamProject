@@ -15,10 +15,27 @@ class Users extends CI_Controller
         $this->navbars->load();
     }
    
+/** 
+    public function search()
+    {
+	$this->form_validation->set_rules('search', 'Search ...', 'trim|required|alpha');
+
+	if($this->form_validation->run() == FALSE)
+	{
+		$data = array(
+			'bad_search' => validation_errors()
+		); 
+		$this->session->set_flashdata($data);
+		redirect('home/view/', $page);
+	} else {
+		redirect('home/view/', $page);
+        }
+    }
+   */
     // Attempting form validations for report misconduct, scota
     public function report()
     {
-	$this->form_validation->set_rules('reportText', 'Report misconduct', 'trim|required|alpha_numeric');
+	$this->form_validation->set_rules('reportText', 'Report misconduct here', 'trim|required|alpha');
 
 	if($this->form_validation->run() == FALSE)
 	{
@@ -26,9 +43,11 @@ class Users extends CI_Controller
 			'bad_report' => validation_errors()
 		); 
 		$this->session->set_flashdata($data);
-	}
-
-
+		redirect('home/view/home');
+	} else {
+		//do something
+		
+        }
     }
 
 	public function login()

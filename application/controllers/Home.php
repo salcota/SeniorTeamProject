@@ -36,12 +36,35 @@ class Home extends CI_Controller
 			$search = $this->input->get('search');
 			// Searches for matching items.
 			$find = array();
+			$data = array(
+				'bad_search' => ''
+				);
+
+			$this->session->set_flashdata($data); 
+			print_r($search);
 			if (strlen($search) > 0)
 			{
-				$find['title'] = $search;
+				$input["search"] = $search;
+				$this->form_validation->set_data($input);
+
+				//$find['title'] = $search;
+				$this->form_validation->set_rules('search', 'Search', 'trim|required|alpha');
+
+				if($this->form_validation->run() == FALSE)
+				{	
+					$data = array(
+						'bad_search' => validation_errors()
+					);
+ 
+					$this->session->set_flashdata($data);
+
+				} else {
+					//redirect('home/view/', $page);
+					$find['title'] = $search;
+        			}
 			}
 
-			//Sortx items based on option value.
+			//Sorts items based on option value.
 			$sort = $this->input->get('sort');
 
 			if(strlen($sort) > 0){
@@ -62,7 +85,7 @@ class Home extends CI_Controller
 			// Restricts number of shown results.
 			$find['maxResults'] = $this::PAGEMAXITEMS;
 			
-			// Skips first N results
+			// Skips first N results.
 			$pageSkip = $this->input->get('page');
 			if (is_numeric($pageSkip) && $pageSkip >= 1)
 				$find['skipResults'] = ($pageSkip - 1)*$this::PAGEMAXITEMS;
