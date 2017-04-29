@@ -1,5 +1,34 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<script>
+function showBuyers(list)
+{
+	var buyBox = "";
+	for (var i = 0; i < list.length; i++)
+	{
+		buyBox += "<li>" + list[i][0] + "</li>";
+	}
+	$("#buyers ul").html(buyBox);
+}
+
+function showSellers(list)
+{
+	var sellBox = "";
+	for (var i = 0; i < list.length; i++)
+	{
+		sellBox += "<li>" + list[i][0] + "</li>";
+	}
+	$("#sellers ul").html(sellBox);
+}
+
+$(document).ready(function()
+	{
+	getBuyers(showBuyers);
+	getSellers(showSellers);
+	});
+
+</script>
+
 <div class="container">
 
     <!-- For UI consistency wehere a p tag exists to greet user if logged in -->
@@ -29,40 +58,13 @@
        	    <hr />
 
 	    <div class="small" id="buyers" style="color: #C93; height: 40%; overflow-y: auto">
-	        <ul style="list-style-type: none">
-
-	    	    <li>JackTheWrapper</li>
-	    	    <li>Kevin</li>
-	    	    <li>Moonshine</li>
-	    	    <li>Petkovic</li>
-	    	    <li>pGupta2</li>
-		    <li>theDemoCrate</li>
-                    <li>JackTheWrapper</li>
-                    <li>Kevin</li>
-                    <li>Moonshine</li>
-                    <li>Petkovic</li>
-                    <li>pGupta2</li>
-                    <li>theDemoCrate</li>
-                    <li>JackTheWrapper</li>
-                    <li>Kevin</li>
-                    <li>Moonshine</li>
-                    <li>Petkovic</li>
-                    <li>pGupta2</li>
-                    <li>theDemoCrate</li>
-	        </ul>
+	        <ul style="list-style-type: none"></ul>
 	    </div>
 
 	    <hr />
 	    
             <div class="small" id="sellers" style="color: #39C; height: 40%; overflow-y: auto">
-                <ul style="list-style-type: none">
-                    <li>Darel_OG</li>
-                    <li>Kunal</li>
-                    <li>pGupta2</li>
-                    <li>Rodrigo</li>
-                    <li>Sarah333</li>
-                    <li>ToroZoro</li>
-                </ul>
+                <ul style="list-style-type: none"></ul>
             </div>
 
 	</div>

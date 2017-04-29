@@ -33,6 +33,7 @@ class Uploadprofile extends CI_Controller
 
 
 		$this->updateprofile->update($url,$id, $data);
+		redirect('Profile/me');
 
 
 	}
@@ -46,7 +47,7 @@ class Uploadprofile extends CI_Controller
 		// returns the uploaded photo & stores it in public/temp/uploads and returns the photo path
 		$type = explode('.', $_FILES["userfile"]["name"]);
 		$type = $type[count($type)-1];
-		$url = "public/temp/uploads/".uniqid(rand()).'.'.$type;
+		$url = "public/profilePics/".uniqid(rand()).'.'.$type;
 		if(in_array($type, array("jpg", "jpeg", "gif", "png")))
 			if(is_uploaded_file($_FILES["userfile"]["tmp_name"]))
 				if(move_uploaded_file($_FILES["userfile"]["tmp_name"],$url))

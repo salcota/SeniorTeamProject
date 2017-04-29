@@ -91,6 +91,10 @@
 		width: 150px;
 	    }
 
+	    .addon-iconwidth {
+		width: 50px;
+	    }
+
 	    .align-pt-16 {
 		padding-top: 16px !important;
 	    }
@@ -213,6 +217,10 @@
 	    .reguser-link:hover {
 		color: #FFF;
 		text-decoration: none;
+	    }
+
+	    .required {
+		color: #D00;
 	    }
 
 	    .span-for-profile {

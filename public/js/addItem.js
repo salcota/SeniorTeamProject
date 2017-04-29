@@ -3,7 +3,8 @@ function readImageFile(input, id){
 
             if(input.files[0].size >= 1024*1024*5){
                 alert("Cannot upload images with size > 5MB");
-             }else if(input.files[0].type.match('image')){
+
+            }else if(input.files[0].type.match('image')){
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     var image = new Image();

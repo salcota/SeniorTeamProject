@@ -38,19 +38,15 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-			<!-- <a class="img-fluid" href="data:image/jpg;base64,<?php //echo base64_encode($item_pic->pic) ?>" rel="lightbox" title="Image">-->
                         <img class="d-block img-fluid" id="image1"
                              src="data:image/jpg;base64,<?php echo base64_encode($item[0]->display_pic) ?>"
                              alt="First slide">
-			<!--</a>-->
-		    </div>
+                    </div>
                     <?php foreach ($itemPics as $item_pic): ?>
                         <div class="carousel-item">
-			    <!--<a class="img-fluid" href="data:image/jpg;base64,<?php //echo base64_encode($item_pic->pic) ?>" rel="lightbox" title="Image">-->
                             <img class="d-block img-fluid" id="image2"
                                  src="data:image/jpg;base64,<?php echo base64_encode($item_pic->pic) ?>"
                                  alt="Second slide">
-			    <!--</a>-->
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -106,10 +102,9 @@
                         echo form_textarea($data);
                     ?>
                 </div>
-
                 <div class="modal-footer">
-                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp; <?php echo "March 10, 2017"; ?>
-                    <br /><?php $location = 'Spot 1 - Quad'; echo 'Meet-up:<span>&emsp;</span>' . $location; ?></span>
+                    <span style="width: 100%">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "March 10, 2017"; ?>
+                    <br /><?php $location = 'Spot 1 - Quad'; echo 'Meetup: ' . $location; ?></span>
                     <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
                     <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
                     <?php
@@ -122,11 +117,6 @@
                         echo form_close();
                     ?>
                 </div>
-
-                <div class="modal-footer" style="color: #AAA; text-align: justify">
-                    Note: You may change the meet-up location, but you must both agree on another location from the provided selection.
-                </div>
-
            </div>
         </div>
     </div>

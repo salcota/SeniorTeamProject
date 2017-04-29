@@ -184,7 +184,7 @@ class Item_Listing extends CI_Model
 	    }else{
 
             $this->db->db_debug = $debug;
-            throw new Exception("Failed to insert item in the db");
+            throw new Exception($this->db->error_message());
 
 	    }
     }

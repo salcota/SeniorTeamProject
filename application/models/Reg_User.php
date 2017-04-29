@@ -17,8 +17,12 @@ class Reg_User extends CI_Model
 			);
 
 		$insert_data = $this->db->insert('reg_user', $data);
+
+		$id = $this->retrieveUserId($data['username']);
+
+		$this->defaultPic($id);
 		return $insert_data;
-			
+
 	}
 
 	public function getUser($email, $password)
@@ -61,6 +65,25 @@ class Reg_User extends CI_Model
         $result = $this->db->get('reg_user');
 		return $result->result();
 
-	}
+    }
+
+
+    public function retrieveUserId($username){
+
+        $this->db->where('username', $username);
+        $result = $this->db->get('reg_user');
+		return $result->row(1)->user_id;
+
+    }
+
+
+    public function defaultPic($id){
+	
+	$pic = 'public/images/images-1.jpeg';
+	$this->db->set('user_id',$id);
+	$this->db->set('pic',$pic);
+     	$this->db->insert('reg_user_pic');
+
+    }
 }
 ?>

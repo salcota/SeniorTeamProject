@@ -43,8 +43,8 @@
 		echo form_label('<span class="small text-muted">May only be alphanumeric and at least 8 characters long</span>', 'sfsu_username');
                 echo "<div class='input-group'>";
 
-	        // Inserts user icon next to email input.
-		echo '<span class="input-group-addon" id="envelope-addon" style="width: 40px"><i class="fa fa-user" aria-hidden="true"></i></span>';
+	        // Inserts user icon next to user input.
+		echo '<span class="input-group-addon addon-iconwidth" id="envelope-addon"><i class="fa fa-user" aria-hidden="true"><span class="required"> &nbsp;&nbsp;*</span></i></span>';
 		$data = array(
 		    'class' 		=> 'form-control',
 		    'name' 		=> 'username',
@@ -65,7 +65,7 @@
 		echo "<div class='input-group'>";
 
 		// Inserts email icon next to email input.
-		echo '<span class="input-group-addon" id="envelope-addon" style="width: 40px"><i class="fa fa-envelope" aria-hidden="true"></i></span>';
+		echo '<span class="input-group-addon addon-iconwidth" id="envelope-addon"><i class="fa fa-envelope" aria-hidden="true"><span class="required"> &nbsp;*</span></i></span>';
 		$data = array(
 		    'class' 		=> 'form-control',
 		    'name' 		=> 'sfsu_email',
@@ -81,11 +81,11 @@
     <div class="row justify-content-center">
 	<div class="form-group col-sm-5">
 	    <?php
-		echo form_label('<span class="small text-muted">Must be at least 4 characters long</span>', 'sfsu_username');
+		echo form_label('<span class="small text-muted">Must be at least 4 characters long</span>', 'password');
                 echo "<div class='input-group'>";
 
 		// Inserts lock icon next to the password input.
-        	echo '<span class="input-group-addon" id="lock-addon" style="width: 40px"><i class="fa fa-lock" aria-hidden="true"></i></span>';
+        	echo '<span class="input-group-addon addon-iconwidth" id="lock-addon"><i class="fa fa-lock" aria-hidden="true"><span class="required"> &nbsp;&nbsp;*</span></i></span>';
         	$data =array(
                	    'class' 		=> 'form-control',
                     'name' 		=> 'password',
@@ -103,7 +103,7 @@
 	<div class="form-group input-group col-sm-5">
 	    <?php
 		// Inserts lock icon next to the password input.
-        	echo '<span class="input-group-addon" id="lock-addon" style="width: 40px"><i class="fa fa-lock" aria-hidden="true"></i></span>';
+        	echo '<span class="input-group-addon addon-iconwidth" id="lock-addon"><i class="fa fa-lock" aria-hidden="true"><span class="required"> &nbsp;&nbsp;*</span></i></span>';
         	$data =array(
               	    'class' 		=> 'form-control',
                     'name' 		=> 'passconf',
@@ -114,6 +114,31 @@
 	    ?>
 	</div>
     </div> 
+
+    <br />
+
+    <!-- Major -->
+    <div class="row justify-content-center" style="margin-top: -20px">
+        <div class="form-group col-sm-5">
+            <?php
+		echo form_label('<span class="small text-muted">Optional</span>', 'major');
+                echo "<div class='input-group'>";
+
+                echo '<span class="input-group-addon addon-iconwidth" id="lock-addon"><i class="fa fa-graduation-cap" aria-hidden="true"> &nbsp;&nbsp;&nbsp;</i></span>';
+                		
+                $options = array(
+                    '1' => 'Accounting',
+                    '2' => 'Broadcast & EA',
+                    '3' => 'Computer Science',
+                    '4' => 'Electric Engineering',
+                    '5' => 'Math',
+		    '6' => 'Select'
+                );
+                echo form_dropdown('major', $options, '6');
+	 	echo '</div>';
+            ?>
+	</div>
+    </div>
 
     <br />
 
@@ -128,7 +153,7 @@
         	   'checked' 	=>  FALSE
 		);
 		echo form_checkbox($data);
-		echo " I have read and agree to the <a href='"?><?php echo base_url() . "About/view/terms'>Terms & Services</a>";
+		echo "I agree with the <a href='"?><?php echo base_url() . "About/view/terms'>Terms & Services</a><span class='required'> *</span>";
 	    ?>
 	</div>
     </div>
