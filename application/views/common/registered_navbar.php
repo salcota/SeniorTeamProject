@@ -58,12 +58,22 @@
                 <li class='nav-item'>
                     <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'add_item' ?>'>Sell</a>
                 </li>
-		        <li class='nav-item'>
+		<li class='nav-item'>
                     <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'user_listings' ?>'>Listings</a>
                 </li>
-		        <li class='nav-item'>
-                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Notification' ?>'>Notifications</a>
+
+		<!-- Adds a notfication signal if one exists and the number of new notifications -->
+		<?php 
+		    $notification = true;
+		    $num_of_notif = 2;
+		?>
+
+		<li class='nav-item'>
+                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Notification' ?>'>Notifications<?php if ($notification) echo '<span class="notif-signal">&nbsp;' . $num_of_notif . '&nbsp;</span>'?></a>
                 </li>
+		
+
+
                 <li class='nav-item'>
                     <div class="btn-group">
                             <a id='logout' class='nav-link fix-align align-pt-16' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></a>
