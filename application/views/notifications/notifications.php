@@ -1,12 +1,22 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <script>
+var myID = "<?php echo $userID;?>";
+var myName = "<?php echo $username;?>";
+
+var otherID = -1;
+var otherName = "";
+var otherSeller = -1;
+var itemID = -1;
+
+var messageBox = "";
+
 function showBuyers(list)
 {
 	var buyBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		buyBox += "<li>" + list[i][0] + "</li>";
+		buyBox += '<li onclick="otherID=' + list[i][1] + ';otherSeller=0;otherName=\'' + list[i][0] + '\';">' + list[i][0] + "</li>";
 	}
 	$("#buyers ul").html(buyBox);
 }
@@ -16,17 +26,41 @@ function showSellers(list)
 	var sellBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		sellBox += "<li>" + list[i][0] + "</li>";
+		sellBox += '<li onclick="alert(myName);">' + list[i][0] + "</li>";
 	}
 	$("#sellers ul").html(sellBox);
+}
+
+function refreshMessages()
+{
+	if (otherID < 0)
+		return;
+	
+	getMessages(otherID, otherSeller, showMessages);
+}
+
+function showMessages(data)
+{
+	messageBox = "";
+	for (var i = 0; i < data.length; i++)
+	{
+		if (data[i][0] == myID)
+			messageBox += myName + ": ";
+		else
+			messageBox += otherName + ": ";
+		
+		messageBox += data[i][1] + "\r\n";
+	}
+	$("#messageThread").html(messageBox);
 }
 
 $(document).ready(function()
 	{
 	getBuyers(showBuyers);
 	getSellers(showSellers);
+	
+	setInterval(refreshMessages, 1000);
 	});
-
 </script>
 
 <div class="container">

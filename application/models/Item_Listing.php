@@ -189,7 +189,12 @@ class Item_Listing extends CI_Model
 	    }
     }
 
-	public function deleteItemListing(){}
+	public function deleteItemListing($listingId){
+	    $tables = array('item_pic', 'item_listing');
+	    $this->db->where('listing_id', $listingId);
+	    $this->db->delete($tables);
+	    return;
+    }
 
 	public function updateItemListing(){}
 

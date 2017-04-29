@@ -7,7 +7,9 @@ class Uploadprofile extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('updateprofile');
+		$this->load->model('imageloader');
 		$this->load->library('loginhelper');
+
 	}
 
 
@@ -21,14 +23,52 @@ class Uploadprofile extends CI_Controller
 	public function save()
 	{
 
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
+		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
+
 		$user = $this->loginhelper->getLoginData();
 		$id = $user->user_id;
 
-		$url =$this->do_upload();
+
+
+		if(!empty($_FILES["userfile"]["name"]))
+		{
+			$url = $this->do_upload();
+		}else{
+			$url = $this->imageloader->showUserPic($id);
+		     }
+
+		if(!empty($_POST["description"]))
+		{
+			$biography = $_POST["description"];
+		}else{
+			$biography = $user->biography;
+		     }
+		if(!empty($_POST["major"]))
+		{
+			$major = $_POST["major"];
+		}else{
+			$major = $user->major;
+		     }
+		if(!empty($_POST["password"]) && !empty($_POST["passconf"]))
+		{
+		  if($this->form_validation->run() == FALSE)
+		  {
+			$login_attributes = array(
+				'errors' => validation_errors()
+			);
+			$this->session->set_flashdata($login_attributes);
+			redirect('Profile/me');
+		  }else{
+			$password = $_POST["password"];
+			$this->updateprofile->updatePassword($id, $password);
+		       }
+		}
 
 		$data = array(
-		'biography' => $_POST["description"]
-		// more will be added when I can update the other forms
+		'biography' => $biography,
+		'major_id' => $major,
+		// data to be written to db
 		);
 
 

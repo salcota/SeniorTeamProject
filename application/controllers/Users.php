@@ -123,5 +123,27 @@ class Users extends CI_Controller
         $this->load->view('common/jquery_tether_bootstrap');
         $this->load->view('common/footerbar');
 	}
+
+
+    /**
+	 * This function deletes allows user to delete an item listing posted by him/her.
+     * @param $listingId
+	 * redirects to the item_listings page again.
+     */
+	public function delete_listing($listingId){
+		try{
+            $this->userinfo = $this->loginhelper->getLoginData();
+            if($this->loginhelper->isRegistered()) {
+                $this->Item_Listing->deleteItemListing($listingId);
+                redirect("user_listings");
+            }else{
+                $this->loginhelper->forceLogin();
+            }
+		}catch (Exception $e){
+            $data = array('delete_listing_error' => $e->getMessage());
+            $this->session->set_flashdata($data);
+            redirect('user_listings',$data);
+		}
+	}
 }
 ?>
