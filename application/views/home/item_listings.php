@@ -8,6 +8,9 @@
             if($this->session->flashdata('login_success')):
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
             endif;
+            if($this->session->flashdata('delete_listing_error')):
+            echo "<div class='alert alert-danger' role='alert'>" . $this->session->flashdata('delete_listing_error') . "</div>";
+        endif;
         ?>
     </p>
 
@@ -27,7 +30,7 @@
     <!-- Adds a new item listing -->
     <div class="row justify-content-center">
         <div class="col-sm-10" style="text-align: right">
-            <a class="btn btn-success" href="<?php echo base_url() . 'Itemlisting/view/add_itemlisting'?>" target="blank">ADD ITEM</a>
+            <a class="btn btn-success" href="<?php echo base_url() . 'add_item'?>" target="blank">ADD ITEM</a>
     	</div>
     </div>
 
@@ -55,7 +58,7 @@
                     <td>
 		        <a class="btn btn-secondary btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'Itemlisting/view/add_itemlisting'?>" target="blank">Edit</a>
                         &emsp;
-		        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'Home/view/edit_listing'?>" target="blank">Remove</a>
+		        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="<?php echo base_url() . 'remove_listing/'.$item->listing_id?>" >Remove</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

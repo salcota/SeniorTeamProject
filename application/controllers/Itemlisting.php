@@ -177,34 +177,7 @@ class Itemlisting extends CI_Controller
             }
         }
     }
-/*
- *  print_r($_FILES);
-                        //if(!empty($_FILES['pic']['name'][0])){
-                        $files = $this->diverse_array($_FILES['pic']);
-                           // print_r($files);
-                           print_r($files);
-                            foreach ($files as $pic){
-                                echo "pic";
-                                $this->load->library('upload',$config);
-                                $this->upload->initialize($config);
-                                echo $pic['name'];
-                                if($this->upload->do_upload($pic['name'])){
-                                    echo "pic1";
-                                    $picdata = $this->upload->data();
-                                    echo "pic2";
-                                    $this->genthumbnail($picdata['full_path']);
-                                    echo "pic3";
-                                    $this->Item_Listing->addItemPicture($listing_id, $picdata);
-                                    echo "pic4";
-                                    unlink($picdata['full_path']);
-                                }else{
-                                    echo $this->upload->display_errors();
-                                    //exit;
-                                }
-                            }// end of for each
-                        //}//end of if
-                        echo "No item pics found";
-                        exit;*/
+
     private function genListingDetails(){
         $this->load->library('form_validation');
 
@@ -220,7 +193,7 @@ class Itemlisting extends CI_Controller
                 unlink($this->fileToDelete);
                 unlink(str_replace(".","_thumb.", $this->fileToDelete));
             }
-            //print_r(validation_errors());
+
             $data = array(
                 'item_form_errors' => validation_errors()
             );
