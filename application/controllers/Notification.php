@@ -30,7 +30,11 @@ class Notification extends CI_Controller
 		$this->load->view('common/jquery_tether_bootstrap');
 		$this->load->view('notifications/LiveMessage');
 		
-		$this->load->view('notifications/notifications');
+		// Load Notifications page.
+		$user = $this->loginhelper->getLoginData();
+		$data['userID'] = $user->user_id;
+		$data['username'] = $user->username;
+		$this->load->view('notifications/notifications', $data);
 		
 		$this->load->view('common/footerbar');
 	}
@@ -86,7 +90,7 @@ class Notification extends CI_Controller
 		// This will be changed later to print specific messages.
 		for($i = 0; $i < count($data); $i++)
 		{
-			echo $data[$i]->sender_id . "\r\n" . htmlentities($data[$i]->message);
+			echo $data[$i]->sender_id . "\r\n" . htmlentities($data[$i]->message) . "\r\n" . $data[$i]->listing_id;
 			
 			if ($i < count($data) - 1)
 				echo "\r\n\r\n";
