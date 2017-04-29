@@ -22,8 +22,8 @@
 
 	<!-- Light Box -->
 
-	<script type="text/javascript" src="<?php echo base_url() . 'public/lightbox2/src/js/lightbox.js'?>"></script>
+	<script type="text/javascript" src="<?php echo base_url() . 'public/lightbox/js/lightbox.js'?>"></script>
 
 
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url() . 'public/lightbox2/src/css/lightbox.css'?>">
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url() . 'public/lightbox/css/lightbox.css'?>">
 
