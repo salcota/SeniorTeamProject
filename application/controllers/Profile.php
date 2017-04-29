@@ -10,6 +10,7 @@ class Profile extends CI_Controller
 	$this->load->library('loginhelper');
 	$this->load->model('Updateprofile');
 	$this->load->model('imageloader');
+	$this->load->model('Major');
 	}
 
 	public function me()
@@ -25,6 +26,7 @@ class Profile extends CI_Controller
 		// Returns necessary data for the view file (profile.php) to use
 		$user = $this->loginhelper->getLoginData();
 		$id = $user->user_id;
+		$usermajor = $user->major_id;
 		$profilePic = $this->imageloader->showUserPic($id);
 		$pic = base_url().$profilePic;
 		$data = array(
@@ -33,7 +35,8 @@ class Profile extends CI_Controller
 			'biography'=> $user->biography,
 			'id' => $user->user_id,
 			'pic' => $pic,
-
+			'majors' => $this->Major->getMajors(),
+			'usermajor' => $usermajor,
 		);
 
 		$this->load->view('profile/your_profile', $data);
