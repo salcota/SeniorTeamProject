@@ -32,9 +32,9 @@
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <?php $count = 0;
-                    foreach ($itemPics as $item_pic): ?>
-                    <li data-target="#carouselExampleIndicators" data-slide-to=<?php ++$count; ?></li>
-                        <?php endforeach; ?>
+                    for ($i = 0; $i < count($itemPics);$i++){ ?>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo ($i+1); ?>"></li>
+                        <?php } ?>
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     
