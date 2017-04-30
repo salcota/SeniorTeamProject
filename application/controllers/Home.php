@@ -41,7 +41,7 @@ class Home extends CI_Controller
 				);
 
 			$this->session->set_flashdata($data); 
-			print_r($search);
+			//print_r($search);
 			if (strlen($search) > 0)
 			{
 				$input["search"] = $search;
