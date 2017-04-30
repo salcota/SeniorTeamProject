@@ -54,8 +54,6 @@ class Notification extends CI_Controller
 			if ($i < count($buyers) - 1)
 				echo "\r\n\r\n";
 		}
-		
-		echo "Petkovic\r\n777";
 	}
 	
 	public function getSellers()
@@ -73,7 +71,6 @@ class Notification extends CI_Controller
 			if ($i < count($sellers) - 1)
 				echo "\r\n\r\n";
 		}
-		echo "Petkovic\r\n777";
 	}
 	
     public function get_all_notifications($partnerID, $partnerIsSeller)
