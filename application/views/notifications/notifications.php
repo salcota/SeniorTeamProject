@@ -92,13 +92,13 @@ $(document).ready(function()
        	    <hr />
 
 	    <div class="small" id="buyers" style="color: #C93; height: 40%; overflow-y: auto">
-	        <ul style="list-style-type: none"></ul>
+	        <ul style="list-style-type: none; cursor: pointer"></ul>
 	    </div>
 
 	    <hr />
 	    
             <div class="small" id="sellers" style="color: #39C; height: 40%; overflow-y: auto">
-                <ul style="list-style-type: none"></ul>
+                <ul style="list-style-type: none; cursor: pointer"></ul>
             </div>
 
 	</div>
@@ -125,7 +125,7 @@ $(document).ready(function()
 				<span class="small text-muted">Send a new message</span>
 
 				<!-- New messages can be inserted here to update the message thread box above -->
-				<textarea class="form-control" id="messageThread" rows="3" style="resize: none; min-height: 150px; height: 5%"></textarea>
+				<textarea class="form-control" id="messageThread" rows="1" style="resize: none; min-height: 25px"></textarea>
   			    </div>
 			    <h6 class="small" style="padding-top: 10px">Date:</h6>
 			    <hr />
