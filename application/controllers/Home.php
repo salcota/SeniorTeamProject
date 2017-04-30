@@ -120,6 +120,7 @@ class Home extends CI_Controller
 			$items['lowestPage'] = $lowerPage;
 			$items['highestPage'] = $upperPage;
 			$items['maxItems'] = $maxItems;
+			$items['currentCategory'] = $category;
 				
 			// Sends all GET data.
 			$items['get'] = $this->input->get();			
