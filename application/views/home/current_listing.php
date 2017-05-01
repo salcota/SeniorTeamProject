@@ -2,6 +2,22 @@
 
 <?php $logged = $this->session->loggedIn; ?>
 
+<?php
+echo <<<END
+<script>
+var messenger = new LiveMessage($myInfo->user_id);
+messenger.select($item->seller_id, true, $item->listing_id);
+</script>
+END;
+?>
+<script>
+function send()
+{
+	messenger.sendMessage($("#reportText").val(), test);
+}
+function test() {}
+</script>
+
 <div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
@@ -17,7 +33,7 @@
     <div class="row">
         <div class="col">
             <div class="jumbotron">
-                <h1 class="display-4"><?php echo $item[0]->title ?></h1>
+                <h1 class="display-4"><?php echo $item->title ?></h1>
                 <hr class= "my-4">
             </div>
         </div>
@@ -40,9 +56,9 @@
                     
 
 			<div class="carousel-item active">
-			<a class="img-fluid" href="data:image/jpg;base64,<?php echo base64_encode($item[0]->display_pic) ?>" rel="lightbox" title="Image">
+			<a class="img-fluid" href="data:image/jpg;base64,<?php echo base64_encode($item->display_pic) ?>" rel="lightbox" title="Image">
                         <img class="d-block img-fluid" id="image1"
-                             src="data:image/jpg;base64,<?php echo base64_encode($item[0]->display_pic) ?>"
+                             src="data:image/jpg;base64,<?php echo base64_encode($item->display_pic) ?>"
                              alt="First slide">
 			</a>
 		    </div>
@@ -73,11 +89,11 @@
         <div class="col-md-6">
             <?php echo
 	        "<table>" .
-	        "<tr> <th>Name:</th>	<td>"   . $item[0]->title . "</td> </tr>" .
-	        "<tr> <th>Category:</th>	<td>"   . $item[0]->category_name . "</td> </tr>" .
-	        "<tr> <th>Price:</th>	<td> $" . $item[0]->price . "</td> </tr>" .
-	        "<tr> <th>Date:</th>	<td>"   . date_format(date_create($item[0]->posted_on),'d-m-Y') . "</td> </tr>" .
-	        "<tr> <th>Seller:</th>	<td>"   . $item[0]->username . "</td> </tr>";
+	        "<tr> <th>Name:</th>	<td>"   . $item->title . "</td> </tr>" .
+	        "<tr> <th>Category:</th>	<td>"   . $item->category_name . "</td> </tr>" .
+	        "<tr> <th>Price:</th>	<td> $" . $item->price . "</td> </tr>" .
+	        "<tr> <th>Date:</th>	<td>"   . date_format(date_create($item->posted_on),'d-m-Y') . "</td> </tr>" .
+	        "<tr> <th>Seller:</th>	<td>"   . $item->username . "</td> </tr>";
 
                 if($logged)
 	            echo "<tr><td><a class='btn btn-success' href='#' data-toggle='modal' data-target='#buyModal' style='cursor: pointer; width: 100%'>Buy</a></td></tr>";
@@ -95,7 +111,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="exampleModalLabel">Send a notification to <?php echo $item[0]->username?> to buy <?php echo $item[0]->title?> </h6>
+                    <h6 class="modal-title" id="exampleModalLabel">Send a notification to <?php echo $item->username?> to buy <?php echo $item->title?> </h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -106,7 +122,8 @@
                         $data = array(
                             'class'         => 'form-control',
                             'name'          => 'reportText',
-                            'style'         => 'height: 100px; resize: none'
+                            'style'         => 'height: 100px; resize: none',
+							'id'			=> 'reportText'
                         );
                         echo form_textarea($data);
                     ?>
@@ -121,7 +138,9 @@
                         $data = array(
                             'class'         => 'btn btn-success btn-sm',
                             'name'          => 'submit',
-                            'value'         => 'Send'
+                            'value'         => 'Send',
+							'onclick'			=> 'send()',
+							'data-dismiss'		=> 'modal'
                         );
                         echo form_submit($data);
                         echo form_close();
@@ -142,7 +161,7 @@
         <div class="col-md-10">
             <span style="font-weight: bold">Description:</span>
             <div class="description_box">
-                <?php echo $item[0]->description ?><br/>
+                <?php echo $item->description ?><br/>
             </div>
         </div>
     </div>

@@ -54,13 +54,16 @@ class Itemlisting extends CI_Controller
      * @param null $listingID
      */
     public function get_listing_by_id($listingID = Null){
-
+		
+		$this->load->view('notifications/LiveMessage');
+		
         if($listingID != Null){
             $search['listingID'] = $listingID;
             $item = $this->Item_Listing->getItems($search);
-            $data['item'] = $item;
+            $data['item'] = $item[0];
             $item_pics = $this->Item_Listing->getAllItemListingPictures($listingID);
             $data['itemPics'] = $item_pics;
+			$data['myInfo'] = $this->loginhelper->getLoginData();
             $this->load->view('home/current_listing',$data);
         }
 

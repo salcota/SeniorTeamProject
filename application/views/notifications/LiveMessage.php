@@ -49,7 +49,7 @@ function LiveMessage(userID) {
 		});
 	}
 	
-	this.sendMessage = function(message, callBack)
+	this.sendMessage = function(message, callBack = function(){})
 	{
 		if (this.otherID < 0 || this.itemID < 0 || message.length == 0)
 			return;
@@ -58,7 +58,7 @@ function LiveMessage(userID) {
 		
 		req.done(function(data)
 		{
-			callBack(data);
+			callBack();
 		});
 	}
 
