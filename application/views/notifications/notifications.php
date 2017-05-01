@@ -1,22 +1,20 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <script>
-var myID = "<?php echo $userID;?>";
-var myName = "<?php echo $username;?>";
+<?php
+echo <<<END
+var messenger = new LiveMessage($userID, "$username");
+END;
+?>
 
-var otherID = -1;
 var otherName = "";
-var otherSeller = -1;
-var itemID = -1;
-
-var messageBox = "";
 
 function showBuyers(list)
 {
 	var buyBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		buyBox += '<li onclick="otherID=' + list[i][1] + ';otherSeller=0;otherName=\'' + list[i][0] + '\';">' + list[i][0] + "</li>";
+		buyBox += '<li onclick="messenger.select(' + list[i][1] + ', false);otherName=\'' + list[i][0] + '\';refreshMessages();">' + list[i][0] + "</li>";
 	}
 	$("#buyers ul").html(buyBox);
 }
@@ -33,19 +31,16 @@ function showSellers(list)
 
 function refreshMessages()
 {
-	if (otherID < 0)
-		return;
-	
-	getMessages(otherID, otherSeller, showMessages);
+	messenger.getMessages(showMessages);
 }
 
 function showMessages(data)
 {
-	messageBox = "";
+	var messageBox = "";
 	for (var i = 0; i < data.length; i++)
 	{
-		if (data[i][0] == myID)
-			messageBox += myName + ": ";
+		if (data[i][0] == messenger.myID)
+			messageBox += messenger.myName + ": ";
 		else
 			messageBox += otherName + ": ";
 		
@@ -56,8 +51,8 @@ function showMessages(data)
 
 $(document).ready(function()
 	{
-	getBuyers(showBuyers);
-	getSellers(showSellers);
+	messenger.getBuyers(showBuyers);
+	messenger.getSellers(showSellers);
 	
 	setInterval(refreshMessages, 1000);
 	});
