@@ -13,9 +13,8 @@ END;
 <script>
 function send()
 {
-	messenger.sendMessage($("#reportText").val(), test);
+	messenger.sendMessage($("#reportText").val());
 }
-function test() {}
 </script>
 
 <div class="container">
@@ -56,20 +55,18 @@ function test() {}
                     
 
 			<div class="carousel-item active">
-			<a class="img-fluid" href="data:image/jpg;base64,<?php echo base64_encode($item->display_pic) ?>" rel="lightbox" title="Image">
+			<a class="img-fluid" href="<?php echo base_url() . "Images/listingPic/" . $item->listing_id; ?>" rel="lightbox" title="Image">
                         <img class="d-block img-fluid" id="image1"
-                             src="data:image/jpg;base64,<?php echo base64_encode($item->display_pic) ?>"
+                             src="<?php echo base_url() . "Images/listingThumb/" . $item->listing_id; ?>"
                              alt="First slide">
 			</a>
 		    </div>
                     <?php foreach ($itemPics as $item_pic): ?>
                         <div class="carousel-item">
 
-			    <!-- Lightbox Testing - Need Help fixing PHP error: unidentified variable item_pic for carousel with a single item -->
-
-			    <a class="img-fluid" href="data:image/jpg;base64,<?php echo base64_encode($item_pic->pic) ?>" rel="lightbox" title="Image">
+			    <a class="img-fluid" href="<?php echo base_url() . "Images/itemPic/" . $item_pic->item_pic_id; ?>" rel="lightbox" title="Image">
                             <img class="d-block img-fluid" id="image2"
-                                 src="data:image/jpg;base64,<?php echo base64_encode($item_pic->pic) ?>"
+                                 src="<?php echo base_url() . "Images/itemThumb/" . $item_pic->item_pic_id; ?>"
                                  alt="Second slide">
 			    </a>
                         </div>
