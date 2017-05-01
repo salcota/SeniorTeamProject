@@ -1,5 +1,5 @@
 <script>
-function LiveMessage(userID, username) {
+function LiveMessage(userID) {
 	// Constants
 	this.splitDetails = '<br>';
 	this.splitData = '<br><br>';
@@ -7,7 +7,6 @@ function LiveMessage(userID, username) {
 	
 	// Run-time vars
 	this.myID = userID;
-	this.myName = username;
 
 	this.otherID = -1;
 	this.otherSeller = false;
@@ -47,6 +46,19 @@ function LiveMessage(userID, username) {
 				parent.itemID = messages[messages.length - 1][2];
 			
 			callBack(messages);
+		});
+	}
+	
+	this.sendMessage = function(message, callBack)
+	{
+		if (this.otherID < 0 || this.itemID < 0 || message.length == 0)
+			return;
+		
+		var req = $.post(this.controller + "send_notification", {receiver: this.otherID, item: this.itemID, msg: message});
+		
+		req.done(function(data)
+		{
+			callBack(data);
 		});
 	}
 
