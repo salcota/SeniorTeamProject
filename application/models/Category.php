@@ -14,5 +14,13 @@ class Category extends CI_Model
 		$categories = $this->db->get('item_category');
 		return $categories->result();
 	}
+
+	public function getCategoryById($id){
+		$this->db->select('category_name');
+		$this->db->where('category_id', $id);
+        $result = $this->db->get('item_category');
+        $name = $result->result();
+        return $name[0]->category_name;
+	}
 }
 ?>

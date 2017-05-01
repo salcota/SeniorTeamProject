@@ -1,22 +1,21 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <script>
-var myID = "<?php echo $userID;?>";
-var myName = "<?php echo $username;?>";
+<?php
+echo <<<END
+var messenger = new LiveMessage($userID);
+var myName = "$username";
+END;
+?>
 
-var otherID = -1;
 var otherName = "";
-var otherSeller = -1;
-var itemID = -1;
-
-var messageBox = "";
 
 function showBuyers(list)
 {
 	var buyBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		buyBox += '<li onclick="otherID=' + list[i][1] + ';otherSeller=0;otherName=\'' + list[i][0] + '\';">' + list[i][0] + "</li>";
+		buyBox += '<li onclick="messenger.select(' + list[i][1] + ', false);otherName=\'' + list[i][0] + '\';refreshMessages();">' + list[i][0] + "</li>";
 	}
 	$("#buyers ul").html(buyBox);
 }
@@ -26,38 +25,41 @@ function showSellers(list)
 	var sellBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		sellBox += '<li onclick="alert(myName);">' + list[i][0] + "</li>";
+		sellBox += '<li onclick="messenger.select(' + list[i][1] + ', true);otherName=\'' + list[i][0] + '\';refreshMessages();">' + list[i][0] + "</li>";
 	}
 	$("#sellers ul").html(sellBox);
 }
 
 function refreshMessages()
 {
-	if (otherID < 0)
-		return;
-	
-	getMessages(otherID, otherSeller, showMessages);
+	messenger.getMessages(showMessages);
 }
 
 function showMessages(data)
 {
-	messageBox = "";
+	var messageBox = "";
 	for (var i = 0; i < data.length; i++)
 	{
-		if (data[i][0] == myID)
+		if (data[i][0] == messenger.myID)
 			messageBox += myName + ": ";
 		else
 			messageBox += otherName + ": ";
 		
 		messageBox += data[i][1] + "\r\n";
 	}
-	$("#messageThread").html(messageBox);
+	$("#messageThread").val(messageBox);
+}
+
+function sendMessage()
+{
+	messenger.sendMessage($("#sendText").val(), refreshMessages);
+	$("#sendText").val("");
 }
 
 $(document).ready(function()
 	{
-	getBuyers(showBuyers);
-	getSellers(showSellers);
+	messenger.getBuyers(showBuyers);
+	messenger.getSellers(showSellers);
 	
 	setInterval(refreshMessages, 1000);
 	});
@@ -125,7 +127,7 @@ $(document).ready(function()
 				<span class="small text-muted">Send a new message</span>
 
 				<!-- New messages can be inserted here to update the message thread box above -->
-				<textarea class="form-control" id="messageThread" rows="1" style="resize: none; min-height: 25px"></textarea>
+				<textarea class="form-control" id="sendText" rows="1" style="resize: none; min-height: 25px"></textarea>
   			    </div>
 			    <h6 class="small" style="padding-top: 10px">Date:</h6>
 			    <hr />
@@ -147,7 +149,7 @@ $(document).ready(function()
 
                             <button type="submit" class="btn btn-danger btn-sm" style="float: left; margin-bottom: 10px; width: 75px">Decline</button>
 
-			    <button type="submit" class="btn btn-success btn-sm" style="float: right; margin-bottom: 10px; width: 75px">Send</button>
+			    <button type="button" class="btn btn-success btn-sm" style="float: right; margin-bottom: 10px; width: 75px" onclick="sendMessage()">Send</button>
 			    <br />
 			</form>
 		    </div>

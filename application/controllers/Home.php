@@ -119,7 +119,13 @@ class Home extends CI_Controller
 			$items['lowestPage'] = $lowerPage;
 			$items['highestPage'] = $upperPage;
 			$items['maxItems'] = $maxItems;
-			$items['currentCategory'] = $category;
+			if(strlen($category) > 0){
+				$this->load->model('Category');
+                $items['currentCategory'] = $this->Category->getCategoryById($category);
+			}else{
+                $items['currentCategory'] = "";
+			}
+
 				
 			// Sends all GET data.
 			$items['get'] = $this->input->get();			
@@ -128,7 +134,9 @@ class Home extends CI_Controller
 		}
 		else
 		{
-			$this->load->view('home/' . $page);
+            $this->load->model('Major');
+            $data['sfsu_majors'] = $this->Major->getMajors();
+			$this->load->view('home/' . $page, $data);
 		}
 		
 		if (strtolower($page) == "login" || strtolower($page) == "signup")

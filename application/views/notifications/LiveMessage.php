@@ -1,56 +1,97 @@
 <script>
-function sendMessage(sendName, recvName, msgData, callBack)
-{
-	var req = $.post("<?php echo base_url() . "Message/send";?>", {sender: sendName, receiver: recvName, msgs: msgData});
-	req.done(callBack);
-}
-
-function getMessages(partnerID, partnerSeller, callBack)
-{
-	var destination = "<?php echo base_url() . "Notification/get_all_notifications/";?>" + partnerID + "/";
-	if (partnerSeller)
-		destination += "1";
-	else
-		destination += "0";
+function LiveMessage(userID) {
+	// Constants
+	this.splitDetails = '<br>';
+	this.splitData = '<br><br>';
+	this.controller = "<?php echo base_url() . "Notification/";?>";
 	
-	var req = $.post(destination, {});
-	req.done(function(data)
-	{
-		var messages = data.split("\r\n\r\n");
-		for (var i = 0; i < messages.length; i++)
-		{
-			messages[i] = messages[i].split("\r\n");
-		}
-		callBack(messages);
-	});
-}
+	// Run-time vars
+	this.myID = userID;
 
-function getBuyers(callBack)
-{
-	var req = $.post("<?php echo base_url() . "Notification/getBuyers"?>");
-	req.done(function(data)
+	this.otherID = -1;
+	this.otherSeller = false;
+	this.itemID = -1;
+	
+	var parent = this;
+	
+	this.select = function(partnerID, partnerSeller, itemID = -1)
 	{
-		var messages = data.split("\r\n\r\n");
-		for (var i = 0; i < messages.length; i++)
-		{
-			messages[i] = messages[i].split("\r\n");
-		}
-		callBack(messages);
-	});
-}
+		this.otherID = partnerID;
+		this.otherSeller = partnerSeller;
+		this.itemID = itemID;
+	}
 
-function getSellers(callBack)
-{
-	var req = $.post("<?php echo base_url() . "Notification/getSellers"?>");
-	req.done(function(data)
+	this.getMessages = function(callBack)
 	{
-		var messages = data.split("\r\n\r\n");
-		for (var i = 0; i < messages.length; i++)
+		if (this.otherID < 0)
+			return;
+		
+		var destination = this.controller + "get_all_notifications/" + this.otherID + "/";
+		if (this.otherSeller)
+			destination += "1";
+		else
+			destination += "0";
+		
+		var req = $.post(destination, {});
+		
+		req.done(function(data)
 		{
-			messages[i] = messages[i].split("\r\n");
-		}
-		callBack(messages);
-	});
+			var messages = data.split(parent.splitData);
+			for (var i = 0; i < messages.length; i++)
+			{
+				messages[i] = messages[i].split(parent.splitDetails);
+			}
+			
+			if (messages.length > 0)
+				parent.itemID = messages[messages.length - 1][2];
+			
+			callBack(messages);
+		});
+	}
+	
+	this.sendMessage = function(message, callBack = function(){})
+	{
+		if (this.otherID < 0 || this.itemID < 0 || message.length == 0)
+			return;
+		
+		var req = $.post(this.controller + "send_notification", {receiver: this.otherID, item: this.itemID, msg: message});
+		
+		req.done(function(data)
+		{
+			callBack();
+		});
+	}
+
+	this.getBuyers = function(callBack)
+	{
+		var req = $.post(this.controller + "getBuyers");
+		
+		req.done(function(data)
+		{
+			var messages = data.split(parent.splitData);
+			for (var i = 0; i < messages.length; i++)
+			{
+				messages[i] = messages[i].split(parent.splitDetails);
+			}
+			callBack(messages);
+		});
+	}
+
+	this.getSellers = function(callBack)
+	{
+		var req = $.post(this.controller + "getSellers");
+		
+		req.done(function(data)
+		{
+			var messages = data.split(parent.splitData);
+			for (var i = 0; i < messages.length; i++)
+			{
+				messages[i] = messages[i].split(parent.splitDetails);
+			}
+			callBack(messages);
+		});
+	}
+	
 }
 
 </script>

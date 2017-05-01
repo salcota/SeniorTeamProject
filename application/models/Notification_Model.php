@@ -9,6 +9,7 @@ class Notification_Model extends CI_Model
 			parent::__construct();
 			$this->load->database();
 			$this->load->model('Item_Listing');
+			$this->load->dbforge();
     	}
 
     	public function getNotifications($buyer, $seller, $start, $count = NULL)
@@ -90,6 +91,10 @@ class Notification_Model extends CI_Model
 			// Turn off debugging
 			$debug = $this->db->db_debug;
 			$this->db->db_debug = false;
+			
+			// Verify Sender and Receiver are different
+			if ($sender == $recv)
+				throw new Exception("Sender and Receiver are identical");
 			
 			// Verify the sender or receiver is the listing owner.
 			$owner['listingID'] = $listing;
