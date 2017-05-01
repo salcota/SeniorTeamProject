@@ -13,6 +13,8 @@ function LiveMessage(userID, username) {
 	this.otherSeller = false;
 	this.itemID = -1;
 	
+	var parent = this;
+	
 	this.select = function(partnerID, partnerSeller, itemID = -1)
 	{
 		this.otherID = partnerID;
@@ -32,7 +34,6 @@ function LiveMessage(userID, username) {
 			destination += "0";
 		
 		var req = $.post(destination, {});
-		var parent = this;
 		
 		req.done(function(data)
 		{
@@ -52,7 +53,6 @@ function LiveMessage(userID, username) {
 	this.getBuyers = function(callBack)
 	{
 		var req = $.post(this.controller + "getBuyers");
-		var parent = this;
 		
 		req.done(function(data)
 		{
@@ -68,7 +68,6 @@ function LiveMessage(userID, username) {
 	this.getSellers = function(callBack)
 	{
 		var req = $.post(this.controller + "getSellers");
-		var parent = this;
 		
 		req.done(function(data)
 		{
