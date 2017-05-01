@@ -3,19 +3,27 @@
 <?php $logged = $this->session->loggedIn; ?>
 
 <?php
-echo <<<END
+if ($logged)
+{
+	echo <<<END
 <script>
 var messenger = new LiveMessage($myInfo->user_id);
 messenger.select($item->seller_id, true, $item->listing_id);
-</script>
-END;
-?>
-<script>
+
 function send()
 {
 	messenger.sendMessage($("#reportText").val());
 }
 </script>
+END;
+}
+else
+{
+	echo <<<END
+function send() {}
+END;
+}
+?>
 
 <div class="container">
 
