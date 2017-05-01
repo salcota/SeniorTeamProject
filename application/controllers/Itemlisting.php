@@ -54,7 +54,8 @@ class Itemlisting extends CI_Controller
      * @param null $listingID
      */
     public function get_listing_by_id($listingID = Null){
-		
+		// JQuery, Tether, Bootstrap, Lightbox2
+		$this->load->view('common/jquery_tether_bootstrap');
 		$this->load->view('notifications/LiveMessage');
 		
         if($listingID != Null){
@@ -67,8 +68,8 @@ class Itemlisting extends CI_Controller
             $this->load->view('home/current_listing',$data);
         }
 
-	    // Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
-	    $this->load->view('common/jquery_tether_bootstrap');
+	    // Gets basic footer.
+	    
         $this->load->view('common/footerbar');
     }
 

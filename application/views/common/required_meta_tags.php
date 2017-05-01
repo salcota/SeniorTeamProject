@@ -20,10 +20,4 @@
 
 
 
-	<!-- Light Box -->
-
-	<script type="text/javascript" src="<?php echo base_url() . 'public/js/lightbox.js'?>"></script>
-
-
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url() . 'public/css/lightbox.css'?>">
 
