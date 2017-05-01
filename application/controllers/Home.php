@@ -41,14 +41,13 @@ class Home extends CI_Controller
 				);
 
 			$this->session->set_flashdata($data); 
-			//print_r($search);
+		
 			if (strlen($search) > 0)
 			{
 				$input["search"] = $search;
 				$this->form_validation->set_data($input);
-
 				//$find['title'] = $search;
-				$this->form_validation->set_rules('search', 'Search', 'trim|required|alpha');
+				$this->form_validation->set_rules('search', 'Search', 'trim|required|alpha_numeric_spaces|max_length[30]');
 
 				if($this->form_validation->run() == FALSE)
 				{	
@@ -59,7 +58,7 @@ class Home extends CI_Controller
 					$this->session->set_flashdata($data);
 
 				} else {
-					//redirect('home/view/', $page);
+					
 					$find['title'] = $search;
         			}
 			}
@@ -140,4 +139,5 @@ class Home extends CI_Controller
 		$this->load->view('common/footerbar');
 	}
 }
+
 ?>

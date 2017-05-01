@@ -15,6 +15,11 @@
 	    if($this->session->flashdata('bad_search')):
             echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_search') . "</strong></div>";
             endif;
+
+	    // loads valid search but no item match
+	    if($this->session->flashdata('item_not_found')):
+	    echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_search') . "</strong></div>";
+ 	    endif;
 	?>
 
     </p>

@@ -35,7 +35,7 @@
 	</div>
     </div>
  
-<!-- begin code review -->
+
             <!-- Centered Category Search & Input Search -->
             <form class='form-inline mr-auto fix-align' style='padding-top: 4px' action="<?php echo base_url() . "home" ?>" id="searchSubmit" method=GET>
                 <label class='sr-only' for='inlineFormInputGroup'>Search</label>
@@ -77,7 +77,7 @@
                     <button class='btn btn-success' style='cursor: pointer; height: 40px' type='submit'><i class='fa fa-search' aria-hidden='true'></i></button>
                 </div>
             </form>
-<!-- end code review -->
+
             <!-- Right Side Menu: Cart, Sell, Sign Up, and Login -->            
 	    <ul class='navbar-nav'>
                 <li class='nav-item'>
