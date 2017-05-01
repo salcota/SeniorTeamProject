@@ -127,7 +127,7 @@
                 echo '<span class="input-group-addon addon-iconwidth" id="lock-addon"><i class="fa fa-graduation-cap" aria-hidden="true"> &nbsp;&nbsp;&nbsp;</i></span>';
 
                 foreach ($sfsu_majors as $major) {
-                    $options[$major->category_id] = $major->category_name;
+                    $options[$major->major_id] = $major->major_name;
                 }
                 echo form_dropdown('major', $options, '1');
 	 	echo '</div>';
