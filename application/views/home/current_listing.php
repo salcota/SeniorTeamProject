@@ -63,7 +63,7 @@ END;
                     
 
 			<div class="carousel-item active">
-			<a class="img-fluid" href="<?php echo base_url() . "Images/listingPic/" . $item->listing_id; ?>" rel="lightbox" title="Image">
+			<a class="img-fluid" rel="lightbox" title="<?php echo $item->title?>" href="<?php echo base_url() . "Images/listingPic/" . $item->listing_id; ?>">
                         <img class="d-block img-fluid" id="image1"
                              src="<?php echo base_url() . "Images/listingThumb/" . $item->listing_id; ?>"
                              alt="First slide">
@@ -71,8 +71,7 @@ END;
 		    </div>
                     <?php foreach ($itemPics as $item_pic): ?>
                         <div class="carousel-item">
-
-			    <a class="img-fluid" href="<?php echo base_url() . "Images/itemPic/" . $item_pic->item_pic_id; ?>" rel="lightbox" title="Image">
+		    	<a class="img-fluid" rel="lightbox" title="<?php echo $item->title?>" href="<?php echo base_url() . "Images/itemPic/" . $item_pic->item_pic_id; ?>">
                             <img class="d-block img-fluid" id="image2"
                                  src="<?php echo base_url() . "Images/itemThumb/" . $item_pic->item_pic_id; ?>"
                                  alt="Second slide">

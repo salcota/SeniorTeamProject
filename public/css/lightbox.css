@@ -142,6 +142,11 @@ body.lb-disable-scrolling {
 }
 
 .lb-dataContainer {
+  /* Added By Ihsan */
+  background-color: #363;
+  border-radius: 3px;
+  /* End of Addition */
+
   margin: 0 auto;
   padding-top: 5px;
   *zoom: 1;
@@ -173,7 +178,7 @@ body.lb-disable-scrolling {
 }
 
 .lb-data .lb-caption {
-  font-size: 13px;
+  font-size:13px;
   font-weight: bold;
   line-height: 1em;
 }
