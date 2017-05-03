@@ -40,14 +40,20 @@ function showMessages(data)
 	var messageBox = "";
 	for (var i = 0; i < data.length; i++)
 	{
-		if (data[i][0] == messenger.myID)
-			messageBox += myName + ": ";
-		else
-			messageBox += otherName + ": ";
+		// Insert divider between user messages.
+		if (i > 0 && data[i - 1][0] != data[i][0])
+			messageBox += '<div style="width: 100%; height: 0px; border-bottom: solid 1px #000000; clear: both;"></div>';
 		
-		messageBox += data[i][1] + "\r\n";
+		// Print user's name
+		if (data[i][0] == messenger.myID)
+			messageBox += "<b>" + myName + ":</b> ";
+		else
+			messageBox += "<b>" + otherName + "</b>: ";
+		
+		// Append message data.
+		messageBox += $("<div/>").text(data[i][1]).html() + "<br>";
 	}
-	$("#messageThread").val(messageBox);
+	$("#messageThread").html(messageBox);
 }
 
 function sendMessage()
@@ -121,7 +127,7 @@ $(document).ready(function()
     			        <label for="messageThread" style="color: #39C; margin-top: 10px; padding-top: 10px"><?php echo $username;?></label>
 
 				<!-- Message Thread Text goes here and is read-only -->
-    			        <div readonly class="form-control" id="messageThread" rows="3" style="resize: none; min-height: 150px; height: 35%"></div>
+    			        <div readonly class="form-control" id="messageThread" rows="3" style="resize: none; min-height: 150px; height: 35%; white-space: pre-wrap; overflow-y: auto;"></div>
 		
 				<br />
 				<span class="small text-muted">Send a new message</span>
