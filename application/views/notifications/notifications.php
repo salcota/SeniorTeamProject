@@ -15,7 +15,7 @@ function showBuyers(list)
 	var buyBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		buyBox += '<li onclick="messenger.select(' + list[i][1] + ', false);otherName=\'' + list[i][0] + '\';refreshMessages();">' + list[i][0] + "</li>";
+		buyBox += '<li onclick="selectContact(' + list[i][1] + ', false, \'' + list[i][0] + '\')">' + list[i][0] + "</li>";
 	}
 	$("#buyers ul").html(buyBox);
 }
@@ -25,9 +25,17 @@ function showSellers(list)
 	var sellBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		sellBox += '<li onclick="messenger.select(' + list[i][1] + ', true);otherName=\'' + list[i][0] + '\';refreshMessages();">' + list[i][0] + "</li>";
+		sellBox += '<li onclick="selectContact(' + list[i][1] + ', true, \'' + list[i][0] + '\')">' + list[i][0] + "</li>";
 	}
 	$("#sellers ul").html(sellBox);
+}
+
+function selectContact(userID, isSeller, username)
+{
+	messenger.select(userID, isSeller);
+	otherName = username;
+	$("#contactName").text(username);
+	refreshMessages();
 }
 
 function refreshMessages()
@@ -124,7 +132,7 @@ $(document).ready(function()
 			<form>
 		            <div class="form-group">
 				<a class="btn btn-secondary btn-sm" style="float: right; margin: 10 0 10 0; width: 75px" href="<?php echo base_url() . 'Profile/user'?>">Profile</a>
-    			        <label for="messageThread" style="color: #39C; margin-top: 10px; padding-top: 10px"><?php echo $username;?></label>
+    			        <label for="messageThread" style="color: #39C; margin-top: 10px; padding-top: 10px" id="contactName"></label>
 
 				<!-- Message Thread Text goes here and is read-only -->
     			        <div readonly class="form-control" id="messageThread" rows="3" style="resize: none; min-height: 150px; height: 35%; white-space: pre-wrap; overflow-y: auto;"></div>
