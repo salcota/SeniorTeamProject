@@ -35,6 +35,7 @@ function selectContact(userID, isSeller, username)
 	messenger.select(userID, isSeller);
 	otherName = username;
 	$("#contactName").text(username);
+	$("#profileLink").prop("href", "<?php echo base_url() . "Profile/user/"?>" + userID);
 	refreshMessages();
 }
 
@@ -131,7 +132,7 @@ $(document).ready(function()
 		    <div class="col" style="background-color: #FFF; border: solid 2px #363; border-radius: 6px">
 			<form>
 		            <div class="form-group">
-				<a class="btn btn-secondary btn-sm" style="float: right; margin: 10 0 10 0; width: 75px" href="<?php echo base_url() . 'Profile/user'?>">Profile</a>
+				<a id="profileLink" class="btn btn-secondary btn-sm" style="float: right; margin: 10 0 10 0; width: 75px" href="<?php echo base_url() . 'Profile/me'?>">Profile</a>
     			        <label for="messageThread" style="color: #39C; margin-top: 10px; padding-top: 10px" id="contactName"></label>
 
 				<!-- Message Thread Text goes here and is read-only -->
