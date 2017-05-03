@@ -121,7 +121,7 @@ $(document).ready(function()
     			        <label for="messageThread" style="color: #39C; margin-top: 10px; padding-top: 10px"><?php echo $username;?></label>
 
 				<!-- Message Thread Text goes here and is read-only -->
-    			        <textarea readonly class="form-control" id="messageThread" rows="3" style="resize: none; min-height: 150px; height: 35%"></textarea>
+    			        <div readonly class="form-control" id="messageThread" rows="3" style="resize: none; min-height: 150px; height: 35%"></div>
 		
 				<br />
 				<span class="small text-muted">Send a new message</span>
