@@ -1,8 +1,8 @@
 <script>
 function LiveMessage(userID) {
 	// Constants
-	this.splitDetails = '<br>';
-	this.splitData = '<br><br>';
+	this.splitDetails = "\r\n";
+	this.splitData = "\r\n\r\n";
 	this.controller = "<?php echo base_url() . "Notification/";?>";
 	
 	// Run-time vars
@@ -40,6 +40,7 @@ function LiveMessage(userID) {
 			for (var i = 0; i < messages.length; i++)
 			{
 				messages[i] = messages[i].split(parent.splitDetails);
+				messages[i][1] = parent.b64DecodeUnicode(messages[i][1]);
 			}
 			
 			if (messages.length > 0)
@@ -92,6 +93,17 @@ function LiveMessage(userID) {
 		});
 	}
 	
+	this.b64EncodeUnicode = function(str) {
+		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+			return String.fromCharCode('0x' + p1);
+		}));
+	}
+	
+	this.b64DecodeUnicode = function(str) {
+		return decodeURIComponent(atob(str).split('').map(function(c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+	}
 }
 
 </script>

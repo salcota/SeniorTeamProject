@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Notification extends CI_Controller
@@ -6,8 +6,8 @@ class Notification extends CI_Controller
 	private $myInfo;
 	
 	// String used to split ajax data.
-	const splitDetails = "<br>";
-	const splitData = "<br><br>";
+	const splitDetails = "\r\n";
+	const splitData = "\r\n\r\n";
 	
 	public function __construct()
 	{
@@ -116,7 +116,7 @@ class Notification extends CI_Controller
 		
 		$listing = $this->input->post('item');
 		$recvID = $this->input->post('receiver');
-		$message = $this->input->post('msg');
+		$message = base64_encode($this->input->post('msg'));
 		
 		if (!is_numeric($listing) || $listing < 0)
 			return;
@@ -140,6 +140,27 @@ class Notification extends CI_Controller
 	{
 		if (!$this->loginhelper->isRegistered())
 			show_404();
+	}
+	
+	public function test()
+	{
+		$text = "Cómo estás";
+		$text = "プライバシー";
+		$enc = base64_encode($text);
+		echo "$text<br>";
+		echo base64_encode($text) . "<br>";
+		//echo base64_decode(base64_encode($text)) . "<br>";
+		echo <<<END
+		<script>
+		function b64DecodeUnicode(str) {
+			return decodeURIComponent(atob(str).split('').map(function(c) {
+				return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+			}).join(''));
+		}
+		
+		document.write(b64DecodeUnicode("$enc"));
+		</script>
+END;
 	}
 
 }
