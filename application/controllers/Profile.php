@@ -53,9 +53,29 @@ class Profile extends CI_Controller
 
 		// Loads No-Search Navbar.
 		$this->navbars->load();
+		
+		// Check if given ID is numeric.
+		if (!is_Numeric($id))
+			show_404();
 
-		// NEED TO IMPLEMENT USER DATA
-		$data = NULL;
+		// Load data about user.
+		$this->load->model('Reg_User');
+		$userData = $this->Reg_User->findUser($id);
+		
+		// If user exists, send this data to view.
+		if (!$userData)
+			show_404();
+		$data = array(
+			'username' =>$userData->username,
+			'name'     =>$userData->name,
+			'email' => $userData->sfsu_email,
+			'biography'=> $userData->biography,
+			'id' => $userData->user_id,
+			'pic' => base_url() . "Images/userPic/" . $userData->user_id,
+			'majors' => $this->Major->getMajors(),
+			'usermajor' => $userData->major_id,
+			'registrationDate' => $userData->registration_date
+		);
 
 		$this->load->view('profile/users_profile', $data);
 

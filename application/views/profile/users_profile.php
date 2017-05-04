@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col">
             <div class="jumbotron">
-                <h1 class="display-4">Kunal</h1>
+                <h1 class="display-4"><?php echo $name;?></h1>
 		<hr class="my-4" />
 	    </div>
         </div>
@@ -29,18 +29,31 @@
         <!-- Image Holder of Profile Picture -->
         <div class="col-sm-4" style="margin-bottom: 25px">
             <div class="card" style="height: 205px">
-                <img class="card-img-top" src="..." alt="Profile Picture">
+                <img class="card-img-top" src="<?php echo $pic;?>" alt="Profile Picture">
             </div>
         </div>
 
         <!-- Displays the table containing information on the current user -->
         <div class="col-md-6">
-            <?php echo
-                "<table>" .
-                "<tr> <th>Username:</th>    	<td>Kunal</td> </tr>" .
-                "<tr> <th>Major:</th>        	<td>Computer Science</td> </tr>" .
-                "<tr> <th>Date:</th>    	<td>April 15, 2017</td> </tr>" .
-                "</table>"
+            <?php 
+			// Get String of user's major.
+			$userMajorName = "";
+			foreach($majors as $major)
+			{
+				if ($major->major_id == $usermajor)
+				{
+					$userMajorName = $major->major_name;
+					break;
+				}
+			}
+			
+			echo <<<END
+                <table>
+                <tr><th>Username:</th>    	<td>$username</td> </tr>
+                <tr> <th>Major:</th>        	<td>$userMajorName</td> </tr>
+                <tr> <th>Date:</th>    	<td>$registrationDate</td> </tr>
+                </table>
+END;
             ?>
         </div>
 
@@ -50,7 +63,9 @@
         <div class="col-md-10">
             <span style="font-weight: bold">Biography</span>
             <div class="description_box">
-                I am a computer science senior looking to sell some furniture before I move out of campus in a few months.
+                <?php
+					echo $biography;
+				?>
             </div>
         </div>
     </div>
