@@ -4,9 +4,6 @@ function LiveMessage(userID) {
 	this.splitDetails = "\r\n";
 	this.splitData = "\r\n\r\n";
 	this.controller = "<?php echo base_url() . "Notification/";?>";
-	
-	// Run-time vars
-	this.myID = userID;
 
 	this.otherID = -1;
 	this.otherSeller = false;

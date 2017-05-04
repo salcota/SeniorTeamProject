@@ -3,7 +3,8 @@
 <script>
 <?php
 echo <<<END
-var messenger = new LiveMessage($userID);
+var messenger = new LiveMessage();
+var myID = $userID;
 var myName = "$username";
 END;
 ?>
@@ -194,7 +195,7 @@ function appendMessages(data)
 			messageBox += messageDivider;
 		
 		// Print user's name
-		if (data[i][0] == messenger.myID)
+		if (data[i][0] == myID)
 			messageBox += "<b>" + myName + ":</b> ";
 		else
 			messageBox += "<b>" + otherName + "</b>: ";
@@ -215,7 +216,7 @@ function prependMessages(data)
 			preMessageBox += messageDivider;
 		
 		// Print user's name
-		if (data[i][0] == messenger.myID)
+		if (data[i][0] == myID)
 			preMessageBox += "<b>" + myName + ":</b> ";
 		else
 			preMessageBox += "<b>" + otherName + "</b>: ";

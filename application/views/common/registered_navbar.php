@@ -182,7 +182,7 @@
 $this->load->view('notifications/LiveMessage');
 ?>
 <script>
-var mailChecker = new LiveMessage(-1);
+var mailChecker = new LiveMessage();
 function updateNotifications(count)
 {
 	var oldCount = $("#mailbox").html();
