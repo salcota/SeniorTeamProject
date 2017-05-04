@@ -197,5 +197,31 @@ class Notification_Model extends CI_Model
 			
 			return count($this->db->get('reg_user_notification')->result());
 		}
+		
+		
+		/*
+		Marks all messages as read.
+		Can optionally specify a buyer/seller to fetch messages from a specific thread.
+		*/
+		public function markRead($recvID, $buyer = NULL, $seller = NULL)
+		{
+			if (!is_Numeric($recvID))
+				return;
+			
+			$this->db->where('receiver_id', $recvID);
+			$this->db->where('reg_user_notification.status', 'U');
+			
+			$data['status'] = "R";
+			
+			// Only fetch messages from a specific thread.
+			if (is_Numeric($buyer) && is_Numeric($seller))
+			{
+				$this->db->join("item_listing", "item_listing.listing_id = reg_user_notification.listing_id");
+				$this->db->where('item_listing.seller_id', $seller);
+				$this->db->update('reg_user_notification JOIN item_listing ON (item_listing.listing_id = reg_user_notification.listing_id)', $data);
+			}
+			else // Mark all messages from every thread.
+				$this->db->update('reg_user_notification', $data);
+		}
 }
 ?>

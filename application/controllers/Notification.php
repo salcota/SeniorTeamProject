@@ -97,6 +97,9 @@ class Notification extends CI_Controller
 		// Retrieve messages
 		$data = $this->Notification_Model->getNotifications($buyer, $seller, 0);
 		
+		// Mark all messages in thread as read.
+		$this->Notification_Model->markRead($this->myInfo->user_id, $buyer, $seller);
+		
 		// Print all messages.
 		// This will be changed later to print specific messages.
 		for($i = 0; $i < count($data); $i++)
@@ -136,9 +139,25 @@ class Notification extends CI_Controller
 		catch (Exception $e) {}
 	}
 	
-	public function unread()
+	public function unread($sellerID = NULL, $isSeller = NULL)
 	{
-		
+		if (is_Numeric($sellerID))
+		{
+			if ($isSeller)
+			{
+				$buyer = $this->myInfo->user_id;
+				$seller = $sellerID;
+			}
+			else
+			{
+				$buyer = $sellerID;
+				$seller = $this->myInfo->user_id;
+			}
+			
+			echo $this->Notification_Model->countUnread($this->myInfo->user_id, $buyer, $seller);
+		}
+		else
+			echo $this->Notification_Model->countUnread($this->myInfo->user_id);
 	}
 	
 	private function hide()
