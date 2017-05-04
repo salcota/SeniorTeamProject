@@ -88,6 +88,7 @@ class Notification_Model extends CI_Model
 	{
 		$this->db->join("item_listing", "item_listing.listing_id = reg_user_notification.listing_id");
 		$this->db->join("reg_user", "reg_user.user_id = item_listing.seller_id");
+		$this->db->order_by('reg_user_notification.timestamp ASC');
 		return $this->db->select("reg_user_notification.notification_id, reg_user_notification.sender_id, reg_user_notification.receiver_id, reg_user_notification.listing_id, reg_user_notification.message, reg_user_notification.status, reg_user.user_id, reg_user.username")->
 			group_start()->
 				group_start()->
@@ -200,6 +201,7 @@ class Notification_Model extends CI_Model
 		
 		$this->db->where('receiver_id', $recvID);
 		$this->db->where('reg_user_notification.status', 'U');
+		$this->db->order_by('reg_user_notification.timestamp ASC');
 		
 		return count($this->db->get('reg_user_notification')->result());
 	}

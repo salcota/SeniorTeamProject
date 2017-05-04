@@ -116,6 +116,8 @@ class Users extends CI_Controller
 		try{
             $this->userinfo = $this->loginhelper->getLoginData();
             if($this->loginhelper->isRegistered()) {
+				$this->load->model('Notification_Model');
+				$this->Notification_Model->orphanNotifications($listingId);
                 $this->Item_Listing->deleteItemListing($listingId);
                 redirect("user_listings");
             }else{
