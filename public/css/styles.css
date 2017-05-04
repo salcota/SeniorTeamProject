@@ -105,6 +105,10 @@
 		padding: 5px;
 	    }
 
+	    .btn-success {
+		background-color: #449D44 !important;
+	    }
+
 	    .card_title {
 		display: block;
 		font-size: 12pt;
@@ -228,6 +232,11 @@
 
 	    .required {
 		color: #D00;
+	    }
+
+	    .searchTheme {
+		color: #FFF;
+		background-color: #449D44;
 	    }
 
 	    .span-for-profile {
