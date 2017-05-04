@@ -30,22 +30,23 @@
                     <img class="card-img-top card-style"  src="<?php echo $pic ?>" alt="Card image cap">
 		    <br /><br />
                     <span class="card-title">Edit your profile picture</span>
-		</p?
+		</p>
 	    </div>
          </div> 
 
-	    <!--  Username -->
+	<!--  Username -->
+	<div class="col-sm-5">
             <div class="form-group input-group">
                 <?php
                     echo '<span class="input-group-addon span-for-profile">Username</span>';
                     // 
                     $data = array(
-                        'class' => 'form-control',
-                        'name' => 'photo',
-                        'type' => 'text',
-                        'size' => '100',
-			'readonly' => 'true',
-			'placeholder' => $username
+                        'class' 	=> 'form-control',
+                        'name' 		=> 'photo',
+                        'type' 		=> 'text',
+                        'size' 		=> '100',
+			'readonly' 	=> 'true',
+			'placeholder' 	=> $username
                     );
                    
                     echo form_input($data);
@@ -58,12 +59,12 @@
                     echo '<span class="input-group-addon span-for-profile">Email</span>';
                     // 
                     $data = array(
-                        'class' => 'form-control',
-                        'name' => 'photo',
-                        'type' => 'text',
-                        'size' => '100',
-			'readonly'=>'true',
-			'placeholder' => $email
+                        'class' 	=> 'form-control',
+                        'name' 		=> 'photo',
+                        'type' 		=> 'text',
+                        'size' 		=> '100',
+			'readonly'	=>'true',
+			'placeholder' 	=> $email
                     );
                    
                     echo form_input($data);
@@ -76,10 +77,10 @@
                     echo '<span class="input-group-addon span-for-profile">Profile Picture</span>';
                     // 
                     $data = array(
-                        'class' => 'form-control',
-                        'name' => 'userfile',
-                        'type' => 'file',
-                        'size' => '100',
+                        'class' 	=> 'form-control',
+                        'name' 		=> 'userfile',
+                        'type' 		=> 'file',
+                        'size' 		=> '100',
                     );
             	    $value ="";
                     echo form_upload($data, $value);
@@ -89,12 +90,12 @@
 	    <!-- Major -->
             <div class="form-group input-group">
                 <?php
-		 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Majors</span>';
+		     echo '<span class="input-group-addon span-for-profile">Majors</span>';
 
-                 foreach ($majors as $major) {
-                    $options[$major->major_id] = $major->major_name;
-                 }
-                 echo form_dropdown('major', $options, $usermajor);
+                     foreach ($majors as $major) {
+                        $options[$major->major_id] = $major->major_name;
+                     }
+                     echo form_dropdown('major', $options, $usermajor);
                 ?>
             </div>
 
@@ -104,10 +105,10 @@
                     // Inserts lock icon next to the password input
                     echo '<span class="input-group-addon span-for-profile">New Password</span>';
                     $data =array(
-	                'class' => 'form-control',
-	                'name' => 'password',
-	                'type' => 'password',
-	                'placeholder' => 'Password'
+	                'class' 	=> 'form-control',
+	                'name' 		=> 'password',
+	                'type' 		=> 'password',
+	                'placeholder' 	=> 'Password'
 	            );
 	            echo form_password($data);
 	        ?>
@@ -119,10 +120,10 @@
 	            // Inserts lock icon next to the password input
 	            echo '<span class="input-group-addon span-for-profile">Confirm</span>';
 	            $data =array(
-	                'class' => 'form-control',
-	                'name' => 'passconf',
-	                'type' => 'password',
-	                'placeholder' => 'Confirm Password'
+	                'class' 	=> 'form-control',
+	                'name' 		=> 'passconf',
+	                'type' 		=> 'password',
+	                'placeholder' 	=> 'Confirm Password'
 	            );
 	            echo form_password($data);
 	        ?>
@@ -139,12 +140,12 @@
                     echo '<span>Biography</span>';
                     //
                     $data = array(
-                        'class' => 'form-control',
-                        'name' => 'description',
-                        'type' => 'textarea',
-                        'maxlength' => '300',
-                        'style' => 'resize: none; height: 100px',
-			'placeholder' => $biography
+                        'class' 	=> 'form-control',
+                        'name' 		=> 'description',
+                        'type' 		=> 'textarea',
+                        'maxlength' 	=> '300',
+                        'style' 	=> 'resize: none; height: 100px',
+			'placeholder' 	=> $biography
                     );
                     $value = "";
                     echo form_textarea($data, $value);
@@ -158,22 +159,22 @@
         <div class="col-sm-10" style="text-align: right">
             <?php
                 $data = array(
-                    'style' => 'width: 100px',
-                    'class' => 'btn btn-success',
-                    'name' => 'reset',
-                    'value' => 'Reset',
-                    'style' => 'width: 100px'
+                    'style' 		=> 'width: 100px',
+                    'class' 		=> 'btn btn-success',
+                    'name' 		=> 'reset',
+                    'value' 		=> 'Reset',
+                    'style' 		=> 'width: 100px'
                 );
                 echo form_reset($data);
             ?>
             &emsp;
             <?php
                 $data = array(
-                    'style' => 'width: 100px',
-                    'class' => 'btn btn-success',
-                    'name' => 'submit',
-                    'value' => 'Save',
-                    'style' => 'width: 100px'
+                    'style' 		=> 'width: 100px',
+                    'class' 		=> 'btn btn-success',
+                    'name' 		=> 'submit',
+                    'value' 		=> 'Save',
+                    'style' 		=> 'width: 100px'
                 );
                 echo form_submit($data);
             ?>

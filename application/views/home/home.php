@@ -196,7 +196,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                             'class'         => 'form-control',
                             'name'          => 'reportText',
                             'style'         => 'height: 100px; resize: none',
-							'id'			=> 'reportText'
+			    'id'	    => 'reportText'
                         );
                         echo form_textarea($data);	
                     ?>
@@ -213,8 +213,8 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                             'name'          => 'submit',
 			    'style'	    => 'cursor: pointer',
                             'value'         => 'Send',
-							'data-dismiss'	=> 'modal',
-							'onclick'		=> 'buyConfirm()'
+			    'data-dismiss'  => 'modal',
+			    'onclick'	    => 'buyConfirm()'
                         );	
                         echo form_submit($data);
                         echo form_close();

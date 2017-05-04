@@ -5,21 +5,21 @@
 <?php
 if ($logged)
 {
-	echo <<<END
+        echo <<<END
 <script>
 var messenger = new LiveMessage($myInfo->user_id);
 messenger.select($item->seller_id, true, $item->listing_id);
 
 function send()
 {
-	messenger.sendMessage($("#reportText").val());
+        messenger.sendMessage($("#reportText").val());
 }
 </script>
 END;
 }
 else
 {
-	echo <<<END
+        echo <<<END
 function send() {}
 END;
 }
@@ -111,7 +111,7 @@ END;
     </div>
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
-    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 50%">
+    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -170,6 +170,6 @@ END;
         </div>
     </div>
 
-    <br/><br/><br/>
+    <br /><br/><br/><br/>
 
 </div>
