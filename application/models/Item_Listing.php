@@ -167,6 +167,13 @@ class Item_Listing extends CI_Model
 		}
 	}
 
+    /**
+     * Stores an item listing data along with dp and thumbnail into the table.
+     * @param $listing
+     * @param $imgdata
+     * @return mixed
+     * @throws Exception
+     */
 	public function addItemListing($listing, $imgdata){
 
 	    $debug = $this->db->db_debug;
@@ -189,6 +196,10 @@ class Item_Listing extends CI_Model
 	    }
     }
 
+    /**
+     * Removes the item listing from the database
+     * @param $listingId
+     */
 	public function deleteItemListing($listingId){
 	    $tables = array('item_pic', 'item_listing');
 	    $this->db->where('listing_id', $listingId);
@@ -196,10 +207,35 @@ class Item_Listing extends CI_Model
 	    return;
     }
 
-	public function updateItemListing(){}
+    /**
+     * Updates an item pic for a given picID. It will update both pic and its thumbnail
+     * @param $picId
+     * @param $picData
+     */
+	public function updateItemPic($picId, $picData){
 
-	public function deleteItemPicture(){}
+        $values['pic'] = file_get_contents($picData['full_path']);
+        $values['thumbnail'] = file_get_contents($picData['file_path'].$picData['raw_name'].'_thumb'.$picData['file_ext']);
 
+        $this->db->where('item_pic_id', $picId);
+        $this->db->update('item_pic', $values);
+    }
+
+    /**
+     * Deletes an item pic from item_pic table
+     * @param $picId
+     */
+	public function deleteItemPic($picId){
+        $this->db->delete('item_pic', array('item_pic_id' => $picId));
+    }
+
+    /**
+     * Add a picture of a listing in the item_pic table
+     * @param $listingId
+     * @param $picData
+     * @return mixed
+     * @throws Exception
+     */
 	public function addItemPicture($listingId, $picData){
         $debug = $this->db->db_debug;
         $this->db->db_debug = false;
@@ -216,8 +252,26 @@ class Item_Listing extends CI_Model
         }
     }
 
-	public function updateItemDisplayPicture(){}
+    /**
+     * Updates the dp of an item listing
+     * @param $listingId
+     * @param $picData
+     */
+	public function updateItemDisplayPicture($listingId, $picData){
+        $values['display_pic'] = file_get_contents($picData['full_path']);
+        $values['dp_thumbnail'] = file_get_contents($picData['file_path'].$picData['raw_name'].'_thumb'.$picData['file_ext']);
 
+        $this->db->where('listing_id', $listingId);
+        $this->db->update('item_listing', $values);
+
+    }
+
+
+    /**
+     * Returns all pictures of the item other than dp from item_pic table
+     * @param null $listingID
+     * @return null
+     */
 	public function getAllItemListingPictures($listingID = Null){
 
 	    if($listingID != Null){

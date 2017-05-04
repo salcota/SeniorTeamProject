@@ -31,7 +31,7 @@
 
     <?php if(isset($error)) echo "<div class='alert alert-success' role='alert'>" . $error . "</div>";?>
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
-    <?php echo form_open_multipart('post_itemlisting', $attributes); ?>
+    <?php echo form_open('update_itemlisting', $attributes); ?>
 
     <div class="row justify-content-center">
         <div class="col-sm-10">
@@ -98,7 +98,41 @@
             </div>
         </div>
     </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-10" style="text-align: right">
+            <?php
+            $data = array(
+                'style' => 'width: 100px',
+                'class' => 'btn btn-success',
+                'name' => 'reset',
+                'value' => 'Reset',
+                'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
+            );
+            echo form_reset($data);
+            ?>
+            &emsp;
+            <?php
+            if (!$logged)
+            {
+                echo "<a class='btn btn-success' data-toggle='popover' data-placement='left' style='color: #fff; cursor: pointer; margin-top: 10px; width: 100px' title='Warning' data-content='You must be logged in to save a new or edited listing.'>Submit</a>";
+            }
+            else
+            {
+                $data = array(
+                    'style' => 'width: 100px',
+                    'class' => 'btn btn-success',
+                    'name' => 'submit',
+                    'value' => 'Save',
+                    'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
+                );
+                echo form_submit($data);
+            }
+            ?>
+        </div>
+    </div>
+    <input type="hidden" name="listing" value="<?php echo $item->listing_id?>"/>
 
+    <?php form_close(); ?>
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
         <div class="col-lg-5">
@@ -110,7 +144,13 @@
                 </p>
                 <br />
                 <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#dp_item')"/>
-                <input type="hidden" name="h_dp" value="noch"/>
+                <input type="hidden" name="h_dp_item" value="noch"/>
+                <div class="row justify-content-center">
+                    <div class="col-sm-10" style="text-align: right">
+                        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
+                        <input type="submit" class = "btn btn-success" name="submit"/>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-lg-5">
@@ -182,41 +222,7 @@
         </div>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-sm-10" style="text-align: right">
-            <?php
-            $data = array(
-                'style' => 'width: 100px',
-                'class' => 'btn btn-success',
-                'name' => 'reset',
-                'value' => 'Reset',
-                'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
-            );
-            echo form_reset($data);
-            ?>
-            &emsp;
-            <?php
-            if (!$logged)
-            {
-                echo "<a class='btn btn-success' data-toggle='popover' data-placement='left' style='color: #fff; cursor: pointer; margin-top: 10px; width: 100px' title='Warning' data-content='You must be logged in to save a new or edited listing.'>Submit</a>";
-            }
-            else
-            {
-                $data = array(
-                    'style' => 'width: 100px',
-                    'class' => 'btn btn-success',
-                    'name' => 'submit',
-                    'value' => 'Save',
-                    'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
-                );
-                echo form_submit($data);
-            }
-            ?>
-        </div>
-    </div>
 
-
-    <?php form_close(); ?>
 
     <br /><br /><br />
 
