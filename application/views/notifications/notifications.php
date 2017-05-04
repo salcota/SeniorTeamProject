@@ -15,7 +15,12 @@ function showBuyers(list)
 	var buyBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		buyBox += '<li onclick="selectContact(' + list[i][1] + ', false, \'' + list[i][0] + '\')">' + list[i][0] + "</li>";
+		// Make unread messages bold.
+		var fonts = "";
+		if (list[i][2] > 0)
+			fonts = 'style="font-weight: bold"';
+		
+		buyBox += '<li onclick="selectContact(this, ' + list[i][1] + ', false, \'' + list[i][0] + '\')"' + fonts + '>' + list[i][0] + "</li>";
 	}
 	$("#buyers ul").html(buyBox);
 }
@@ -25,17 +30,23 @@ function showSellers(list)
 	var sellBox = "";
 	for (var i = 0; i < list.length; i++)
 	{
-		sellBox += '<li onclick="selectContact(' + list[i][1] + ', true, \'' + list[i][0] + '\')">' + list[i][0] + "</li>";
+		// Make unread messages bold.
+		var fonts = "";
+		if (list[i][2] > 0)
+			fonts = 'style="font-weight: bold"';
+		
+		sellBox += '<li onclick="selectContact(this, ' + list[i][1] + ', true, \'' + list[i][0] + '\')"' + fonts + '>' + list[i][0] + "</li>";
 	}
 	$("#sellers ul").html(sellBox);
 }
 
-function selectContact(userID, isSeller, username)
+function selectContact(parent, userID, isSeller, username)
 {
 	messenger.select(userID, isSeller);
 	otherName = username;
 	$("#contactName").text(username);
 	$("#profileLink").prop("href", "<?php echo base_url() . "Profile/user/"?>" + userID);
+	$(parent).css("font-weight", "normal");
 	refreshMessages();
 }
 

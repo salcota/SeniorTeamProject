@@ -55,7 +55,7 @@ class Notification extends CI_Controller
 		for ($i = 0; $i < count($buyers); $i++)
 		{
 			// Print relevant buyer info.
-			echo htmlentities($buyers[$i]->username) . self::splitDetails . $buyers[$i]->user_id;
+			echo htmlentities($buyers[$i]->username) . self::splitDetails . $buyers[$i]->user_id . self::splitDetails . $this->Notification_Model->countUnread($this->myInfo->user_id, $buyers[$i]->user_id, $this->myInfo->user_id);
 			
 			// Separate buyer usernames by double-newline.
 			if ($i < count($buyers) - 1)
@@ -74,7 +74,7 @@ class Notification extends CI_Controller
 		for ($i = 0; $i < count($sellers); $i++)
 		{
 			// Print relevant seller info.
-			echo htmlentities($sellers[$i]->username) . self::splitDetails . $sellers[$i]->user_id;
+			echo htmlentities($sellers[$i]->username) . self::splitDetails . $sellers[$i]->user_id . self::splitDetails . $this->Notification_Model->countUnread($this->myInfo->user_id, $this->myInfo->user_id, $sellers[$i]->user_id);
 			
 			// Separate buyer usernames by double-newline.
 			if ($i < count($sellers) - 1)
@@ -136,32 +136,15 @@ class Notification extends CI_Controller
 		catch (Exception $e) {}
 	}
 	
+	public function unread()
+	{
+		
+	}
+	
 	private function hide()
 	{
 		if (!$this->loginhelper->isRegistered())
 			show_404();
 	}
-	
-	public function test()
-	{
-		$text = "Cómo estás";
-		$text = "プライバシー";
-		$enc = base64_encode($text);
-		echo "$text<br>";
-		echo base64_encode($text) . "<br>";
-		//echo base64_decode(base64_encode($text)) . "<br>";
-		echo <<<END
-		<script>
-		function b64DecodeUnicode(str) {
-			return decodeURIComponent(atob(str).split('').map(function(c) {
-				return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-			}).join(''));
-		}
-		
-		document.write(b64DecodeUnicode("$enc"));
-		</script>
-END;
-	}
-
 }
 ?>
