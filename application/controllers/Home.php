@@ -17,7 +17,7 @@ class Home extends CI_Controller
 	{
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
-		$this->load->view('common/required_meta_tags');
+		$this->load->view('common/resources');
 					
 		// Loads Navbar.
 		$this->navbars->load();
@@ -142,8 +142,7 @@ class Home extends CI_Controller
 		if (strtolower($page) == "login" || strtolower($page) == "signup")
 			$this->loginhelper->rememberBeforeLogin(); // Keep track of what the user was looking at before.
 
-                // Gets basic footer and data that enables javascript, jQuery, and thether for all pages.	
-		$this->load->view('common/jquery_tether_bootstrap');
+                // Gets basic footer
 		$this->load->view('common/footerbar');
 	}
 }

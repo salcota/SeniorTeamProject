@@ -13,8 +13,7 @@ class Itemlisting extends CI_Controller
 	// Gets item listing,  basic header and styles for all pages.
         parent::__construct();
         $this->load->model('Item_Listing');
-        $this->load->view('common/sfsu_demo');
-        $this->load->view('common/required_meta_tags');
+        $this->load->view('common/resources');
 
         // Load navbar
 		$this->navbars->load();
@@ -41,8 +40,7 @@ class Itemlisting extends CI_Controller
 			//print_r("Username = ".$userinfo['username']);
 		$this->load->view('home/item_listings',$data);
 
-		// Gets basic footer and data that enables javascript, jQuery, and tether for all pages.
-		$this->load->view('common/jquery_tether_bootstrap');
+		// Gets basic footer
 		$this->load->view('common/footerbar');
 
         //$data = array('items' => Null);
@@ -53,8 +51,6 @@ class Itemlisting extends CI_Controller
      * @param null $listingID
      */
     public function get_listing_by_id($listingID = Null){
-		// JQuery, Tether, Bootstrap, Lightbox2
-		$this->load->view('common/jquery_tether_bootstrap');
 		$this->load->view('notifications/LiveMessage');
 		
         if($listingID != Null){

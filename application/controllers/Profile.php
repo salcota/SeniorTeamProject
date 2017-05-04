@@ -18,7 +18,7 @@ class Profile extends CI_Controller
 
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
-		$this->load->view('common/required_meta_tags');
+		$this->load->view('common/resources');
 
 		// Loads No-Search Navbar.
 		$this->navbars->load();
@@ -41,8 +41,7 @@ class Profile extends CI_Controller
 
 		$this->load->view('profile/your_profile', $data);
 
-		// Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
-		$this->load->view('common/jquery_tether_bootstrap');
+		// Gets basic footer
 		$this->load->view('common/footerbar');
 	}
 
@@ -50,7 +49,7 @@ class Profile extends CI_Controller
 	{
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
-		$this->load->view('common/required_meta_tags');
+		$this->load->view('common/resources');
 
 		// Loads No-Search Navbar.
 		$this->navbars->load();
@@ -60,8 +59,7 @@ class Profile extends CI_Controller
 
 		$this->load->view('profile/users_profile', $data);
 
-		// Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
-		$this->load->view('common/jquery_tether_bootstrap');
+		// Gets basic footer
 		$this->load->view('common/footerbar');
 	}
 }

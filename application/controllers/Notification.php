@@ -26,13 +26,11 @@ class Notification extends CI_Controller
 		
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
-		$this->load->view('common/required_meta_tags');
+		$this->load->view('common/resources');
 					
 		// Loads Navbar.
 		$this->navbars->load();
 		
-		// Load Ajax messaging scripts
-		$this->load->view('common/jquery_tether_bootstrap');
 		$this->load->view('notifications/LiveMessage');
 		
 		// Load Notifications page.
