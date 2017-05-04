@@ -21,22 +21,25 @@ function LiveMessage(userID) {
 		this.itemID = itemID;
 	}
 
-	this.getMessages = function(callBack)
+	this.getMessages = function(start, count, callBack)
 	{
 		if (this.otherID < 0)
 			return;
 		
-		var destination = this.controller + "get_all_notifications/" + this.otherID + "/";
+		var destination = this.controller + "get_messages/" + this.otherID + "/";
 		if (this.otherSeller)
 			destination += "1";
 		else
 			destination += "0";
+		
+		destination += "/" + start + "/" + count;
 		
 		var req = $.post(destination, {});
 		
 		req.done(function(data)
 		{
 			var messages = data.split(parent.splitData);
+			
 			for (var i = 0; i < messages.length; i++)
 			{
 				messages[i] = messages[i].split(parent.splitDetails);
@@ -47,6 +50,44 @@ function LiveMessage(userID) {
 				parent.itemID = messages[messages.length - 1][2];
 			
 			callBack(messages);
+		});
+	}
+	
+	this.countMessages = function(callBack)
+	{
+		if (this.otherID < 0)
+			return;
+		
+		var destination = this.controller + "countNotifications/" + this.otherID + "/";
+		if (this.otherSeller)
+			destination += "1";
+		else
+			destination += "0";
+		
+		var req = $.post(destination, {});
+		
+		req.done(function(data)
+		{
+			callBack(data);
+		});
+	}
+	
+	this.countUnread = function(callBack)
+	{
+		if (this.otherID < 0)
+			return;
+		
+		var destination = this.controller + "unread/" + this.otherID + "/";
+		if (this.otherSeller)
+			destination += "1";
+		else
+			destination += "0";
+		
+		var req = $.post(destination, {});
+		
+		req.done(function(data)
+		{
+			callBack(data);
 		});
 	}
 	

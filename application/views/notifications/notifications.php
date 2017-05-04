@@ -9,6 +9,17 @@ END;
 ?>
 
 var otherName = "";
+var messageCount = -1;
+var messageBegin = -1;
+var messageEnd = -1;
+var messageBox = "";
+var messageBlock = 20;
+var messageDivider = '<div style="width: 100%; height: 0px; border-bottom: solid 1px #000000; clear: both; margin-top: 7px; margin-bottom: 7px;"></div>';
+var messageBeginID = -1;
+var messageEndID = -1;
+
+// Prevent simultaneous connection requests.
+var chatReady = 0;
 
 function showBuyers(list)
 {
@@ -47,22 +58,140 @@ function selectContact(parent, userID, isSeller, username)
 	$("#contactName").text(username);
 	$("#profileLink").prop("href", "<?php echo base_url() . "Profile/user/"?>" + userID);
 	$(parent).css("font-weight", "normal");
+	
+	messageCount = -1;
+	messageBegin = -1;
+	messageEnd = -1;
+	messageBox = "";
+	messageBeginID = -1;
+	messageEndID = -1;
+	
 	refreshMessages();
 }
 
 function refreshMessages()
 {
-	messenger.getMessages(showMessages);
+	if (chatReady > 0)
+		return;
+	
+	// If we need to send a chat request, block new requests from being sent.
+	if (messenger.otherID > 0)
+		chatReady++;
+	
+	messenger.countMessages(function(count)
+	{
+		// Get max number of messages.
+		messageCount = count;
+		
+		// If this is the first time getting messages, load the first block.
+		if (messageBegin < 0)
+		{
+			chatReady++;
+			messenger.countUnread(initMessage);
+			return;
+		}
+		
+		// Append brand new messages.
+		if (($("#messageThread").scrollTop() + $("#messageThread").height()) >= ($("#messageThread")[0].scrollHeight - 50) && messageCount - 1 > messageEnd)
+		{
+			chatReady++;
+			
+			messenger.getMessages(messageEnd + 1, messageBlock, function(data)
+			{
+				// Insert divider in front of older messages if needed.
+				if (messageEndID != data[0][0])
+					messageBox += messageDivider;
+				
+				// Add messages to message block.
+				appendMessages(data);
+				
+				// Update end block info.
+				messageEnd += data.length;
+				messageEndID = data[data.length - 1][0];
+				
+				// Auto-scroll to bottom
+				$("#messageThread").scrollTop($("#messageThread")[0].scrollHeight);
+				
+				chatReady = 0;
+			});
+			
+			return;
+		}
+		
+		// If user needs older messages, load them.
+		if ($("#messageThread").scrollTop() == 0 && messageBegin > 0)
+		{
+			chatReady++;
+			
+			// Push the beginning of the block farther back.
+			var tempBegin = messageBegin - messageBlock;
+			if (tempBegin < 0)
+				tempBegin = 0;
+			
+			// Load older messages
+			messenger.getMessages(tempBegin, messageBegin - tempBegin, function(data)
+			{
+				// Remember current scroll offset
+				var scrollDiff = $("#messageThread")[0].scrollHeight;
+				
+				// Add messages to message block.
+				prependMessages(data);
+				
+				// Update beginning block info.
+				messageBegin = tempBegin;
+				messageBeginID = data[0][0];
+				
+				// Reset scroll position.
+				scrollDiff = $("#messageThread")[0].scrollHeight - scrollDiff;
+				$("#messageThread").scrollTop(scrollDiff);
+				
+				chatReady = 0;
+			});
+			return;
+		}
+		
+		// If no action is required, allow new fetch requests.
+		chatReady = 0;
+	});
 }
 
-function showMessages(data)
+function initMessage(unread)
 {
-	var messageBox = "";
+	// Set starting position to first unread message.
+	messageBegin = messageCount - 1 - unread;
+	if (messageBegin > messageCount - messageBlock)
+		messageBegin = messageCount - messageBlock;
+	if (messageBegin < 0)
+		messageBegin = 0;
+	
+	// Fetch messages
+	messenger.getMessages(messageBegin, messageBlock, function(data)
+	{
+		// Set End position of message block.
+		messageEnd = messageBegin + data.length - 1;
+		
+		// Remember userID at front of block.
+		messageBeginID = data[0][0];
+		
+		// Remember userID at end of block.
+		messageEndID = data[data.length - 1][0];
+		
+		appendMessages(data);
+		
+		// Scroll to bottom of chat
+		$("#messageThread").scrollTop($("#messageThread")[0].scrollHeight);
+		
+		chatReady = 0;
+	});
+}
+
+function appendMessages(data)
+{
 	for (var i = 0; i < data.length; i++)
 	{
 		// Insert divider between user messages.
 		if (i > 0 && data[i - 1][0] != data[i][0])
-			messageBox += '<div style="width: 100%; height: 0px; border-bottom: solid 1px #000000; clear: both;"></div>';
+			messageBox += messageDivider;
 		
 		// Print user's name
 		if (data[i][0] == messenger.myID)
@@ -73,6 +202,34 @@ function showMessages(data)
 		// Append message data.
 		messageBox += $("<div/>").text(data[i][1]).html() + "<br>";
 	}
+	$("#messageThread").html(messageBox);
+}
+
+function prependMessages(data)
+{
+	var preMessageBox = "";
+	for (var i = 0; i < data.length; i++)
+	{
+		// Insert divider between user messages.
+		if (i > 0 && data[i - 1][0] != data[i][0])
+			preMessageBox += messageDivider;
+		
+		// Print user's name
+		if (data[i][0] == messenger.myID)
+			preMessageBox += "<b>" + myName + ":</b> ";
+		else
+			preMessageBox += "<b>" + otherName + "</b>: ";
+		
+		// Append message data.
+		preMessageBox += $("<div/>").text(data[i][1]).html() + "<br>";
+	}
+	// Add final divider if needed.
+	if (data[data.length - 1][0] != messageBeginID)
+		preMessageBox += messageDivider;
+	
+	// Prepend to message buffer.
+	messageBox = preMessageBox + messageBox;
+	
 	$("#messageThread").html(messageBox);
 }
 

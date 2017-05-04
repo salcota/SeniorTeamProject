@@ -82,7 +82,7 @@ class Notification extends CI_Controller
 		}
 	}
 	
-    public function get_all_notifications($partnerID, $partnerIsSeller)
+    public function get_messages($partnerID, $partnerIsSeller, $start = NULL, $limit = NULL)
 	{
 		$this->hide();
 		
@@ -95,7 +95,12 @@ class Notification extends CI_Controller
 			$seller = $this->myInfo->user_id;
 		
 		// Retrieve messages
-		$data = $this->Notification_Model->getNotifications($buyer, $seller, 0);
+		if (!is_Numeric($start))
+			return;
+		if (!is_Numeric($limit))
+			return;
+		
+		$data = $this->Notification_Model->getNotifications($buyer, $seller, $start, $limit);
 		
 		// Mark all messages in thread as read.
 		$this->Notification_Model->markRead($this->myInfo->user_id, $buyer, $seller);
@@ -109,6 +114,21 @@ class Notification extends CI_Controller
 			if ($i < count($data) - 1)
 				echo self::splitData;
 		}
+	}
+	
+	public function countNotifications($partnerID, $partnerIsSeller)
+	{
+		$this->hide();
+		
+		// Determine who is buyer/seller
+		$buyer = $partnerID;
+		$seller = $partnerID;
+		if ($partnerIsSeller)
+			$buyer = $this->myInfo->user_id;
+		else
+			$seller = $this->myInfo->user_id;
+		
+		echo $this->Notification_Model->countNOtifications($buyer, $seller);
 	}
 
     //public function delete(){}
@@ -141,6 +161,8 @@ class Notification extends CI_Controller
 	
 	public function unread($sellerID = NULL, $isSeller = NULL)
 	{
+		$this->hide();
+		
 		if (is_Numeric($sellerID))
 		{
 			if ($isSeller)
