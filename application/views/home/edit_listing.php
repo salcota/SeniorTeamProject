@@ -101,17 +101,6 @@
     <div class="row justify-content-center">
         <div class="col-sm-10" style="text-align: right">
             <?php
-            $data = array(
-                'style' => 'width: 100px',
-                'class' => 'btn btn-success',
-                'name' => 'reset',
-                'value' => 'Reset',
-                'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
-            );
-            echo form_reset($data);
-            ?>
-            &emsp;
-            <?php
             if (!$logged)
             {
                 echo "<a class='btn btn-success' data-toggle='popover' data-placement='left' style='color: #fff; cursor: pointer; margin-top: 10px; width: 100px' title='Warning' data-content='You must be logged in to save a new or edited listing.'>Submit</a>";
@@ -131,8 +120,8 @@
         </div>
     </div>
     <input type="hidden" name="listing" value="<?php echo $item->listing_id?>"/>
-
-    <?php form_close(); ?>
+    <?php echo form_close(); ?>
+    <hr>
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
         <div class="col-lg-5">
@@ -145,10 +134,10 @@
                 <br />
                 <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#dp_item')"/>
                 <input type="hidden" name="h_dp_item" value="noch"/>
+                <br/>
                 <div class="row justify-content-center">
                     <div class="col-sm-10" style="text-align: right">
-                        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
-                        <input type="submit" class = "btn btn-success" name="submit"/>
+                        <input type="submit" class = "btn btn-success" name="Update"/>
                     </div>
                 </div>
             </div>
@@ -163,6 +152,12 @@
                 <br />
                 <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic2')"/>
                 <input type="hidden" name="h_pic2" value="noch"/>
+                <div class="row justify-content-center">
+                    <div class="col-sm-10" style="text-align: right">
+                        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
+                        <input type="submit" class = "btn btn-success" name="Update"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -178,6 +173,12 @@
                 <br />
                 <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic3')"/>
                 <input type="hidden" name="h_pic3" value="noch"/>
+                <div class="row justify-content-center">
+                    <div class="col-sm-10" style="text-align: right">
+                        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
+                        <input type="submit" class = "btn btn-success" name="Update"/>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-lg-5">
@@ -190,6 +191,12 @@
                 <br />
                 <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic4')"/>
                 <input type="hidden" name="h_pic4" value="noch"/>
+                <div class="row justify-content-center">
+                    <div class="col-sm-10" style="text-align: right">
+                        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
+                        <input type="submit" class = "btn btn-success" name="Update"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -206,6 +213,12 @@
                 <br />
                 <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic5')"/>
                 <input type="hidden" name="h_pic5" value="noch"/>
+                <div class="row justify-content-center">
+                    <div class="col-sm-10" style="text-align: right">
+                        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
+                        <input type="submit" class = "btn btn-success" name="Update"/>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-lg-5">
@@ -218,11 +231,15 @@
                 <br />
                 <input class="form-control" type='file' name='pic[]' onchange="readImageFile(this,'#pic6')"/>
                 <input type="hidden" name="h_pic6" value="noch"/>
+                <div class="row justify-content-center">
+                    <div class="col-sm-10" style="text-align: right">
+                        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
+                        <input type="submit" class = "btn btn-success" name="Update"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
 
     <br /><br /><br />
 
