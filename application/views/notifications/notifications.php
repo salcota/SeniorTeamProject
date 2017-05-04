@@ -180,7 +180,8 @@ function initMessage(unread)
 		appendMessages(data);
 		
 		// Scroll to bottom of chat
-		$("#messageThread").scrollTop($("#messageThread")[0].scrollHeight);
+		if (unread == 0)
+			$("#messageThread").scrollTop($("#messageThread")[0].scrollHeight);
 		
 		chatReady = 0;
 	});
