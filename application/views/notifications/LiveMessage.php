@@ -91,6 +91,15 @@ function LiveMessage(userID) {
 		});
 	}
 	
+	this.hasUnread = function(callBack)
+	{
+		var req = $.post(this.controller + "unread", {});
+		req.done(function(data)
+		{
+			callBack(data);
+		});
+	}
+	
 	this.sendMessage = function(message, callBack = function(){})
 	{
 		if (this.otherID < 0 || this.itemID < 0 || message.length == 0)

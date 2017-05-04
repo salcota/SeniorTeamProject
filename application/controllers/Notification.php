@@ -31,8 +31,6 @@ class Notification extends CI_Controller
 		// Loads Navbar.
 		$this->navbars->load();
 		
-		$this->load->view('notifications/LiveMessage');
-		
 		// Load Notifications page.
 		$user = $this->loginhelper->getLoginData();
 		$data['userID'] = $user->user_id;
