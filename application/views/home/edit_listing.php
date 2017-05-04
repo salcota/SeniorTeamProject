@@ -11,7 +11,7 @@
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
         endif;
         if($this->session->flashdata('edit_form_errors')):
-            echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('item_form_errors') . "</strong></div>";
+            echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('edit_form_errors') . "</strong></div>";
         endif;
         ?>
     </p>
@@ -31,14 +31,13 @@
 
     <?php if(isset($error)) echo "<div class='alert alert-success' role='alert'>" . $error . "</div>";?>
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
-    <?php echo form_open('update_itemlisting', $attributes); ?>
+    <?php echo form_open('update_details/'.$item->listing_id, $attributes); ?>
 
     <div class="row justify-content-center">
         <div class="col-sm-10">
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
-                //
                 $data = array(
                     'class' => 'form-control',
                     'name' => 'name',
@@ -111,8 +110,9 @@
                     'style' => 'width: 100px',
                     'class' => 'btn btn-success',
                     'name' => 'submit',
-                    'value' => 'Save',
-                    'style' => 'cursor: pointer; margin-top: 10px; width: 100px'
+                    'value' => 'Update',
+                    'style' => 'cursor: pointer; margin-top: 10px; width: 100px',
+                    'onclick' => 'return confirm(\' Are you sure you want to Update the details?\')'
                 );
                 echo form_submit($data);
             }
@@ -137,7 +137,7 @@
                 <br/>
                 <div class="row justify-content-center">
                     <div class="col-sm-10" style="text-align: right">
-                        <input type="submit" class = "btn btn-success" name="Update"/>
+                        <input type="submit" class = "btn btn-success" value="Update"/>
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-10" style="text-align: right">
                         <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
-                        <input type="submit" class = "btn btn-success" name="Update"/>
+                        <input type="submit" class = "btn btn-success" value="Update"/>
                     </div>
                 </div>
             </div>
@@ -176,7 +176,7 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-10" style="text-align: right">
                         <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
-                        <input type="submit" class = "btn btn-success" name="Update"/>
+                        <input type="submit" class = "btn btn-success" value="Update"/>
                     </div>
                 </div>
             </div>
@@ -194,7 +194,7 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-10" style="text-align: right">
                         <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
-                        <input type="submit" class = "btn btn-success" name="Update"/>
+                        <input type="submit" class = "btn btn-success" value="Update"/>
                     </div>
                 </div>
             </div>
@@ -216,7 +216,7 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-10" style="text-align: right">
                         <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
-                        <input type="submit" class = "btn btn-success" name="Update"/>
+                        <input type="submit" class = "btn btn-success" value="Update"/>
                     </div>
                 </div>
             </div>
@@ -234,7 +234,7 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-10" style="text-align: right">
                         <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="" >Remove</a>
-                        <input type="submit" class = "btn btn-success" name="Update"/>
+                        <input type="submit" class = "btn btn-success" value="Update"/>
                     </div>
                 </div>
             </div>

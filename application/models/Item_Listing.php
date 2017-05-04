@@ -192,8 +192,17 @@ class Item_Listing extends CI_Model
 
             $this->db->db_debug = $debug;
             throw new Exception($this->db->error_message());
-
 	    }
+    }
+
+    /**
+     * Only updates the details of an item listing
+     * @param $listingID
+     * @param $details
+     */
+    public function updateItemListingDetails($listingId, $details){
+	    $this->db->where('listing_id', $listingId);
+	    $this->db->update('item_listing', $details);
     }
 
     /**

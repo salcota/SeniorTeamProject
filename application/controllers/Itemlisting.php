@@ -15,11 +15,8 @@ class Itemlisting extends CI_Controller
         $this->load->model('Item_Listing');
         $this->load->view('common/sfsu_demo');
         $this->load->view('common/required_meta_tags');
-
         // Load navbar
 		$this->navbars->load();
-
-
     }
 
     /**
@@ -76,26 +73,46 @@ class Itemlisting extends CI_Controller
         $this->load->view('common/footerbar');
     }
 
+    public function update_listingdetails($listingId = Null){
+        $this->loginhelper->forceLogin();
 
-    // form validations for edit item via Itemlisting page, not working yet
-    /**
-    public function edit($page = "edit_listing")
-    {
-	$this->form_validation->set_rules('name', 'Item_Name', 'trim|required|alpha_numeric');
-	
-	if($this->form_validation->run() == FALSE)
-	{
-		$edit_atrributes = array(
-			'errors' => validation_errors()
-		);
+        if($listingId == Null){
+            redirect('user_listings');
+        }
 
-		$this->session->set_flashdata($edit_attributes);
-		//redirect('home/view/home');
-	} else {
-	
-	}		
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('name', 'Item Name', 'trim|required|min_length[3]|max_length[30]');
+        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[5]',
+                                array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[300]');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'edit_form_errors' => validation_errors()
+            );
+            $this->session->set_flashdata($data);
+            redirect('edit_listing/'.$listingId);
+        }else{
+            $listing = array(
+                'category_id' => $this->input->post('category'),
+                'title' => $this->input->post('name'),
+                'price' => $this->input->post('price'),
+                'description' => $this->input->post('description')
+            );
+            try {
+                $this->Item_Listing->updateItemListingDetails($listingId, $listing);
+                $data['error'] = "Changes saved successfully";
+                redirect('edit_listing/'.$listingId, $data);
+            }catch (Exception $e){
+                $data = array(
+                    'edit_form_errors' => $e->getMessage()
+                );
+                $this->session->set_flashdata($data);
+                redirect('edit_listing/'.$listingId);
+            }
+        }
     }
-    */
 
     /**
      * Saves an itemlisting with images
@@ -192,7 +209,7 @@ class Itemlisting extends CI_Controller
         $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[5]',
             array('required' => 'You must provide a %s.')
         );
-        $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[200]');
+        $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[300]');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -225,18 +242,10 @@ class Itemlisting extends CI_Controller
     }
 
     /**
-     * Copied from commnet section of php.net $_FILE manual
-     * @param $vector
-     * @return array
+     * Generates thumbnail of an image
+     * @param $imgpath
+     * @return mixed
      */
-    function diverse_array($vector) {
-        $result = array();
-        foreach($vector as $key1 => $value1)
-            foreach($value1 as $key2 => $value2)
-                $result[$key2][$key1] = $value2;
-        return $result;
-    }
-
     private function genthumbnail($imgpath){
         $config['image_library'] = 'gd2';
         $config['source_image'] = $imgpath;
