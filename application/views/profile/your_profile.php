@@ -24,7 +24,7 @@
     <div class="row justify-content-center"> 
 
 	<!-- Image Holder of Profile Picture -->
-         <div class="col-sm-5" style="margin-bottom: 10px">
+         <div class="col-lg-5" style="margin-bottom: 10px">
             <div class="card" style="margin: 0 auto 10 auto; padding: 5 5 0 5">
 		<p class="small" style="padding-left: 10px; text-align: center">
                     <img class="card-img-top card-style"  src="<?php echo $pic ?>" alt="Card image cap">
@@ -35,7 +35,7 @@
          </div> 
 
 	<!--  Username -->
-	<div class="col-sm-5">
+	<div class="col-lg-5">
             <div class="form-group input-group">
                 <?php
                     echo '<span class="input-group-addon span-for-profile">Username</span>';
@@ -134,7 +134,7 @@
 
     <!-- Biography -->
     <div class="row justify-content-center">
-        <div class="col-sm-10">
+        <div class="col-lg-10">
             <div class="form-group">
                 <?php
                     echo '<span>Biography</span>';
@@ -156,7 +156,7 @@
 
     <!-- Reset - Submit -->
     <div class="row justify-content-center">
-        <div class="col-sm-10" style="text-align: right">
+        <div class="col-lg-10" style="text-align: right">
             <?php
                 $data = array(
                     'style' 		=> 'width: 100px',
