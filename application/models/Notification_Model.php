@@ -9,8 +9,16 @@ class Notification_Model extends CI_Model
 			parent::__construct();
 			$this->load->database();
 			$this->load->model('Item_Listing');
+			$this->load->dbforge();
     	}
 
+		/*
+		Returns Notifications between a buyer and seller starting at a specified number of messages.
+		Optional parameter to specify a limit on how many messages are returned.
+		
+		Example: Getting messages between buyer with ID 2, seller with ID 1, starting at the 35th message, and returning up to 7 messages.
+		$data = $this->Notification_Model->getNotifications(2, 1, 35, 7);
+		*/
     	public function getNotifications($buyer, $seller, $start, $count = NULL)
 		{
 			if (!is_numeric($start))
@@ -39,9 +47,16 @@ class Notification_Model extends CI_Model
 			// Restore debug defaults
 			$this->db->db_debug = $debug;
 			
-			return $data->get("reg_user_notification")->result();
+			$data = $data->get("reg_user_notification")->result();
+			foreach($data as $message)
+			{
+				$message->message = base64_decode($message->message);
+			}
+			
+			return $data;
 		}
 		
+		// Counts the number of notifications between a buyer and a seller.
 		public function countNotifications($buyer, $seller)
 		{
 			// Turn off debugging
@@ -65,6 +80,10 @@ class Notification_Model extends CI_Model
 			return $data->count_all_results("reg_user_notification");
 		}
 		
+		/* Private function for internal use.
+		Applies filters for fetching only messages between a specified buyer and seller.
+		NOTE: If you switch the buyer/seller, it is considered a different message thread. Be careful who you specify as the buyer or seller.
+		*/
 		private function sqlNotification($buyer, $seller)
 		{
 			$this->db->join("item_listing", "item_listing.listing_id = reg_user_notification.listing_id");
@@ -85,11 +104,16 @@ class Notification_Model extends CI_Model
 				group_end();
 		}
 
+		// Adds a notification based on sender, receiver, itemlisting ID, and message content.
     	public function storeNotification($sender, $recv, $listing, $msg)
 		{
 			// Turn off debugging
 			$debug = $this->db->db_debug;
 			$this->db->db_debug = false;
+			
+			// Verify Sender and Receiver are different
+			if ($sender == $recv)
+				throw new Exception("Sender and Receiver are identical");
 			
 			// Verify the sender or receiver is the listing owner.
 			$owner['listingID'] = $listing;
@@ -109,7 +133,7 @@ class Notification_Model extends CI_Model
 			}
 			
 			// Create array with item details.
-			$dbItem = array('sender_id' => $sender, 'receiver_id' => $recv, 'listing_id' => $listing, 'message' => $msg);
+			$dbItem = array('sender_id' => $sender, 'receiver_id' => $recv, 'listing_id' => $listing, 'message' => base64_encode($msg));
 			
 			// Add item to database.
 			if ($this->db->insert('reg_user_notification', $dbItem))
@@ -124,6 +148,7 @@ class Notification_Model extends CI_Model
 			}
 		}
 		
+		// Returns a list of Buyers interested in an item from a given seller.
 		public function getBuyers($sellerID)
 		{
 			if (!is_Numeric($sellerID))
@@ -137,9 +162,11 @@ class Notification_Model extends CI_Model
 			$this->db->where("seller.receiver_id", $sellerID);
 			
 			$result = $this->db->get()->result();
+			
 			return $result;
 		}
 		
+		// Returns a list of sellers that have been contacted by a given buyer.
 		public function getSellers($buyerID)
 		{
 			if (!is_Numeric($buyerID))
@@ -153,7 +180,54 @@ class Notification_Model extends CI_Model
 			$this->db->where("note.sender_id", $buyerID);
 			
 			$result = $this->db->get()->result();
+			
 			return $result;
+		}
+		
+		
+		/*
+		Counts the number of unread messages a user has.
+		Can optionally specify a buyer/seller to fetch messages from a specific thread.
+		*/
+		public function countUnread($recvID, $buyer = NULL, $seller = NULL)
+		{
+			if (!is_Numeric($recvID))
+				return;
+			
+			// Only fetch messages from a specific thread.
+			if (is_Numeric($buyer) && is_Numeric($seller))
+				$this->sqlNotification($buyer, $seller);
+			
+			$this->db->where('receiver_id', $recvID);
+			$this->db->where('reg_user_notification.status', 'U');
+			
+			return count($this->db->get('reg_user_notification')->result());
+		}
+		
+		
+		/*
+		Marks all messages as read.
+		Can optionally specify a buyer/seller to fetch messages from a specific thread.
+		*/
+		public function markRead($recvID, $buyer = NULL, $seller = NULL)
+		{
+			if (!is_Numeric($recvID))
+				return;
+			
+			$this->db->where('receiver_id', $recvID);
+			$this->db->where('reg_user_notification.status', 'U');
+			
+			$data['status'] = "R";
+			
+			// Only fetch messages from a specific thread.
+			if (is_Numeric($buyer) && is_Numeric($seller))
+			{
+				$this->db->join("item_listing", "item_listing.listing_id = reg_user_notification.listing_id");
+				$this->db->where('item_listing.seller_id', $seller);
+				$this->db->update('reg_user_notification JOIN item_listing ON (item_listing.listing_id = reg_user_notification.listing_id)', $data);
+			}
+			else // Mark all messages from every thread.
+				$this->db->update('reg_user_notification', $data);
 		}
 }
 ?>

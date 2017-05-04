@@ -17,7 +17,7 @@ class Home extends CI_Controller
 	{
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
-		$this->load->view('common/required_meta_tags');
+		$this->load->view('common/resources');
 					
 		// Loads Navbar.
 		$this->navbars->load();
@@ -36,12 +36,34 @@ class Home extends CI_Controller
 			$search = $this->input->get('search');
 			// Searches for matching items.
 			$find = array();
+			$data = array(
+				'bad_search' => ''
+				);
+
+			$this->session->set_flashdata($data); 
+		
 			if (strlen($search) > 0)
 			{
-				$find['title'] = $search;
+				$input["search"] = $search;
+				$this->form_validation->set_data($input);
+				//$find['title'] = $search;
+				$this->form_validation->set_rules('search', 'Search', 'trim|required|alpha_numeric_spaces|max_length[30]');
+
+				if($this->form_validation->run() == FALSE)
+				{	
+					$data = array(
+						'bad_search' => validation_errors()
+					);
+ 
+					$this->session->set_flashdata($data);
+
+				} else {
+					
+					$find['title'] = $search;
+        			}
 			}
 
-			//Sortx items based on option value.
+			//Sorts items based on option value.
 			$sort = $this->input->get('sort');
 
 			if(strlen($sort) > 0){
@@ -62,7 +84,7 @@ class Home extends CI_Controller
 			// Restricts number of shown results.
 			$find['maxResults'] = $this::PAGEMAXITEMS;
 			
-			// Skips first N results
+			// Skips first N results.
 			$pageSkip = $this->input->get('page');
 			if (is_numeric($pageSkip) && $pageSkip >= 1)
 				$find['skipResults'] = ($pageSkip - 1)*$this::PAGEMAXITEMS;
@@ -97,6 +119,13 @@ class Home extends CI_Controller
 			$items['lowestPage'] = $lowerPage;
 			$items['highestPage'] = $upperPage;
 			$items['maxItems'] = $maxItems;
+			if(strlen($category) > 0){
+				$this->load->model('Category');
+                $items['currentCategory'] = $this->Category->getCategoryById($category);
+			}else{
+                $items['currentCategory'] = "";
+			}
+
 				
 			// Sends all GET data.
 			$items['get'] = $this->input->get();			
@@ -105,15 +134,17 @@ class Home extends CI_Controller
 		}
 		else
 		{
-			$this->load->view('home/' . $page);
+            $this->load->model('Major');
+            $data['sfsu_majors'] = $this->Major->getMajors();
+			$this->load->view('home/' . $page, $data);
 		}
 		
 		if (strtolower($page) == "login" || strtolower($page) == "signup")
 			$this->loginhelper->rememberBeforeLogin(); // Keep track of what the user was looking at before.
 
-                // Gets basic footer and data that enables javascript, jQuery, and thether for all pages.	
-		$this->load->view('common/jquery_tether_bootstrap');
+                // Gets basic footer
 		$this->load->view('common/footerbar');
 	}
 }
+
 ?>

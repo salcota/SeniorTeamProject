@@ -2,6 +2,26 @@
 
 <?php $logged = $this->session->loggedIn; ?>
 
+<script>
+// AJAX for buying items
+var buyCart = new LiveMessage();
+buyCart.otherSeller = true;
+
+function buySelect(userID, itemID)
+{
+	buyCart.otherID = userID;
+	buyCart.itemID = itemID;
+}
+
+function buyConfirm()
+{
+	var message = $("#reportText").val();
+	$("#reportText").val("");
+	
+	buyCart.sendMessage(message);
+}
+</script>
+
 <div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
@@ -10,7 +30,18 @@
             if($this->session->flashdata('login_success')):
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>"; 
             endif;
-        ?>
+       
+	    // Loads invalid search failure
+	    if($this->session->flashdata('bad_search')):
+            echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_search') . "</strong></div>";
+            endif;
+
+	    // loads valid search but no item match
+	    if($this->session->flashdata('item_not_found')):
+	    echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_search') . "</strong></div>";
+ 	    endif;
+	?>
+
     </p>
 
     <!-- Subtitle Header -->
@@ -40,9 +71,8 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
             <?php echo "<h6 class='text-muted'>Showing page " . $currentPage . ' of ' . $maxItems . ' items</h6>'?>
         </div>
 
-	
         <div class="col" style="padding-top: 20px; text-align: center">
-            <h6 class="text-muted" style="text-align: center">Most Recent Item Listings</h6>
+            <h6 class="text-muted" style="text-align: center" id="listings_heading">Most Recent Listings<?php if(strlen($currentCategory) > 0) echo " in ".$currentCategory?></h6>
     	</div>
 
 	<!-- Allows sorting by price, name, and date -->
@@ -76,7 +106,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			<br /><br />
 			<?php 
 			    if($logged)
-			        echo "<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal'>Buy</a>";
+			        echo "<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal' onclick=\"buySelect($item->seller_id, $item->listing_id)\">Buy</a>";
 			    else
 				echo "<a class='btn btn-success btn-sm' data-toggle='popover' data-placement='top' data-content='You must be logged in to contact seller.' style='color: #fff; cursor: pointer'>Buy</a>";
 			?>
@@ -165,23 +195,26 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                         $data = array(
                             'class'         => 'form-control',
                             'name'          => 'reportText',
-                            'style'         => 'height: 100px; resize: none'
+                            'style'         => 'height: 100px; resize: none',
+							'id'			=> 'reportText'
                         );
                         echo form_textarea($data);	
                     ?>
 		</div>
 
                 <div class="modal-footer">
-		   <span style="width: 55%">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo "March 10, 2017"; ?>
-		   <br /><?php $location = 'Spot 1 - Quad'; echo 'Meetup: ' . $location; ?></span>
-		   <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
-                   <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
-                   <?php
+                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp; <?php echo "March 10, 2017"; ?>
+                    <br /><?php $location = 'Spot 1 - Quad'; echo 'Meet-up:<span>&emsp;</span>' . $location; ?></span>
+                    <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
+                    <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
+                    <?php
                         $data = array(
                             'class'         => 'btn btn-success btn-sm',
                             'name'          => 'submit',
 			    'style'	    => 'cursor: pointer',
-                            'value'         => 'Send'
+                            'value'         => 'Send',
+							'data-dismiss'	=> 'modal',
+							'onclick'		=> 'buyConfirm()'
                         );	
                         echo form_submit($data);
                         echo form_close();

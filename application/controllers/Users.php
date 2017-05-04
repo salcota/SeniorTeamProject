@@ -9,7 +9,7 @@ class Users extends CI_Controller
         parent::__construct();
         $this->load->model('Item_Listing');
         $this->load->view('common/sfsu_demo');
-        $this->load->view('common/required_meta_tags');
+        $this->load->view('common/resources');
 
         // Load navbar
         $this->navbars->load();
@@ -18,7 +18,7 @@ class Users extends CI_Controller
     // Attempting form validations for report misconduct, scota
     public function report()
     {
-	$this->form_validation->set_rules('reportText', 'Report misconduct', 'trim|required|alpha_numeric');
+	$this->form_validation->set_rules('reportText', 'Report misconduct here', 'trim|required|alpha');
 
 	if($this->form_validation->run() == FALSE)
 	{
@@ -26,9 +26,11 @@ class Users extends CI_Controller
 			'bad_report' => validation_errors()
 		); 
 		$this->session->set_flashdata($data);
-	}
-
-
+		redirect('home/view/home');
+	} else {
+		//do something
+		
+        }
     }
 
 	public function login()
@@ -101,8 +103,29 @@ class Users extends CI_Controller
         $data['categories'] = $this->Category->getCategories();
 
         $this->load->view('reguser/add_itemlisting.php',$data);
-        $this->load->view('common/jquery_tether_bootstrap');
         $this->load->view('common/footerbar');
+	}
+
+
+    /**
+	 * This function deletes allows user to delete an item listing posted by him/her.
+     * @param $listingId
+	 * redirects to the item_listings page again.
+     */
+	public function delete_listing($listingId){
+		try{
+            $this->userinfo = $this->loginhelper->getLoginData();
+            if($this->loginhelper->isRegistered()) {
+                $this->Item_Listing->deleteItemListing($listingId);
+                redirect("user_listings");
+            }else{
+                $this->loginhelper->forceLogin();
+            }
+		}catch (Exception $e){
+            $data = array('delete_listing_error' => $e->getMessage());
+            $this->session->set_flashdata($data);
+            redirect('user_listings',$data);
+		}
 	}
 }
 ?>

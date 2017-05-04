@@ -13,8 +13,7 @@ class Itemlisting extends CI_Controller
 	// Gets item listing,  basic header and styles for all pages.
         parent::__construct();
         $this->load->model('Item_Listing');
-        $this->load->view('common/sfsu_demo');
-        $this->load->view('common/required_meta_tags');
+        $this->load->view('common/resources');
 
         // Load navbar
 		$this->navbars->load();
@@ -26,25 +25,23 @@ class Itemlisting extends CI_Controller
      * Returns all available listings of the user by accessing details from session
      */
     public function get_all_listings_of_user(){
+		// Check if user is logged in.
+		$this->loginhelper->forceLogin();
+		
         $this->userinfo = $this->loginhelper->getLoginData();
-        if($this->loginhelper->isRegistered()){
+		
+		//print_r($userinfo);
+		if ( $this->userinfo->username != NUll){
+			$search['user'] = $this->userinfo->username;
+			$items = $this->Item_Listing->getItems($search);
+			//print_r($items);
+			$data['items'] = $items;
+		}
+			//print_r("Username = ".$userinfo['username']);
+		$this->load->view('home/item_listings',$data);
 
-            //print_r($userinfo);
-            if ( $this->userinfo->username != NUll){
-                $search['user'] = $this->userinfo->username;
-                $items = $this->Item_Listing->getItems($search);
-                //print_r($items);
-                $data['items'] = $items;
-            }
-                //print_r("Username = ".$userinfo['username']);
-            $this->load->view('home/item_listings',$data);
-
-            // Gets basic footer and data that enables javascript, jQuery, and tether for all pages.
-            $this->load->view('common/jquery_tether_bootstrap');
-            $this->load->view('common/footerbar');
-        }else{
-            $this->loginhelper->forceLogin();
-        }
+		// Gets basic footer
+		$this->load->view('common/footerbar');
 
         //$data = array('items' => Null);
     }
@@ -54,18 +51,24 @@ class Itemlisting extends CI_Controller
      * @param null $listingID
      */
     public function get_listing_by_id($listingID = Null){
-
+		$this->load->view('notifications/LiveMessage');
+		
         if($listingID != Null){
             $search['listingID'] = $listingID;
             $item = $this->Item_Listing->getItems($search);
-            $data['item'] = $item;
+            $data['item'] = $item[0];
             $item_pics = $this->Item_Listing->getAllItemListingPictures($listingID);
             $data['itemPics'] = $item_pics;
+			
+			// Send login info.
+			if ($this->loginhelper->isRegistered())
+				$data['myInfo'] = $this->loginhelper->getLoginData();
+			
             $this->load->view('home/current_listing',$data);
         }
 
-	    // Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
-	    $this->load->view('common/jquery_tether_bootstrap');
+	    // Gets basic footer.
+	    
         $this->load->view('common/footerbar');
     }
 
@@ -177,34 +180,7 @@ class Itemlisting extends CI_Controller
             }
         }
     }
-/*
- *  print_r($_FILES);
-                        //if(!empty($_FILES['pic']['name'][0])){
-                        $files = $this->diverse_array($_FILES['pic']);
-                           // print_r($files);
-                           print_r($files);
-                            foreach ($files as $pic){
-                                echo "pic";
-                                $this->load->library('upload',$config);
-                                $this->upload->initialize($config);
-                                echo $pic['name'];
-                                if($this->upload->do_upload($pic['name'])){
-                                    echo "pic1";
-                                    $picdata = $this->upload->data();
-                                    echo "pic2";
-                                    $this->genthumbnail($picdata['full_path']);
-                                    echo "pic3";
-                                    $this->Item_Listing->addItemPicture($listing_id, $picdata);
-                                    echo "pic4";
-                                    unlink($picdata['full_path']);
-                                }else{
-                                    echo $this->upload->display_errors();
-                                    //exit;
-                                }
-                            }// end of for each
-                        //}//end of if
-                        echo "No item pics found";
-                        exit;*/
+
     private function genListingDetails(){
         $this->load->library('form_validation');
 
@@ -220,7 +196,7 @@ class Itemlisting extends CI_Controller
                 unlink($this->fileToDelete);
                 unlink(str_replace(".","_thumb.", $this->fileToDelete));
             }
-            //print_r(validation_errors());
+
             $data = array(
                 'item_form_errors' => validation_errors()
             );

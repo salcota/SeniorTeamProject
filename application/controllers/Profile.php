@@ -10,6 +10,7 @@ class Profile extends CI_Controller
 	$this->load->library('loginhelper');
 	$this->load->model('Updateprofile');
 	$this->load->model('imageloader');
+	$this->load->model('Major');
 	}
 
 	public function me()
@@ -17,7 +18,7 @@ class Profile extends CI_Controller
 
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
-		$this->load->view('common/required_meta_tags');
+		$this->load->view('common/resources');
 
 		// Loads No-Search Navbar.
 		$this->navbars->load();
@@ -25,6 +26,7 @@ class Profile extends CI_Controller
 		// Returns necessary data for the view file (profile.php) to use
 		$user = $this->loginhelper->getLoginData();
 		$id = $user->user_id;
+		$usermajor = $user->major_id;
 		$profilePic = $this->imageloader->showUserPic($id);
 		$pic = base_url().$profilePic;
 		$data = array(
@@ -33,13 +35,13 @@ class Profile extends CI_Controller
 			'biography'=> $user->biography,
 			'id' => $user->user_id,
 			'pic' => $pic,
-
+			'majors' => $this->Major->getMajors(),
+			'usermajor' => $usermajor,
 		);
 
 		$this->load->view('profile/your_profile', $data);
 
-		// Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
-		$this->load->view('common/jquery_tether_bootstrap');
+		// Gets basic footer
 		$this->load->view('common/footerbar');
 	}
 
@@ -47,7 +49,7 @@ class Profile extends CI_Controller
 	{
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
-		$this->load->view('common/required_meta_tags');
+		$this->load->view('common/resources');
 
 		// Loads No-Search Navbar.
 		$this->navbars->load();
@@ -57,8 +59,7 @@ class Profile extends CI_Controller
 
 		$this->load->view('profile/users_profile', $data);
 
-		// Gets basic footer and data that enables javascript, jQuery, and thether for all pages.
-		$this->load->view('common/jquery_tether_bootstrap');
+		// Gets basic footer
 		$this->load->view('common/footerbar');
 	}
 }

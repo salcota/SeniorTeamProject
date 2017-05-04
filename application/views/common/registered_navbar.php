@@ -9,7 +9,6 @@
 
     <div id='topheader'></div>
 
-
     <nav class='navbar navbar-toggleable-lg navbar-light fixed-top navbar' style="min-height: 65px">
 
         <button style="border-style: none; cursor: pointer; margin-right: -10px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i class="fa fa-bars" style="color: #EEE; font-size: 35px; padding-top: 7px; padding-right: -8px" aria-hidden="true"></i></button>
@@ -24,6 +23,18 @@
                     <a class="nav-link fix-align align-pt-16" style='width: 310px' href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
                 </li>
             </ul>
+<!-- this was put in views/home/home.php -->
+    <div class="row justify-content-center text-danger">
+	<div class="col-sm-5">
+            <?php
+		// Loads login failure data of input is not recognized.
+		//if($this->session->flashdata('bad_search')):
+            	//echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_search') . "</strong></div>";
+            	//endif;
+	    ?>
+	</div>
+    </div>
+ 
 
             <!-- Centered Category Search & Input Search -->
             <form class='form-inline mr-auto fix-align' style='padding-top: 4px' action="<?php echo base_url() . "home" ?>" id="searchSubmit" method=GET>
@@ -46,8 +57,22 @@
                             ?>
                         </select>
                     </div>
-                    <input style='height: 40px' type='search' class='form-control' id='inlineFormInputGroup' placeholder='Search ...'
-                       name='search' value="<?php echo $searchTerms ?>">
+			<!-- attmempting to call controller for form validation on search -->
+			 <?php
+			// echo form_open modified by scota
+			//echo form_open('Users/search');
+		        $data = array(
+                    	    'class' 	    => 'form-control',
+			    'id'	    => 'inlineFormGroup',
+                    	    'name' 	    => 'search',
+                    	    'placeholder'   => 'Search ...',
+			    'type' 	    => 'search',
+			    'style'	    => 'height: 40px',
+			    'value'	    => $searchTerms
+                	);
+			echo form_input($data);
+               	    ?>     
+	
                     <input type='hidden' name='sort' id='sort'>
                     <button class='btn btn-success' style='cursor: pointer; height: 40px' type='submit'><i class='fa fa-search' aria-hidden='true'></i></button>
                 </div>
@@ -58,12 +83,18 @@
                 <li class='nav-item'>
                     <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'add_item' ?>'>Sell</a>
                 </li>
-		        <li class='nav-item'>
+		<li class='nav-item'>
                     <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'user_listings' ?>'>Listings</a>
                 </li>
-		        <li class='nav-item'>
-                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Notification' ?>'>Notifications</a>
+
+		<!-- Adds a notfication signal if one exists and the number of new notifications -->
+
+		<li class='nav-item'>
+                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Notification' ?>'>Notifications<span id="mailbox" class="notif-signal"style="padding-left: 2px; padding-right: 3px; visibility: hidden">0</span></a>
                 </li>
+		
+
+
                 <li class='nav-item'>
                     <div class="btn-group">
                             <a id='logout' class='nav-link fix-align align-pt-16' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' href="#"><?php $username = 'My Account'; echo $username;?>&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></a>
@@ -79,6 +110,8 @@
         </div>
 
     </nav>
+
+
     <!-- TRYING TO DISPLAY ERROR MESSAGE WHEN USER PUTS IN BAD INPUT, scota-->
     <div class="row justify-content-center text-danger">
 	<div class="col-sm-5">
@@ -103,7 +136,8 @@
                 </div>
                 <div class="modal-body">
 		    <?php
-			//echo form_open('Controller/function', $attributes);
+			// echo form_open modified by scota
+			echo form_open('Users/report');
 		        $data = array(
                     	    'class' 	    => 'form-control',
                     	    'name' 	    => 'reportText',
@@ -142,3 +176,32 @@
             </div>
         </div>
     </div>
+
+<?php
+// Required for live notification updates.
+$this->load->view('notifications/LiveMessage');
+?>
+<script>
+var mailChecker = new LiveMessage();
+function updateNotifications(count)
+{
+	var oldCount = $("#mailbox").html();
+	
+	// Do nothing if no change.
+	if (oldCount == count)
+		return;
+	
+	// Update mail counter.
+	$("#mailbox").html(count);
+	
+	// Show/hide the notification symbol.
+	if (count > 0)
+		$("#mailbox").css('visibility', 'visible');
+	else
+		$("#mailbox").css('visibility', 'hidden');
+}
+$(document).ready(function()
+{
+	setInterval(function(){mailChecker.hasUnread(updateNotifications);}, 1000);
+});
+</script>

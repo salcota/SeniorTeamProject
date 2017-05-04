@@ -89,16 +89,12 @@
 	    <!-- Major -->
             <div class="form-group input-group">
                 <?php
-                    echo '<span class="input-group-addon span-for-profile">Major</span>';
-                    //  
-                    $options = array(
-                        '1' => 'Accounting',
-                        '2' => 'Broadcast & Electronic Arts&nbsp;&nbsp;',
-                        '3' => 'Computer Science',
-                        '4' => 'Electric Engineering',
-                        '5' => 'Math',
-                    );
-                    echo form_dropdown('name', $options, '1');
+		 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Majors</span>';
+
+                 foreach ($majors as $major) {
+                    $options[$major->major_id] = $major->major_name;
+                 }
+                 echo form_dropdown('major', $options, $usermajor);
                 ?>
             </div>
 

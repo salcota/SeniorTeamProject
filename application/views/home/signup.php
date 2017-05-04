@@ -125,16 +125,11 @@
                 echo "<div class='input-group'>";
 
                 echo '<span class="input-group-addon addon-iconwidth" id="lock-addon"><i class="fa fa-graduation-cap" aria-hidden="true"> &nbsp;&nbsp;&nbsp;</i></span>';
-                		
-                $options = array(
-                    '1' => 'Accounting',
-                    '2' => 'Broadcast & EA',
-                    '3' => 'Computer Science',
-                    '4' => 'Electric Engineering',
-                    '5' => 'Math',
-		    '6' => 'Select'
-                );
-                echo form_dropdown('major', $options, '6');
+
+                foreach ($sfsu_majors as $major) {
+                    $options[$major->major_id] = $major->major_name;
+                }
+                echo form_dropdown('major', $options, '1');
 	 	echo '</div>';
             ?>
 	</div>
