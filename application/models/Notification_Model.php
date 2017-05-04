@@ -47,7 +47,13 @@ class Notification_Model extends CI_Model
 			// Restore debug defaults
 			$this->db->db_debug = $debug;
 			
-			return $data->get("reg_user_notification")->result();
+			$data = $data->get("reg_user_notification")->result();
+			foreach($data as $message)
+			{
+				$message->message = base64_decode($message->message);
+			}
+			
+			return $data;
 		}
 		
 		// Counts the number of notifications between a buyer and a seller.
@@ -127,7 +133,7 @@ class Notification_Model extends CI_Model
 			}
 			
 			// Create array with item details.
-			$dbItem = array('sender_id' => $sender, 'receiver_id' => $recv, 'listing_id' => $listing, 'message' => $msg);
+			$dbItem = array('sender_id' => $sender, 'receiver_id' => $recv, 'listing_id' => $listing, 'message' => base64_encode($msg));
 			
 			// Add item to database.
 			if ($this->db->insert('reg_user_notification', $dbItem))
