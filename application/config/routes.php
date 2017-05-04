@@ -57,4 +57,5 @@ $route['user_listings'] = 'itemlisting/get_all_listings_of_user';
 $route['add_item'] = 'users/sell_item';
 $route['remove_listing/(:num)'] = 'users/delete_listing/$1';
 $route['post_itemlisting'] = 'itemlisting/post_listing';
+$route['edit_listing/(:num)'] = 'users/edit_listing/$1';
 $route['translate_uri_dashes'] = FALSE;

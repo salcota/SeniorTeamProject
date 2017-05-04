@@ -128,5 +128,47 @@ class Users extends CI_Controller
             redirect('user_listings',$data);
 		}
 	}
+
+    /**
+	 * This function loads a listing's details and redirects to the edit listing page
+     * @param $listingId
+     */
+	public function edit_listing($listingId){
+		//Check if the user is logged in
+        $this->loginhelper->forceLogin();
+
+        //Load categories
+        $this->load->model('Category');
+        $data['categories'] = $this->Category->getCategories();
+
+        if($listingId != Null){
+        	//Build search
+            $search['listingID'] = $listingId;
+            //Get item from DB
+            $item = $this->Item_Listing->getItems($search);
+            if($item != Null) {
+                $data['item'] = $item[0];
+                //Get all pics of the item listing
+                $item_pics = $this->Item_Listing->getAllItemListingPictures($listingId);
+                $data['itemPics'] = $item_pics;
+
+                // Send login info.
+                if ($this->loginhelper->isRegistered())
+                    $data['myInfo'] = $this->loginhelper->getLoginData();
+
+                //Load view with data
+                $this->load->view('home/edit_listing', $data);
+            }else{
+            	//If lisitngID does not exists
+                redirect('user_listings');
+			}
+        }else{
+        	//If listing id not provided
+            redirect('user_listings');
+		}
+
+        // Gets basic footer.
+        $this->load->view('common/footerbar');
+	}
 }
 ?>

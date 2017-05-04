@@ -131,7 +131,7 @@ class Item_Listing extends CI_Model
 			// Searches by listing id.
 			if (array_key_exists('listingID', $search)){
 
-			    $this->db->select('usr.username, usr.user_id, item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, item_listing.display_pic, cat.category_name');
+			    $this->db->select('usr.username, usr.user_id, item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, item_listing.display_pic, cat.category_id, cat.category_name');
 			    $this->db->join('reg_user usr', 'usr.user_id = item_listing.seller_id');
                 $this->db->join('item_category cat','cat.category_id = item_listing.category_id');
 			    $this->db->where('item_listing.listing_id', $search['listingID']);
