@@ -202,6 +202,7 @@ function updateNotifications(count)
 }
 $(document).ready(function()
 {
+	mailChecker.hasUnread(updateNotifications);
 	setInterval(function(){mailChecker.hasUnread(updateNotifications);}, 1000);
 });
 </script>
