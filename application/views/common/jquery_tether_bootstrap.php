@@ -27,5 +27,7 @@
         $('[data-toggle="popover"]').popover();   
     });
 
+    function sendWarning() {return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')}
+
 </script>
 

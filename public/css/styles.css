@@ -105,6 +105,10 @@
 		padding: 5px;
 	    }
 
+	    .btn-success {
+		background-color: #449D44 !important;
+	    }
+
 	    .card_title {
 		display: block;
 		font-size: 12pt;
@@ -183,10 +187,6 @@
                 margin-bottom: -100px;
             }
 
-            .nav {
-                position: fixed;
-            }
-
             .navbar {
                 background-color: #363;
                 color: #FFF;
@@ -234,8 +234,13 @@
 		color: #D00;
 	    }
 
+	    .searchTheme {
+		color: #FFF;
+		background-color: #449D44;
+	    }
+
 	    .span-for-profile {
-		text-align: left;
+		text-align: left !important;
 		width: 135px;
 	    }
 
@@ -253,6 +258,14 @@
 	    .terms-link a:hover {
 		color: #ADA !important;
 		text-decoration: none !important;
+	    }
+
+	    .white {
+		color: #FFF !important;
+	    }
+
+	    .white:hover {
+		color: #CCC !important;
 	    }
 </style>
 

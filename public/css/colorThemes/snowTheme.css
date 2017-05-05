@@ -1,0 +1,45 @@
+body {
+    	background-color: #000 !important;
+}
+
+#footer {
+        background-color: #EEE;
+}
+
+#footer a {
+        color: #999;
+}
+
+
+
+.btn-success {
+	color: #999 !important;
+        background-color: #EEE !important;
+        border: solid 1px #DDD !important;
+}
+
+.btn-success:hover {
+        background-color: #DDD !important;
+}
+
+.container {
+        margin-top:90px;
+        background-color: #333;
+}
+
+.navbar {
+        background-color: #EEE !important;
+}
+
+.nav-link {
+        color: #999 !important;
+}
+
+.searchTheme {
+        color: #FFF !important;
+        background-color: #DDD !important;
+}
+
+.searchTheme:hover {
+        background-color: #CCC !important;
+}

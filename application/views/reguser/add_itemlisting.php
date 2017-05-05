@@ -2,6 +2,12 @@
 
 <?php $logged = $this->session->loggedIn; ?>
 
+<?php
+        if (!$logged):
+        echo "<script>setTimeout(function() {editListingWarning();}, 2000); function editListingWarning() {alert('You must be logged in to save your new listing!')}</script>";
+        endif;
+?>
+
 <div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
@@ -27,7 +33,7 @@
         </div>
     </div>
 
-    <br/>
+    <br /><br /><br/>
 
 <?php if(isset($error)) echo "<div class='alert alert-success' role='alert'>" . $error . "</div>";?>
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
@@ -206,7 +212,7 @@
     </div>
 
 
-    <?php form_close(); ?>
+    <?php echo form_close(); ?>
 
     <br /><br /><br />
 
