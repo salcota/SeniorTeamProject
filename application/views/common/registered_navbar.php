@@ -201,16 +201,16 @@
 		<?php
 		$themeURL = base_url() . "Theme/setTheme/";
 		?>
-                    <button class="form-control btn-sm white" type="button" style="background-color: #449D44; width: 135px">Garden</button>
-		    <button class="form-control btn-sm white" type="button" style="background-color: #AA7; width: 135px">Desert</button>
-		    <button class="form-control btn-sm white" type="button" style="background-color: #933; width: 135px">Rose</button>
-		    <button class="form-control btn-sm white" type="button" style="background-color: #E69; width: 135px">Bubble Gum</button>
-		    <button class="form-control btn-sm white" type="button" style="background-color: #336; width: 135px">Ice</button>
-                    <button class="form-control btn-sm white" type="button" style="background-color: #EEE; color: #999 !important; width: 135px">Snow</button>
-                    <button class="form-control btn-sm white" type="button" style="background-color: #222; width: 135px">Dark</button>
-                    <button class="form-control btn-sm white" type="button" style="background-color: #FC3; width: 135px">Sun</button>
-                    <button class="form-control btn-sm white" type="button" style="background-color: #369; width: 135px">Sky</button>
-                    <button class="form-control btn-sm white" type="button" style="background-color: #414; width: 135px">SFSU</button>
+                    <a class="form-control btn-sm white" type="button" style="background-color: #449D44; text-align: center; width: 135px" href="<?php echo $themeURL . "gardenTheme"?>">Garden</a>
+		    <a style="text-decoration: none" href="<?php echo $themeURL . "desertTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #AA7; width: 135px">Desert</button></a>
+		    <a style="text-decoration: none" href="<?php echo $themeURL . "roseTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #933; width: 135px">Rose</button></a>
+		    <a style="text-decoration: none" href="<?php echo $themeURL . "bubbleGumTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #E69; width: 135px">Bubble Gum</button></a>
+		    <a style="text-decoration: none" href="<?php echo $themeURL . "iceTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #336; width: 135px">Ice</button></a>
+                    <a style="text-decoration: none" href="<?php echo $themeURL . "snowTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #EEE; color: #999 !important; width: 135px">Snow</button></a>
+                    <a style="text-decoration: none" href="<?php echo $themeURL . "darkTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #222; width: 135px">Dark</button></a>
+                    <a style="text-decoration: none" href="<?php echo $themeURL . "sunTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #FC3; width: 135px">Sun</button></a>
+                    <a style="text-decoration: none" href="<?php echo $themeURL . "skyTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #369; width: 135px">Sky</button></a>
+                    <a style="text-decoration: none" href="<?php echo $themeURL . "sfsuTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #414; width: 135px">SFSU</button></a>
 		</div>
 		</div>
 		</div>
