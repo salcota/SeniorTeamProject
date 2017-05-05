@@ -167,7 +167,6 @@ class Users extends CI_Controller
             redirect('user_listings');
 		}
         $this->load->view('common/jquery_tether_bootstrap');
-
         // Gets basic footer.
         $this->load->view('common/footerbar');
 	}

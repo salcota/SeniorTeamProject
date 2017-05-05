@@ -313,5 +313,79 @@ class Itemlisting extends CI_Controller
             }
         }
     }
+
+    public function update_listing_pic($picId, $listingId){
+        $this->loginhelper->forceLogin();
+        $this->uploadpath = './public/temp/';
+        if($listingId == Null){
+            redirect('user_listings');
+        }
+        try {
+            if (!empty($_FILES['pic']['name'])) {
+                $config['upload_path']          = $this->uploadpath;
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 5120;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+
+                $this->upload->initialize($config);
+
+                if ( !$this->upload->do_upload('pic'))
+                {
+                    $data = array('edit_form_errors' => $this->upload->display_errors());
+                    $this->session->set_flashdata($data);
+                    redirect('edit_listing/'.$listingId);
+                }
+                else
+                {
+                    $imgdata = $this->upload->data();
+                    $this->fileToDelete = $imgdata['full_path'];
+                    $this->genthumbnail($imgdata['full_path']);
+                    if($picId == -1){
+                        $this->Item_Listing->addItemPicture($listingId, $imgdata);
+                        $data['error'] = "New Picture uploaded successfully";
+                        redirect('edit_listing/'.$listingId, $data);
+                    }else{
+                        $this->Item_Listing->updateItemPic($picId, $imgdata);
+                        $data['error'] = "Item Listing picture updated successfully";
+                        redirect('edit_listing/'.$listingId, $data);
+                    }
+
+                }
+            }else{
+                $data = array('edit_form_errors' => "Please provide an image file");
+                $this->session->set_flashdata($data);
+                redirect('edit_listing/'.$listingId);
+            }
+        }catch (Exception $e){
+            $data = array('edit_form_errors' => $e->getMessage());
+            $this->session->set_flashdata($data);
+            redirect('edit_listing/'.$listingId);
+        }finally{
+            if(file_exists($this->uploadpath)){
+                $filename = $this->fileToDelete;
+                unlink($filename);
+                $filename = str_replace(".", "_thumb.", $filename);
+                unlink($filename);
+            }
+        }
+    }
+
+    public function remove_listing_pic($picId, $listingId){
+        try {
+            if ($picId != Null) {
+                $this->Item_Listing->deleteItemPic($picId);
+                $data['error'] = "Picture removed successfully";
+                redirect('edit_listing/'.$listingId, $data);
+            }else{
+                $data['error'] = "No Picture to delete";
+                redirect('edit_listing/'.$listingId, $data);
+            }
+        }catch(Exception $e){
+            $data = array('edit_form_errors' => $e->getMessage());
+            $this->session->set_flashdata($data);
+            redirect('edit_listing/'.$listingId);
+        }
+    }
 }
 ?>

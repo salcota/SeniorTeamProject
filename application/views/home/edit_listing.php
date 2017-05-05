@@ -148,9 +148,9 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <form action="<?php if (isset($itemPics[0])) {
-                    echo base_url() . 'update_itempic/' . $itemPics[0]->item_pic_id;
+                    echo base_url() . 'update_itempic/' . $itemPics[0]->item_pic_id."/".$item->listing_id;
                 } else {
-                    echo base_url() . 'update_itempic/-1';
+                    echo base_url() . 'update_itempic/-1/'.$item->listing_id;
                 } ?>" id="itemlisting_form"
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="padding-left: 10px; text-align: center">
@@ -170,7 +170,9 @@
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
                                onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="">Remove</a>
+                               href="<?php if (isset($itemPics[0])) {
+                                   echo base_url() . 'remove_listing_pic/' . $itemPics[0]->item_pic_id."/".$item->listing_id;
+                               }?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic2" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
@@ -183,9 +185,9 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <form action="<?php if (isset($itemPics[1])) {
-                    echo base_url() . 'update_itempic/' . $itemPics[1]->item_pic_id;
+                    echo base_url() . 'update_itempic/' . $itemPics[1]->item_pic_id."/".$item->listing_id;
                 } else {
-                    echo base_url() . 'update_itempic/-1';
+                    echo base_url() . 'update_itempic/-1/'.$item->listing_id;
                 } ?>" id="itemlisting_form"
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="padding-left: 10px; text-align: center">
@@ -203,9 +205,9 @@
                     <br/>
                     <div class="row justify-content-center">
                         <div class="col-sm-10" style="text-align: right">
-                            <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
+                            <a class="btn btn-danger btn-sm" style="font-size: 15pt; margin-bottom: 5px; width: 100px"
                                onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="">Remove</a>
+                               href="<?php if (isset($itemPics[1])) echo base_url() . 'remove_listing_pic/'.$itemPics[1]->item_pic_id."/".$item->listing_id ;?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic3" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
@@ -216,9 +218,9 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <form action="<?php if (isset($itemPics[2])) {
-                    echo base_url() . 'update_itempic/' . $itemPics[2]->item_pic_id;
+                    echo base_url() . 'update_itempic/' . $itemPics[2]->item_pic_id."/".$item->listing_id;
                 } else {
-                    echo base_url() . 'update_itempic/-1';
+                    echo base_url() . 'update_itempic/-1/'.$item->listing_id;
                 } ?>" id="itemlisting_form"
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="text-align: center">
@@ -238,7 +240,7 @@
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
                                onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="">Remove</a>
+                               href="<?php if (isset($itemPics[2])) echo base_url() . 'remove_listing_pic/'.$itemPics[2]->item_pic_id."/".$item->listing_id;?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic4" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
@@ -251,9 +253,9 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <form action="<?php if (isset($itemPics[3])) {
-                    echo base_url() . 'update_itempic/' . $itemPics[3]->item_pic_id;
+                    echo base_url() . 'update_itempic/' . $itemPics[3]->item_pic_id."/".$item->listing_id;
                 } else {
-                    echo base_url() . 'update_itempic/-1';
+                    echo base_url() . 'update_itempic/-1/'.$item->listing_id;
                 } ?>" id="itemlisting_form"
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="text-align: center">
@@ -274,7 +276,7 @@
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
                                onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="">Remove</a>
+                               href="<?php if (isset($itemPics[2])) echo base_url() . 'remove_listing_pic/'.$itemPics[3]->item_pic_id."/".$item->listing_id?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic5" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
@@ -284,9 +286,9 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <form action="<?php if (isset($itemPics[4])) {
-                    echo base_url() . 'update_itempic/' . $itemPics[4]->item_pic_id;
+                    echo base_url() . 'update_itempic/' . $itemPics[4]->item_pic_id."/".$item->listing_id;
                 } else {
-                    echo base_url() . 'update_itempic/-1';
+                    echo base_url() . 'update_itempic/-1/'.$item->listing_id;
                 } ?>" id="itemlisting_form"
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="text-align: center">
@@ -306,7 +308,7 @@
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
                                onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="">Remove</a>
+                               href="<?php if (isset($itemPics[2])) echo base_url() . 'remove_listing_pic/'.$itemPics[4]->item_pic_id."/".$item->listing_id?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic6" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
