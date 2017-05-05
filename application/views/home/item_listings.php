@@ -36,7 +36,7 @@
 
     <br />
 
-    <!-- Displays current list of item listings posted for sale (Hard Coded for now) -->
+    <!-- Displays current list of item listings posted for sale -->
     <div class="row justify-content-center">
 	<div class="col-sm-10">
 	    <table class="table table-bordered table-hover table-info table-striped" style="border: solid 2px #ACF; font-size: 10pt">
@@ -56,7 +56,7 @@
                     <td><?php echo "$".$item->price ?></td>
                     <td><?php echo date_format(date_create($item->posted_on),'d-m-Y')?></td>
                     <td>
-		        <a class="btn btn-secondary btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'Itemlisting/view/add_itemlisting'?>" target="blank">Edit</a>
+		        <a class="btn btn-secondary btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" href="<?php echo base_url() . 'edit_listing/'.$item->listing_id?>">Edit</a>
                         &emsp;
 		        <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px" onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')" href="<?php echo base_url() . 'remove_listing/'.$item->listing_id?>" >Remove</a>
                     </td>
