@@ -215,19 +215,6 @@
 		</div>
 		</div>
 
-                <div class="modal-footer">
-                   <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                   <?php
-                        $data = array(
-                            'class'         => 'btn btn-success btn-sm',
-                            'name'          => 'submit',
-                            'value'         => 'Change'
-                        );
-                        echo form_submit($data);
-                        echo form_close();
-                    ?>
-                </div>
-
             </div>
         </div>
     </div>
