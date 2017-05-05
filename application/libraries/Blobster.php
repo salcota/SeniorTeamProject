@@ -21,19 +21,22 @@ class Blobster
 		$this->tmpdir = sys_get_temp_dir() ;
 	}
 	
-	public function upload($formName)
+	public function upload($formName, $config = NULL)
 	{
-		$config['upload_path']          = $this->tmpdir;
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['max_size']             = 5120;
-		$config['max_width']            = 1024;
-		$config['max_height']           = 768;
+		if ($config == NULL)
+		{
+			$config['upload_path']          = $this->tmpdir;
+			$config['allowed_types']        = 'gif|jpg|png';
+			$config['max_size']             = 5120;
+			$config['max_width']            = 1024;
+			$config['max_height']           = 768;
+		}
 		
 		$this->CI->upload->initialize($config);
 		
 		if ( ! $this->CI->upload->do_upload($formName))
 		{
-			throw new Exception($this->upload->display_errors());
+			throw new Exception($this->CI->upload->display_errors());
 		}
 		else
 		{
