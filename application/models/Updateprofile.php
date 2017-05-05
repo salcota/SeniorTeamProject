@@ -15,7 +15,11 @@ class Updateprofile extends CI_Model {
 		if ($pic != NULL)
 		{
 			$this->db->where('user_id', $id);
-			$this->db->update('reg_user_pic', $pic);
+			$this->db->delete('reg_user_pic');
+			
+			$pic['user_id'] = $id;
+			$this->db->where('user_id', $id);
+			$this->db->insert('reg_user_pic', $pic);
 		}
 		/* Uploads photo to reg_user_pic table
 		$userpic = array(
