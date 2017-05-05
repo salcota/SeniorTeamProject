@@ -276,7 +276,7 @@
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
                                onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="<?php if (isset($itemPics[2])) echo base_url() . 'remove_listing_pic/'.$itemPics[3]->item_pic_id."/".$item->listing_id?>">Remove</a>
+                               href="<?php if (isset($itemPics[3])) echo base_url() . 'remove_listing_pic/'.$itemPics[3]->item_pic_id."/".$item->listing_id?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic5" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
@@ -308,7 +308,7 @@
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
                                onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="<?php if (isset($itemPics[2])) echo base_url() . 'remove_listing_pic/'.$itemPics[4]->item_pic_id."/".$item->listing_id?>">Remove</a>
+                               href="<?php if (isset($itemPics[4])) echo base_url() . 'remove_listing_pic/'.$itemPics[4]->item_pic_id."/".$item->listing_id?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic6" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
