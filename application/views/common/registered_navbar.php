@@ -138,6 +138,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+ 
                 <div class="modal-body">
 		    <?php
 			// echo form_open modified by scota
@@ -160,6 +161,10 @@
 			);
 			echo form_checkbox($data, 'value');
 			echo 'I agree the following claim is true';
+				if($this->session->flashdata('bad_report')):
+            	echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_report') . "</strong></div>";
+            	endif;
+	
 		    ?>		    
 		</div>
 

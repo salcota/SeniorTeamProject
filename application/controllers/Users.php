@@ -16,8 +16,8 @@ class Users extends CI_Controller
     }
    
     // Attempting form validations for report misconduct, scota
-    public function report()
-    {
+    //public function report()
+    //{
 	$this->form_validation->set_rules('reportText', 'Report misconduct here', 'trim|required|alpha');
 
 	if($this->form_validation->run() == FALSE)
@@ -29,9 +29,10 @@ class Users extends CI_Controller
 		redirect('home/view/home');
 	} else {
 		//do something
+		redirect('home/view/home');
 		
         }
-    }
+    //}
 
 	public function login()
 	{
