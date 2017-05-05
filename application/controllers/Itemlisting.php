@@ -73,6 +73,10 @@ class Itemlisting extends CI_Controller
         $this->load->view('common/footerbar');
     }
 
+    /**
+     * Updates only the details of the listing and not images
+     * @param null $listingId
+     */
     public function update_listingdetails($listingId = Null){
         $this->loginhelper->forceLogin();
 
@@ -259,8 +263,55 @@ class Itemlisting extends CI_Controller
         return $this->image_lib->resize();
     }
 
-    public function update_listing($listingID = NULL){
+    public function update_listing_dp($listingId = NULL){
+        $this->loginhelper->forceLogin();
+        $this->uploadpath = './public/temp/';
+        if($listingId == Null){
+            redirect('user_listings');
+        }
 
+        try {
+            if (!empty($_FILES['dp']['name'])) {
+                $config['upload_path']          = $this->uploadpath;
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 5120;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+
+                $this->upload->initialize($config);
+
+                if ( !$this->upload->do_upload('dp'))
+                {
+                    $data = array('edit_form_errors' => $this->upload->display_errors());
+                    $this->session->set_flashdata($data);
+                    redirect('edit_listing/'.$listingId);
+                }
+                else
+                {
+                    $imgdata = $this->upload->data();
+                    $this->fileToDelete = $imgdata['full_path'];
+                    $this->genthumbnail($imgdata['full_path']);
+                    $this->Item_Listing->updateItemDisplayPicture($listingId, $imgdata);
+                    $data['error'] = "Display Picture updated successfully";
+                    redirect('edit_listing/'.$listingId, $data);
+                }
+            }else{
+                $data = array('edit_form_errors' => "Please provide an image file");
+                $this->session->set_flashdata($data);
+                redirect('edit_listing/'.$listingId);
+            }
+        }catch (Exception $e){
+            $data = array('edit_form_errors' => $e->getMessage());
+            $this->session->set_flashdata($data);
+            redirect('edit_listing/'.$listingId);
+        }finally{
+            if(file_exists($this->uploadpath)){
+                $filename = $this->fileToDelete;
+                unlink($filename);
+                $filename = str_replace(".", "_thumb.", $filename);
+                unlink($filename);
+            }
+        }
     }
 }
 ?>

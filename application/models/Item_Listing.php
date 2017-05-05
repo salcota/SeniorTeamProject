@@ -272,7 +272,6 @@ class Item_Listing extends CI_Model
 
         $this->db->where('listing_id', $listingId);
         $this->db->update('item_listing', $values);
-
     }
 
 
