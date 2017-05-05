@@ -201,7 +201,7 @@
 		<?php
 		$themeURL = base_url() . "Theme/setTheme/";
 		?>
-                    <a class="form-control btn-sm white" type="button" style="background-color: #449D44; text-align: center; width: 135px" href="<?php echo $themeURL . "gardenTheme"?>">Garden</a>
+                    <a style="text-decoration: none" href="<?php echo $themeURL . "gardenTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #449D44; width: 135px">Garden</button></a>
 		    <a style="text-decoration: none" href="<?php echo $themeURL . "desertTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #AA7; width: 135px">Desert</button></a>
 		    <a style="text-decoration: none" href="<?php echo $themeURL . "roseTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #933; width: 135px">Rose</button></a>
 		    <a style="text-decoration: none" href="<?php echo $themeURL . "bubbleGumTheme"?>"><button class="form-control btn-sm white" type="button" style="background-color: #E69; width: 135px">Bubble Gum</button></a>
