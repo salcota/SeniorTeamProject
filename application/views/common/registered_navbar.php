@@ -23,17 +23,18 @@
                     <a class="nav-link fix-align align-pt-16" style='width: 310px' href='<?php echo base_url() . 'Home/view/home' ?>'>Home</a>
                 </li>
             </ul>
-<!-- this was put in views/home/home.php -->
-    <div class="row justify-content-center text-danger">
-	<div class="col-sm-5">
-            <?php
-		// Loads login failure data of input is not recognized.
-		//if($this->session->flashdata('bad_search')):
-            	//echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_search') . "</strong></div>";
-            	//endif;
-	    ?>
-	</div>
-    </div>
+ 
+            <!-- this was put in views/home/home.php -->
+            <div class="row justify-content-center text-danger">
+	        <div class="col-sm-5">
+                    <?php
+		        // Loads login failure data of input is not recognized.
+		        //if($this->session->flashdata('bad_search')):
+             	        //echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_search') . "</strong></div>";
+            	        //endif;
+	            ?>
+	        </div>
+            </div>
  
 
             <!-- Centered Category Search & Input Search -->
@@ -101,7 +102,8 @@
                         <div class='dropdown-menu move' aria-labelledby='logout'>
                             <a class='dropdown-item' href='<?php echo  base_url() . 'Profile/me' ?>'>Profile</a>
                             <a class='dropdown-item' href="#" style="text-decoration: none" data-toggle='modal' data-target='#reportModal'>Report</a>
-  	                        <a class='dropdown-item' href='<?php echo  base_url() . 'Logout' ?>'>Logout</a>
+			    <a class='dropdown-item' href="#" style="text-decoration: none" data-toggle='modal' data-target='#themesModal'>Themes</a>
+  	                    <a class='dropdown-item' href='<?php echo  base_url() . 'Logout' ?>'>Logout</a>
                         </div>
                     </div>
                 </li>
@@ -122,8 +124,8 @@
             	endif;
 	    ?>
 	</div>
-    </div>
-  
+    </div> 
+   
     <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
     <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 6px; postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
@@ -171,6 +173,59 @@
 			echo form_submit($data);
 			echo form_close();
 		    ?>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Pops a modal to offer the user a selection of color themes -->
+    <div class="modal fade" id="themesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 6px; postion: relative; top: 25%">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h6 class="modal-title" id="exampleModalLabel" style="color: #FFF">Customize Your Color Theme</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php
+                        // echo form_open modified by scota
+                        echo form_open('Users/report');
+                        $data = array(
+                            'class'         => 'form-control',
+                            'name'          => 'reportText',
+                            'placeholder'   => 'Report misconduct here',
+                            'style'         => 'height: 100px; resize: none'
+                        );
+                        echo form_textarea($data);
+                    ?>
+                    <?php
+                        $data = array(
+                            'name'          => 'newsletter',
+                            'id'            => 'newsletter',
+                            'value'         => 'accept',
+                            'checked'       => TRUE,
+                            'style'         => 'margin-top: 10px'
+                        );
+                        echo form_checkbox($data, 'value');
+                        echo 'I agree the following claim is true';
+                    ?>
+                </div>
+
+                <div class="modal-footer">
+                   <h6 style="width: 75%">Date: </h6>
+                   <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                   <?php
+                        $data = array(
+                            'class'         => 'btn btn-danger btn-sm',
+                            'name'          => 'submit',
+                            'value'         => 'Send'
+                        );
+                        echo form_submit($data);
+                        echo form_close();
+                    ?>
                 </div>
 
             </div>
