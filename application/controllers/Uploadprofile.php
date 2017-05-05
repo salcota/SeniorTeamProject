@@ -77,8 +77,7 @@ class Uploadprofile extends CI_Controller
 		'major_id' => $major,
 		// data to be written to db
 		);
-
-
+		
 		$this->updateprofile->update($pic,$id, $data);
 		redirect('Profile/me');
 

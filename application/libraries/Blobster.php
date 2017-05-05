@@ -48,7 +48,7 @@ class Blobster
 			$config['allowed_types']        = 'gif|jpg|png';
 			$config['max_size']             = $this->maxSize;
 			$config['max_width']            = $this->maxWidth;
-			$config['max_height']           = $$this->maxHeight;
+			$config['max_height']           = $this->maxHeight;
 		}
 		$config['upload_path']          = $this->tmpdir;
 		
