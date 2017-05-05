@@ -115,7 +115,7 @@ END;
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="exampleModalLabel">Send a notification to <?php echo $item->username?> to buy <?php echo $item->title?> </h6>
+                    <h6 class="modal-title" id="exampleModalLabel">Send a notification to <?php echo $item->username?> to buy this <?php echo $item->title?> </h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

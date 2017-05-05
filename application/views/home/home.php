@@ -183,7 +183,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
             <div class="modal-content">
 
                 <div class="modal-header">
-		 <h6 class="modal-title" id="exampleModalLabel">Send a notification to buy this item</h6>
+		 <h6 class="modal-title" id="exampleModalLabel">Send a notification to this seller to buy this <?php echo $item->title?></h6>
 		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
