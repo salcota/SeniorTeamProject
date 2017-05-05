@@ -19,7 +19,7 @@ class Themes extends CI_Model
 		if (count($data) > 0)
 		{
 			$result = $data[0]->theme;
-			if (strlen($result) > 0)
+			if (strlen($result) > 0 && $this->verifyTheme($result))
 				return $result;
 			else
 				return self::defaultTheme;
@@ -31,11 +31,23 @@ class Themes extends CI_Model
 
    	 public function setTheme($userID, $theme)
 	{
+		if (!$this->verifyTheme($theme))
+			return;
+		
         $this->db->select('theme');
 		$this->db->where('user_id', $userID);
 		
 		$data['theme'] = $theme;
 		$this->db->update('reg_user', $data);
+	}
+	
+	private function verifyTheme($theme)
+	{
+		$path = APPPATH . "../public/css/colorThemes/$theme.css";
+		if (file_exists($path))
+			return true;
+		else
+			return false;
 	}
 
 
