@@ -88,13 +88,9 @@
                 </li>
 
 		<!-- Adds a notfication signal if one exists and the number of new notifications -->
-		<?php 
-		    $notification = true;
-		    $num_of_notif = 2;
-		?>
 
 		<li class='nav-item'>
-                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Notification' ?>'>Notifications<?php if ($notification) echo '<span class="notif-signal">&nbsp;' . $num_of_notif . '&nbsp;</span>'?></a>
+                   <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'Notification' ?>'>Notifications<span id="mailbox" class="notif-signal"style="padding-left: 2px; padding-right: 3px; visibility: hidden">0</span></a>
                 </li>
 		
 
@@ -186,3 +182,32 @@
         </div>
     </div>
 
+<?php
+// Required for live notification updates.
+$this->load->view('notifications/LiveMessage');
+?>
+<script>
+var mailChecker = new LiveMessage();
+function updateNotifications(count)
+{
+	var oldCount = $("#mailbox").html();
+	
+	// Do nothing if no change.
+	if (oldCount == count)
+		return;
+	
+	// Update mail counter.
+	$("#mailbox").html(count);
+	
+	// Show/hide the notification symbol.
+	if (count > 0)
+		$("#mailbox").css('visibility', 'visible');
+	else
+		$("#mailbox").css('visibility', 'hidden');
+}
+$(document).ready(function()
+{
+	mailChecker.hasUnread(updateNotifications);
+	setInterval(function(){mailChecker.hasUnread(updateNotifications);}, 1000);
+});
+</script>

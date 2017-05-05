@@ -9,7 +9,7 @@ class Users extends CI_Controller
         parent::__construct();
         $this->load->model('Item_Listing');
         $this->load->view('common/sfsu_demo');
-        $this->load->view('common/required_meta_tags');
+        $this->load->view('common/resources');
 
         // Load navbar
         $this->navbars->load();
@@ -104,7 +104,6 @@ class Users extends CI_Controller
         $data['categories'] = $this->Category->getCategories();
 
         $this->load->view('reguser/add_itemlisting.php',$data);
-        $this->load->view('common/jquery_tether_bootstrap');
         $this->load->view('common/footerbar');
 	}
 
@@ -118,6 +117,8 @@ class Users extends CI_Controller
 		try{
             $this->userinfo = $this->loginhelper->getLoginData();
             if($this->loginhelper->isRegistered()) {
+				$this->load->model('Notification_Model');
+				$this->Notification_Model->orphanNotifications($listingId);
                 $this->Item_Listing->deleteItemListing($listingId);
                 redirect("user_listings");
             }else{

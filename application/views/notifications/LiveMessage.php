@@ -1,12 +1,9 @@
 <script>
 function LiveMessage(userID) {
 	// Constants
-	this.splitDetails = '<br>';
-	this.splitData = '<br><br>';
+	this.splitDetails = "\r\n";
+	this.splitData = "\r\n\r\n";
 	this.controller = "<?php echo base_url() . "Notification/";?>";
-	
-	// Run-time vars
-	this.myID = userID;
 
 	this.otherID = -1;
 	this.otherSeller = false;
@@ -21,12 +18,44 @@ function LiveMessage(userID) {
 		this.itemID = itemID;
 	}
 
-	this.getMessages = function(callBack)
+	this.getMessages = function(start, count, callBack)
 	{
 		if (this.otherID < 0)
 			return;
 		
-		var destination = this.controller + "get_all_notifications/" + this.otherID + "/";
+		var destination = this.controller + "get_messages/" + this.otherID + "/";
+		if (this.otherSeller)
+			destination += "1";
+		else
+			destination += "0";
+		
+		destination += "/" + start + "/" + count;
+		
+		var req = $.post(destination, {});
+		
+		req.done(function(data)
+		{
+			var messages = data.split(parent.splitData);
+			
+			for (var i = 0; i < messages.length; i++)
+			{
+				messages[i] = messages[i].split(parent.splitDetails);
+				messages[i][1] = parent.b64DecodeUnicode(messages[i][1]);
+			}
+			
+			if (messages.length > 0)
+				parent.itemID = messages[messages.length - 1][2];
+			
+			callBack(messages);
+		});
+	}
+	
+	this.countMessages = function(callBack)
+	{
+		if (this.otherID < 0)
+			return;
+		
+		var destination = this.controller + "countNotifications/" + this.otherID + "/";
 		if (this.otherSeller)
 			destination += "1";
 		else
@@ -36,16 +65,35 @@ function LiveMessage(userID) {
 		
 		req.done(function(data)
 		{
-			var messages = data.split(parent.splitData);
-			for (var i = 0; i < messages.length; i++)
-			{
-				messages[i] = messages[i].split(parent.splitDetails);
-			}
-			
-			if (messages.length > 0)
-				parent.itemID = messages[messages.length - 1][2];
-			
-			callBack(messages);
+			callBack(data);
+		});
+	}
+	
+	this.countUnread = function(callBack)
+	{
+		if (this.otherID < 0)
+			return;
+		
+		var destination = this.controller + "unread/" + this.otherID + "/";
+		if (this.otherSeller)
+			destination += "1";
+		else
+			destination += "0";
+		
+		var req = $.post(destination, {});
+		
+		req.done(function(data)
+		{
+			callBack(data);
+		});
+	}
+	
+	this.hasUnread = function(callBack)
+	{
+		var req = $.post(this.controller + "unread", {});
+		req.done(function(data)
+		{
+			callBack(data);
 		});
 	}
 	
@@ -92,6 +140,17 @@ function LiveMessage(userID) {
 		});
 	}
 	
+	this.b64EncodeUnicode = function(str) {
+		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+			return String.fromCharCode('0x' + p1);
+		}));
+	}
+	
+	this.b64DecodeUnicode = function(str) {
+		return decodeURIComponent(atob(str).split('').map(function(c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+	}
 }
 
 </script>

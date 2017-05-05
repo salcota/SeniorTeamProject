@@ -2,6 +2,26 @@
 
 <?php $logged = $this->session->loggedIn; ?>
 
+<script>
+// AJAX for buying items
+var buyCart = new LiveMessage();
+buyCart.otherSeller = true;
+
+function buySelect(userID, itemID)
+{
+	buyCart.otherID = userID;
+	buyCart.itemID = itemID;
+}
+
+function buyConfirm()
+{
+	var message = $("#reportText").val();
+	$("#reportText").val("");
+	
+	buyCart.sendMessage(message);
+}
+</script>
+
 <div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
@@ -86,7 +106,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			<br /><br />
 			<?php 
 			    if($logged)
-			        echo "<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal'>Buy</a>";
+			        echo "<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal' onclick=\"buySelect($item->seller_id, $item->listing_id)\">Buy</a>";
 			    else
 				echo "<a class='btn btn-success btn-sm' data-toggle='popover' data-placement='top' data-content='You must be logged in to contact seller.' style='color: #fff; cursor: pointer'>Buy</a>";
 			?>
@@ -175,7 +195,8 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                         $data = array(
                             'class'         => 'form-control',
                             'name'          => 'reportText',
-                            'style'         => 'height: 100px; resize: none'
+                            'style'         => 'height: 100px; resize: none',
+			    'id'	    => 'reportText'
                         );
                         echo form_textarea($data);	
                     ?>
@@ -191,7 +212,9 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                             'class'         => 'btn btn-success btn-sm',
                             'name'          => 'submit',
 			    'style'	    => 'cursor: pointer',
-                            'value'         => 'Send'
+                            'value'         => 'Send',
+			    'data-dismiss'  => 'modal',
+			    'onclick'	    => 'buyConfirm()'
                         );	
                         echo form_submit($data);
                         echo form_close();

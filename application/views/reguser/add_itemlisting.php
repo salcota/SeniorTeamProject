@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <br/>
+    <br /><br /><br/>
 
 <?php if(isset($error)) echo "<div class='alert alert-success' role='alert'>" . $error . "</div>";?>
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>

@@ -7,7 +7,7 @@
            endif;
 ?>
 
-<div class="container" style="margin-top: 100px">
+<div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
     <p style="text-align: center">

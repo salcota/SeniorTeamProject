@@ -183,10 +183,6 @@
                 margin-bottom: -100px;
             }
 
-            .nav {
-                position: fixed;
-            }
-
             .navbar {
                 background-color: #363;
                 color: #FFF;
@@ -235,7 +231,7 @@
 	    }
 
 	    .span-for-profile {
-		text-align: left;
+		text-align: left !important;
 		width: 135px;
 	    }
 

@@ -13,8 +13,8 @@ class Itemlisting extends CI_Controller
 	// Gets item listing,  basic header and styles for all pages.
         parent::__construct();
         $this->load->model('Item_Listing');
-        $this->load->view('common/sfsu_demo');
-        $this->load->view('common/required_meta_tags');
+	$this->load->view('common/sfsu_demo');
+        $this->load->view('common/resources');
 
         // Load navbar
 		$this->navbars->load();
@@ -26,25 +26,23 @@ class Itemlisting extends CI_Controller
      * Returns all available listings of the user by accessing details from session
      */
     public function get_all_listings_of_user(){
+		// Check if user is logged in.
+		$this->loginhelper->forceLogin();
+		
         $this->userinfo = $this->loginhelper->getLoginData();
-        if($this->loginhelper->isRegistered()){
+		
+		//print_r($userinfo);
+		if ( $this->userinfo->username != NUll){
+			$search['user'] = $this->userinfo->username;
+			$items = $this->Item_Listing->getItems($search);
+			//print_r($items);
+			$data['items'] = $items;
+		}
+			//print_r("Username = ".$userinfo['username']);
+		$this->load->view('home/item_listings',$data);
 
-            //print_r($userinfo);
-            if ( $this->userinfo->username != NUll){
-                $search['user'] = $this->userinfo->username;
-                $items = $this->Item_Listing->getItems($search);
-                //print_r($items);
-                $data['items'] = $items;
-            }
-                //print_r("Username = ".$userinfo['username']);
-            $this->load->view('home/item_listings',$data);
-
-            // Gets basic footer and data that enables javascript, jQuery, and tether for all pages.
-            $this->load->view('common/jquery_tether_bootstrap');
-            $this->load->view('common/footerbar');
-        }else{
-            $this->loginhelper->forceLogin();
-        }
+		// Gets basic footer
+		$this->load->view('common/footerbar');
 
         //$data = array('items' => Null);
     }
@@ -54,8 +52,6 @@ class Itemlisting extends CI_Controller
      * @param null $listingID
      */
     public function get_listing_by_id($listingID = Null){
-		// JQuery, Tether, Bootstrap, Lightbox2
-		$this->load->view('common/jquery_tether_bootstrap');
 		$this->load->view('notifications/LiveMessage');
 		
         if($listingID != Null){
@@ -64,7 +60,11 @@ class Itemlisting extends CI_Controller
             $data['item'] = $item[0];
             $item_pics = $this->Item_Listing->getAllItemListingPictures($listingID);
             $data['itemPics'] = $item_pics;
-			$data['myInfo'] = $this->loginhelper->getLoginData();
+			
+			// Send login info.
+			if ($this->loginhelper->isRegistered())
+				$data['myInfo'] = $this->loginhelper->getLoginData();
+			
             $this->load->view('home/current_listing',$data);
         }
 
