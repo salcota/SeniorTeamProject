@@ -189,39 +189,23 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
-                    <?php
-                        // echo form_open modified by scota
-                        echo form_open('Users/report');
-                        $data = array(
-                            'class'         => 'form-control',
-                            'name'          => 'reportText',
-                            'placeholder'   => 'Report misconduct here',
-                            'style'         => 'height: 100px; resize: none'
-                        );
-                        echo form_textarea($data);
-                    ?>
-                    <?php
-                        $data = array(
-                            'name'          => 'newsletter',
-                            'id'            => 'newsletter',
-                            'value'         => 'accept',
-                            'checked'       => TRUE,
-                            'style'         => 'margin-top: 10px'
-                        );
-                        echo form_checkbox($data, 'value');
-                        echo 'I agree the following claim is true';
-                    ?>
+                    <button type="button" style="background-color: #449D44; width: 135px">Garden</button>
+		    <button type="button" style="background-color: #E69; width: 135px">Bubble Gum</button>
+		    <button type="button" style="background-color: #AA7; width: 135px">Desert</button>
+		    <button type="button" style="background-color: #336; width: 135px">Ice</button>
+		    <button type="button" style="background-color: #414; width: 135px">SFSU</button>
+
                 </div>
 
                 <div class="modal-footer">
-                   <h6 style="width: 75%">Date: </h6>
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
                    <?php
                         $data = array(
                             'class'         => 'btn btn-danger btn-sm',
                             'name'          => 'submit',
-                            'value'         => 'Send'
+                            'value'         => 'Change'
                         );
                         echo form_submit($data);
                         echo form_close();
@@ -236,6 +220,7 @@
 // Required for live notification updates.
 $this->load->view('notifications/LiveMessage');
 ?>
+
 <script>
 var mailChecker = new LiveMessage();
 function updateNotifications(count)
