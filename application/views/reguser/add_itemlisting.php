@@ -212,7 +212,7 @@
     </div>
 
 
-    <?php form_close(); ?>
+    <?php echo form_close(); ?>
 
     <br /><br /><br />
 
