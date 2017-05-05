@@ -27,14 +27,16 @@
     <div class="row justify-content-center">
 
         <!-- Image Holder of Profile Picture -->
-        <div class="col-sm-4" style="margin-bottom: 25px">
-            <div class="card" style="height: 205px">
-                <img class="card-img-top" src="<?php echo $pic;?>" alt="Profile Picture">
+	<div class="col-md-5" style="margin-bottom: 10px">
+            <div class="card" style="margin: 0 auto 10 auto; padding: 5 5 0 5">
+                <p class="small" style="padding-left: 10px; padding-top: 10px; text-align: center">
+                	<img class="card-img-top card-style" src="<?php echo $pic;?>" alt="Profile Picture">
+		</p>
             </div>
         </div>
 
         <!-- Displays the table containing information on the current user -->
-        <div class="col-md-6">
+        <div class="col-md-5">
             <?php 
 			// Get String of user's major.
 			$userMajorName = "";
