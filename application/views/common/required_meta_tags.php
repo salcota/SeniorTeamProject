@@ -12,9 +12,9 @@
 	<!-- External CSS Stylesheet -->
 	<link rel="stylesheet" href="<?php echo base_url() . "public/css/styles.css"?>">
 
-	<?php $colorTheme = 'skyTheme.css'?>
+	<?php $colorTheme = $this->session->userTheme;?>
         <!-- Color CSS Stylesheet -->
-        <link rel="stylesheet" href="<?php echo base_url() . "public/css/colorThemes/" . $colorTheme . ""?>">
+        <link rel="stylesheet" href="<?php echo base_url() . "public/css/colorThemes/" . $colorTheme;?>.css">
 
         <!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?php echo base_url() . "public/css/bootstrap.min.css"?>">

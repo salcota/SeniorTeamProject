@@ -30,6 +30,8 @@ class loginhelper {
 		
 		$this->loadSession();
 		$this->notFresh();
+		
+		$this->setTheme();
 	}
 
 	// Copies Session Variables.
@@ -250,6 +252,15 @@ class loginhelper {
 		
 		// Set changed session data
 		$this->saveSession();
+	}
+	
+	// Set session data for theme
+	private function setTheme()
+	{
+		$this->CI->load->model('Themes');
+		$theme = $this->CI->Themes->getTheme($this->loginData['userID']);
+		
+		$this->CI->session->userTheme = $theme;
 	}
 }
 

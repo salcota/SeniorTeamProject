@@ -198,6 +198,9 @@
                 <div class="modal-body">
 		<div class="row justify-content-center">
 		<div class="col-sm-4">
+		<?php
+		$themeURL = base_url() . "Theme/setTheme/";
+		?>
                     <button class="form-control btn-sm white" type="button" style="background-color: #449D44; width: 135px">Garden</button>
 		    <button class="form-control btn-sm white" type="button" style="background-color: #AA7; width: 135px">Desert</button>
 		    <button class="form-control btn-sm white" type="button" style="background-color: #933; width: 135px">Rose</button>
