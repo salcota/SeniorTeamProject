@@ -147,8 +147,11 @@
         </div>
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
-                <form action="<?php echo base_url() . 'update_itempic/' . $itemPics[0]->item_pic_id; ?>"
-                      id="itemlisting_form"
+                <form action="<?php if (isset($itemPics[0])) {
+                    echo base_url() . 'update_itempic/' . $itemPics[0]->item_pic_id;
+                } else {
+                    echo base_url() . 'update_itempic/-1';
+                } ?>" id="itemlisting_form"
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="padding-left: 10px; text-align: center">
                         <img class="card-img-top card-style" src="<?php if (!isset($itemPics[0])) {
@@ -179,7 +182,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
-                <form action="<?php if (!isset($itemPics[1])) {
+                <form action="<?php if (isset($itemPics[1])) {
                     echo base_url() . 'update_itempic/' . $itemPics[1]->item_pic_id;
                 } else {
                     echo base_url() . 'update_itempic/-1';
@@ -212,7 +215,7 @@
 
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
-                <form action="<?php if (!isset($itemPics[2])) {
+                <form action="<?php if (isset($itemPics[2])) {
                     echo base_url() . 'update_itempic/' . $itemPics[2]->item_pic_id;
                 } else {
                     echo base_url() . 'update_itempic/-1';
@@ -247,7 +250,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
-                <form action="<?php if (!isset($itemPics[3])) {
+                <form action="<?php if (isset($itemPics[3])) {
                     echo base_url() . 'update_itempic/' . $itemPics[3]->item_pic_id;
                 } else {
                     echo base_url() . 'update_itempic/-1';
@@ -280,7 +283,7 @@
         </div>
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
-                <form action="<?php if (!isset($itemPics[4])) {
+                <form action="<?php if (isset($itemPics[4])) {
                     echo base_url() . 'update_itempic/' . $itemPics[4]->item_pic_id;
                 } else {
                     echo base_url() . 'update_itempic/-1';
