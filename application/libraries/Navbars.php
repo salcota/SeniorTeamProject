@@ -10,7 +10,7 @@ class Navbars
 		$this->CI->load->library('Loginhelper');
 		
 		// Gets user's search terms.
-		$this->navSearch['searchTerms'] = htmlentities($this->CI->input->get('search'));
+		$this->navSearch['searchTerms'] = $this->CI->input->get('search');
 		$this->navSearch['currentCategory'] = $this->CI->input->get('category');
 			
 		// Retrieves all item categories.
@@ -24,7 +24,10 @@ class Navbars
 		if ($this->CI->loginhelper->isRegistered())
 			$this->loadRegistered();
 		else
+		{
+			$this->navSearch['searchTerms'] = htmlentities($this->navSearch['searchTerms']);
 			$this->CI->load->view('common/navbar', $this->navSearch);
+		}
 	}
 	
 	// Loads the navbar without searchbar.
