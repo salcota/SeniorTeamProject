@@ -2,12 +2,6 @@
 
 <?php $logged = $this->session->loggedIn; ?>
 
-<?php 
-	echo "<script>setTimeout(function() {editListingWarning();}, 2000); 
-    function editListingWarning() 
-    {alert('You must be logged in to save your new listing!')}</script>";
-?>
-
 <div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
@@ -172,14 +166,13 @@
                     <input class="form-control" type='file' name='pic' onchange="uploadImageFile(this,'#pic2', '#sub_pic2')"/>
                     <input type="hidden" name="h_pic2" value="noch"/>
                     <br/>
-                    <div class="row justify-content-center">
-                        <div class="col-sm-10" style="text-align: right">
-                            <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
-                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="<?php if (isset($itemPics[0])) {
-                                   echo base_url() . 'remove_listing_pic/' . $itemPics[0]->item_pic_id."/".$item->listing_id;
-                               }?>">Remove</a>
-                            <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic2" onclick="isdisabled(this)" disabled="true"/>
+                    <div class="row">
+                        <div class="col align-self-start">
+                            <a class="btn btn-danger form-control"i style="max-width: 100px" onclick="return sendWarning()" href="<?php if (isset($itemPics[0])) { echo base_url() . 'remove_listing_pic/' . $itemPics[0]->item_pic_id."/".$item->listing_id;}?>">Remove
+                            </a>
+                        </div>
+                        <div class="col align-self-end">
+                            <input type="submit" class="btn btn-success form-control" style="float: right; max-width: 100px" value="Update" name="submit" id="sub_pic2" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
                 </form>
@@ -209,12 +202,13 @@
                     <input class="form-control" type='file' name='pic' onchange="uploadImageFile(this,'#pic3','#sub_pic3')"/>
                     <input type="hidden" name="h_pic3" value="noch"/>
                     <br/>
-                    <div class="row justify-content-center">
-                        <div class="col-sm-10" style="text-align: right">
-                            <a class="btn btn-danger btn-sm" style="font-size: 15pt; margin-bottom: 5px; width: 100px"
-                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="<?php if (isset($itemPics[1])) echo base_url() . 'remove_listing_pic/'.$itemPics[1]->item_pic_id."/".$item->listing_id ;?>">Remove</a>
-                            <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic3" onclick="isdisabled(this)" disabled="true"/>
+                    <div class="row">
+                        <div class="col align-self-start">
+                            <a class="btn btn-danger form-control"i style="max-width: 100px" onclick="return sendWarning()" href="<?php if (isset($itemPics[1])) { echo base_url() . 'remove_listing_pic/' . $itemPics[1]->item_pic_id."/".$item->listing_id;}?>">Remove
+                            </a>
+                        </div>
+                        <div class="col align-self-end">
+                            <input type="submit" class="btn btn-success form-control" style="float: right; max-width: 100px" value="Update" name="submit" id="sub_pic3" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
                 </form>
@@ -242,15 +236,16 @@
                     <input class="form-control" type='file' name='pic' onchange="uploadImageFile(this,'#pic4','#sub_pic4')"/>
                     <input type="hidden" name="h_pic4" value="noch"/>
                     <br/>
-                    <div class="row justify-content-center">
-                        <div class="col-sm-10" style="text-align: right">
-                            <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
-                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="<?php if (isset($itemPics[2])) echo base_url() . 'remove_listing_pic/'.$itemPics[2]->item_pic_id."/".$item->listing_id;?>">Remove</a>
-                            <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic4" onclick="isdisabled(this)" disabled="true"/>
+                    <div class="row">
+                        <div class="col align-self-start">
+                            <a class="btn btn-danger form-control"i style="max-width: 100px" onclick="return sendWarning()" href="<?php if (isset($itemPics[2])) { echo base_url() . 'remove_listing_pic/' . $itemPics[2]->item_pic_id."/".$item->listing_id;}?>">Remove
+                            </a>
+                        </div>
+                        <div class="col align-self-end">
+                            <input type="submit" class="btn btn-success form-control" style="float: right; max-width: 100px" value="Update" name="submit" id="sub_pic4" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
-                </form>
+               </form>
             </div>
         </div>
     </div>
@@ -278,15 +273,16 @@
                     <input class="form-control" type='file' name='pic' onchange="uploadImageFile(this,'#pic5','#sub_pic5')"/>
                     <input type="hidden" name="h_pic5" value="noch"/>
                     <br/>
-                    <div class="row justify-content-center">
-                        <div class="col-sm-10" style="text-align: right">
-                            <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
-                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="<?php if (isset($itemPics[3])) echo base_url() . 'remove_listing_pic/'.$itemPics[3]->item_pic_id."/".$item->listing_id?>">Remove</a>
-                            <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic5" onclick="isdisabled(this)" disabled="true"/>
+                    <div class="row">
+                        <div class="col align-self-start">
+                            <a class="btn btn-danger form-control"i style="max-width: 100px" onclick="return sendWarning()" href="<?php if (isset($itemPics[3])) { echo base_url() . 'remove_listing_pic/' . $itemPics[3]->item_pic_id."/".$item->listing_id;}?>">Remove
+                            </a>
+                        </div>
+                        <div class="col align-self-end">
+                            <input type="submit" class="btn btn-success form-control" style="float: right; max-width: 100px" value="Update" name="submit" id="sub_pic5" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
-                </form>
+               </form>
             </div>
         </div>
         <div class="col-lg-5">
@@ -310,15 +306,16 @@
                     <input class="form-control" type='file' name='pic' onchange="uploadImageFile(this,'#pic6','#sub_pic6')"/>
                     <input type="hidden" name="h_pic6" value="noch"/>
                     <br/>
-                    <div class="row justify-content-center">
-                        <div class="col-sm-10" style="text-align: right">
-                            <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
-                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
-                               href="<?php if (isset($itemPics[4])) echo base_url() . 'remove_listing_pic/'.$itemPics[4]->item_pic_id."/".$item->listing_id?>">Remove</a>
-                            <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic6" onclick="isdisabled(this)" disabled="true"/>
+                    <div class="row">
+                        <div class="col align-self-start">
+                            <a class="btn btn-danger form-control"i style="max-width: 100px" onclick="return sendWarning()" href="<?php if (isset($itemPics[4])) { echo base_url() . 'remove_listing_pic/' . $itemPics[4]->item_pic_id."/".$item->listing_id;}?>">Remove
+                            </a>
+                        </div>
+                        <div class="col align-self-end">
+                            <input type="submit" class="btn btn-success form-control" style="float: right; max-width: 100px" value="Update" name="submit" id="sub_pic6" onclick="isdisabled(this)" disabled="true"/>
                         </div>
                     </div>
-                </form>
+               </form>
             </div>
         </div>
     </div>
