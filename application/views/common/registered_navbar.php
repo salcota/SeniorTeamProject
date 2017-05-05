@@ -24,7 +24,7 @@
                 </li>
             </ul>
  
-            <!-- this was put in views/home/home.php -->
+            <!-- this was put in views/home/home.php
             <div class="row justify-content-center text-danger">
 	        <div class="col-sm-5">
                     <?php
@@ -35,7 +35,7 @@
 	            ?>
 	        </div>
             </div>
- 
+ 	    -->
 
             <!-- Centered Category Search & Input Search -->
             <form class='form-inline mr-auto fix-align' style='padding-top: 4px' action="<?php echo base_url() . "home" ?>" id="searchSubmit" method=GET>
@@ -188,27 +188,35 @@
     <div class="modal fade" id="themesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 6px; postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h6 class="modal-title" id="exampleModalLabel" style="color: #FFF">Customize Your Color Theme</h6>
+                <div class="modal-header bg-secondary">
+                    <h6 class="modal-title" id="exampleModalLabel" style="color: #333">Customize Your Color Theme</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
                 <div class="modal-body">
-                    <button type="button" style="background-color: #449D44; width: 135px">Garden</button>
-		    <button type="button" style="background-color: #E69; width: 135px">Bubble Gum</button>
-		    <button type="button" style="background-color: #AA7; width: 135px">Desert</button>
-		    <button type="button" style="background-color: #336; width: 135px">Ice</button>
-		    <button type="button" style="background-color: #414; width: 135px">SFSU</button>
-
-                </div>
+		<div class="row justify-content-center">
+		<div class="col-sm-4">
+                    <button class="form-control btn-sm white" type="button" style="background-color: #449D44; width: 135px">Garden</button>
+		    <button class="form-control btn-sm white" type="button" style="background-color: #AA7; width: 135px">Desert</button>
+		    <button class="form-control btn-sm white" type="button" style="background-color: #933; width: 135px">Rose</button>
+		    <button class="form-control btn-sm white" type="button" style="background-color: #E69; width: 135px">Bubble Gum</button>
+		    <button class="form-control btn-sm white" type="button" style="background-color: #336; width: 135px">Ice</button>
+                    <button class="form-control btn-sm white" type="button" style="background-color: #EEE; color: #999 !important; width: 135px">Snow</button>
+                    <button class="form-control btn-sm white" type="button" style="background-color: #222; width: 135px">Dark</button>
+                    <button class="form-control btn-sm white" type="button" style="background-color: #FC3; width: 135px">Sun</button>
+                    <button class="form-control btn-sm white" type="button" style="background-color: #369; width: 135px">Sky</button>
+                    <button class="form-control btn-sm white" type="button" style="background-color: #414; width: 135px">SFSU</button>
+		</div>
+		</div>
+		</div>
 
                 <div class="modal-footer">
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
                    <?php
                         $data = array(
-                            'class'         => 'btn btn-danger btn-sm',
+                            'class'         => 'btn btn-success btn-sm',
                             'name'          => 'submit',
                             'value'         => 'Change'
                         );

@@ -259,6 +259,14 @@
 		color: #ADA !important;
 		text-decoration: none !important;
 	    }
+
+	    .white {
+		color: #FFF !important;
+	    }
+
+	    .white:hover {
+		color: #CCC !important;
+	    }
 </style>
 
   </head>
