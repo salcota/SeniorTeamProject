@@ -6,7 +6,7 @@ class Signup extends CI_Controller
 	public function login($page = "signup")
 	{
 		// Minimum viable form validations.
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[reg_user.username]|min_length[3]|max_length[15]|alpha_numeric');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[reg_user.username]|min_length[8]|max_length[30]|alpha_numeric');
 		$this->form_validation->set_rules('sfsu_email', 'Email', 'trim|required|valid_email|callback_email_check');
 
 		// min_length for password should be changed to 8 before product launch.
@@ -50,10 +50,19 @@ class Signup extends CI_Controller
 	// Custom function uses native php stristr to search for @mail.sfsu.edu within string sfsu_email.
 	public function email_check($str)
 	{
-		if (stristr($str, '@mail.sfsu.edu') !== false) return true;
+		$find = '@mail.sfsu.edu';
+		if (stristr($str, $find) !== false)
+		{
+			$index = strpos($str, $find) + strlen($find);
+			if(substr($str, $index) != '')
+			{
+				$this->form_validation->set_message('email_check', 'Must give a valid SFSU email.');
+				return FALSE;
+			}
 
-		$this->form_validation->set_message('email_check', 'Must give a valid SFSU email.');
-		return FALSE;
+			return true;
+
+		}
 	}
 }
 ?>
