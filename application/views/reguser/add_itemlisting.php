@@ -2,6 +2,12 @@
 
 <?php $logged = $this->session->loggedIn; ?>
 
+<?php
+        if (!$logged):
+        echo "<script>setTimeout(function() {editListingWarning();}, 2000); function editListingWarning() {alert('You must be logged in to save your new listing!')}</script>";
+        endif;
+?>
+
 <div class="container">
 
     <!-- Notifies user that he or she is logged in if condition is true -->
