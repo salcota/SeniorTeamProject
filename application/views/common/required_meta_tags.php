@@ -12,6 +12,10 @@
 	<!-- External CSS Stylesheet -->
 	<link rel="stylesheet" href="<?php echo base_url() . "public/css/styles.css"?>">
 
+	<?php $colorTheme = 'skyTheme.css'?>
+        <!-- Color CSS Stylesheet -->
+        <link rel="stylesheet" href="<?php echo base_url() . "public/css/colorThemes/" . $colorTheme . ""?>">
+
         <!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="<?php echo base_url() . "public/css/bootstrap.min.css"?>">
     

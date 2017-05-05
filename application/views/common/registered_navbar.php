@@ -74,7 +74,7 @@
                	    ?>     
 	
                     <input type='hidden' name='sort' id='sort'>
-                    <button class='btn btn-success' style='cursor: pointer; height: 40px' type='submit'><i class='fa fa-search' aria-hidden='true'></i></button>
+                    <button class='btn searchTheme' style='cursor: pointer; height: 40px' type='submit'><i class='fa fa-search' aria-hidden='true'></i></button>
                 </div>
             </form>
 

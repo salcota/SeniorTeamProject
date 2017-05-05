@@ -27,8 +27,7 @@ class Profile extends CI_Controller
 		$user = $this->loginhelper->getLoginData();
 		$id = $user->user_id;
 		$usermajor = $user->major_id;
-		$profilePic = $this->imageloader->showUserPic($id);
-		$pic = base_url().$profilePic;
+		$pic = base_url() . "Images/userPic/" . $id;
 		$data = array(
 			'username' =>$user->username,
 			'email' => $user->sfsu_email,

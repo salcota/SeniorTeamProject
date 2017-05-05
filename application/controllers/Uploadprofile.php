@@ -33,7 +33,8 @@ class Uploadprofile extends CI_Controller
 
 		if(!empty($_FILES["userfile"]["name"]))
 		{
-			$url = $this->do_upload();
+			$this->load->library('Blobster');
+			$this->blobster->saveProfilePic($id, 'userfile');
 		}else{
 			$url = $this->imageloader->showUserPic($id);
 		     }

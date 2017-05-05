@@ -5,3 +5,7 @@
 	<a href="<?php echo base_url() . 'About/view/terms'?>">Terms</a>
     </div>
 </div>
+
+</body>
+
+</html>
