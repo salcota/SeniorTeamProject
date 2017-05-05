@@ -30,7 +30,7 @@
 
     <br/>
 
-    <?php if (isset($error)) echo "<div class='alert alert-success' role='alert'>" . $error . "</div>"; ?>
+    <?php if ($this->session->flashdata('edit_response')) echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('edit_response') . "</div>"; ?>
     <?php $attributes = array('id' => 'itemlisting_form', 'class' => 'form_horizontal'); ?>
     <?php echo form_open('update_details/' . $item->listing_id, $attributes); ?>
 
@@ -169,7 +169,7 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
-                               onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
+                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
                                href="<?php if (isset($itemPics[0])) {
                                    echo base_url() . 'remove_listing_pic/' . $itemPics[0]->item_pic_id."/".$item->listing_id;
                                }?>">Remove</a>
@@ -206,7 +206,7 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 15pt; margin-bottom: 5px; width: 100px"
-                               onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
+                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
                                href="<?php if (isset($itemPics[1])) echo base_url() . 'remove_listing_pic/'.$itemPics[1]->item_pic_id."/".$item->listing_id ;?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic3" onclick="isdisabled(this)" disabled="true"/>
                         </div>
@@ -239,7 +239,7 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
-                               onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
+                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
                                href="<?php if (isset($itemPics[2])) echo base_url() . 'remove_listing_pic/'.$itemPics[2]->item_pic_id."/".$item->listing_id;?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic4" onclick="isdisabled(this)" disabled="true"/>
                         </div>
@@ -275,7 +275,7 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
-                               onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
+                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
                                href="<?php if (isset($itemPics[3])) echo base_url() . 'remove_listing_pic/'.$itemPics[3]->item_pic_id."/".$item->listing_id?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic5" onclick="isdisabled(this)" disabled="true"/>
                         </div>
@@ -307,7 +307,7 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-10" style="text-align: right">
                             <a class="btn btn-danger btn-sm" style="font-size: 9pt; margin-bottom: 5px; width: 60px"
-                               onclick="return confirm('Deleting this item listing will remove all its content from our system and it will not be visible to other users. Are you sure you want to delete?')"
+                               onclick="return confirm('Deleting this picture will remove it from our system and it will not be visible to other users. Are you sure you want to delete?')"
                                href="<?php if (isset($itemPics[4])) echo base_url() . 'remove_listing_pic/'.$itemPics[4]->item_pic_id."/".$item->listing_id?>">Remove</a>
                             <input type="submit" class="btn btn-success" value="Update" name="submit" id="sub_pic6" onclick="isdisabled(this)" disabled="true"/>
                         </div>

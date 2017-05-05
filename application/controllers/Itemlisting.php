@@ -87,7 +87,7 @@ class Itemlisting extends CI_Controller
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('name', 'Item Name', 'trim|required|min_length[3]|max_length[30]');
-        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[5]',
+        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|numeric|min_length[1]|max_length[5]',
                                 array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[300]');
 
@@ -106,8 +106,9 @@ class Itemlisting extends CI_Controller
             );
             try {
                 $this->Item_Listing->updateItemListingDetails($listingId, $listing);
-                $data['error'] = "Changes saved successfully";
-                redirect('edit_listing/'.$listingId, $data);
+                $data['edit_response'] = "Changes saved successfully";
+                $this->session->set_flashdata($data);
+                redirect('edit_listing/'.$listingId);
             }catch (Exception $e){
                 $data = array(
                     'edit_form_errors' => $e->getMessage()
@@ -210,7 +211,7 @@ class Itemlisting extends CI_Controller
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('name', 'Item Name', 'trim|required|min_length[3]|max_length[30]');
-        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[5]',
+        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|numeric|min_length[1]|max_length[5]',
             array('required' => 'You must provide a %s.')
         );
         $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[300]');
@@ -255,8 +256,8 @@ class Itemlisting extends CI_Controller
         $config['source_image'] = $imgpath;
         $config['create_thumb'] = TRUE;
         $config['maintain_ratio'] = TRUE;
-        $config['width']   = 75*3;
-        $config['height']  = 50*2;
+        $config['width']   = 75*4;
+        $config['height']  = 50*3;
 
         $this->load->library('image_lib', $config);
 
@@ -275,8 +276,8 @@ class Itemlisting extends CI_Controller
                 $config['upload_path']          = $this->uploadpath;
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 5120;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+                $config['max_width']            = 2565;
+                $config['max_height']           = 1445;
 
                 $this->upload->initialize($config);
 
@@ -292,8 +293,9 @@ class Itemlisting extends CI_Controller
                     $this->fileToDelete = $imgdata['full_path'];
                     $this->genthumbnail($imgdata['full_path']);
                     $this->Item_Listing->updateItemDisplayPicture($listingId, $imgdata);
-                    $data['error'] = "Display Picture updated successfully";
-                    redirect('edit_listing/'.$listingId, $data);
+                    $data['edit_response'] = "Display Picture updated successfully";
+                    $this->session->set_flashdata($data);
+                    redirect('edit_listing/'.$listingId);
                 }
             }else{
                 $data = array('edit_form_errors' => "Please provide an image file");
@@ -325,8 +327,8 @@ class Itemlisting extends CI_Controller
                 $config['upload_path']          = $this->uploadpath;
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 5120;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+                $config['max_width']            = 2565;
+                $config['max_height']           = 1445;
 
                 $this->upload->initialize($config);
 
@@ -343,12 +345,14 @@ class Itemlisting extends CI_Controller
                     $this->genthumbnail($imgdata['full_path']);
                     if($picId == -1){
                         $this->Item_Listing->addItemPicture($listingId, $imgdata);
-                        $data['error'] = "New Picture uploaded successfully";
-                        redirect('edit_listing/'.$listingId, $data);
+                        $data['edit_response'] = "New Picture uploaded successfully";
+                        $this->session->set_flashdata($data);
+                        redirect('edit_listing/'.$listingId);
                     }else{
                         $this->Item_Listing->updateItemPic($picId, $imgdata);
-                        $data['error'] = "Item Listing picture updated successfully";
-                        redirect('edit_listing/'.$listingId, $data);
+                        $data['edit_response'] = "Item Listing picture updated successfully";
+                        $this->session->set_flashdata($data);
+                        redirect('edit_listing/'.$listingId);
                     }
 
                 }
@@ -375,11 +379,13 @@ class Itemlisting extends CI_Controller
         try {
             if ($picId != Null) {
                 $this->Item_Listing->deleteItemPic($picId);
-                $data['error'] = "Picture removed successfully";
+                $data['edit_response'] = "Picture removed successfully";
+                $this->session->set_flashdata($data);
                 redirect('edit_listing/'.$listingId, $data);
             }else{
-                $data['error'] = "No Picture to delete";
-                redirect('edit_listing/'.$listingId, $data);
+                $data['edit_form_errors'] = "No Picture to delete";
+                $this->session->set_flashdata($data);
+                redirect('edit_listing/'.$listingId);
             }
         }catch(Exception $e){
             $data = array('edit_form_errors' => $e->getMessage());
