@@ -258,7 +258,12 @@ class loginhelper {
 	private function setTheme()
 	{
 		$this->CI->load->model('Themes');
-		$theme = $this->CI->Themes->getTheme($this->loginData['userID']);
+		if ($this->isRegistered())
+		{
+			$theme = $this->CI->Themes->getTheme($this->loginData['userID']);
+		}
+		else
+			$theme = $this->CI->Themes::defaultTheme;
 		
 		$this->CI->session->userTheme = $theme;
 	}
