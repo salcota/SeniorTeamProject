@@ -7,6 +7,10 @@ class Blobster
 	private $tmpthumb;
 	private $tmpdir;
 	
+	private $maxSize;
+	private $maxWidth;
+	private $maxHeight;
+	
 	public $img;
 	public $thumb;
 	
@@ -18,19 +22,35 @@ class Blobster
 		
 		$this->CI->load->database();
 		
-		$this->tmpdir = sys_get_temp_dir() ;
+		$this->tmpdir = sys_get_temp_dir();
+		
+		$this->maxSize = 5120;
+		$this->maxWidth = 5120;
+		$this->maxHeight = 5120;
+	}
+	
+	public function setMax($size, $width, $height)
+	{
+		if (is_Numeric($size) && is_Numeric($width) && is_Numeric($height))
+		{
+			$this->maxSize = $size;
+			$this->maxWidth = $width;
+			$this->maxHeight = $height;
+		}
+		else
+			throw new Exception("$this->Blobster->setMax(): You can only specify numbers");
 	}
 	
 	public function upload($formName, $config = NULL)
 	{
 		if ($config == NULL)
 		{
-			$config['upload_path']          = $this->tmpdir;
 			$config['allowed_types']        = 'gif|jpg|png';
-			$config['max_size']             = 5120;
-			$config['max_width']            = 1024;
-			$config['max_height']           = 768;
+			$config['max_size']             = $this->maxSize;
+			$config['max_width']            = $this->maxWidth;
+			$config['max_height']           = $$this->maxHeight;
 		}
+		$config['upload_path']          = $this->tmpdir;
 		
 		$this->CI->upload->initialize($config);
 		
