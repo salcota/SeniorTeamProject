@@ -163,7 +163,7 @@
                     'class' 		=> 'btn btn-success',
                     'name' 		=> 'reset',
                     'value' 		=> 'Reset',
-                    'style' 		=> 'width: 100px'
+                    'style' 		=> 'cursor: pointer; width: 100px'
                 );
                 echo form_reset($data);
             ?>
@@ -174,7 +174,7 @@
                     'class' 		=> 'btn btn-success',
                     'name' 		=> 'submit',
                     'value' 		=> 'Save',
-                    'style' 		=> 'width: 100px'
+                    'style' 		=> 'cursor: pointer; width: 100px'
                 );
                 echo form_submit($data);
             ?>

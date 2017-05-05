@@ -82,7 +82,7 @@
 	<div class="form-group col-sm-5 align-self-start">
 	    <?php
 	  	$data = array(
-		    'style' => 'margin-top: 10px; width: 100px',
+		    'style' => 'cursor: pointer; margin-top: 10px; width: 100px',
 		    'class' => 'btn btn-success',
 		    'name' => 'submit',
 		    'value' => 'Login'
@@ -104,7 +104,7 @@
     <!-- Signup Button -->
     <div class="row justify-content-center" style="margin-top: 10px">
 	<div class="col-sm-5">
-	    <a href="<?php echo base_url() . 'Home/view/signup'?>"><button class="btn btn-success" style="width: 100px">Sign Up</button></a>
+	    <a href="<?php echo base_url() . 'Home/view/signup'?>"><button class="btn btn-success" style="cursor: pointer; width: 100px">Sign Up</button></a>
         </div>
     </div>
 

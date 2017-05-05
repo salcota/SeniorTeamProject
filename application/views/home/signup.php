@@ -157,9 +157,9 @@
 	<div class="col-sm-5" style="text-align: center">
 	    <?php
 		$data = array(
-		    'style' 	=> 'width: 150px',
 		    'class' 	=> 'btn btn-success',
 		    'name' 	=> 'submit',
+		    'style'	=> 'cursor: pointer; width: 150px',
 		    'value' 	=> 'Submit',
 	        );
 		echo "<br />";

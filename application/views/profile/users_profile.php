@@ -29,7 +29,7 @@
         <!-- Image Holder of Profile Picture -->
 	<div class="col-md-5" style="margin-bottom: 10px">
             <div class="card" style="margin: 0 auto 10 auto; padding: 5 5 0 5">
-                <p class="small" style="padding-left: 10px; padding-top: 10px; text-align: center">
+                <p class="small" style="padding-left: 10px; padding-top: 13px; text-align: center">
                 	<img class="card-img-top card-style" src="<?php echo $pic;?>" alt="Profile Picture">
 		</p>
             </div>
