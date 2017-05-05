@@ -31,19 +31,19 @@ class Uploadprofile extends CI_Controller
 
 
 
+		$pic = NULL;
 		if(!empty($_FILES["userfile"]["name"]))
 		{
 			try
 			{
 				$this->load->library('Blobster');
-				$this->blobster->saveProfilePic($id, 'userfile');
+				$this->blobster->upload('userfile');
+				
+				$pic['pic'] = $this->blobster->img;
+				$pic['thumbnail'] = $this->blobster->thumb;
 			}
-			catch (Exception $e)
-			{
-			}
-		}else{
-			$url = $this->imageloader->showUserPic($id);
-		     }
+			catch (Exception $e) {}
+		}
 
 		if(!empty($_POST["description"]))
 		{
@@ -79,7 +79,7 @@ class Uploadprofile extends CI_Controller
 		);
 
 
-		$this->updateprofile->update($url,$id, $data);
+		$this->updateprofile->update($pic,$id, $data);
 		redirect('Profile/me');
 
 

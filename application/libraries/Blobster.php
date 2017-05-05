@@ -89,13 +89,5 @@ class Blobster
 
         return $this->CI->image_lib->resize();
     }
-	
-	public function saveProfilePic($userID, $inputName)
-	{
-		$this->upload($inputName);
-		
-		$this->CI->load->model('Imageloader');
-		$this->CI->Imageloader->saveUserPic($userID, $this->img, $this->thumb);
-	}
 }
 ?>

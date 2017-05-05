@@ -50,17 +50,5 @@ class Imageloader extends CI_Model
 		$img = $img->result()[0]->pic;
 		return $img;
 	}
-	
-	public function saveUserPic($id, $pic, $thumb)
-	{
-		$this->db->where('user_id', $id);
-		$this->db->delete('reg_user_pic');
-		
-		$data['user_id'] = $id;
-		$data['pic'] = $pic;
-		$data['thumbnail'] = $thumb;
-		
-		$this->db->insert('reg_user_pic', $data);
-	}
 }
 ?>
