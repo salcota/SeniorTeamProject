@@ -29,6 +29,7 @@ class Users extends CI_Controller
 		redirect('home/view/home');
 	} else {
 		//do something
+		redirect('home/view/home');
 		
         }
     }
