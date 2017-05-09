@@ -77,6 +77,11 @@ class Itemlisting extends CI_Controller
      */
     public function update_listingdetails($listingId = Null){
         $this->loginhelper->forceLogin();
+        if(!$this->authorizedUser($listingId)){
+            $data['edit_form_errors'] = "You are not authorized to change this listing's details";
+            $this->session->set_flashdata($data);
+            redirect('edit_listing/'.$listingId);
+        }
 
         if($listingId == Null){
             redirect('user_listings');
@@ -265,6 +270,11 @@ class Itemlisting extends CI_Controller
 
     public function update_listing_dp($listingId = NULL){
         $this->loginhelper->forceLogin();
+        if(!$this->authorizedUser($listingId)){
+            $data['edit_form_errors'] = "You are not authorized to update this display picture";
+            $this->session->set_flashdata($data);
+            redirect('edit_listing/'.$listingId);
+        }
         $this->uploadpath = './public/temp/';
         if($listingId == Null){
             redirect('user_listings');
@@ -317,6 +327,11 @@ class Itemlisting extends CI_Controller
 
     public function update_listing_pic($picId, $listingId){
         $this->loginhelper->forceLogin();
+        if(!$this->authorizedUser($listingId)){
+            $data['edit_form_errors'] = "You are not authorized to update this picture";
+            $this->session->set_flashdata($data);
+            redirect('edit_listing/'.$listingId);
+        }
         $this->uploadpath = './public/temp/';
         if($listingId == Null){
             redirect('user_listings');
@@ -376,6 +391,11 @@ class Itemlisting extends CI_Controller
 
     public function remove_listing_pic($picId, $listingId){
         try {
+            if(!$this->authorizedUser($listingId)){
+                $data['edit_form_errors'] = "You are not authorized to delete this picture";
+                $this->session->set_flashdata($data);
+                redirect('edit_listing/'.$listingId);
+            }
             if ($picId != Null) {
                 $this->Item_Listing->deleteItemPic($picId);
                 $data['edit_response'] = "Picture removed successfully";
@@ -390,6 +410,21 @@ class Itemlisting extends CI_Controller
             $data = array('edit_form_errors' => $e->getMessage());
             $this->session->set_flashdata($data);
             redirect('edit_listing/'.$listingId);
+        }
+    }
+
+    private function authorizedUser($listingId){
+
+        if($this->loginhelper->isRegistered()){
+            $ownerId = $this->Item_Listing->getUserIdForListing($listingId);
+            $user = $this->loginhelper->getLoginData();
+
+            if($ownerId == $user['user_id'])
+                return true;
+            else
+                return false;
+        }else{
+            return false;
         }
     }
 }
