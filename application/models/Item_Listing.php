@@ -291,6 +291,11 @@ class Item_Listing extends CI_Model
         }
     }
 
+    /**
+     * Returns seller id for the listing
+     * @param $listingId
+     * @return null
+     */
     public function getUserIdForListing($listingId){
 	    if($listingId != Null){
 	        $this->db->select('seller_id');
@@ -301,5 +306,10 @@ class Item_Listing extends CI_Model
         }else{
 	        return Null;
         }
+    }
+
+    public function getListingPicCount($listingId){
+        $this->db->where('listing_id',$listingId);
+        return $this->db->count_all_results('item_pic');
     }
 }
