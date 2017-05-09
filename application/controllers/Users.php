@@ -190,7 +190,7 @@ class Users extends CI_Controller
             $ownerId = $this->Item_Listing->getUserIdForListing($listingId);
             $user = $this->loginhelper->getLoginData();
 
-            if($ownerId == $user['user_id'])
+            if($ownerId == $user->user_id)
                 return true;
             else
                 return false;
