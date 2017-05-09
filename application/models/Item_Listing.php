@@ -293,7 +293,7 @@ class Item_Listing extends CI_Model
 
     public function getUserIdForListing($listingId){
 	    if($listingId != Null){
-	        $this->db->select('user_id');
+	        $this->db->select('seller_id');
 	        $this->db->where('listing_id', $listingId);
 	        $result = $this->db->get('item_listing');
 	        $id = $result->results();
