@@ -46,7 +46,7 @@
 
 	    <div class="col-sm-4 about_us">
 	        <div class="about_frame">
-                    <img src="<?php echo base_url() . "public/images/aboutPrateek.jpg"?>" alt="Prateek Gupta"/>
+                    <img src="<?php echo base_url() . "public/images/aboutPrateek.png"?>" alt="Prateek Gupta"/>
 	        </div>
                 <br />
                 <h5>Prateek</h5>
