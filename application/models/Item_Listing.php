@@ -297,7 +297,7 @@ class Item_Listing extends CI_Model
 	        $this->db->where('listing_id', $listingId);
 	        $result = $this->db->get('item_listing');
 	        $id = $result->result();
-	        return $id[0]->user_id;
+	        return $id[0]->seller_id;
         }else{
 	        return Null;
         }
