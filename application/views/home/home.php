@@ -85,7 +85,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                         <div class="dropdown-menu move" aria-labelledby="sortable">
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('title');document.forms['searchSubmit'].submit()">Name</a>
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('price');document.forms['searchSubmit'].submit()">Price: Low to High</a>
-<!--                            <a class="dropdown-item" href="#" onclick="$('#sort').val('posted_on');document.forms['searchSubmit'].submit()">Date</a>-->
+                            <a class="dropdown-item" href="#" onclick="$('#sort').val('posted_on');document.forms['searchSubmit'].submit()">Date</a>
                         </div>
                     </div>
                 </li>
