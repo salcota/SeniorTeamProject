@@ -68,6 +68,8 @@ class Home extends CI_Controller
 
 			if(strlen($sort) > 0){
 				$find['sort'] = $sort;
+			}else{
+				$find['sort'] = 'posted_on';
 			}
 			
 			// Returns only matching category.
