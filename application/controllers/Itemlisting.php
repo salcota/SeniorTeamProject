@@ -102,6 +102,7 @@ class Itemlisting extends CI_Controller
                 'price' => $this->input->post('price'),
                 'description' => $this->input->post('description')
             );
+            $listing = $this->security->xss_clean($listing);
             try {
                 $this->Item_Listing->updateItemListingDetails($listingId, $listing);
                 $data['edit_response'] = "Changes saved successfully";
@@ -240,7 +241,7 @@ class Itemlisting extends CI_Controller
                 'description' => $this->input->post('description')
             );
 
-            return $listing;
+            return $this->security->xss_clean($listing);
         }
     }
 
