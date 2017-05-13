@@ -183,7 +183,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
             <div class="modal-content">
 
                 <div class="modal-header">
-		 <h6 class="modal-title" id="exampleModalLabel">Send a notification to this seller to buy this <?php echo htmlentities($item->title)?></h6>
+		 <h6 class="modal-title" id="exampleModalLabel">Send a notification to <b><?php echo $item->username?></b> to buy this <?php echo htmlentities($item->title)?></h6>
 		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -203,7 +203,10 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 		</div>
 
                 <div class="modal-footer">
-                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp; <?php echo "March 10, 2017"; ?>
+                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp; <?php
+					$date = new DateTime($item->posted_on);
+					echo $date->format("M d, Y");
+					?>
                     <br /><?php $location = 'Spot 1 - Quad'; echo 'Meet-up:<span>&emsp;</span>' . $location; ?></span>
                     <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
                     <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
