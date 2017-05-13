@@ -43,11 +43,6 @@ class Item_Listing extends CI_Model
 		$array['category']
 		$array['listingID']
 		$array['sort'] // Sort results by field name
-			Assign comma-delimited string of FIELDNAME followed by space and either ASC or DESC.
-				ASC = Ascending
-				DESC = Descending
-			Example:
-			$array['sort'] = "title ASC, price DESC";
 		
 		array['maxResults'] // (Integer) Maximum number of results to return. Use this with 'skipResults' to start searching at specific index.
 		array['skipResults'] // (Integer) Skip and ignore the first X number of results.
@@ -57,8 +52,6 @@ class Item_Listing extends CI_Model
 		$lookup = array();
 		$lookup['title'] = "lamp";
 		$lookup['category'] = 1;
-		$lookup['sort'] = "title ASC, price DESC, posted_on DESC";
-		$results = $this->Item_Listing->getItems($lookup);
 		
 		// Find everything
 		$results = $this->Item_Listing->getItems();
@@ -98,20 +91,7 @@ class Item_Listing extends CI_Model
 			// Gets by username.
 			if (array_key_exists('user', $search))
 			{
-				try
-				{
-					// Retrieves user_id of that user.
-                    $user = $this->Reg_User->getUserIdByUsername($search['user']);
-					$userID = $user[0]->user_id;
-				} catch (Exception $e)
-				{
-					// User not found. Searches for nothing.
-					$userID = -1;
-				}
-                $this->db->select('item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, cat.category_name');
-                $this->db->join('reg_user usr', 'usr.user_id = item_listing.seller_id');
-                $this->db->join('item_category cat','cat.category_id = item_listing.category_id');
-				$this->db->where('item_listing.seller_id', $userID);
+                $this->db->where('reg_user.username', $search['user']);
 			}
 			
 			// Searches by title.
@@ -122,7 +102,7 @@ class Item_Listing extends CI_Model
 			try
 			{
 				if (array_key_exists('category', $search))
-					$this->db->where('category_id', $search['category']);
+					$this->db->where('item_listing.category_id', $search['category']);
 			} catch (Exception $e)
 			{
 			
@@ -131,10 +111,7 @@ class Item_Listing extends CI_Model
 			// Searches by listing id.
 			if (array_key_exists('listingID', $search)){
 
-			    $this->db->select('usr.username, usr.user_id, item_listing.listing_id, item_listing.seller_id, item_listing.title, item_listing.description, item_listing.price, item_listing.posted_on, item_listing.display_pic, cat.category_id, cat.category_name');
-			    $this->db->join('reg_user usr', 'usr.user_id = item_listing.seller_id');
-                $this->db->join('item_category cat','cat.category_id = item_listing.category_id');
-			    $this->db->where('item_listing.listing_id', $search['listingID']);
+			    $this->db->where('listing_id', $search['listingID']);
             }
 
 			
@@ -151,19 +128,27 @@ class Item_Listing extends CI_Model
 			}
 			
 			// Restricts number of results. Skip results if requested.
-				// If skip parameter given without limit, assigns INT MAX as limit.
-				if (array_key_exists('skipResults', $search) && !array_key_exists('maxResults', $search))
-				{
-					$search['maxResults'] = PHP_INT_MAX;
-				}
-				
-				if (array_key_exists('maxResults', $search))
-				{
-					if (!array_key_exists('skipResults', $search))
-						$this->db->limit($search['maxResults']);
-					else
-						$this->db->limit($search['maxResults'], $search['skipResults']);
-				}
+			// If skip parameter given without limit, assigns INT MAX as limit.
+			if (array_key_exists('skipResults', $search) && !array_key_exists('maxResults', $search))
+			{
+				$search['maxResults'] = PHP_INT_MAX;
+			}
+			
+			if (array_key_exists('maxResults', $search))
+			{
+				if (!array_key_exists('skipResults', $search))
+					$this->db->limit($search['maxResults']);
+				else
+					$this->db->limit($search['maxResults'], $search['skipResults']);
+			}
+			
+			// Only fetch some data.
+			$this->db->select('listing_id, item_listing.category_id, seller_id, title, description, price, posted_on, user_id, username, name, sfsu_email, mobile, biography, major_id, registration_date, status, category_name');
+			
+			// Also include Reg_User table to search results.
+			$this->db->join('reg_user', 'reg_user.user_id = item_listing.seller_id');
+			// Also include category name
+			$this->db->join('item_category', 'item_category.category_id = item_listing.category_id');
 		}
 	}
 
