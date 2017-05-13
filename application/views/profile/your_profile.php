@@ -122,7 +122,7 @@
 	                'class' 	=> 'form-control',
 	                'name' 		=> 'password',
 	                'type' 		=> 'password',
-	                'placeholder' 	=> 'Password'
+	                'placeholder' 	=> '********'
 	            );
 	            echo form_password($data);
 	        ?>
@@ -137,7 +137,7 @@
 	                'class' 	=> 'form-control',
 	                'name' 		=> 'passconf',
 	                'type' 		=> 'password',
-	                'placeholder' 	=> 'Confirm Password'
+	                'placeholder' 	=> '********'
 	            );
 	            echo form_password($data);
 	        ?>
