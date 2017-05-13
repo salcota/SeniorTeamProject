@@ -164,8 +164,8 @@ class Itemlisting extends CI_Controller
 
                     $listing_id = $this->Item_Listing->addItemListing($listing, $imgdata);
 
-                    unlink($this->fileToDelete);
-                    unlink(str_replace(".", "_thumb.", $this->fileToDelete));
+                    //unlink($this->fileToDelete);
+                    //unlink(str_replace(".", "_thumb.", $this->fileToDelete));
 
                     if ($listing_id == Null) {
                         redirect('add_item');
@@ -199,7 +199,9 @@ class Itemlisting extends CI_Controller
 
                             }
                         }
+                        //print "Error occured";
                         redirect('user_listings');
+                        //print "Error 1213";
                     }
                     //$this->load->view('upload_success', $data);
                 }
@@ -215,7 +217,7 @@ class Itemlisting extends CI_Controller
             $this->session->set_flashdata($data);
             redirect('add_item', $data);
         } finally {
-            if (file_exists($this->uploadpath)) {
+            if (file_exists($this->fileToDelete)) {
                 $filename = $this->fileToDelete;
                 unlink($filename);
                 $filename = str_replace(".", "_thumb.", $filename);
