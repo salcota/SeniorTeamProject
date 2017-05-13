@@ -146,8 +146,8 @@ class Itemlisting extends CI_Controller
                 $config['upload_path'] = $this->uploadpath;
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = 5120;
-                $config['max_width'] = 1024;
-                $config['max_height'] = 768;
+                $config['max_width'] = 2565;
+                $config['max_height'] = 1445;
 
                 $this->upload->initialize($config);
 
