@@ -15,11 +15,24 @@ function buySelect(userID, itemID)
 
 function buyConfirm()
 {
-	var message = $("#reportText").val();
-	$("#reportText").val("");
+	var message = $("#buyText").val();
+
+	if (message.length == 0)
+	{
+		$("#buyMessage").text("You must enter a message");
+		$("#buyMessage").css("display", "block");
+	}
+	else
+	{
+		$("#buyMessage").css("display", "none");
+		$("#buyModal").modal("hide");
+	}
+
+	$("#buyText").val("");
 	
 	buyCart.sendMessage(message);
 }
+
 </script>
 
 <div class="container">
@@ -182,21 +195,23 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
-                <div class="modal-header">
-		 <h6 class="modal-title" id="exampleModalLabel">Send a notification to <b><?php echo $item->username?></b> to buy this <?php echo htmlentities($item->title)?></h6>
+               <div class="modal-header">
+		   <h6 class="modal-title" id="exampleModalLabel">Send a notification to <b><?php echo $item->username?></b> to buy this <?php echo htmlentities($item->title)?></h6>
 		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                   </button>
+               </div>
 
-                <div class="modal-body">
+	       <div id='buyMessage' class='alert alert-danger' role='alert' style='display: none;'></div>
+
+               <div class="modal-body">
                     <?php
                         //echo form_open('Controller/function', $attributes);
                         $data = array(
                             'class'         => 'form-control',
-                            'name'          => 'reportText',
+                            'name'          => 'buyText',
                             'style'         => 'height: 100px; resize: none',
-			    'id'	    => 'reportText'
+			    'id'	    => 'buyText'
                         );
                         echo form_textarea($data);	
                     ?>
@@ -216,7 +231,6 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                             'name'          => 'submit',
 			    'style'	    => 'cursor: pointer',
                             'value'         => 'Send',
-			    'data-dismiss'  => 'modal',
 			    'onclick'	    => 'buyConfirm()'
                         );	
                         echo form_submit($data);
