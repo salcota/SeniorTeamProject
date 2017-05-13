@@ -8,31 +8,49 @@ class Users extends CI_Controller
         // Gets item listing,  basic header and styles for all pages.
         parent::__construct();
         $this->load->model('Item_Listing');
-        $this->load->view('common/sfsu_demo');
+       /* $this->load->view('common/sfsu_demo');
         $this->load->view('common/resources');
 
         // Load navbar
-        $this->navbars->load();
+        $this->navbars->load();*/
     }
    
     // Attempting form validations for report misconduct, scota
     public function report()
     {
-	$this->form_validation->set_rules('reportText', 'Report misconduct here', 'trim|required|alpha');
+	$this->form_validation->set_rules('reportText', 'report', 'trim|required|alpha_numeric_spaces');
+	$this->form_validation->set_rules('reportTerms', 'terms of agreement', 'required|callback_reportTerms');
+
 
 	if($this->form_validation->run() == FALSE)
 	{
+		if(!$this->input->post('reportTerms'))
+		{
+			//echo "please check following claim is true.";
+			// do redirection??
+		}
+		else
+		{
+			// do something??
+		}
 		$data = array(
 			'bad_report' => validation_errors()
-		); 
-		$this->session->set_flashdata($data);
-		redirect('home/view/home');
+		);
+		echo $data['bad_report']; 
+		//$this->session->set_flashdata($data);
+		//redirect('home/view/home');
 	} else {
 		//do something
-		redirect('home/view/home');
+		//redirect('home/view/home');
 		
         }
-    }
+     }
+     public function reportTerms()
+     {
+	if (isset($_POST['reportTerms'])) return true;
+	$this->form_validation->set_message('reportTerms', 'Please check following claim is true.');
+	return false;
+     }
 
 	public function login()
 	{

@@ -126,22 +126,57 @@
 	</div>
     </div> 
    
+
     <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
     <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 6px; postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+
                 <div class="modal-header bg-danger">
                     <h6 class="modal-title" id="exampleModalLabel" style="color: #FFF">Report Misconduct to Admin</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+		<div id='badReport' class='alert alert-danger' role='alert' style='display: none;'></div>
+	
+		<script>
+		    function sendReport() 
+		    {
+			var checkTerms = "";
+			if ($("#reportTerms").is(":checked"))
+				checkTerms = $("#reportTerms").val();
+			var url = '<?php echo base_url() . "Users/report"?>';
+			var reportHTMLText = $('#reportID').val();
+			var reportRequest = $.post(url,{reportText: reportHTMLText, reportTerms: checkTerms});
+			reportRequest.done(receiveReport);
+		    }
+
+		    function receiveReport(reportError) 
+		    {
+			if (reportError.length > 0)
+			{
+				var theError = '<strong>' + reportError + '</strong>';
+				$('#badReport').html(theError);
+				$("#badReport").css("display", "block");
+			}
+			else
+			{
+				$("#badReport").html("");
+				$("#badReport").css("display", "none");
+				$("#reportModal").modal("hide");
+				$("#reportID").val('');	
+			}
+		    }
+		</script>
  
                 <div class="modal-body">
 		    <?php
 			// echo form_open modified by scota
 			echo form_open('Users/report');
 		        $data = array(
+			    'id'	    => 'reportID',
                     	    'class' 	    => 'form-control',
                     	    'name' 	    => 'reportText',
                     	    'placeholder'   => 'Report misconduct here',
@@ -151,18 +186,14 @@
                	    ?>        
 		    <?php
 			$data = array(
-        		    'name' 	    => 'newsletter',
-        		    'id'            => 'newsletter',
+        		    'name' 	    => 'reportTerms',
+        		    'id'            => 'reportTerms',
         		    'value'         => 'accept',
         		    'checked'       => TRUE,
         		    'style'         => 'margin-top: 10px'		    	
 			);
 			echo form_checkbox($data, 'value');
 			echo 'I agree the following claim is true';
-				if($this->session->flashdata('bad_report')):
-            	echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_report') . "</strong></div>";
-            	endif;
-	
 		    ?>		    
 		</div>
 
@@ -173,9 +204,12 @@
 			$data = array(
 			    'class'	    => 'btn btn-danger btn-sm',
 			    'name'	    => 'submit',
-			    'value'	    => 'Send'
+			    'value'	    => 'true',
+			    'content' 	    => 'Send',
+			    'onclick'	    => 'sendReport()'
 			);
-			echo form_submit($data);
+			echo form_button($data);
+			//echo form_submit($data);
 			echo form_close();
 		    ?>
                 </div>
