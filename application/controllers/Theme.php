@@ -26,18 +26,12 @@ class Theme extends CI_Controller
 	
 	public function setTheme($theme)
 	{
-		
+		$this->loginhelper->blockOutsideLinks();
 		if (strlen($theme) > 0)
 		{
 			$this->Themes->setTheme($this->id, $theme);
 		}
 		$this->bounce();
-	}
-	
-	public function getTheme()
-	{
-		
-		echo $this->Themes->getTheme(1);
 	}
 	
 	private function bounce()
