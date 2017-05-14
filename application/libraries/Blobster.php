@@ -24,6 +24,8 @@ class Blobster
 		
 		$this->tmpdir = sys_get_temp_dir();
 		
+		$this->CI->load->library('image_lib');
+		
 		$this->maxSize = 5120;
 		$this->maxWidth = 5120;
 		$this->maxHeight = 5120;
@@ -84,10 +86,14 @@ class Blobster
         $config['maintain_ratio'] = TRUE;
         $config['width']   = 75*3;
         $config['height']  = 50*2;
+		
+		$this->CI->image_lib->clear();
+		$this->CI->image_lib->initialize($config);
 
         $this->CI->load->library('image_lib', $config);
 
-        return $this->CI->image_lib->resize();
+        $result = $this->CI->image_lib->resize();
+		$this->CI->image_lib->clear();
     }
 }
 ?>
