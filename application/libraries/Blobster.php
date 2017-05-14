@@ -90,10 +90,10 @@ class Blobster
 		$this->CI->image_lib->clear();
 		$this->CI->image_lib->initialize($config);
 
-        $this->CI->load->library('image_lib', $config);
-
         $result = $this->CI->image_lib->resize();
 		$this->CI->image_lib->clear();
+		
+		return $result;
     }
 }
 ?>
