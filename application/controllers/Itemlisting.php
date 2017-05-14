@@ -278,7 +278,7 @@ class Itemlisting extends CI_Controller
         $config['height'] = 50 * 3;
 
         $this->load->library('image_lib', $config);
-
+        $this->image_lib->initialize($config);
         if(!$this->image_lib->resize())
             echo $this->image_lib->display_errors();
         else{
