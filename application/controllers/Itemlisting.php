@@ -280,7 +280,7 @@ class Itemlisting extends CI_Controller
         $this->load->library('image_lib', $config);
 
         if(!$this->image_lib->resize())
-            echo $this->image_lib->display_errors());
+            echo $this->image_lib->display_errors();
         else{
             $this->image_lib->clear();
         }
