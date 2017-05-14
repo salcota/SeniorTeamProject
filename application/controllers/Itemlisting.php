@@ -164,8 +164,8 @@ class Itemlisting extends CI_Controller
 
                     $listing_id = $this->Item_Listing->addItemListing($listing, $imgdata);
 
-                    //unlink($this->fileToDelete);
-                    //unlink(str_replace(".", "_thumb.", $this->fileToDelete));
+                    unlink($this->fileToDelete);
+                    unlink(str_replace(".", "_thumb.", $this->fileToDelete));
 
                     if ($listing_id == Null) {
                         redirect('add_item');
@@ -279,7 +279,13 @@ class Itemlisting extends CI_Controller
 
         $this->load->library('image_lib', $config);
 
-        return $this->image_lib->resize();
+        if(!$this->image_lib->resize())
+            echo $this->image_lib->display_errors());
+        else{
+            $this->image_lib->clear();
+        }
+        return true;
+
     }
 
     public function update_listing_dp($listingId = NULL)
