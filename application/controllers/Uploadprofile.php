@@ -65,18 +65,17 @@ class Uploadprofile extends CI_Controller
 		{
 		  if($this->form_validation->run() == FALSE)
 		  {
-			$login_attributes = array(
+			$biography_errors = array(
 				'errors' => validation_errors()
 			);
-			$this->session->set_flashdata($login_attributes);
+			$this->session->set_flashdata('biography_errors' ,$biography_errors[errors]);
 			redirect('Profile/me');
 		  }else{
 			$biography = $_POST["description"];
 			}
-	 	}
-		else{
+	 	}else{
 			$biography = $user->biography;
-		}
+		     }
 
 
 		/*-----major upload-----*/

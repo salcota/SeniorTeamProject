@@ -15,10 +15,13 @@
     <div class="alert alert-danger"> <?= $this->session->flashdata('profile_errors') ?> </div>
    <?php } ?>
 
-  <?php if ($this->session->flashdata('picture_errors')) { ?>
+   <?php if ($this->session->flashdata('picture_errors')) { ?>
     <div class="alert alert-danger"> <?= $this->session->flashdata('picture_errors') ?> </div>
    <?php } ?>
 
+   <?php if ($this->session->flashdata('biography_errors')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('biography_errors') ?> </div>
+   <?php } ?>
 
 
     <!-- Subtitle Header -->
