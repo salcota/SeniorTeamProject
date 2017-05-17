@@ -7,10 +7,16 @@
 var buyCart = new LiveMessage();
 buyCart.otherSeller = true;
 
-function buySelect(userID, itemID)
+function buySelect(userID, itemID, itemTitle, itemSeller, itemTime)
 {
+	// Send item details to AJAX function
 	buyCart.otherID = userID;
 	buyCart.itemID = itemID;
+	
+	// Update modal info
+	$("#itemTitle").text(itemTitle);
+	$("#itemSeller").text(itemSeller);
+	$("#itemDate").text(itemTime);
 }
 
 function buyConfirm()
@@ -108,18 +114,27 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
     <!-- Displays item listings based on number of successful search results -->
     <div class="row">
-        <?php foreach ($itemList as $item): ?>            
+        <?php foreach ($itemList as $item):
+			$title = htmlentities($item->title);
+			$seller = htmlentities($item->username);
+			$date = new DateTime($item->posted_on);
+			$date = $date->format("M d, Y");
+		?>            
 	    <div class="col-lg-3">
                 <div class="card" style="margin: 10 auto 10 auto">
 		    <p class="small" style="text-align: center">
-			<span class="card_title"><?php echo htmlentities($item->title); ?></span>
+			<span class="card_title"><?php echo $title; ?></span>
 			<?php echo "$".$item->price; ?>
 			<br />
 		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top card-style" src="' . (base_url() . 'Images/listingThumb/' . $item->listing_id) . '" alt="Card image cap">' ?></a>
 			<br /><br />
 			<?php 
 			    if($logged)
-			        echo "<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal' onclick=\"buySelect($item->seller_id, $item->listing_id)\">Buy</a>";
+				{
+			        echo <<<END
+					<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal' onclick="buySelect($item->seller_id, $item->listing_id, '$title', '$seller', '$date')">Buy</a>
+END;
+				}
 			    else
 				echo "<a class='btn btn-success btn-sm' data-toggle='popover' data-placement='top' data-content='You must be logged in to contact seller.' style='color: #fff; cursor: pointer'>Buy</a>";
 			?>
@@ -196,7 +211,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
             <div class="modal-content">
 
                <div class="modal-header">
-		   <h6 class="modal-title" id="exampleModalLabel">Send a notification to <b><?php echo $item->username?></b> to buy this <?php echo htmlentities($item->title)?></h6>
+		   <h6 class="modal-title" id="exampleModalLabel">Send a notification to <b><span id="itemSeller"></span></b> to buy this <b><span id="itemTitle"></span></b></h6>
 		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                    </button>
@@ -218,10 +233,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 		</div>
 
                 <div class="modal-footer">
-                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp; <?php
-					$date = new DateTime($item->posted_on);
-					echo $date->format("M d, Y");
-					?>
+                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp;<span id="itemDate"></span>
                     <br /><?php $location = 'Spot 1 - Quad'; echo 'Meet-up:<span>&emsp;</span>' . $location; ?></span>
                     <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
                     <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
