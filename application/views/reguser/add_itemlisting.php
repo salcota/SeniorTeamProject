@@ -4,7 +4,7 @@
 
 <?php
         if (!$logged):
-        echo "<script>setTimeout(function() {editListingWarning();}, 2000); function editListingWarning() {alert('You must be logged in to save your new listing!')}</script>";
+        echo "<script>setTimeout(function() {editListingWarning();}, 500); function editListingWarning() {alert('You must be logged in to save your new listing!')}</script>";
         endif;
 ?>
 
