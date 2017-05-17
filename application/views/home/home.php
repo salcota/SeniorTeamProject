@@ -66,7 +66,7 @@ function buyConfirm()
                 <p class="lead">
 Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what it's like to need that extra support to make it through college!
 </p>
-	        <hr /class="my-4">
+	        <hr /class="my-4 lightLine">
                 <p class="lead">Want to know more? Use our search and/or category filter to view our options!</p>
 	    </div>
 	</div>
@@ -74,10 +74,9 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
     <br /><br />
 
-    <hr />
-    <div class="row justify-content-center">
+    <hr class="lightLine"/>
 
-	<hr />
+    <div class="row justify-content-center">	
 
 	<!-- Shows current number of item listings from total number of avilable item listings"-->
 	<div class="col" style="padding-top: 20px">
@@ -188,7 +187,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
     <br />
 
-    <hr />
+    <hr class="lightLine"/>
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
     <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 25%">

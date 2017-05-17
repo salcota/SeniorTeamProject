@@ -154,7 +154,7 @@
         <div class="col-lg-10">
             <div class="form-group">
                 <?php
-                    echo '<span>Biography</span>';
+                    echo '<span class="lightText">Biography</span>';
                     //
                     $data = array(
                         'class' 	=> 'form-control',

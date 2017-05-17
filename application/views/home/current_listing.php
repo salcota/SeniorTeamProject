@@ -103,7 +103,7 @@ function buyConfirm()
 	<!-- Displays the table containing information on the current item listing -->
         <div class="col-md-6">
             <?php echo
-	        "<table>" .
+	        "<table class='lightText'>" .
 	        "<tr> <th>Name:</th>	<td>"   . htmlentities($item->title) . "</td> </tr>" .
 	        "<tr> <th>Category:</th>	<td>"   . $item->category_name . "</td> </tr>" .
 	        "<tr> <th>Price:</th>	<td> $" . $item->price . "</td> </tr>" .
@@ -176,7 +176,7 @@ function buyConfirm()
 
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <span style="font-weight: bold">Description:</span>
+            <span class="lightText" style="font-weight: bold">Description:</span>
             <div class="description_box">
                 <?php echo htmlentities($item->description) ?><br/>
             </div>

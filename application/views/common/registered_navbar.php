@@ -9,9 +9,9 @@
 
     <div id='topheader'></div>
 
-    <nav class='navbar navbar-toggleable-lg navbar-light fixed-top navbar' style="min-height: 65px">
+    <nav class='navbar navbar-toggleable-lg navbar-light fixed-top' style="min-height: 65px">
 
-        <button style="border-style: none; cursor: pointer; margin-right: -10px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i class="fa fa-bars" style="color: #EEE; font-size: 35px; padding-top: 7px; padding-right: -8px" aria-hidden="true"></i></button>
+        <button style="border-style: none; cursor: pointer; margin-right: -10px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i class="fa fa-bars xtraMenuBar" style="color: #EEE; font-size: 35px; padding-top: 7px; padding-right: -8px" aria-hidden="true"></i></button>
 
 
        <!-- Left Side Menu: Logo & Home-->

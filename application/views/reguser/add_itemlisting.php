@@ -86,7 +86,7 @@
         <div class="col-sm-10">
             <div class="form-group">
                 <?php
-                echo '<span>Description</span>';
+                echo '<span class="lightText">Description</span>';
                 
                 $data = array(
                     'class' => 'form-control',

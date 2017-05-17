@@ -82,7 +82,7 @@
         <div class="col-sm-10">
             <div class="form-group">
                 <?php
-                echo '<span>Description</span>';
+                echo '<span class="lightText">Description</span>';
 
                 $data = array(
                     'class' => 'form-control',
@@ -118,7 +118,7 @@
         </div>
     </div>
     <?php echo form_close(); ?>
-    <hr>
+    <hr class="lightLine"/>
     <!-- Displays the listing in a carousel -->
     <div class="row justify-content-center">
         <div class="col-lg-5">

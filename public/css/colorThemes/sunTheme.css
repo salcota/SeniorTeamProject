@@ -14,12 +14,20 @@
 }
 
 .btn-success:hover {
-        background-color: #FE5 !important;
+        background-color: #EB4 !important;
 }
 
 .container {
-	margin-top:90px;
+	margin-top:75px;
 	background-color: #333; 
+}
+
+.lightText {
+        color: #EEE;
+}
+
+.lightLine {
+        background-color: #666;
 }
 
 .navbar {
@@ -37,4 +45,8 @@
 
 .searchTheme:hover {
         background-color: #EB4 !important;
+}
+
+.xtraMenuBar {
+        color: #963 !important;
 }
