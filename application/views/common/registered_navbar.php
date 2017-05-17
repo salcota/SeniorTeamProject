@@ -147,7 +147,7 @@
 			var checkTerms = "";
 			if ($("#reportTerms").is(":checked"))
 				checkTerms = $("#reportTerms").val();
-			var url = '<?php echo base_url() . "Users/report"?>';
+			var url = '<?php echo base_url() . "Report/report"?>';
 			var reportHTMLText = $('#reportID').val();
 			var reportRequest = $.post(url,{reportText: reportHTMLText, reportTerms: checkTerms});
 			reportRequest.done(receiveReport);
@@ -155,19 +155,19 @@
 
 		    function receiveReport(reportError) 
 		    {
-			if (reportError.length > 0)
-			{
-				var theError = '<strong>' + reportError + '</strong>';
-				$('#badReport').html(theError);
-				$("#badReport").css("display", "block");
-			}
-			else
-			{
-				$("#badReport").html("");
-				$("#badReport").css("display", "none");
-				$("#reportModal").modal("hide");
-				$("#reportID").val('');	
-			}
+				if (reportError.length > 0)
+				{
+					var theError = '<strong>' + reportError + '</strong>';
+					$('#badReport').html(theError);
+					$("#badReport").css("display", "block");
+				}
+				else
+				{
+					$("#badReport").html("");
+					$("#badReport").css("display", "none");
+					$("#reportModal").modal("hide");
+					$("#reportID").val('');	
+				}
 		    }
 		</script>
  
