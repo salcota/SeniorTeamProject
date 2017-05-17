@@ -6,13 +6,18 @@ class Report extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
-		$this->loginhelper->forceLogin();
 	}
 	
 	// Attempting form validations for report misconduct, scota
     public function report()
     {
+	// Deny access to unregistered users.
+	if (!$this->loginhelper->isRegistered())
+	{
+		echo "You must be logged in to file a report.";
+		exit;
+	}
+	
 	$this->form_validation->set_rules('reportText', 'report', 'trim|required|alpha_numeric_spaces');
 	$this->form_validation->set_rules('reportTerms', 'terms of agreement', 'required|callback_reportTerms');
 
