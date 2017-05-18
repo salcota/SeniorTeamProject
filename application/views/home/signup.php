@@ -81,7 +81,7 @@
     <div class="row justify-content-center">
 	<div class="form-group col-sm-5">
 	    <?php
-		echo form_label('<span class="small text-muted">Must be at least 4 characters long</span>', 'password');
+		echo form_label('<span class="small text-muted">May only be alphanumeric and at least 8 characters long</span>', 'password');
                 echo "<div class='input-group'>";
 
 		// Inserts lock icon next to the password input.

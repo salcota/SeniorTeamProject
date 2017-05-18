@@ -40,8 +40,11 @@
     <?php echo form_open_multipart('post_itemlisting', $attributes); ?>
 
     <div class="row justify-content-center">
+
+	<!-- Item Name -->
         <div class="col-sm-10">
-            <div class="form-group input-group">
+            <?php  echo form_label('<span class="small text-muted">May only be alphanumeric and three to 30 chars long</span>', 'name'); ?>
+            <div class="form-group input-group" style="margin-top: -5px">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
                 //
@@ -55,6 +58,8 @@
                 echo form_input($data);
                 ?>
             </div>
+
+	    <!-- Category -->
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
@@ -65,7 +70,10 @@
                 echo form_dropdown('category', $options, '1');
                 ?>
             </div>
-            <div class="form-group input-group">
+
+	    <!-- Price -->
+            <?php  echo form_label('<span class="small text-muted">Must be at least one dollar</span>', 'name'); ?>
+            <div class="form-group input-group" style="margin-top: -5px">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Price</span>';
                 
@@ -83,10 +91,12 @@
     </div>
 
     <div class="row justify-content-center">
+	
+	<!-- Description -->
         <div class="col-sm-10">
-            <div class="form-group">
+           <div class="form-group">
                 <?php
-                echo '<span class="lightText">Description</span>';
+                echo '<span class="lightText">Description</span><span class="small text-muted"> (300 chars max)</span>';
                 
                 $data = array(
                     'class' => 'form-control',
@@ -109,7 +119,7 @@
 		<p class="small" style="padding-left: 10px; text-align: center">
                     <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="dp_item">
 		    <br /><br />
-                    <span class="card-title">Display picture of Item</span>
+                    <span class="card-title">Display picture of Item (5 MB max . 2,565 X 1,445)</span>
 		</p>
 		<br />
                 <input class="form-control" type='file' name='dp' id="dp" onchange="readImageFile(this,'#dp_item')"/>

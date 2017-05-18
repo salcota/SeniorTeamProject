@@ -79,7 +79,7 @@
                 </div>
             </form>
 
-            <!-- Right Side Menu: Cart, Sell, Sign Up, and Login -->            
+            <!-- Right Side Menu: Sell, Listings, Notifications, and My Account -->            
 	    <ul class='navbar-nav'>
                 <li class='nav-item'>
                     <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'add_item' ?>'>Sell</a>
@@ -127,7 +127,7 @@
     </div> 
    
 
-    <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
+    <!-- Pops a modal to report misconduct-->
     <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 6px; postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -179,7 +179,7 @@
 			    'id'	    => 'reportID',
                     	    'class' 	    => 'form-control',
                     	    'name' 	    => 'reportText',
-                    	    'placeholder'   => 'Report misconduct here',
+                    	    'placeholder'   => 'Report misconduct here (300 chars max)',
 			    'style'	    => 'height: 100px; resize: none'
                 	);
                 	echo form_textarea($data);

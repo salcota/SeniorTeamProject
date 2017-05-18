@@ -89,7 +89,8 @@
             </div>
 
 	    <!-- Profile Picture -->
-            <div class="form-group input-group">
+            <?php  echo form_label('<span class="small text-muted">5 MB max . 2,565 X 1,445</span>', 'userfile'); ?>
+            <div class="form-group input-group" style="margin-top: -5px">
                 <?php
                     echo '<span class="input-group-addon span-for-profile">Profile Picture</span>';
                     // 
@@ -117,7 +118,8 @@
             </div>
 
 	    <!--New Password Input-->
-            <div class="form-group input-group">
+            <?php  echo form_label('<span class="small text-muted">May only be alphanumeric and at least 8 characters long</span>', 'userfile'); ?>
+            <div class="form-group input-group" style="margin-top: -5px">
                 <?php
                     // Inserts lock icon next to the password input
                     echo '<span class="input-group-addon span-for-profile">New Password</span>';
@@ -154,7 +156,7 @@
         <div class="col-lg-10">
             <div class="form-group">
                 <?php
-                    echo '<span class="lightText">Biography</span>';
+                    echo '<span class="lightText">Biography</span><span class="small text-muted"> (300 chars max)</span>';
                     //
                     $data = array(
                         'class' 	=> 'form-control',
