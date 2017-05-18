@@ -46,7 +46,7 @@
 		<p class="small" style="padding-left: 10px; text-align: center">
                     <img class="card-img-top card-style"  src="<?php echo $pic ?>" alt="Card image cap">
 		    <br /><br />
-                    <span class="card-title">Edit your profile picture</span>
+                    <span class="card-title">Edit your profile picture (5 MB max . 2,565 X 1,445)</span>
 		</p>
 	    </div>
          </div> 
@@ -89,8 +89,7 @@
             </div>
 
 	    <!-- Profile Picture -->
-            <?php  echo form_label('<span class="small text-muted">5 MB max . 2,565 X 1,445</span>', 'userfile'); ?>
-            <div class="form-group input-group" style="margin-top: -5px">
+           <div class="form-group input-group">
                 <?php
                     echo '<span class="input-group-addon span-for-profile">Profile Picture</span>';
                     // 

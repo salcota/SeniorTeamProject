@@ -172,6 +172,7 @@
 		</script>
  
                 <div class="modal-body">
+		    <span class="small text-muted">(300 chars max)</span>
 		    <?php
 			// echo form_open modified by scota
 			echo form_open('Users/report');
@@ -179,8 +180,7 @@
 			    'id'	    => 'reportID',
                     	    'class' 	    => 'form-control',
                     	    'name' 	    => 'reportText',
-                    	    'placeholder'   => 'Report misconduct here (300 chars max)',
-			    'style'	    => 'height: 100px; resize: none'
+          		    'style'	    => 'height: 100px; resize: none'
                 	);
                 	echo form_textarea($data);
                	    ?>        

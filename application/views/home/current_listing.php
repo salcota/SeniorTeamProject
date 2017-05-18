@@ -134,15 +134,15 @@ function buyConfirm()
 
                <div id='buyMessage' class='alert alert-danger' role='alert' style='display: none;'></div>
 
-               <div class="modal-body">
+       <div class="modal-body">
+	            <span class="small text-muted">(300 chars max)</span>
                     <?php
                         //echo form_open('Controller/function', $attributes);
                         $data = array(
                             'class'         => 'form-control',
                             'name'          => 'buyText',
                             'style'         => 'height: 100px; resize: none',
-			    'placeholder'   => '(300 chars max)',
-			    'id'            => 'buyText'
+		            'id'            => 'buyText'
                         );
                         echo form_textarea($data);
                     ?>
