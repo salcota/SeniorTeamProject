@@ -141,6 +141,7 @@ function buyConfirm()
                             'class'         => 'form-control',
                             'name'          => 'buyText',
                             'style'         => 'height: 100px; resize: none',
+			    'placeholder'   => '(300 chars max)',
 			    'id'            => 'buyText'
                         );
                         echo form_textarea($data);
