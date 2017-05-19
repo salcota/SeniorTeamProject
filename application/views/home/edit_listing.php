@@ -35,7 +35,10 @@
     <?php echo form_open('update_details/' . $item->listing_id, $attributes); ?>
 
     <div class="row justify-content-center">
+
+	<!-- Name -->
         <div class="col-sm-10">
+            <?php  echo form_label('<span class="small text-muted">May only be alphanumeric and three to 30 chars long</span>', 'name'); ?>
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Name</span>';
@@ -50,6 +53,8 @@
                 echo form_input($data);
                 ?>
             </div>
+
+	    <!-- Category-->
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Category</span>';
@@ -60,6 +65,9 @@
                 echo form_dropdown('category', $options, $item->category_id);
                 ?>
             </div>
+
+	    <!-- Price -->
+	    <?php  echo form_label('<span class="small text-muted">Must be at least one dollar</span>', 'name'); ?>
             <div class="form-group input-group">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Price</span>';
@@ -79,10 +87,12 @@
     </div>
 
     <div class="row justify-content-center">
+
+	<!-- Description -->
         <div class="col-sm-10">
             <div class="form-group">
                 <?php
-                echo '<span class="lightText">Description</span>';
+                echo '<span class="lightText">Description</span><span class="small text-muted"> (300 chars max)</span>';
 
                 $data = array(
                     'class' => 'form-control',
@@ -98,7 +108,10 @@
             </div>
         </div>
     </div>
+
     <div class="row justify-content-center">
+
+	<!-- Pictures -->
         <div class="col-sm-10" style="text-align: right">
             <?php
             if (!$logged) {
@@ -130,7 +143,7 @@
                              src="<?php echo base_url() . 'Images/listingPic/' . $item->listing_id; ?>"
                              alt="Card image cap" accept="image/*" id="dp_item">
                         <br/><br/>
-                        <span class="card-title">Display picture of Item</span>
+                        <span class="card-title">Display picture of Item (5 MB max . 2,565 X 1,445)</span>
                     </p>
                     <br/>
                     <input class="form-control" type='file' name='dp' id="dp"

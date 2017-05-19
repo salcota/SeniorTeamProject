@@ -129,10 +129,10 @@ function refreshMessages()
 			if (tempBegin < 0)
 				tempBegin = 0;
 			
-			// Load older messages
+			// Load older messages.
 			messenger.getMessages(tempBegin, messageBegin - tempBegin, function(data)
 			{
-				// Remember current scroll offset
+				// Remember current scroll offset.
 				var scrollDiff = $("#messageThread")[0].scrollHeight;
 				
 				// Add messages to message block.
@@ -327,6 +327,7 @@ $(document).ready(function()
                                     $options = array(
                                     '1' => 'Quad',
                                     '2' => 'Bee Garden',
+				    '3' => 'University PD'
                                 );
                                 echo form_dropdown('name', $options, '1');
                             ?>
