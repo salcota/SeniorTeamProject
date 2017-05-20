@@ -18,7 +18,7 @@ class Report extends CI_Controller
 		exit;
 	}
 	
-	$this->form_validation->set_rules('reportText', 'report', 'trim|required|alpha_numeric_spaces');
+	$this->form_validation->set_rules('reportText', 'report', 'trim|required|regex_match[/^[A-Za-z0-9 \.\',\?\!\:&@\(\)\\n"]*$/]');
 	$this->form_validation->set_rules('reportTerms', 'terms of agreement', 'required|callback_reportTerms');
 
 

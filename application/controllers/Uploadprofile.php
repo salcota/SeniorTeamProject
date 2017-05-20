@@ -25,7 +25,7 @@ class Uploadprofile extends CI_Controller
 		$this->load->library('session');
 		$this->form_validation->set_rules('password', 'Password', 'trim|min_length[4]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'matches[password]');
-		$this->form_validation->set_rules('description', '', 'trim|max_length[300]|alpha_numeric_spaces');
+		$this->form_validation->set_rules('description', '', 'trim|max_length[300]|regex_match[/^[A-Za-z0-9 \.\',\?\!\:&@\(\)\\n"]*$/]');
 
 
 		$user = $this->loginhelper->getLoginData();

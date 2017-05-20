@@ -89,8 +89,9 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
             <?php echo "<h6 class='text-muted'>Showing page " . $currentPage . ' of ' . $maxItems . ' items</h6>'?>
         </div>
 
+	<?php $variable = " "; ?>
         <div class="col" style="padding-top: 20px; text-align: center">
-            <h6 class="text-muted" style="text-align: center" id="listings_heading">Most Recent Listings<?php if(strlen($currentCategory) > 0) echo " in ".$currentCategory?></h6>
+            <h6 class="text-muted" style="text-align: center" id="listings_heading">Most Recent Listings<?php echo $variable ?><?php if(strlen($currentCategory) > 0) echo " in ".$currentCategory?></h6>
     	</div>
 
 	<!-- Allows sorting by price, name, and date -->
