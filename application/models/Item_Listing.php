@@ -125,6 +125,9 @@ class Item_Listing extends CI_Model
                     }
                     $this->db->order_by($search['sort'], $orderBy);
                 }
+				
+				// If some items have equal sorting value, sub-sort them by itemID
+				$this->db->order_by("listing_id", "asc");
 			}
 			
 			// Restricts number of results. Skip results if requested.
