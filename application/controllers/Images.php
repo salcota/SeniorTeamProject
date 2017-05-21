@@ -73,10 +73,10 @@ class Images extends CI_Controller
 	
 	public function captcha()
 	{
-		if ($this->loginhelper->isRegistered())
-			return;
+		$this->loginhelper->blockOutsideLinks();
 		
 		$this->load->library("CaptchaData");
+		$this->captchadata->createCaptcha();
 		$this->captchadata->showImage();
 	}
 }
