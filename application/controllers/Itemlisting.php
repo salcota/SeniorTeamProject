@@ -100,7 +100,7 @@ class Itemlisting extends CI_Controller
 	}
 
         $this->form_validation->set_rules('name', 'Item Name', 'trim|required|min_length[3]|max_length[30]|regex_match[/^[A-Za-z0-9 \.\-\',\?\!\:&@\(\)"]*$/]');
-        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[5]',
+        $this->form_validation->set_rules('price', 'Price of Item', 'trim|required|decimal|min_length[1]|max_length[6]',
             array('required' => 'You must provide a %s.'));
         $this->form_validation->set_rules('description', 'Description of Item', 'trim|required|max_length[300]|regex_match[/^[A-Za-z0-9 \.\-\',\?\!\:&@\(\)\\n"]*$/]');
 
