@@ -123,9 +123,9 @@
                echo form_label('<span class="small text-muted">Enter the word shown in the image</span>', 'captcha');
 		echo "<div class='input-group'>";
           
-                echo '<span class="input-group-addon addon-iconwidth" id=i"lock-addon"><button class="btn-success" style="border-radius: 6px; text-align: center"><i class="fa fa-refresh" style="color: #FFF" aria-hidden="true"></i></button></span>';
+                echo '<span class="input-group-addon addon-iconwidth" id=i"lock-addon"><button class="btn-success" style="border-radius: 6px"><i class="fa fa-refresh" style="color: #FFF; position: relative; left: -1px" aria-hidden="true"></i></button></span>';
  
-		echo '<img style="border: solid 2px #9C9" src="' . base_url() . 'Images/captcha">';
+		echo '<img style="border: solid 1px #BBB" src="' . base_url() . 'Images/captcha">';
         	$data = array(
 					'class'		=> 'form-control',
 					'name'          => 'captcha',
