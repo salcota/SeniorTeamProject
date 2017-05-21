@@ -7,68 +7,67 @@ class Images extends CI_Controller
 	
     public function __construct()
     {
-	// Gets item listing,  basic header and styles for all pages.
+		// Gets item listing,  basic header and styles for all pages.
         parent::__construct();
+		$this->load->library('Blobster');
         $this->load->model('Imageloader');
     }
+	
+	private function showImage($img)
+	{
+		$type = $this->blobster->getType($img);
+		
+		// Create header.
+		header("Content-Type: " . $type);
+		// Display image content.
+		echo $img;
+	}
 
     public function listingThumb($id)
 	{
-		header("Content-Type: image/jpeg");
-		
-		echo $this->Imageloader->showListingThumb($id);
+		$this->showImage($this->Imageloader->showListingThumb($id));
 	}
 	
 	public function listingPic($id)
 	{
-		header("Content-Type: image/jpeg");
-		
-		echo $this->Imageloader->showListingPic($id);
+		$this->showImage($this->Imageloader->showListingPic($id));
 	}
 	
 	public function itemPic($id)
 	{
-		header("Content-Type: image/jpeg");
-		
-		echo $this->Imageloader->showPic($id);
+		$this->showImage($this->Imageloader->showPic($id));
 	}
 	
 	public function itemThumb($id)
 	{
-		header("Content-Type: image/jpeg");
-		
-		echo $this->Imageloader->showPicThumb($id);
+		$this->showImage($this->Imageloader->showPicThumb($id));
 	}
 	
 	public function userThumb($picId)
 	{
-		header("Content-Type: image/jpeg");
-		
 		$img = $this->Imageloader->showUserThumb($picId);
 		if (!$img == NULL)
 		{
-			echo $img;
+			$this->showImage($img);
 		}
 		else
 		{
 			$img = file_get_contents(APPPATH . self::defaultProfile);
-			echo $img;
+			$this->showImage($img);
 		}
 	}
 	
 	public function userPic($picId)
 	{
-		header("Content-Type: image/jpeg");
-		
 		$img = $this->Imageloader->showUserPic($picId);
 		if (!$img == NULL)
 		{
-			echo $img;
+			$this->showImage($img);
 		}
 		else
 		{
 			$img = file_get_contents(APPPATH . self::defaultProfile);
-			echo $img;
+			$this->showImage($img);
 		}
 	}
 }

@@ -94,5 +94,21 @@ class Blobster
 		
 		return $result;
     }
+	
+	public function getType($imgdata)
+	{
+		$f = finfo_open();
+		
+		try
+		{
+			$mime_type = finfo_buffer($f, $imgdata, FILEINFO_MIME_TYPE);
+		}
+		catch (Exception $e)
+		{
+			$mime_type = "application/octet-stream";
+		}
+		
+		return $mime_type;
+	}
 }
 ?>
