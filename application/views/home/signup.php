@@ -81,7 +81,7 @@
     <div class="row justify-content-center">
 	<div class="form-group col-sm-5">
 	    <?php
-		echo form_label('<span class="small text-muted">May only be alphanumeric and at least 8 characters long</span>', 'password');
+		echo form_label('<span class="small text-muted">May only be alphanumeric and at least 4 characters long</span>', 'password');
                 echo "<div class='input-group'>";
 
 		// Inserts lock icon next to the password input.
@@ -120,9 +120,11 @@
 
 	<div class="form-group col-sm-5">
 	    <?php
-                echo form_label('<span class="small text-muted">Enter the word shown in the image</span>', 'captcha');
+               echo form_label('<span class="small text-muted">Enter the word shown in the image</span>', 'captcha');
 		echo "<div class='input-group'>";
-           
+          
+                echo '<span class="input-group-addon addon-iconwidth" id=i"lock-addon"><button class="btn-success" style="border-radius: 6px; text-align: center"><i class="fa fa-refresh" style="color: #FFF" aria-hidden="true"></i></button></span>';
+ 
 		echo '<img style="border: solid 2px #9C9" src="' . base_url() . 'Images/captcha">';
         	$data = array(
 					'class'		=> 'form-control',
