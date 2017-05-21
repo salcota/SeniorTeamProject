@@ -119,7 +119,7 @@
             </div>
 
 	    <!--New Password Input-->
-            <?php  echo form_label('<span class="small text-muted">May only be alphanumeric and at least 8 characters long</span>', 'userfile'); ?>
+            <?php  echo form_label('<span class="small text-muted">May only be alphanumeric and at least 4 characters long</span>', 'userfile'); ?>
             <div class="form-group input-group" style="margin-top: -5px">
                 <?php
                     // Inserts lock icon next to the password input
