@@ -47,7 +47,7 @@ class Blobster
 	{
 		if ($config == NULL)
 		{
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = 'gif|jpg|jpeg|png';
 			$config['max_size']             = $this->maxSize;
 			$config['max_width']            = $this->maxWidth;
 			$config['max_height']           = $this->maxHeight;
@@ -71,7 +71,6 @@ class Blobster
 			
 			$this->img = file_get_contents($this->tmpfile);
 			$this->thumb = file_get_contents($this->tmpthumb);
-			
 			
 			unlink($this->tmpfile);
 			unlink($this->tmpthumb);
