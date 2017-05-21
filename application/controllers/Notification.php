@@ -143,8 +143,9 @@ class Notification extends CI_Controller
 		if (!is_numeric($recvID))
 			return;
 		
-		if (strlen($message) == 0)
+		if (strlen($message) == 0 || strlen($message) > 300)
 			return;
+		
 		
 		$sendID = $this->myInfo->user_id;
 		

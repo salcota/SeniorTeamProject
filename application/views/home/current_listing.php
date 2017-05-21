@@ -142,7 +142,8 @@ function buyConfirm()
                             'class'         => 'form-control',
                             'name'          => 'buyText',
                             'style'         => 'height: 100px; resize: none',
-		            'id'            => 'buyText'
+		            'id'            => 'buyText',
+					'maxLength'     => '300'
                         );
                         echo form_textarea($data);
                     ?>

@@ -316,7 +316,7 @@ $(document).ready(function()
 				<span class="small text-muted">Send a new message</span>
 
 				<!-- New messages can be inserted here to update the message thread box above -->
-				<textarea class="form-control" id="sendText" rows="1" style="resize: none; min-height: 25px"></textarea>
+				<textarea class="form-control" id="sendText" rows="1" style="resize: none; min-height: 25px" maxLength="300"></textarea>
   			    </div>
 			    <h6 class="small" style="padding-top: 10px">Date:</h6>
 			    <hr />
