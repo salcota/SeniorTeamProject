@@ -72,7 +72,7 @@
             </div>
 
 	    <!-- Price -->
-            <?php  echo form_label('<span class="small text-muted">Must be at least one dollar</span>', 'name'); ?>
+            <?php  echo form_label('<span class="small text-muted">Must be at most five characters long including a decimal</span>', 'name'); ?>
             <div class="form-group input-group" style="margin-top: -5px">
                 <?php
                 echo '<span class="input-group-addon" style="width: 100px; text-align: left">Price</span>';
