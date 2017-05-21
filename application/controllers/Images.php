@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Images extends CI_Controller
 {
-
+	const defaultProfile = "../public/images/defaultpic.jpeg";
+	
     public function __construct()
     {
 	// Gets item listing,  basic header and styles for all pages.
@@ -43,14 +44,32 @@ class Images extends CI_Controller
 	{
 		header("Content-Type: image/jpeg");
 		
-		echo $this->Imageloader->showUserThumb($picId);
+		$img = $this->Imageloader->showUserThumb($picId);
+		if (!$img == NULL)
+		{
+			echo $img;
+		}
+		else
+		{
+			$img = file_get_contents(APPPATH . self::defaultProfile);
+			echo $img;
+		}
 	}
 	
 	public function userPic($picId)
 	{
 		header("Content-Type: image/jpeg");
 		
-		echo $this->Imageloader->showUserPic($picId);
+		$img = $this->Imageloader->showUserPic($picId);
+		if (!$img == NULL)
+		{
+			echo $img;
+		}
+		else
+		{
+			$img = file_get_contents(APPPATH . self::defaultProfile);
+			echo $img;
+		}
 	}
 }
 ?>
