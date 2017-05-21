@@ -15,7 +15,8 @@ class Profile extends CI_Controller
 
 	public function me()
 	{
-
+		$this->loginhelper->forceLogin();
+		
 		// Gets basic header and styles for all pages.
 		$this->load->view('common/sfsu_demo');
 		$this->load->view('common/resources');
