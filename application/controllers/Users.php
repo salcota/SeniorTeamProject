@@ -97,7 +97,7 @@ class Users extends CI_Controller
 	public function delete_listing($listingId){
 		try{
             if(!$this->authorizedUser($listingId)){
-                $data['delete_listing_error'] = "You are not authorized to delete this listing";
+                $data['delete_listing_error'] = "You are not authorized to delete this listing.";
                 $this->session->set_flashdata($data);
                 redirect('user_listings');
             }
@@ -127,7 +127,7 @@ class Users extends CI_Controller
 		//Check if the user is logged in
         $this->loginhelper->forceLogin();
         if(!$this->authorizedUser($listingId)){
-            $data['delete_listing_error'] = "You are not authorized to edit this listing";
+            $data['delete_listing_error'] = "You are not authorized to edit this listing.";
             $this->session->set_flashdata($data);
             redirect('user_listings');
         }

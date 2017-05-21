@@ -84,7 +84,7 @@ class Itemlisting extends CI_Controller
     {
         $this->loginhelper->forceLogin();
         if (!$this->authorizedUser($listingId)) {
-            $data['edit_form_errors'] = "You are not authorized to change this listing's details";
+            $data['edit_form_errors'] = "You are not authorized to change this listing's details.";
             $this->session->set_flashdata($data);
             redirect('edit_listing/' . $listingId);
         }
@@ -120,7 +120,7 @@ class Itemlisting extends CI_Controller
             $listing = $this->security->xss_clean($listing);
             try {
                 $this->Item_Listing->updateItemListingDetails($listingId, $listing);
-                $data['edit_response'] = "Changes saved successfully";
+                $data['edit_response'] = "Changes saved successfully.";
                 $this->session->set_flashdata($data);
                 redirect('edit_listing/' . $listingId);
             } catch (Exception $e) {
@@ -211,13 +211,13 @@ class Itemlisting extends CI_Controller
                 }
 
             } else {
-                $data = array('item_form_errors' => "Please fill the details of this Item Listing");
+                $data = array('item_form_errors' => "Please fill the details of this Item Listing.");
                 $this->session->set_flashdata($data);
                 redirect('add_item', $data);
             }
 
         } catch (Exception $e) {
-            $data = array('item_form_errors' => "Please fill the details of this Item Listing");
+            $data = array('item_form_errors' => "Please fill the details of this Item Listing.");
             $this->session->set_flashdata($data);
             redirect('add_item', $data);
         } finally {
@@ -300,7 +300,7 @@ class Itemlisting extends CI_Controller
     {
         $this->loginhelper->forceLogin();
         if (!$this->authorizedUser($listingId)) {
-            $data['edit_form_errors'] = "You are not authorized to update this display picture";
+            $data['edit_form_errors'] = "You are not authorized to update this display picture.";
             $this->session->set_flashdata($data);
             redirect('edit_listing/' . $listingId);
         }
@@ -328,12 +328,12 @@ class Itemlisting extends CI_Controller
                     $this->fileToDelete = $imgdata['full_path'];
                     $this->genthumbnail($imgdata['full_path']);
                     $this->Item_Listing->updateItemDisplayPicture($listingId, $imgdata);
-                    $data['edit_response'] = "Display Picture updated successfully";
+                    $data['edit_response'] = "Display Picture updated successfully.";
                     $this->session->set_flashdata($data);
                     redirect('edit_listing/' . $listingId);
                 }
             } else {
-                $data = array('edit_form_errors' => "Please provide an image file");
+                $data = array('edit_form_errors' => "Please provide an image file.");
                 $this->session->set_flashdata($data);
                 redirect('edit_listing/' . $listingId);
             }
@@ -355,7 +355,7 @@ class Itemlisting extends CI_Controller
     {
         $this->loginhelper->forceLogin();
         if (!$this->authorizedUser($listingId)) {
-            $data['edit_form_errors'] = "You are not authorized to update this picture";
+            $data['edit_form_errors'] = "You are not authorized to update this picture.";
             $this->session->set_flashdata($data);
             redirect('edit_listing/' . $listingId);
         }
@@ -389,19 +389,19 @@ class Itemlisting extends CI_Controller
                     $this->genthumbnail($imgdata['full_path']);
                     if ($picId == -1) {
                         $this->Item_Listing->addItemPicture($listingId, $imgdata);
-                        $data['edit_response'] = "New Picture uploaded successfully";
+                        $data['edit_response'] = "New Picture uploaded successfully.";
                         $this->session->set_flashdata($data);
                         redirect('edit_listing/' . $listingId);
                     } else {
                         $this->Item_Listing->updateItemPic($picId, $imgdata);
-                        $data['edit_response'] = "Item Listing picture updated successfully";
+                        $data['edit_response'] = "Item Listing picture updated successfully.";
                         $this->session->set_flashdata($data);
                         redirect('edit_listing/' . $listingId);
                     }
 
                 }
             } else {
-                $data = array('edit_form_errors' => "Please provide an image file");
+                $data = array('edit_form_errors' => "Please provide an image file.");
                 $this->session->set_flashdata($data);
                 redirect('edit_listing/' . $listingId);
             }
@@ -423,17 +423,17 @@ class Itemlisting extends CI_Controller
     {
         try {
             if (!$this->authorizedUser($listingId)) {
-                $data['edit_form_errors'] = "You are not authorized to delete this picture";
+                $data['edit_form_errors'] = "You are not authorized to delete this picture.";
                 $this->session->set_flashdata($data);
                 redirect('edit_listing/' . $listingId);
             }
             if ($picId != Null) {
                 $this->Item_Listing->deleteItemPic($picId);
-                $data['edit_response'] = "Picture removed successfully";
+                $data['edit_response'] = "Picture removed successfully.";
                 $this->session->set_flashdata($data);
                 redirect('edit_listing/' . $listingId, $data);
             } else {
-                $data['edit_form_errors'] = "No Picture to delete";
+                $data['edit_form_errors'] = "No Picture to delete.";
                 $this->session->set_flashdata($data);
                 redirect('edit_listing/' . $listingId);
             }
