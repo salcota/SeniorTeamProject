@@ -70,5 +70,14 @@ class Images extends CI_Controller
 			$this->showImage($img);
 		}
 	}
+	
+	public function captcha()
+	{
+		if ($this->loginhelper->isRegistered())
+			return;
+		
+		$this->load->library("CaptchaData");
+		$this->captchadata->showImage();
+	}
 }
 ?>
