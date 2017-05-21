@@ -6,11 +6,14 @@
     <p style="text-align: center">
         <?php
             if($this->session->flashdata('login_success')):
-            echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
+            echo "<div class='alert alert-success' role='alert'><strong>" . $this->session->flashdata('login_success') . "</strong></div>";
             endif;
+        ?>
+    
+        <?php
             if($this->session->flashdata('delete_listing_error')):
-            echo "<div class='alert alert-danger' role='alert'>" . $this->session->flashdata('delete_listing_error') . "</div>";
-        endif;
+            echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('delete_listing_error') . "</strong></div>";
+            endif;
         ?>
     </p>
 
@@ -29,7 +32,7 @@
 
     <!-- Adds a new item listing -->
     <div class="row justify-content-center">
-        <div class="col-sm-10" style="text-align: right">
+       <div class="col-sm-10" style="text-align: right">
             <a class="btn btn-success" href="<?php echo base_url() . 'add_item'?>" target="blank">ADD ITEM</a>
     	</div>
     </div>

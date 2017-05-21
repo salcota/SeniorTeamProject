@@ -7,23 +7,6 @@
     <!-- For UI consistency wehere a p tag exists to greet user if logged in -->
     <p></p>
 
-
-   <!-- Flashdata -->
-
-
-   <?php if ($this->session->flashdata('profile_errors')) { ?>
-    <div class="alert alert-danger"> <?= $this->session->flashdata('profile_errors') ?> </div>
-   <?php } ?>
-
-   <?php if ($this->session->flashdata('picture_errors')) { ?>
-    <div class="alert alert-danger"> <?= $this->session->flashdata('picture_errors') ?> </div>
-   <?php } ?>
-
-   <?php if ($this->session->flashdata('biography_errors')) { ?>
-    <div class="alert alert-danger"> <?= $this->session->flashdata('biography_errors') ?> </div>
-   <?php } ?>
-
-
     <!-- Subtitle Header -->
     <div class="row">
         <div class="col">
@@ -38,6 +21,25 @@
     <br /><br /><br />
 
     <!-- Profile Information - Image, Major, Password, and Biography -->  
+
+    <!-- Flashdata -->
+
+    <div class="row justify-content-center">
+    <div class="col-lg-10">
+    <?php if ($this->session->flashdata('profile_errors')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('profile_errors') ?> </div>
+    <?php } ?>
+
+    <?php if ($this->session->flashdata('picture_errors')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('picture_errors') ?> </div>
+    <?php } ?>
+
+    <?php if ($this->session->flashdata('biography_errors')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('biography_errors') ?> </div>
+    <?php } ?>
+    </div>
+    </div>
+   
     <div class="row justify-content-center"> 
 
 	<!-- Image Holder of Profile Picture -->

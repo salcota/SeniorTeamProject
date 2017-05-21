@@ -49,13 +49,13 @@
 
 		    // Creates an information window representing each meetup spot.
 		    var infowindow1 = new google.maps.InfoWindow({
-		   	content: "Quad"
+		   	content: "1- Quad"
 		    });
 		    var infowindow2 = new google.maps.InfoWindow({
-     		    	content: "Bee Garden"
+     		    	content: "2- Bee Garden"
 		    });
                     var infowindow3 = new google.maps.InfoWindow({
-                        content: "University PD"
+                        content: "3- University PD"
                     });
 
 		    infowindow1.open(map,marker1);

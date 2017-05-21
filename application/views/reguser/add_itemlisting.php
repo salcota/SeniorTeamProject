@@ -16,10 +16,7 @@
             if($this->session->flashdata('login_success')):
             echo "<div class='alert alert-success' role='alert'>" . $this->session->flashdata('login_success') . "</div>";
             endif;
-            if($this->session->flashdata('item_form_errors')):
-                echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('item_form_errors') . "</strong></div>";
-            endif;
-        ?>
+       ?>
     </p>
 
     <!-- Subtitle Header -->
@@ -43,6 +40,11 @@
 
 	<!-- Item Name -->
         <div class="col-sm-10">
+            <?php
+                if($this->session->flashdata('item_form_errors')):
+                    echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('item_form_errors') . "</strong></div>";
+                endif;
+	    ?>	
             <?php  echo form_label('<span class="small text-muted">May only be alphanumeric and three to 30 chars long</span>', 'name'); ?>
             <div class="form-group input-group" style="margin-top: -5px">
                 <?php
