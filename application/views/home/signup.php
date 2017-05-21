@@ -113,7 +113,23 @@
         	echo form_password($data);
 	    ?>
 	</div>
-    </div> 
+    </div>
+	
+	<!--CAPTCHA Verification-->
+    <div class="row justify-content-center">
+	<div class="form-group input-group col-sm-5">
+	    <?php
+			echo '<img src="' . base_url() . 'Images/captcha">';
+        	$data = array(
+					'name'          => 'captcha',
+					'id'            => 'captcha',
+					'maxlength'     => '10'
+			);
+
+			echo form_input($data);
+	    ?>
+	</div>
+    </div>
 
     <br />
 
