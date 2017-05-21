@@ -217,7 +217,7 @@ END;
                    </button>
                </div>
 
-	       <div id='buyMessage' class='alert alert-danger' role='alert' style='display: none;'></div>
+	       <div id='buyMessage' class='alert alert-danger' role='alert' style='display: none; font-weight: bold'></div>
 
                <div class="modal-body">
 	       <span class="small text-muted">(300 chars max)</span>

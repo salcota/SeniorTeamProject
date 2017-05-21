@@ -278,12 +278,16 @@ $(document).ready(function()
 
        	    <hr />
 
+            <h6 class="small" style="color: #C93; text-align: center">BUYERS</h6>
+
 	    <div class="small" id="buyers" style="color: #C93; height: 40%; overflow-y: auto">
 	        <ul style="list-style-type: none; cursor: pointer"></ul>
 	    </div>
 
 	    <hr />
 	    
+            <h6 class="small" style="color: #39C; text-align: center">SELLERS</h6>
+
             <div class="small" id="sellers" style="color: #39C; height: 40%; overflow-y: auto">
                 <ul style="list-style-type: none; cursor: pointer"></ul>
             </div>
