@@ -115,18 +115,24 @@
 	</div>
     </div>
 	
-	<!--CAPTCHA Verification-->
+    <!--CAPTCHA Verification-->
     <div class="row justify-content-center">
-	<div class="form-group input-group col-sm-5">
+
+	<div class="form-group col-sm-5">
 	    <?php
-			echo '<img src="' . base_url() . 'Images/captcha">';
+                echo form_label('<span class="small text-muted">Enter the word shown in the image</span>', 'captcha');
+		echo "<div class='input-group'>";
+           
+		echo '<img style="border: solid 2px #9C9" src="' . base_url() . 'Images/captcha">';
         	$data = array(
+					'class'		=> 'form-control',
 					'name'          => 'captcha',
 					'id'            => 'captcha',
 					'maxlength'     => '10'
 			);
 
-			echo form_input($data);
+		echo form_input($data);
+		echo "</div>";
 	    ?>
 	</div>
     </div>
