@@ -119,13 +119,23 @@
     <div class="row justify-content-center">
 
 	<div class="form-group col-sm-5">
+		<script>
+		function refreshCaptcha()
+		{
+			$("#captchaImg").attr("src", "");
+			$("#captchaImg").attr("src", "<?php
+			echo base_url();?>Images/captcha");
+		}
+		</script>
 	    <?php
                echo form_label('<span class="small text-muted">Enter the word shown in the image</span>', 'captcha');
 		echo "<div class='input-group'>";
           
-                echo '<span class="input-group-addon addon-iconwidth" id=i"lock-addon"><button style="background-color:transparent; border: none"><i class="fa fa-refresh" style="color: #449d44" aria-hidden="true"></i></button></span>';
+                echo '<span class="input-group-addon addon-iconwidth" id=i"lock-addon">
+				<button type="button" style="background-color:transparent; border: none" onclick="refreshCaptcha()">
+				<i class="fa fa-refresh" style="color: #449d44" aria-hidden="true"></i></button></span>';
  
-		echo '<img style="border: solid 1px #BBB" src="' . base_url() . 'Images/captcha">';
+		echo '<img id="captchaImg" style="border: solid 1px #BBB" src="' . base_url() . 'Images/captcha">';
         	$data = array(
 					'class'		=> 'form-control',
 					'name'          => 'captcha',
