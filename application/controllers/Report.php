@@ -11,40 +11,42 @@ class Report extends CI_Controller
 	// Attempting form validations for report misconduct, scota
     public function report()
     {
-	// Deny access to unregistered users.
-	if (!$this->loginhelper->isRegistered())
-	{
-		echo "You must be logged in to file a report.";
-		exit;
-	}
-	
-	$this->form_validation->set_rules('reportText', 'report', 'trim|required|regex_match[/^[A-Za-z0-9 \.\-\',\?\!\:&@\(\)\\n"]*$/]');
-	$this->form_validation->set_rules('reportTerms', 'terms of agreement', 'required|callback_reportTerms');
-
-
-	if($this->form_validation->run() == FALSE)
-	{
-		if(!$this->input->post('reportTerms'))
+		// Deny access to unregistered users.
+		if (!$this->loginhelper->isRegistered())
 		{
-			//echo "please check following claim is true.";
-			// do redirection??
+			echo "You must be logged in to file a report.";
+			exit;
 		}
-		else
-		{
-			// do something??
-		}
-		$data = array(
-			'bad_report' => validation_errors()
-		);
-		echo $data['bad_report']; 
-		//$this->session->set_flashdata($data);
-		//redirect('home/view/home');
-	} else {
-		//do something
-		//redirect('home/view/home');
 		
-        }
-     }
+		$this->form_validation->set_rules('reportText', 'report', 'trim|required|regex_match[/^[A-Za-z0-9 \.\-\',\?\!\:&@\(\)\\n"]*$/]');
+		$this->form_validation->set_rules('reportTerms', 'terms of agreement', 'required|callback_reportTerms');
+
+
+		if($this->form_validation->run() == FALSE)
+		{
+			if(!$this->input->post('reportTerms'))
+			{
+				//echo "please check following claim is true.";
+				// do redirection??
+			}
+			else
+			{
+				// do something??
+			}
+			$data = array(
+				'bad_report' => validation_errors()
+			);
+			echo $data['bad_report']; 
+			//$this->session->set_flashdata($data);
+			//redirect('home/view/home');
+		} else
+		{
+			// Create report
+			$this->load->model('Reporter');
+			$user = $this->loginhelper->getLoginData()->user_id;
+			$this->Reporter->createReport($user, $this->input->post('reportText'));
+		}
+	}
 	 
      public function reportTerms()
      {
