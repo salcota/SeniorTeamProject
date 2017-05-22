@@ -7,23 +7,34 @@ if ($logged)
 {
         echo <<<END
 <script>
-var messenger = new LiveMessage($myInfo->user_id);
-messenger.select($item->seller_id, true, $item->listing_id);
-
-function send()
-{
-        messenger.sendMessage($("#reportText").val());
-}
+var buyCart = new LiveMessage($myInfo->user_id);
+buyCart.select($item->seller_id, true, $item->listing_id);
 </script>
 END;
 }
-else
-{
-        echo <<<END
-function send() {}
-END;
-}
 ?>
+
+<script>
+function buyConfirm()
+{
+        var message = $("#buyText").val();
+
+        if (message.length == 0)
+        {
+                $("#buyMessage").text("You must enter a message");
+                $("#buyMessage").css("display", "block");
+        }
+        else
+        {
+                $("#buyMessage").css("display", "none");
+                $("#buyModal").modal("hide");
+        }
+
+        $("#buyText").val("");
+        
+        buyCart.sendMessage(message);
+}
+</script>
 
 <div class="container">
 
@@ -92,7 +103,7 @@ END;
 	<!-- Displays the table containing information on the current item listing -->
         <div class="col-md-6">
             <?php echo
-	        "<table>" .
+	        "<table class='lightText'>" .
 	        "<tr> <th>Name:</th>	<td>"   . htmlentities($item->title) . "</td> </tr>" .
 	        "<tr> <th>Category:</th>	<td>"   . $item->category_name . "</td> </tr>" .
 	        "<tr> <th>Price:</th>	<td> $" . $item->price . "</td> </tr>" .
@@ -120,14 +131,19 @@ END;
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+
+               <div id='buyMessage' class='alert alert-danger' role='alert' style='display: none;'></div>
+
+       <div class="modal-body">
+	            <span class="small text-muted">(300 chars max)</span>
                     <?php
                         //echo form_open('Controller/function', $attributes);
                         $data = array(
                             'class'         => 'form-control',
-                            'name'          => 'reportText',
+                            'name'          => 'buyText',
                             'style'         => 'height: 100px; resize: none',
-							'id'			=> 'reportText'
+		            'id'            => 'buyText',
+					'maxLength'     => '300'
                         );
                         echo form_textarea($data);
                     ?>
@@ -143,8 +159,7 @@ END;
                             'class'         => 'btn btn-success btn-sm',
                             'name'          => 'submit',
                             'value'         => 'Send',
-							'onclick'			=> 'send()',
-							'data-dismiss'		=> 'modal'
+			    'onclick'	    => 'buyConfirm()'
                         );
                         echo form_submit($data);
                         echo form_close();
@@ -163,7 +178,7 @@ END;
 
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <span style="font-weight: bold">Description:</span>
+            <span class="lightText" style="font-weight: bold">Description:</span>
             <div class="description_box">
                 <?php echo htmlentities($item->description) ?><br/>
             </div>

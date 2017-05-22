@@ -27,6 +27,14 @@ body {
         background-color: #333;
 }
 
+.lightText {
+        color: #EEE;
+}
+
+.lightLine {
+        background-color: #666;
+}
+
 .navbar {
         background-color: #EEE !important;
 }
@@ -42,4 +50,8 @@ body {
 
 .searchTheme:hover {
         background-color: #CCC !important;
+}
+
+.xtraMenuBar {
+	color: #999 !important;
 }

@@ -25,7 +25,7 @@
     <br /><br /><br />
 
     <!-- Contact Information -->                                        
-    <div class="row justify-content-center">
+    <div class="row justify-content-center lightText">
         <div class="col-sm-12">
             <h5>Phone:&emsp;&emsp;(415)-265-3692</h5>
 	    <h5>Email:&emsp;&emsp;&nbsp;&nbsp;<span style="color: #369">ihsan@mail.sfsu.edu</span></h5>

@@ -23,6 +23,7 @@ class loginhelper {
 		
 		$this->CI->load->library('session');
 		$this->CI->load->helper('url');
+		$this->CI->load->library('user_agent');
 		
 		$this->freshLogin = false;
 		
@@ -169,17 +170,26 @@ class loginhelper {
 		if ($this->isRegistered())
 			return;
 		
+		$this->bounce($destination);
+	}
+	
+	/*
+	Cross Site Request Forgery protection.
+	If user entered page from a link on a foreign website, redirect to login page or another URL.
+	*/
+	public function blockOutsideLinks($destination = NULL)
+	{
+		if ($this->CI->agent->is_referral())
+			$this->bounce($destination);
+	}
+	
+	// Redirect user to login page, or another specified URL.
+	public function bounce($destination = NULL)
+	{
 		if ($destination == NULL)
 			$destination = self::LoginURL;
 		
-		try
-		{
-			redirect($destination);
-		}
-		catch (Exception $e)
-		{
-			throw new Exception('$this->loginhelper->forceLogin('. $destination . ') failed.');
-		}
+		redirect($destination);
 	}
 	
 	/*
@@ -203,8 +213,6 @@ class loginhelper {
 		// We do not need to remember page history if we are already logged in.
 		if ($this->isRegistered())
 			return;
-			
-		$this->CI->load->library('user_agent');
 		
 		// If foreign website, exit.
 		if ($this->CI->agent->is_referral())

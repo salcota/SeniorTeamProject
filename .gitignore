@@ -1,3 +1,4 @@
 /application/config/database.php
 /public/temp
 .idea/*
+/csc648/sqlDumps

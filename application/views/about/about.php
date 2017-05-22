@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container">
+<div class="container lightText">
 
     <!-- Notifies user that he or she is logged in if condition is true --> 
     <p style="text-align: center">
@@ -46,7 +46,7 @@
 
 	    <div class="col-sm-4 about_us">
 	        <div class="about_frame">
-                    <img src="https://scontent.fsnc1-5.fna.fbcdn.net/v/t31.0-8/15369961_1339774136074974_8835888128227889161_o.jpg?oh=8bc8dd4ff06a96bae490810799859836&amp;oe=59042FB6" alt="Prateek Gupta"/>
+                    <img src="<?php echo base_url() . "public/images/aboutPrateek.png"?>" alt="Prateek Gupta"/>
 	        </div>
                 <br />
                 <h5>Prateek</h5>

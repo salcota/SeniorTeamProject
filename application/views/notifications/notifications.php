@@ -129,10 +129,10 @@ function refreshMessages()
 			if (tempBegin < 0)
 				tempBegin = 0;
 			
-			// Load older messages
+			// Load older messages.
 			messenger.getMessages(tempBegin, messageBegin - tempBegin, function(data)
 			{
-				// Remember current scroll offset
+				// Remember current scroll offset.
 				var scrollDiff = $("#messageThread")[0].scrollHeight;
 				
 				// Add messages to message block.
@@ -278,12 +278,16 @@ $(document).ready(function()
 
        	    <hr />
 
+            <h6 class="small" style="color: #C93; text-align: center">BUYERS</h6>
+
 	    <div class="small" id="buyers" style="color: #C93; height: 40%; overflow-y: auto">
 	        <ul style="list-style-type: none; cursor: pointer"></ul>
 	    </div>
 
 	    <hr />
 	    
+            <h6 class="small" style="color: #39C; text-align: center">SELLERS</h6>
+
             <div class="small" id="sellers" style="color: #39C; height: 40%; overflow-y: auto">
                 <ul style="list-style-type: none; cursor: pointer"></ul>
             </div>
@@ -312,7 +316,7 @@ $(document).ready(function()
 				<span class="small text-muted">Send a new message</span>
 
 				<!-- New messages can be inserted here to update the message thread box above -->
-				<textarea class="form-control" id="sendText" rows="1" style="resize: none; min-height: 25px"></textarea>
+				<textarea class="form-control" id="sendText" rows="1" style="resize: none; min-height: 25px" maxLength="300"></textarea>
   			    </div>
 			    <h6 class="small" style="padding-top: 10px">Date:</h6>
 			    <hr />
@@ -327,6 +331,7 @@ $(document).ready(function()
                                     $options = array(
                                     '1' => 'Quad',
                                     '2' => 'Bee Garden',
+				    '3' => 'University PD'
                                 );
                                 echo form_dropdown('name', $options, '1');
                             ?>
@@ -344,7 +349,7 @@ $(document).ready(function()
 
 		<div class="row justify-content-center">
 		    <div class="col-sm-12">
-		    	<a class="btn btn-success btn-sm" style="float: left; margin-left: -15px; width: 150px" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>	
+		    	<a class="btn btn-success btn-sm" style="float: left; margin-left: -15px; width: 150px" href="<?php echo base_url() . 'Home/view/googlemaps'?>">View Map</a>	
 		        <!--<button type="submit" class="btn btn-success btn-sm" style="float: right; margin-right: -15px; width: 150px"  href="#">Confirm Transaction</button>-->
 
 		        <?php

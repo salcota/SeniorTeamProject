@@ -12,6 +12,8 @@ class Signup extends CI_Controller
 		// min_length for password should be changed to 8 before product launch.
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
+		
+		$this->form_validation->set_rules('captcha', 'Captcha', 'callback_captchaCheck');
 
 		$this->form_validation->set_rules('terms_agreement', 'Terms & Agreement check', 'required');
 
@@ -62,6 +64,21 @@ class Signup extends CI_Controller
 
 			return true;
 
+		}
+	}
+	
+	public function captchaCheck($str)
+	{
+		$this->load->library("CaptchaData");
+		
+		if ($this->captchadata->matches($str))
+		{
+			return true;
+		}
+		else
+		{
+			$this->form_validation->set_message('captchaCheck', 'Please enter the correct {field}');
+			return false;
 		}
 	}
 }

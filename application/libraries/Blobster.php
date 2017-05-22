@@ -24,6 +24,8 @@ class Blobster
 		
 		$this->tmpdir = sys_get_temp_dir();
 		
+		$this->CI->load->library('image_lib');
+		
 		$this->maxSize = 5120;
 		$this->maxWidth = 5120;
 		$this->maxHeight = 5120;
@@ -45,7 +47,7 @@ class Blobster
 	{
 		if ($config == NULL)
 		{
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = 'gif|jpg|jpeg|png';
 			$config['max_size']             = $this->maxSize;
 			$config['max_width']            = $this->maxWidth;
 			$config['max_height']           = $this->maxHeight;
@@ -70,7 +72,6 @@ class Blobster
 			$this->img = file_get_contents($this->tmpfile);
 			$this->thumb = file_get_contents($this->tmpthumb);
 			
-			
 			unlink($this->tmpfile);
 			unlink($this->tmpthumb);
 		}
@@ -84,10 +85,30 @@ class Blobster
         $config['maintain_ratio'] = TRUE;
         $config['width']   = 75*3;
         $config['height']  = 50*2;
+		
+		$this->CI->image_lib->clear();
+		$this->CI->image_lib->initialize($config);
 
-        $this->CI->load->library('image_lib', $config);
-
-        return $this->CI->image_lib->resize();
+        $result = $this->CI->image_lib->resize();
+		$this->CI->image_lib->clear();
+		
+		return $result;
     }
+	
+	public function getType($imgdata)
+	{
+		$f = finfo_open();
+		
+		try
+		{
+			$mime_type = finfo_buffer($f, $imgdata, FILEINFO_MIME_TYPE);
+		}
+		catch (Exception $e)
+		{
+			$mime_type = "application/octet-stream";
+		}
+		
+		return $mime_type;
+	}
 }
 ?>

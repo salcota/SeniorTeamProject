@@ -17,6 +17,10 @@
         background-color: #6688EF !important;
 }
 
+.container {
+        margin-top: 75px;
+}
+
 .navbar {
         background-color: #336 !important;
 }

@@ -21,6 +21,25 @@
     <br /><br /><br />
 
     <!-- Profile Information - Image, Major, Password, and Biography -->  
+
+    <!-- Flashdata -->
+
+    <div class="row justify-content-center">
+    <div class="col-lg-10">
+    <?php if ($this->session->flashdata('profile_errors')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('profile_errors') ?> </div>
+    <?php } ?>
+
+    <?php if ($this->session->flashdata('picture_errors')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('picture_errors') ?> </div>
+    <?php } ?>
+
+    <?php if ($this->session->flashdata('biography_errors')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('biography_errors') ?> </div>
+    <?php } ?>
+    </div>
+    </div>
+   
     <div class="row justify-content-center"> 
 
 	<!-- Image Holder of Profile Picture -->
@@ -29,7 +48,7 @@
 		<p class="small" style="padding-left: 10px; text-align: center">
                     <img class="card-img-top card-style"  src="<?php echo $pic ?>" alt="Card image cap">
 		    <br /><br />
-                    <span class="card-title">Edit your profile picture</span>
+                    <span class="card-title">Edit your profile picture (5 MB max . 2,565 X 1,445)</span>
 		</p>
 	    </div>
          </div> 
@@ -72,7 +91,7 @@
             </div>
 
 	    <!-- Profile Picture -->
-            <div class="form-group input-group">
+           <div class="form-group input-group">
                 <?php
                     echo '<span class="input-group-addon span-for-profile">Profile Picture</span>';
                     // 
@@ -100,7 +119,8 @@
             </div>
 
 	    <!--New Password Input-->
-            <div class="form-group input-group">
+            <?php  echo form_label('<span class="small text-muted">May only be alphanumeric and at least 4 characters long</span>', 'userfile'); ?>
+            <div class="form-group input-group" style="margin-top: -5px">
                 <?php
                     // Inserts lock icon next to the password input
                     echo '<span class="input-group-addon span-for-profile">New Password</span>';
@@ -108,7 +128,7 @@
 	                'class' 	=> 'form-control',
 	                'name' 		=> 'password',
 	                'type' 		=> 'password',
-	                'placeholder' 	=> 'Password'
+	                'placeholder' 	=> '********'
 	            );
 	            echo form_password($data);
 	        ?>
@@ -123,7 +143,7 @@
 	                'class' 	=> 'form-control',
 	                'name' 		=> 'passconf',
 	                'type' 		=> 'password',
-	                'placeholder' 	=> 'Confirm Password'
+	                'placeholder' 	=> '********'
 	            );
 	            echo form_password($data);
 	        ?>
@@ -137,7 +157,7 @@
         <div class="col-lg-10">
             <div class="form-group">
                 <?php
-                    echo '<span>Biography</span>';
+                    echo '<span class="lightText">Biography</span><span class="small text-muted"> (300 chars max)</span>';
                     //
                     $data = array(
                         'class' 	=> 'form-control',

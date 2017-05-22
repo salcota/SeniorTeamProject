@@ -9,9 +9,9 @@
 
     <div id='topheader'></div>
 
-    <nav class='navbar navbar-toggleable-lg navbar-light fixed-top navbar' style="min-height: 65px">
+    <nav class='navbar navbar-toggleable-lg navbar-light fixed-top' style="min-height: 65px">
 
-        <button style="border-style: none; cursor: pointer; margin-right: -10px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i class="fa fa-bars" style="color: #EEE; font-size: 35px; padding-top: 7px; padding-right: -8px" aria-hidden="true"></i></button>
+        <button style="border-style: none; cursor: pointer; margin-right: -10px" class='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'><i class="fa fa-bars xtraMenuBar" style="color: #EEE; font-size: 35px; padding-top: 7px; padding-right: -8px" aria-hidden="true"></i></button>
 
 
        <!-- Left Side Menu: Logo & Home-->
@@ -79,7 +79,7 @@
                 </div>
             </form>
 
-            <!-- Right Side Menu: Cart, Sell, Sign Up, and Login -->            
+            <!-- Right Side Menu: Sell, Listings, Notifications, and My Account -->            
 	    <ul class='navbar-nav'>
                 <li class='nav-item'>
                     <a class='nav-link fix-align align-pt-16' href='<?php echo  base_url() . 'add_item' ?>'>Sell</a>
@@ -126,56 +126,89 @@
 	</div>
     </div> 
    
-    <!-- Pops a modal to initiate the first message to the seller of the current item listing-->
+
+    <!-- Pops a modal to report misconduct-->
     <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="border-radius: 6px; postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+
                 <div class="modal-header bg-danger">
                     <h6 class="modal-title" id="exampleModalLabel" style="color: #FFF">Report Misconduct to Admin</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+		<div id='badReport' class='alert alert-danger' role='alert' style='display: none;'></div>
+	
+		<script>
+		    function sendReport() 
+		    {
+			var checkTerms = "";
+			if ($("#reportTerms").is(":checked"))
+				checkTerms = $("#reportTerms").val();
+			var url = '<?php echo base_url() . "Report/report"?>';
+			var reportHTMLText = $('#reportID').val();
+			var reportRequest = $.post(url,{reportText: reportHTMLText, reportTerms: checkTerms});
+			reportRequest.done(receiveReport);
+		    }
+
+		    function receiveReport(reportError) 
+		    {
+				if (reportError.length > 0)
+				{
+					var theError = '<strong>' + reportError + '</strong>';
+					$('#badReport').html(theError);
+					$("#badReport").css("display", "block");
+				}
+				else
+				{
+					$("#badReport").html("");
+					$("#badReport").css("display", "none");
+					$("#reportModal").modal("hide");
+					$("#reportID").val('');	
+				}
+		    }
+		</script>
  
                 <div class="modal-body">
+		    <span class="small text-muted">(300 chars max)</span>
 		    <?php
 			// echo form_open modified by scota
 			echo form_open('Users/report');
 		        $data = array(
+			    'id'	    => 'reportID',
                     	    'class' 	    => 'form-control',
                     	    'name' 	    => 'reportText',
-                    	    'placeholder'   => 'Report misconduct here',
-			    'style'	    => 'height: 100px; resize: none'
+          		    'style'	    => 'height: 100px; resize: none'
                 	);
                 	echo form_textarea($data);
                	    ?>        
 		    <?php
 			$data = array(
-        		    'name' 	    => 'newsletter',
-        		    'id'            => 'newsletter',
+        		    'name' 	    => 'reportTerms',
+        		    'id'            => 'reportTerms',
         		    'value'         => 'accept',
         		    'checked'       => TRUE,
         		    'style'         => 'margin-top: 10px'		    	
 			);
 			echo form_checkbox($data, 'value');
 			echo 'I agree the following claim is true';
-				if($this->session->flashdata('bad_report')):
-            	echo "<div class='alert alert-danger' role='alert'><strong>" . $this->session->flashdata('bad_report') . "</strong></div>";
-            	endif;
-	
 		    ?>		    
 		</div>
 
 		<div class="modal-footer">
-                   <h6 style="width: 75%">Date: </h6>
                    <button type="button" class="btn  btn-secondary btn-sm" data-dismiss="modal">Close</button>
 		   <?php
 			$data = array(
 			    'class'	    => 'btn btn-danger btn-sm',
 			    'name'	    => 'submit',
-			    'value'	    => 'Send'
+			    'value'	    => 'true',
+			    'content' 	    => 'Send',
+			    'onclick'	    => 'sendReport()'
 			);
-			echo form_submit($data);
+			echo form_button($data);
+			//echo form_submit($data);
 			echo form_close();
 		    ?>
                 </div>

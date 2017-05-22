@@ -7,19 +7,38 @@
 var buyCart = new LiveMessage();
 buyCart.otherSeller = true;
 
-function buySelect(userID, itemID)
+function buySelect(userID, itemID, itemTitle, itemSeller, itemTime)
 {
+	// Send item details to AJAX function
 	buyCart.otherID = userID;
 	buyCart.itemID = itemID;
+	
+	// Update modal info
+	$("#itemTitle").text(itemTitle);
+	$("#itemSeller").text(itemSeller);
+	$("#itemDate").text(itemTime);
 }
 
 function buyConfirm()
 {
-	var message = $("#reportText").val();
-	$("#reportText").val("");
+	var message = $("#buyText").val();
+
+	if (message.length == 0)
+	{
+		$("#buyMessage").text("You must enter a message");
+		$("#buyMessage").css("display", "block");
+	}
+	else
+	{
+		$("#buyMessage").css("display", "none");
+		$("#buyModal").modal("hide");
+	}
+
+	$("#buyText").val("");
 	
 	buyCart.sendMessage(message);
 }
+
 </script>
 
 <div class="container">
@@ -53,7 +72,7 @@ function buyConfirm()
                 <p class="lead">
 Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of different items relevant to their needs. Shop anything from books, furniture, laptops, and much more from other students just like you,  who know what it's like to need that extra support to make it through college!
 </p>
-	        <hr /class="my-4">
+	        <hr /class="my-4 lightLine">
                 <p class="lead">Want to know more? Use our search and/or category filter to view our options!</p>
 	    </div>
 	</div>
@@ -61,18 +80,35 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
     <br /><br />
 
-    <hr />
-    <div class="row justify-content-center">
+    <hr class="lightLine"/>
 
-	<hr />
+    <div class="row justify-content-center">	
 
 	<!-- Shows current number of item listings from total number of avilable item listings"-->
 	<div class="col" style="padding-top: 20px">
             <?php echo "<h6 class='text-muted'>Showing page " . $currentPage . ' of ' . $maxItems . ' items</h6>'?>
         </div>
 
+	<?php
+		$sortType = $this->input->get('sort');
+		switch($sortType)
+		{
+			case "title":
+				$sortType = "Items by Name";
+				break;
+			case "posted_on":
+				$sortType = "Most Recent Items";
+				break;
+			case "price":
+				$sortType = "Items by Lowest Price";
+				break;
+			default:
+				$sortType = "Most Recent Items";
+				break;
+		}
+	?>
         <div class="col" style="padding-top: 20px; text-align: center">
-            <h6 class="text-muted" style="text-align: center" id="listings_heading">Most Recent Listings<?php if(strlen($currentCategory) > 0) echo " in ".$currentCategory?></h6>
+            <h6 class="text-muted" style="text-align: center" id="listings_heading"><?php echo $sortType;?><?php if(strlen($currentCategory) > 0) echo " in ".$currentCategory?></h6>
     	</div>
 
 	<!-- Allows sorting by price, name, and date -->
@@ -83,9 +119,9 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                         <a id="sortable" class="nav-link" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false" href="#"><button class="btn btn-success" style="cursor: pointer">Sort&nbsp;<i class='fa fa-caret-down' aria-hidden='true'></i></button></a>
                         <div class="dropdown-menu move" aria-labelledby="sortable">
-                            <a class="dropdown-item" href="#" onclick="$('#sort').val('price');document.forms['searchSubmit'].submit()">Price</a>
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('title');document.forms['searchSubmit'].submit()">Name</a>
                             <a class="dropdown-item" href="#" onclick="$('#sort').val('posted_on');document.forms['searchSubmit'].submit()">Date</a>
+                            <a class="dropdown-item" href="#" onclick="$('#sort').val('price');document.forms['searchSubmit'].submit()">Price</a>
                         </div>
                     </div>
                 </li>
@@ -95,18 +131,27 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
     <!-- Displays item listings based on number of successful search results -->
     <div class="row">
-        <?php foreach ($itemList as $item): ?>            
+        <?php foreach ($itemList as $item):
+			$title = htmlentities($item->title);
+			$seller = htmlentities($item->username);
+			$date = new DateTime($item->posted_on);
+			$date = $date->format("M d, Y");
+		?>            
 	    <div class="col-lg-3">
                 <div class="card" style="margin: 10 auto 10 auto">
 		    <p class="small" style="text-align: center">
-			<span class="card_title"><?php echo htmlentities($item->title); ?></span>
+			<span class="card_title"><?php echo $title; ?></span>
 			<?php echo "$".$item->price; ?>
 			<br />
 		    	<a target="_blank" href="<?php echo base_url().'listing/getitem/'.$item->listing_id ?>"><?php echo '<img class="card-img-top card-style" src="' . (base_url() . 'Images/listingThumb/' . $item->listing_id) . '" alt="Card image cap">' ?></a>
 			<br /><br />
 			<?php 
 			    if($logged)
-			        echo "<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal' onclick=\"buySelect($item->seller_id, $item->listing_id)\">Buy</a>";
+				{
+			        echo <<<END
+					<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal' onclick="buySelect($item->seller_id, $item->listing_id, '$title', '$seller', '$date')">Buy</a>
+END;
+				}
 			    else
 				echo "<a class='btn btn-success btn-sm' data-toggle='popover' data-placement='top' data-content='You must be logged in to contact seller.' style='color: #fff; cursor: pointer'>Buy</a>";
 			?>
@@ -175,35 +220,39 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 
     <br />
 
-    <hr />
+    <hr class="lightLine"/>
 
     <!-- Pops a modal to initiate the first message to the seller of the current item listing -->
     <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="postion: relative; top: 25%">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
-                <div class="modal-header">
-		 <h6 class="modal-title" id="exampleModalLabel">Send a notification to this seller to buy this <?php echo htmlentities($item->title)?></h6>
+               <div class="modal-header">
+		   <h6 class="modal-title" id="exampleModalLabel">Send a notification to <b><span id="itemSeller"></span></b> to buy this <b><span id="itemTitle"></span></b></h6>
 		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                   </button>
+               </div>
 
-                <div class="modal-body">
+	       <div id='buyMessage' class='alert alert-danger' role='alert' style='display: none; font-weight: bold'></div>
+
+               <div class="modal-body">
+	       <span class="small text-muted">(300 chars max)</span>
                     <?php
                         //echo form_open('Controller/function', $attributes);
                         $data = array(
                             'class'         => 'form-control',
-                            'name'          => 'reportText',
+                            'name'          => 'buyText',
                             'style'         => 'height: 100px; resize: none',
-			    'id'	    => 'reportText'
+			    'id'	    => 'buyText',
+				'maxLength' => '300'
                         );
                         echo form_textarea($data);	
                     ?>
 		</div>
 
                 <div class="modal-footer">
-                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp; <?php echo "March 10, 2017"; ?>
+                    <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp;<span id="itemDate"></span>
                     <br /><?php $location = 'Spot 1 - Quad'; echo 'Meet-up:<span>&emsp;</span>' . $location; ?></span>
                     <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
                     <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
@@ -213,7 +262,6 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
                             'name'          => 'submit',
 			    'style'	    => 'cursor: pointer',
                             'value'         => 'Send',
-			    'data-dismiss'  => 'modal',
 			    'onclick'	    => 'buyConfirm()'
                         );	
                         echo form_submit($data);

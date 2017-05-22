@@ -18,7 +18,7 @@
 }
 
 .container {
-	margin-top: 95px;
+	margin-top: 75px;
 	background-color: #333;
 }
 
@@ -37,4 +37,12 @@
 
 .searchTheme:hover {
         background-color: #F9C !important;
+}
+
+.lightText {
+	color: #EEE;
+}
+
+.lightLine {
+	background-color: #666;
 }

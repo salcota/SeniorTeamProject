@@ -79,9 +79,9 @@ class Reg_User extends CI_Model
 
     public function defaultPic($id){
 	
-	$pic = 'public/images/images-1.jpeg';
+	//$pic = 'public/images/images-1.jpeg';
 	$this->db->set('user_id',$id);
-	$this->db->set('pic',$pic);
+	$this->db->set('pic',NULL);
      	$this->db->insert('reg_user_pic');
 
     }

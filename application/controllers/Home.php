@@ -57,10 +57,10 @@ class Home extends CI_Controller
  
 					$this->session->set_flashdata($data);
 
-				} else {
-					
+				} else
+				{
 					$find['title'] = $search;
-        			}
+				}
 			}
 
 			//Sorts items based on option value.
@@ -68,6 +68,8 @@ class Home extends CI_Controller
 
 			if(strlen($sort) > 0){
 				$find['sort'] = $sort;
+			}else{
+				$find['sort'] = 'posted_on';
 			}
 			
 			// Returns only matching category.
@@ -77,6 +79,16 @@ class Home extends CI_Controller
 			
 			// Counts number of matching items in the entire database.
 			$maxItems = $this->Item_Listing->countItems($find);
+			// If no results, show default item listings.
+			if ($maxItems == 0 && strlen($find['title']) > 0)
+			{
+				// Print errors for "no results found"
+				$data['bad_search'] = "No results found for \"" . htmlentities($find['title']) . "\"";
+				$this->session->set_flashdata($data);
+				
+				$find['title'] = "";
+				$maxItems = $this->Item_Listing->countItems($find);
+			}
 
 			// Calculates maximum number of possible pages.
 			$maxPages = ceil($maxItems/$this::PAGEMAXITEMS);

@@ -17,6 +17,10 @@
         background-color: #A4A !important;
 }
 
+.container {
+	margin-top: 75px;
+}
+
 .navbar {
         background-color: #414 !important;
 }

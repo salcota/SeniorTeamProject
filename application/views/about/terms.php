@@ -25,7 +25,7 @@
     <br /><br /><br />
     
     <!-- Terms & conditions -->          
-    <div class="row-sm-12" style="text-align: justify">
+    <div class="row-sm-12 lightText" style="text-align: justify">
     	<h5>1- Compliance & Liability:</h5>
 	<p>All registered users understand they must comply with the SFSU Congre-Gators Market rules. Any issues raised that conflict with the agreement of our terms will be the sole responsibility of that user, and the company will not be held liable to any damages caused.</p>
 	<h5>2- Misconduct:</h5>

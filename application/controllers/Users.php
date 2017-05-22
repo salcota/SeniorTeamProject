@@ -14,25 +14,6 @@ class Users extends CI_Controller
         // Load navbar
         $this->navbars->load();
     }
-   
-    // Attempting form validations for report misconduct, scota
-    public function report()
-    {
-	$this->form_validation->set_rules('reportText', 'Report misconduct here', 'trim|required|alpha');
-
-	if($this->form_validation->run() == FALSE)
-	{
-		$data = array(
-			'bad_report' => validation_errors()
-		); 
-		$this->session->set_flashdata($data);
-		redirect('home/view/home');
-	} else {
-		//do something
-		redirect('home/view/home');
-		
-        }
-    }
 
 	public function login()
 	{
@@ -115,8 +96,15 @@ class Users extends CI_Controller
      */
 	public function delete_listing($listingId){
 		try{
+            if(!$this->authorizedUser($listingId)){
+                $data['delete_listing_error'] = "You are not authorized to delete this listing.";
+                $this->session->set_flashdata($data);
+                redirect('user_listings');
+            }
+
             $this->userinfo = $this->loginhelper->getLoginData();
             if($this->loginhelper->isRegistered()) {
+
 				$this->load->model('Notification_Model');
 				$this->Notification_Model->orphanNotifications($listingId);
                 $this->Item_Listing->deleteItemListing($listingId);
@@ -138,7 +126,11 @@ class Users extends CI_Controller
 	public function edit_listing($listingId){
 		//Check if the user is logged in
         $this->loginhelper->forceLogin();
-
+        if(!$this->authorizedUser($listingId)){
+            $data['delete_listing_error'] = "You are not authorized to edit this listing.";
+            $this->session->set_flashdata($data);
+            redirect('user_listings');
+        }
         //Load categories
         $this->load->model('Category');
         $data['categories'] = $this->Category->getCategories();
@@ -172,5 +164,20 @@ class Users extends CI_Controller
         // Gets basic footer.
         $this->load->view('common/footerbar');
 	}
+
+    private function authorizedUser($listingId){
+
+        if($this->loginhelper->isRegistered()){
+            $ownerId = $this->Item_Listing->getUserIdForListing($listingId);
+            $user = $this->loginhelper->getLoginData();
+
+            if($ownerId == $user->user_id)
+                return true;
+            else
+                return false;
+        }else{
+            return false;
+        }
+    }
 }
 ?>
