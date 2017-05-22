@@ -80,11 +80,19 @@ class Home extends CI_Controller
 			// Counts number of matching items in the entire database.
 			$maxItems = $this->Item_Listing->countItems($find);
 			// If no results, show default item listings.
-			if ($maxItems == 0 && strlen($find['title']) > 0)
+			if ($maxItems == 0)
 			{
 				// Print errors for "no results found"
-				$data['bad_search'] = "No results found for \"" . htmlentities($find['title']) . "\"";
-				$this->session->set_flashdata($data);
+				if (array_key_exists('title', $find) && strlen($find['title']) > 0)
+				{
+					$data['bad_search'] = "No results found for \"" . htmlentities($find['title']) . "\"";
+					$this->session->set_flashdata($data);
+				}
+				else
+				{
+					$data['bad_search'] = "No results found";
+					$this->session->set_flashdata($data);
+				}
 				
 				$find['title'] = "";
 				$maxItems = $this->Item_Listing->countItems($find);
