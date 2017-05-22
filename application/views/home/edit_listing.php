@@ -172,7 +172,7 @@
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="padding-left: 10px; text-align: center">
                         <img class="card-img-top card-style" src="<?php if (!isset($itemPics[0])) {
-                            echo base_url() . 'public/images/images-1.jpeg';
+                            echo base_url() . 'public/images/defaultpic.jpeg';
                         } else {
                             echo base_url() . 'Images/itemPic/' . $itemPics[0]->item_pic_id;
                         } ?>" alt="Card image cap" accept="image/*" id="pic2">
@@ -208,7 +208,7 @@
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="padding-left: 10px; text-align: center">
                         <img class="card-img-top card-style" src="<?php if (!isset($itemPics[1])) {
-                            echo base_url() . 'public/images/images-1.jpeg';
+                            echo base_url() . 'public/images/defaultpic.jpeg';
                         } else {
                             echo base_url() . 'Images/itemPic/' . $itemPics[1]->item_pic_id;
                         } ?>" alt="Card image cap" accept="image/*" id="pic3">
@@ -242,7 +242,7 @@
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="text-align: center">
                         <img class="card-img-top card-style" src="<?php if (!isset($itemPics[2])) {
-                            echo base_url() . 'public/images/images-1.jpeg';
+                            echo base_url() . 'public/images/defaultpic.jpeg';
                         } else {
                             echo base_url() . 'Images/itemPic/' . $itemPics[2]->item_pic_id;
                         } ?>" alt="Card image cap" accept="image/*" id="pic4">
@@ -278,7 +278,7 @@
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="text-align: center">
                         <img class="card-img-top card-style" src="<?php if (!isset($itemPics[3])) {
-                            echo base_url() . 'public/images/images-1.jpeg';
+                            echo base_url() . 'public/images/defaultpic.jpeg';
                         } else {
                             echo base_url() . 'Images/itemPic/' . $itemPics[3]->item_pic_id;
                         } ?>" alt="Card image cap" accept="image/*" id="pic5">
@@ -312,7 +312,7 @@
                       class="form_horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                     <p class="small" style="text-align: center">
                         <img class="card-img-top card-style" src="<?php if (!isset($itemPics[4])) {
-                            echo base_url() . 'public/images/images-1.jpeg';
+                            echo base_url() . 'public/images/defaultpic.jpeg';
                         } else {
                             echo base_url() . 'Images/itemPic/' . $itemPics[4]->item_pic_id;
                         } ?>" alt="Card image cap" accept="image/*" id="pic6">

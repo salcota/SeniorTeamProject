@@ -254,7 +254,7 @@ END;
                 <div class="modal-footer">
                     <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp;<span id="itemDate"></span>
                     <br /><?php $location = 'Spot 1 - Quad'; echo 'Meet-up:<span>&emsp;</span>' . $location; ?></span>
-                    <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps_test'?>">View Map</a>
+                    <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps'?>">View Map</a>
                     <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
                     <?php
                         $data = array(
