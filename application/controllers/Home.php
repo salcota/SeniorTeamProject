@@ -148,8 +148,21 @@ class Home extends CI_Controller
 
 				
 			// Sends all GET data.
-			$items['get'] = $this->input->get();			
+			$items['get'] = $this->input->get();
+			
 			$items['itemList'] = $this->Item_Listing->getItems($find);
+			// Add meetup location
+			$this->load->model('Meeting_Model');
+			if ($this->loginhelper->isRegistered())
+				$me = $this->loginhelper->getLoginData()->user_id;
+			else
+				$me = -1;
+			foreach($items['itemList'] as $item)
+			{
+				$meetup = $this->Meeting_Model->getMeeting($item->listing_id, $me);
+				$item->meetLocation = $meetup->location;
+			}
+			
 			$this->load->view('home/home', $items);
 		}
 		else

@@ -79,14 +79,14 @@ class Meeting_Model extends CI_Model
 		$data = $this->db->get('meetings')->result();
 		
 		if (count($data) == 1)
-			return $data[0]->meet_id;
+			return $data[0];
 		else
 		{
 			$this->db->limit(1);
 			$this->db->order_by('meet_id', 'ASC');
 			$data = $this->db->get('meetup')->result();
 			if (count($data) == 1)
-				return $data[0]->meet_id;
+				return $data[0];
 			else
 				return "";
 		}

@@ -7,7 +7,7 @@
 var buyCart = new LiveMessage();
 buyCart.otherSeller = true;
 
-function buySelect(userID, itemID, itemTitle, itemSeller, itemTime)
+function buySelect(userID, itemID, itemTitle, itemSeller, itemTime, meetup)
 {
 	// Send item details to AJAX function
 	buyCart.otherID = userID;
@@ -17,6 +17,7 @@ function buySelect(userID, itemID, itemTitle, itemSeller, itemTime)
 	$("#itemTitle").text(itemTitle);
 	$("#itemSeller").text(itemSeller);
 	$("#itemDate").text(itemTime);
+	$("#meetup").text(meetup);
 }
 
 function buyConfirm()
@@ -136,6 +137,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			$seller = htmlentities($item->username);
 			$date = new DateTime($item->posted_on);
 			$date = $date->format("M d, Y");
+			$meetup = $item->meetLocation;
 		?>            
 	    <div class="col-lg-3">
                 <div class="card" style="margin: 10 auto 10 auto">
@@ -149,7 +151,7 @@ Welcome to SFSU Congre-Gators, where SFSU students can buy and sell a variety of
 			    if($logged)
 				{
 			        echo <<<END
-					<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal' onclick="buySelect($item->seller_id, $item->listing_id, '$title', '$seller', '$date')">Buy</a>
+					<a class='btn btn-success btn-sm' href='#' data-toggle='modal' data-target='#buyModal' onclick="buySelect($item->seller_id, $item->listing_id, '$title', '$seller', '$date', '$meetup')">Buy</a>
 END;
 				}
 			    else
@@ -253,7 +255,7 @@ END;
 
                 <div class="modal-footer">
                     <span style="width: 100%">Date:&nbsp;&nbsp;&emsp;&emsp;<span id="itemDate"></span>
-                    <br /><?php $location = 'Spot 1 - Quad'; echo 'Meet-up:<span>&emsp;</span>' . $location; ?></span>
+                    <br />Meet-up:<span>&emsp;</span><span id="meetup"></span></span>
                     <a class="btn btn-secondary btn-sm" href="<?php echo base_url() . 'Home/view/googlemaps'?>">View Map</a>
                     <button type="button" class="btn  btn-secondary btn-sm" style="cursor: pointer" data-dismiss="modal">Close</button>
                     <?php

@@ -202,7 +202,7 @@ class Notification extends CI_Controller
 			return;
 		
 		// Print Meeting place
-		echo $this->Meeting_Model->getMeeting($itemID, $buyerID);
+		echo $this->Meeting_Model->getMeeting($itemID, $buyerID)->meet_id;
 	}
 	
 	public function setMeeting()
