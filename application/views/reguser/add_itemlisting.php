@@ -119,7 +119,7 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
 		<p class="small" style="padding-left: 10px; text-align: center">
-                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="dp_item">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/defaultPic.jpeg'?>" alt="Card image cap" accept="image/*" id="dp_item">
 		    <br /><br />
                     <span class="card-title">Display picture of Item (5 MB max . 2,565 X 1,445)</span>
 		</p>
@@ -130,7 +130,7 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <p class="small" style="padding-left: 10px; text-align: center">
-                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic2">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/defaultPic.jpeg'?>" alt="Card image cap" accept="image/*" id="pic2">
 		    <br /><br />
                     <span class="card-title">Pic 2</span>
 		</p>
@@ -144,7 +144,7 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <p class="small" style="padding-left: 10px; text-align: center">
-                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic3">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/defaultPic.jpeg'?>" alt="Card image cap" accept="image/*" id="pic3">
 		    <br /><br />
                     <span class="card-title">Pic 3</span>
 		</p>
@@ -155,7 +155,7 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <p class="small" style="text-align: center">
-                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic4">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/defaultPic.jpeg'?>" alt="Card image cap" accept="image/*" id="pic4">
 		    <br /><br />
                     <span class="card-title">Pic 4</span>
   	        </p>
@@ -169,7 +169,7 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <p class="small" style="text-align: center">
-                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic5">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/defaultPic.jpeg'?>" alt="Card image cap" accept="image/*" id="pic5">
 		    <br /><br />
                     <span class="card-title">Pic 5</span>
     		</p>
@@ -180,7 +180,7 @@
         <div class="col-lg-5">
             <div class="card" style="margin: 10 auto 10 auto; padding: 5px">
                 <p class="small" style="text-align: center">
-                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/images-1.jpeg'?>" alt="Card image cap" accept="image/*" id="pic6">
+                    <img class="card-img-top card-style"  src="<?php echo base_url().'public/images/defaultPic.jpeg'?>" alt="Card image cap" accept="image/*" id="pic6">
 		    <br /><br />
                     <span class="card-title">Pic 6</span>
 		</p>
