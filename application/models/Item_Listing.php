@@ -201,6 +201,10 @@ class Item_Listing extends CI_Model
 	    $tables = array('item_pic', 'item_listing');
 	    $this->db->where('listing_id', $listingId);
 	    $this->db->delete($tables);
+		
+		// Delete meeting locations
+		$this->load->model('Meeting_Model');
+		$this->Meeting_Model->delete($listingId);
 	    return;
     }
 

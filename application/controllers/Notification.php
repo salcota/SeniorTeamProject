@@ -14,6 +14,7 @@ class Notification extends CI_Controller
 		parent::__construct();
 		
 		$this->load->model("Notification_Model");
+		$this->load->model("Meeting_Model");
 		
 		if ($this->loginhelper->isRegistered())
 			$this->myInfo = $this->loginhelper->getLoginData();
@@ -35,6 +36,8 @@ class Notification extends CI_Controller
 		$user = $this->loginhelper->getLoginData();
 		$data['userID'] = $user->user_id;
 		$data['username'] = $user->username;
+		$data['meetups'] = $this->Meeting_Model->getMeetups();
+		
 		$this->load->view('notifications/notifications', $data);
 		
 		$this->load->view('common/footerbar');
@@ -183,6 +186,44 @@ class Notification extends CI_Controller
 	{
 		if (!$this->loginhelper->isRegistered())
 			show_404();
+	}
+	
+	public function getMeeting($itemID, $buyerID)
+	{
+		if (!is_numeric($itemID) || !is_numeric($buyerID))
+			return;
+		
+		$this->load->model('Item_Listing');
+		$owner = $this->Item_Listing->getUserIdForListing($itemID);
+		$me = $this->loginhelper->getLoginData()->user_id;
+		
+		// User is either the buyer or seller
+		if ($buyerID != $me && $owner != $me)
+			return;
+		
+		// Print Meeting place
+		echo $this->Meeting_Model->getMeeting($itemID, $buyerID);
+	}
+	
+	public function setMeeting()
+	{
+		$itemID = $this->input->post('item');
+		$buyerID = $this->input->post('buyer');
+		$meeting = $this->input->post('meeting');
+		
+		if (!is_numeric($itemID) || !is_numeric($buyerID) || !is_numeric($meeting))
+			return;
+		
+		$this->load->model('Item_Listing');
+		$owner = $this->Item_Listing->getUserIdForListing($itemID);
+		$me = $this->loginhelper->getLoginData()->user_id;
+		
+		// User is either the buyer or seller
+		if ($buyerID != $me && $owner != $me)
+			return;
+		
+		// Set Meeting place
+		$this->Meeting_Model->setMeeting($itemID, $buyerID, $meeting);
 	}
 }
 ?>

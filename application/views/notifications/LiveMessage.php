@@ -151,6 +151,24 @@ function LiveMessage(userID) {
 			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
 		}).join(''));
 	}
+	
+	this.setMeeting = function(buyerID, meetingID)
+	{
+		var req = $.post(this.controller + "setMeeting", {item: this.itemID, buyer: buyerID, meeting: meetingID});
+	}
+	
+	this.getMeeting = function(buyerID, callBack)
+	{
+		if (this.itemID < 0)
+			return;
+		
+		var req = $.post(this.controller + "getMeeting/" + this.itemID + "/" + buyerID);
+		
+		req.done(function(data)
+		{
+			callBack(data);
+		});
+	}
 }
 
 </script>

@@ -247,7 +247,37 @@ $(document).ready(function()
 	messenger.getSellers(showSellers);
 	
 	setInterval(refreshMessages, 1000);
+	setInterval(showMeeting, 1000);
 	});
+
+function updateMeeting()
+{
+	var spot = $("#meeting").val();
+	
+	if (messenger.itemID >= 0)
+	{
+		var buyer = myID;
+		if (messenger.otherSeller == false)
+			buyer = messenger.otherID;
+		
+		messenger.setMeeting(buyer, spot);
+	}
+}
+
+function showMeeting()
+{
+	if (messenger.itemID < 0)
+		return;
+	
+	var buyer = myID;
+	if (messenger.otherSeller == false)
+		buyer = messenger.otherID;
+	
+	messenger.getMeeting(buyer, function(meeting)
+	{
+		$("#meeting").val(meeting);
+	});
+}
 </script>
 
 <div class="container">
@@ -327,13 +357,9 @@ $(document).ready(function()
                         <div class="form-group input-group" style="float: left">
                             <?php
                                 echo '<span class="input-group-addon">Meet Up</span>';
-                                    // 
-                                    $options = array(
-                                    '1' => 'Quad',
-                                    '2' => 'Bee Garden',
-				    '3' => 'University PD'
-                                );
-                                echo form_dropdown('name', $options, '1');
+								$options['id'] = "meeting";
+								$options['onchange'] = "updateMeeting()";
+                                echo form_dropdown('name', $meetups, '1', $options);
                             ?>
                         </div>
 
