@@ -37,7 +37,7 @@
 	<div class="row justify-content-center">
             <div class="col-sm-4 about_us">
 	        <div class="about_frame">
-	            <img src="http://www.ihsansdomain.com/IhsanTaha_ProfilePic.png" alt="Ihsan Taha"/>
+	            <img src="<?php echo base_url() . "public/images/aboutIhsan.png"?>" alt="Ihsan Taha"/>
 	        </div>
 	        <br />
                 <h5>Ihsan</h5>
@@ -68,7 +68,7 @@
     <div class="row justify-content-center">
         <div class="col-sm-4 about_us">
             <div class="about_frame">
-                <img src="https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/15590368_10155476774979057_5985225702468684038_n.jpg?oh=2190452598d45fd86bfd543697207281&amp;oe=5948C81A" alt="Shane Cota"/>
+                <img src="<?php echo base_url() . "public/images/aboutScota.jpg"?>" alt="Shane Cota"/>
 	    </div>
 	    <br />
             <h5>Shane</h5>
@@ -86,7 +86,7 @@
 
 	<div class="col-sm-4 about_us">
             <div class="about_frame">
-                <img src="http://i.imgur.com/mKvvwpl.png" src="Mark Tompong"/>
+                <img src="<?php echo base_url() . "public/images/aboutMtom.png"?>" src="Mark Tompong"/>
 	    </div>
             <br />
             <h5>Mark</h5>
